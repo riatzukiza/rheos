@@ -51,6 +51,15 @@ writeback writes the file. Valid standard tagged collections such as `!!set`,
 retained standard tag, using the YAML library's resolution. Unrelated
 application-specific tags remain preserved.
 
+A projected Markdown candidate that cannot be read or parsed rejects the whole
+load with `:kind :refused`, its `:source-path`, and the original diagnostic. Board
+composition propagates that refusal rather than reporting a partial board. One
+refused card therefore makes that load unavailable until its source is repaired;
+no empty-frontmatter fallback creates a substitute identity or status. The CLI
+reports the path and reason on stderr with exit code 3, and existing HTTP error
+responses report that same message. Valid-load shapes, source bytes, configured
+projection exclusions, and non-Markdown discovery exclusions stay unchanged.
+
 The update contract accepts a block mapping, simple string/keyword field names,
 and strings, finite numbers, booleans, nil, or vectors of those values. A missing
 frontmatter block is added after any file-leading BOM without reformatting the

@@ -48,8 +48,10 @@
        :content content
        :source-path file-path})
     (catch :default err
-      (js/console.error "Parse error:" file-path (.-message err))
-      nil)))
+      (let [diagnostic (or (.-message err) (str err))]
+        (throw (ex-info (str "Refused card source " file-path ": " diagnostic)
+                        {:kind :refused :source-path file-path :diagnostic diagnostic}
+                        err))))))
 
 (defn- ^:async is-directory? [full-path]
   (try
@@ -153,6 +155,11 @@
    `:card-projection {:paths [...]}` scans only those resolved paths; a bare
    tasks-dir preserves recursive legacy discovery.
 
+   A refused candidate rejects the load with its source path and diagnostic.
+   Never report a successful partial board or invent frontmatter for that file;
+   the caller can repair the source and retry. Files outside the configured
+   projection and non-Markdown entries retain their discovery exclusions.
+
    The resolved tasks-dir is checked because getting it wrong used to be
    invisible: `readdir` throws on a bad argument, [[collect-markdown-files]]
    catches everything and returns `[]`, and the caller reads that as \"the board
@@ -176,8 +183,7 @@
         nested (await (js/Promise.all
                        (clj->js (mapv collect-markdown-files roots))))
         files (vec (distinct (apply concat nested)))
-        tasks-raw (await (js/Promise.all
-                          (clj->js
-                           (mapv #(parse-task-file % tasks-dir) files))))
-        tasks (filterv some? (vec tasks-raw))]
+        tasks (vec (await (js/Promise.all
+                           (clj->js
+                            (mapv #(parse-task-file % tasks-dir) files)))))]
     (vec (sort-by task-sort-key tasks))))

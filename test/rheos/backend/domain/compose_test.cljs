@@ -1,6 +1,7 @@
 (ns rheos.backend.domain.compose-test
   (:require [cljs.test :refer [deftest testing is]]
             ["node:fs/promises" :as fsp]
+            ["node:os" :as os]
             ["node:path" :as path]
             [clojure.string :as str]
             [rheos.backend.domain.compose :as compose]
@@ -77,6 +78,43 @@
         (is (= "proxx" (:domain (first tasks))))
         (is (= "open-hax" (:org (first tasks)))))
       (await (.rm fsp tmp-dir #js {:recursive true :force true})))))
+
+(deftest ^:async composed-board-propagates-refused-source-and-recovers
+  (let [root (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-compose-refusal-")))
+        good-dir (path/join root "good")
+        bad-dir (path/join root "bad")
+        bad-path (path/join bad-dir "broken.md")
+        raw "---\nuuid: broken\nlabels: [unfinished\n---\n\n# Unchanged body\n"
+        projects [{:id "good" :tasks-dir good-dir :meta {}}
+                  {:id "bad" :tasks-dir bad-dir :meta {}}]
+        query (compose/parse-compose-query {})]
+    (try
+      (await (.mkdir fsp good-dir))
+      (await (.mkdir fsp bad-dir))
+      (await (write-task good-dir "good" "Good" "todo" "P1" []))
+      (await (.writeFile fsp bad-path raw "utf8"))
+      (let [error (try (await (compose/compose-snapshot projects query))
+                       nil (catch :default err err))]
+        (is (some? error) "a composed board cannot silently omit a refused project's source")
+        (is (= :refused (:kind (ex-data error))))
+        (is (= bad-path (:source-path (ex-data error))))
+        (is (and error (str/includes? (.-message error) bad-path))))
+      (is (= raw (await (.readFile fsp bad-path "utf8"))))
+      (await (write-task bad-dir "broken" "Repaired" "todo" "P1" []))
+      (let [snapshot (await (compose/compose-snapshot projects query))]
+        (is (= 2 (:total-tasks snapshot)))
+        (is (= #{"good" "broken"} (set (mapcat #(map :uuid (:tasks %)) (:columns snapshot))))))
+      (testing "unrelated composition errors keep their previous fallback"
+        (is (= 1 (:total-tasks
+                  (await (compose/compose-snapshot
+                          [(first projects) {:id "unusable" :tasks-dir nil}] query))))
+            "a non-refusal project usage error still skips that project")
+        (is (= 0 (:total-tasks
+                  (await (compose/compose-snapshot projects
+                                                   {:where-clauses [[42 := "invalid"]]}))))
+            "a non-refusal outer query error still returns an empty snapshot"))
+      (finally
+        (await (.rm fsp root #js {:recursive true :force true}))))))
 
 (deftest ^:async compose-snapshot-includes-drift-flag
   (testing "Tasks with a drift-detected ledger event are marked drift=true"
