@@ -33,6 +33,44 @@ below) and emits to `dist/web/js`, which the server then serves statically. A
 > The `test` package script runs `node dist/test.cjs`; the `:test` shadow build
 > writes its bundle to `dist/test.cjs` with `:autorun true`.
 
+### Frontmatter source-preservation checks
+
+Frontmatter updates and `write-id` injection patch only requested top-level
+values. Unrelated YAML, comments, delimiters, line endings, body fences and
+spacing remain in their original source form. Reads share one YAML decoder,
+including the card loader, while flat scalar fields retain their string values
+and empty fields retain `""`. Invalid/duplicate-key YAML and invalid updates
+are refused before status writeback writes the file.
+
+The update contract accepts a block mapping, simple string/keyword field names,
+and strings, finite numbers, booleans, nil, or vectors of those values. A missing
+frontmatter block is added without reformatting the body. This is scoped to
+frontmatter mutation: `append-comment`, section rendering, and the general
+task serializer still reconstruct content and do not promise lossless editing.
+The status writeback adapter uses a native Promise; the standalone compiler
+does not transform the other existing `^:async`/`await` adapters.
+
+The focused tests can run from a clean checkout without installing the missing
+sibling source trees. Node, Java (for shadow-cljs), and clj-kondo are required:
+
+```bash
+rheos_test_deps="$(mktemp -d)"
+npm install --prefix "$rheos_test_deps" --ignore-scripts --no-package-lock \
+  nbb@1.3.204 yaml@2.9.1 shadow-cljs@3.4.10
+NODE_PATH="$rheos_test_deps/node_modules" "$rheos_test_deps/node_modules/.bin/nbb" \
+  -cp src:test -e '(require (quote [cljs.test :as t]) (quote [rheos.backend.shape.content-parser-test]) (quote [rheos.backend.infra.task-writeback-test])) (t/run-tests (quote rheos.backend.shape.content-parser-test) (quote rheos.backend.infra.task-writeback-test))'
+NODE_PATH="$rheos_test_deps/node_modules" "$rheos_test_deps/node_modules/.bin/shadow-cljs" \
+  compile test --config-merge '{:ns-regexp "rheos.backend.(shape.content-parser|infra.task-writeback)-test$"}'
+clj-kondo --lint src test
+```
+
+The selected shadow build runs its tests with `:autorun true`. A green focused
+run does not establish a full-suite pass. The full `pnpm test` gate remains
+unavailable in a clean extracted checkout without `deps/protocols/src` and
+`deps/chat-ui/src`; its first missing namespace is
+`open-hax.openplanner-protocols`. Supplying those sources and qualifying the
+other existing async adapters remains separate work.
+
 ## shadow-cljs targets
 
 Defined in `shadow-cljs.edn`. Source paths pull in sibling workspace packages:

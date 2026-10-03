@@ -4,39 +4,11 @@
             ["node:path" :as path]
             [clojure.string :as str]
             [rheos.backend.infra.projects :as projects]
+            [rheos.backend.shape.content-parser :as content-parser]
             [rheos.backend.shape.kanban :as shape]))
 
 (def status-index
   (into {} (map-indexed (fn [i s] [s i]) shape/StatusOrder)))
-
-(defn- parse-yaml-simple [yaml-str]
-  (let [lines (str/split-lines yaml-str)]
-    (reduce (fn [acc line]
-              (cond
-                (re-matches #"^(\w[\w_-]*):\s*\"(.*)\"\s*" line)
-                (let [[_ k v] (re-matches #"^(\w[\w_-]*):\s*\"(.*)\"\s*" line)]
-                  (assoc acc (keyword k) v))
-
-                (re-matches #"^(\w[\w_-]*):\s*(.+)\s*" line)
-                (let [[_ k v] (re-matches #"^(\w[\w_-]*):\s*(.+)\s*" line)]
-                  (assoc acc (keyword k) (str/trim v)))
-
-                (re-matches #"^(\w[\w_-]*):\s*$" line)
-                (let [[_ k] (re-matches #"^(\w[\w_-]*):\s*$" line)]
-                  (assoc acc (keyword k) ""))
-
-                :else acc))
-            {}
-            lines)))
-
-(defn- parse-frontmatter [raw]
-  (let [match (re-matches #"---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)" raw)]
-    (if match
-      (let [yaml-str (nth match 1)
-            content (nth match 2)
-            parsed (parse-yaml-simple yaml-str)]
-        {:frontmatter parsed :content content})
-      {:frontmatter {} :content raw})))
 
 (defn- normalize-labels [labels tags]
   (let [raw (or labels tags [])
@@ -55,7 +27,7 @@
 (defn- ^:async parse-task-file [file-path _tasks-dir]
   (try
     (let [raw (await (.readFile fsp file-path "utf8"))
-          {:keys [frontmatter content]} (parse-frontmatter raw)
+          {:keys [frontmatter content]} (content-parser/parse-frontmatter raw)
           title (or (:title frontmatter) (path/basename file-path ".md"))
           priority (-> (or (:priority frontmatter) "P3") str/upper-case str/trim)
           labels (normalize-labels (:labels frontmatter) (:tags frontmatter))

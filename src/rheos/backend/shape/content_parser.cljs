@@ -1,37 +1,19 @@
 (ns rheos.backend.shape.content-parser
   "Parse task markdown into frontmatter + body/comment sections."
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [rheos.backend.extern.yaml :as yaml]))
+
+(defn- frontmatter-source [raw]
+  ;; Delimiters must occupy lines at the beginning of the file. In particular,
+  ;; never search the body for a YAML-looking fenced example or comment block.
+  (when-let [[_ opening source closing body]
+             (re-matches #"(?m)^((?:\uFEFF)?---[ \t]*\r?\n)([\s\S]*?)(^---[ \t]*(?:\r?\n|$))([\s\S]*)" raw)]
+    {:opening opening :source source :closing closing :body body}))
 
 (defn parse-frontmatter [raw]
-  (let [match (re-matches #"---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)" raw)]
-    (if match
-      (let [yaml-str (nth match 1)
-            content (nth match 2)
-            lines (str/split-lines yaml-str)
-            data (reduce (fn [acc line]
-                           (cond
-                             ;; Array: key: ["a", "b", "c"]
-                             (re-matches #"^(\w[\w_-]*):\s*\[(.*)\]\s*" line)
-                             (let [[_ k v] (re-matches #"^(\w[\w_-]*):\s*\[(.*)\]\s*" line)
-                                   items (mapv #(str/trim (str/replace % "\"" ""))
-                                               (str/split v #","))]
-                               (assoc acc (keyword k) items))
-                             ;; Quoted string: key: "value"
-                             (re-matches #"^(\w[\w_-]*):\s*\"(.*)\"\s*" line)
-                             (let [[_ k v] (re-matches #"^(\w[\w_-]*):\s*\"(.*)\"\s*" line)]
-                               (assoc acc (keyword k) v))
-                             ;; Unquoted value: key: value
-                             (re-matches #"^(\w[\w_-]*):\s*(.+)\s*" line)
-                             (let [[_ k v] (re-matches #"^(\w[\w_-]*):\s*(.+)\s*" line)]
-                               (assoc acc (keyword k) (str/trim v)))
-                             ;; Empty value: key:
-                             (re-matches #"^(\w[\w_-]*):\s*$" line)
-                             (let [[_ k] (re-matches #"^(\w[\w_-]*):\s*$" line)]
-                               (assoc acc (keyword k) ""))
-                             :else acc))
-                         {} lines)]
-        {:frontmatter data :content content})
-      {:frontmatter {} :content raw})))
+  (if-let [{:keys [source body]} (frontmatter-source raw)]
+    {:frontmatter (yaml/read-frontmatter source) :content body}
+    {:frontmatter {} :content raw}))
 
 (defn parse-sections [content]
   (let [lines (str/split-lines content)
@@ -89,20 +71,87 @@
        "\n\n"
        (serialize-sections (:sections parsed))))
 
-(defn update-frontmatter-keys [raw updates]
-  (let [parsed (parse-task-content raw)
-        new-frontmatter (reduce-kv (fn [fm k v] (assoc fm (keyword k) v))
-                                   (:frontmatter parsed)
-                                   updates)]
-    (serialize-task-content (assoc parsed :frontmatter new-frontmatter))))
+(defn- update-value? [value]
+  (or (nil? value) (string? value) (boolean? value)
+      (and (number? value) (yaml/finite-number? value))
+      (and (vector? value) (every? update-value? value))))
+
+(defn- checked-updates [updates]
+  (when-not (map? updates)
+    (throw (ex-info "Frontmatter updates must be a map" {})))
+  (let [entries (mapv (fn [[key value]]
+                        (let [key-name (cond
+                                         (keyword? key) (when-not (namespace key) (name key))
+                                         (string? key) key
+                                         :else nil)]
+                          (when-not (and key-name (re-matches #"\w[\w_-]*" key-name))
+                            (throw (ex-info "Invalid frontmatter update key" {:key key})))
+                          (when-not (update-value? value)
+                            (throw (ex-info "Unsupported frontmatter update value" {:key key})))
+                          [key-name value]))
+                      updates)]
+    (when-not (= (count entries) (count (set (map first entries))))
+      (throw (ex-info "Duplicate frontmatter update keys" {})))
+    entries))
+
+(defn- value-patch [source {:keys [start end key-end header-comment]} value]
+  (let [separator (subs source key-end start)
+        ;; A block value may start on another line. Move its replacement onto
+        ;; the key's line when only whitespace separates the colon and value.
+        block-separator? (and (re-matches #":\s*" separator)
+                              (str/includes? separator "\n"))
+        trailing-newline (second (re-find #"(\r?\n)$" (subs source start end)))
+        empty-before-comment? (and (= start end)
+                                   (= "#" (subs source start (min (count source) (inc start)))))]
+    {:start (if block-separator? (inc key-end) start)
+     :end end
+     :replacement (str (when (or block-separator? (= ":" separator)) " ")
+                       (yaml/replacement-value value)
+                       (when header-comment (str " " header-comment))
+                       (when empty-before-comment? " ")
+                       trailing-newline)}))
+
+(defn update-frontmatter-keys
+  "Patch requested top-level YAML fields without serializing unrelated source.
+   Frontmatter must be a valid block mapping. Body bytes are never parsed or
+   rewritten; the general task serializer and comment append remain separate."
+  [raw updates]
+  (let [entries (checked-updates updates)]
+    (if (empty? entries)
+      raw
+      (if-let [{:keys [opening source closing body]} (frontmatter-source raw)]
+        (let [pairs (yaml/block-map-entries source)
+              {:keys [patches additions]}
+              (reduce (fn [result [key value]]
+                        (if-let [pair (some #(when (= key (:key %)) %) pairs)]
+                          (update result :patches conj (value-patch source pair value))
+                          (update result :additions conj (str key ": " (yaml/replacement-value value)))))
+                      {:patches [] :additions []} entries)
+              patched (reduce (fn [text {:keys [start end replacement]}]
+                                (str (subs text 0 start) replacement (subs text end)))
+                              source
+                              (sort-by :start > patches))
+              newline (if (str/ends-with? opening "\r\n") "\r\n" "\n")
+              updated-source (str patched
+                                  (when (seq additions)
+                                    (str (when (and (seq patched) (not (str/ends-with? patched "\n"))) newline)
+                                         (str/join newline additions) newline)))]
+          ;; Qualify the replacement before any caller can write it. Source
+          ;; properties such as tags and anchors can affect replacement syntax.
+          (yaml/block-map-entries updated-source)
+          (str opening updated-source closing body))
+        (do
+          (when (re-find #"^(?:\uFEFF)?---[ \t]*\r?\n" raw)
+            (throw (ex-info "Unterminated YAML frontmatter" {})))
+          (str "---\n"
+               (str/join "\n" (map (fn [[key value]] (str key ": " (yaml/replacement-value value))) entries))
+               "\n---\n\n" raw))))))
 
 (defn update-frontmatter [raw key value]
   (update-frontmatter-keys raw {key value}))
 
 (defn inject-write-id [raw write-id]
-  (let [parsed (parse-task-content raw)
-        updated (assoc-in parsed [:frontmatter :write-id] write-id)]
-    (serialize-task-content updated)))
+  (update-frontmatter raw "write-id" write-id))
 
 (defn append-comment [raw comment-text]
   (let [parsed (parse-task-content raw)
