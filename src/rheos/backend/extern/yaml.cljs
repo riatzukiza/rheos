@@ -1,6 +1,7 @@
 (ns rheos.backend.extern.yaml
   "Decode YAML source nodes into Clojure-shaped ranges for targeted edits."
-  (:require [clojure.walk :as walk]
+  (:require [clojure.string :as str]
+            [clojure.walk :as walk]
             ["yaml" :as yaml]))
 
 (defn- pair-source [^js pair]
@@ -19,13 +20,10 @@
                        (some #(when (= "comment" (.-type %)) (.-source %))
                              (seq (.-props token))))}))
 
-(def ^:private core-tags
-  #{"tag:yaml.org,2002:null" "tag:yaml.org,2002:bool"
-    "tag:yaml.org,2002:int" "tag:yaml.org,2002:float"
-    "tag:yaml.org,2002:str" "tag:yaml.org,2002:seq"
-    "tag:yaml.org,2002:map"})
+(def ^:private tag-warning-codes
+  #{"TAG_RESOLVE_FAILED" "BAD_COLLECTION_TYPE"})
 
-(defn- unresolved-core-tag [^js document]
+(defn- incompatible-standard-tag [^js document]
   (let [tagged-nodes (atom [])]
     (yaml/visit document
                 (fn [_ ^js node]
@@ -33,14 +31,14 @@
                     (swap! tagged-nodes conj {:tag (.-tag node)
                                              :start (aget (.-range node) 0)}))))
     (some (fn [^js warning]
-            (when (= "TAG_RESOLVE_FAILED" (.-code warning))
+            (when (contains? tag-warning-codes (.-code warning))
               ;; A warning spans the tag token; its node's range starts after
               ;; that token. Use those source positions and the canonical AST
               ;; tag, rather than parsing a diagnostic message or tag spelling.
               (let [tag-end (aget (.-pos warning) 1)
                     tag (:tag (first (sort-by :start
                                              (filter #(<= tag-end (:start %)) @tagged-nodes))))]
-                (when (contains? core-tags tag) tag))))
+                (when (and tag (str/starts-with? tag "tag:yaml.org,2002:")) tag))))
           (seq (.-warnings document)))))
 
 (defn- source-document [source schema]
@@ -48,11 +46,12 @@
         ^js contents (.-contents document)]
     (when (pos? (.-length (.-errors document)))
       (throw (ex-info "Cannot update invalid YAML frontmatter" {})))
-    ;; Core resolution may downgrade an incompatible explicit tag to a warning.
-    ;; Unknown application tags are preserved; only failed standard core tags
-    ;; refuse mutation. Failsafe reads intentionally keep scalar conventions.
+    ;; The library may report incompatible standard tags as warnings, including
+    ;; collection-kind mismatches. Use its resolution for all standard tags;
+    ;; unknown application tags remain preserved. Failsafe reads intentionally
+    ;; keep scalar conventions.
     (when (= schema "core")
-      (when-let [tag (unresolved-core-tag document)]
+      (when-let [tag (incompatible-standard-tag document)]
         (throw (ex-info "Cannot update an incompatible standard YAML tag" {:tag tag}))))
     (when (and contents (or (not (yaml/isMap contents)) (.-flow contents)))
       (throw (ex-info "YAML frontmatter must be a block mapping" {})))
