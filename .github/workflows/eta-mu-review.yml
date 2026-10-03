@@ -19,8 +19,70 @@ jobs:
     with:
       pr_head_sha: ${{ github.event.pull_request.head.sha }}
       opencode_version: 1.18.31
-      setup_eta_mu_toolchain: false
+      setup_eta_mu_toolchain: true
       evidence_gates_script: |
+        gate_succeeded() {
+          [[ "$(awk -F= -v gate="$1" '$1 == gate {print $2}' "$statuses")" == "0" ]]
+        }
+        skip_gates() {
+          local gate
+          for gate in "$@"; do
+            printf '%s=125\n' "$gate" >> "$statuses"
+          done
+        }
+
+        run_gate tool_versions bash -euo pipefail -c '
+          node --version
+          pnpm --version
+          java -version
+          clj-kondo --version
+        '
+        run_gate generated_path_policy bash -euo pipefail -c '
+          # Checkout-local, untracked generated inputs/output only. Tracked
+          # changes still fail the reusable workflow completion guard.
+          exclude_path="$(git rev-parse --git-path info/exclude)"
+          mkdir -p "$(dirname "$exclude_path")"
+          printf "%s\n" /node_modules/ /deps/protocols/src/ /deps/chat-ui/src/ \
+            /.shadow-cljs/ /.clj-kondo/.cache/ /dist/ >> "$exclude_path"
+        '
+        if gate_succeeded tool_versions && gate_succeeded generated_path_policy; then
+          # No reviewed lockfile exists yet. This qualifies the complete
+          # manifest for this review, without claiming a frozen install.
+          run_gate install env -u NODE_PATH pnpm install --no-frozen-lockfile --no-lockfile
+          if gate_succeeded install; then
+            run_gate bootstrap env -u NODE_PATH bash -euo pipefail -c '
+              bash scripts/bootstrap-source-deps.sh
+              for source_dir in deps/protocols/src deps/chat-ui/src; do
+                test -d "$source_dir"
+                test -n "$(find "$source_dir" -type f -print -quit)"
+              done
+            '
+            if gate_succeeded bootstrap; then
+              run_gate lint env -u NODE_PATH pnpm lint:kondo
+              run_gate test env -u NODE_PATH pnpm test
+              run_gate build env -u NODE_PATH pnpm build
+              if gate_succeeded build; then
+                run_gate release_outputs bash -euo pipefail -c '
+                  for output in dist/server.js dist/cli.cjs dist/github-sync.cjs dist/web/js/main.js; do
+                    test -s "$output"
+                  done
+                '
+              else
+                skip_gates release_outputs
+                echo "Release output checks skipped because build failed." >> "$log"
+              fi
+            else
+              skip_gates lint test build release_outputs
+              echo "Lint, test, build and output checks skipped because source bootstrap failed." >> "$log"
+            fi
+          else
+            skip_gates bootstrap lint test build release_outputs
+            echo "Source bootstrap and validation skipped because dependency installation failed." >> "$log"
+          fi
+        else
+          skip_gates install bootstrap lint test build release_outputs
+          echo "Installation and validation skipped because tool or generated-path setup failed." >> "$log"
+        fi
         run_gate diff_stat git diff --stat "${PR_BASE_SHA}...HEAD"
     # Least privilege: forward only the secrets the review job consumes.
     secrets:
