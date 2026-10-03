@@ -166,4 +166,10 @@
                   (assoc-in parsed [:sections (dec (count sections)) :content]
                             (str (:content last-section) "\n\n" comment-text))
                   (update parsed :sections conj {:type "comment" :content comment-text}))]
-    (serialize-task-content updated)))
+    (if-let [{:keys [opening source closing]} (frontmatter-source raw)]
+      ;; Only the section body is reconstructed. Retain valid YAML spelling,
+      ;; typed extension values, comments and aliases for write-id injection.
+      (str opening source closing
+           (if (str/ends-with? closing "\n") "\n" "\n\n")
+           (serialize-sections (:sections updated)))
+      (serialize-task-content updated))))

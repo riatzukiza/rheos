@@ -31,7 +31,15 @@
     (let [task-path (:source-path task)
           raw (await (.readFile fsp task-path "utf8"))
           write-id (events/generate-write-id)
-          plan (task-edit/plan-frontmatter-update raw updates write-id)
+          plan (try (task-edit/plan-frontmatter-update raw updates write-id)
+                    (catch :default err
+                      (if (and (= :refused (:kind (ex-data err)))
+                               (= :title (:field (ex-data err))))
+                        (throw (ex-info (str "Refused card source " task-path ": " (.-message err))
+                                        (assoc (ex-data err) :source-path task-path
+                                               :diagnostic (.-message err))
+                                        err))
+                        (throw err))))
           ledger (ledger/get-ledger (:tasks-dir project))
           src (or source "cli")]
       (watcher/register-cli-event! write-id (:uuid task))
