@@ -14,6 +14,9 @@ planning review because the base is not the default branch.
 Read the canonical `~/.agents/skills/pr-flow/SKILL.md` before every PR
 interaction. That pack's exit conditions and settlement rules govern both
 planning and code review, including the readiness transition below.
+The operator must supply the current canonical policy in review requests and
+reviewer context. Unavailable policy or remote governance references remain
+verification limits; they cannot establish review-loop clearance.
 
 ## Problem and outcome
 
@@ -23,6 +26,10 @@ A full test pass therefore does not establish clean package installation or
 successful release compilation. Restore an independently executable CI check
 that installs this repository, bootstraps its declared source dependencies, and
 runs its existing test, lint, and release commands.
+
+The current stacked base includes `.github/workflows/eta-mu-review.yml` for
+native PR review with diff-stat evidence. That review infrastructure does not
+qualify this story's package installation, tests, lint, or release build.
 
 The prior source-preservation qualification passed 166 tests and 858 assertions
 using an external prefix containing backend dependencies and shadow-cljs. That
@@ -97,6 +104,9 @@ result does not qualify the complete dependency manifest or browser release.
     unchanged-source release baseline using the existing pinned source
     bootstrap and `pnpm build`, with its exact revision and success or failure
     diagnostics. This comparison point does not replace final qualification.
+11. Installation/build remediation keeps this story within its five-point
+    estimate. Added work that would exceed five points is split into linked
+    cards before scope expands, with its own acceptance and verification criteria.
 
 ## Verification sequence
 
@@ -109,6 +119,13 @@ retaining success or failure diagnostics. Then qualify installation and
 lockfile generation in an isolated checkout, run the pinned source bootstrap,
 run the three existing package commands, inspect the release outputs, and run
 built CLI help.
+
+For any installation/build remediation, record the failing command, cause,
+verification, and effect on the five-point estimate before changing scope.
+If added work would exceed five points, create linked repair cards and review
+their scope and readiness through canonical pr-flow before implementing those
+changes. A failed check does not automatically broaden this story.
+
 Append the observed results to Receipt River after baseline, local, and hosted
 qualification, including the exact revisions and commands, test/assertion
 counts and compiler diagnostics, failures or warnings, findings, and scope
@@ -158,6 +175,8 @@ Do not remove or bypass a failing release target. Keep the failing command and
 diagnostics inspectable; repair a small installation/build boundary defect in
 this story only when its cause and verification are clear. Record broader
 runtime repairs as linked follow-up cards before expanding scope.
+If added work would exceed the five-point estimate, split it into linked cards
+before expanding the scope.
 
 Several existing adapters use `^:async` metadata and `await`; the standalone
 compiler and runtime behavior must be inspected rather than inferred from a
