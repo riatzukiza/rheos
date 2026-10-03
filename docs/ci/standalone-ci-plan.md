@@ -67,9 +67,10 @@ result does not qualify the complete dependency manifest or browser release.
 5. `node dist/cli.cjs --help` exits successfully and renders the existing CLI's
    help. This checks loading the built entry point without mutating a board.
 6. The workflow runs the same install/bootstrap/test/lint/build sequence on the
-   PR's current head and records a successful check. Every review finding is
-   fixed, deferred to a named card, or rejected with evidence before the final
-   full review and merge gate.
+   PR's current head and records a successful check. P0/P1 findings require a
+   `Fixed` settlement; disputed P0/P1 findings remain open for user adjudication.
+   P2/P3 findings may be fixed, handled, deferred to a named card, or rejected
+   with evidence before the final full review and merge gate.
 
 ## Verification sequence
 
