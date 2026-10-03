@@ -11,6 +11,10 @@ The branch starts from source-preservation commit
 `codex/preserve-markdown-source`, with auto-merge off and an explicit CodeRabbit
 planning review because the base is not the default branch.
 
+Read the canonical `~/.agents/skills/pr-flow/SKILL.md` before every PR
+interaction. That pack's exit conditions and settlement rules govern both
+planning and code review, including the readiness transition below.
+
 ## Problem and outcome
 
 The standalone extraction retained the package commands but omitted the
@@ -88,14 +92,22 @@ result does not qualify the complete dependency manifest or browser release.
    pinned action revisions, the declared tool versions, and a bounded timeout.
    Actual tool versions are visible, and the job requires no deployment or
    review credentials.
+10. After planning clearance and before implementation changes, retain an
+    unchanged-source release baseline using the existing pinned source
+    bootstrap and `pnpm build`, with its exact revision and success or failure
+    diagnostics. This comparison point does not replace final qualification.
 
 ## Verification sequence
 
 Before implementation, record the clean declared-install baseline and preserve
-its log. After the planning review is settled, move the authoritative story to
-`ready` through Rheos. Then qualify installation and lockfile generation in an
-isolated checkout, run the pinned source bootstrap, run the three existing
-package commands, inspect the release outputs, and run built CLI help.
+its log. After planning review meets the canonical pr-flow exit conditions and
+all planning findings are settled, move the authoritative story to `ready`
+through Rheos. Before making implementation changes, run the existing pinned
+source bootstrap and unchanged `pnpm build` at the recorded baseline revision,
+retaining success or failure diagnostics. Then qualify installation and
+lockfile generation in an isolated checkout, run the pinned source bootstrap,
+run the three existing package commands, inspect the release outputs, and run
+built CLI help.
 Append the observed results to Receipt River after baseline, local, and hosted
 qualification, including the exact revisions and commands, test/assertion
 counts and compiler diagnostics, failures or warnings, findings, and scope
