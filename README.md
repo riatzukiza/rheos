@@ -69,11 +69,20 @@ clj-kondo --lint src test
 ```
 
 The selected shadow build runs its tests with `:autorun true`. A green focused
-run does not establish a full-suite pass. The full `pnpm test` gate remains
-unavailable in a clean extracted checkout without `deps/protocols/src` and
-`deps/chat-ui/src`; its first missing namespace is
-`open-hax.openplanner-protocols`. Supplying those sources and qualifying the
-other existing async adapters remains separate work.
+run does not establish a full-suite pass. The full suite also needs the pinned
+source dependencies in `deps/protocols/src` and `deps/chat-ui/src`; the existing
+`bash scripts/bootstrap-source-deps.sh` supplies them. Install the declared npm
+runtime/tool dependencies before running `pnpm test` from this package root.
+Without that source setup, the first missing namespace is
+`open-hax.openplanner-protocols`.
+
+An independent checkout of implementation commit
+`6e2a6b5ff52f635a67b123595f38d2e347e3642b` ran that bootstrap and the actual
+`pnpm test` command with shadow-cljs 3.4.10 and YAML 2.9.1: 159 tests,
+827 assertions, zero failures/errors and zero compiler warnings. This qualifies
+the full test suite at that revision, not every build target, installed
+transport, browser or deployment. The initial missing-source failure is setup
+evidence rather than an unavoidable suite blocker.
 
 ## shadow-cljs targets
 
