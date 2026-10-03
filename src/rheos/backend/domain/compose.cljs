@@ -86,7 +86,7 @@
         (when (seq remaining)
           (let [project (first remaining)]
             (try
-              (let [tasks (await (tasks/load-tasks (:tasks-dir project)))
+              (let [tasks (await (tasks/load-tasks project))
                     ledger (ledger/get-ledger (:tasks-dir project))
                     drift-evts (await (events/query-events ledger {:type "drift-detected"}))
                     drift-uuids (set (map #(get-in % [:payload :task-id]) drift-evts))

@@ -116,6 +116,51 @@
       (finally
         (await (.rm fsp root #js {:recursive true :force true}))))))
 
+(deftest ^:async composed-board-retains-each-supplied-project-projection
+  (let [root (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-compose-projection-")))
+        first-dir (path/join root "first")
+        second-dir (path/join root "second")
+        excluded-path (path/join root "unprojected.md")
+        included-path (path/join first-dir "broken.md")
+        unclosed "---\nuuid: broken\n# Missing closing delimiter\n"
+        projects [{:id "first" :tasks-dir root :meta {}
+                   :card-projection {:paths [first-dir]}}
+                  {:id "second" :tasks-dir root :meta {}
+                   :card-projection {:paths [second-dir]}}]
+        query (compose/parse-compose-query {})]
+    (try
+      (await (.mkdir fsp first-dir))
+      (await (.mkdir fsp second-dir))
+      (await (write-task first-dir "one" "First" "todo" "P1" []))
+      (await (write-task second-dir "two" "Second" "todo" "P1" []))
+      (await (.writeFile fsp excluded-path "---\nlabels: [unfinished\n---\n" "utf8"))
+      (await (.writeFile fsp (path/join first-dir "notes.txt") unclosed "utf8"))
+      (let [snapshot (try (await (compose/compose-snapshot projects query))
+                          (catch :default err err))]
+        (is (= 2 (:total-tasks snapshot)) "ad hoc projects sharing a task root retain separate scopes")
+        (is (= #{["one" "first"] ["two" "second"]}
+               (set (mapcat #(map (juxt :uuid :source-board) (:tasks %)) (:columns snapshot)))))
+        (is (= "---\nlabels: [unfinished\n---\n" (await (.readFile fsp excluded-path "utf8")))))
+      (let [snapshot (try (await (compose/compose-snapshot
+                                 [(assoc (first projects) :card-projection {:paths []})] query))
+                          (catch :default err err))]
+        (is (= 0 (:total-tasks snapshot)) "an explicit empty projection does not discover neighbors"))
+      (await (.writeFile fsp included-path unclosed "utf8"))
+      (let [error (try (await (compose/compose-snapshot projects query))
+                       nil (catch :default err err))]
+        (is (= :refused (:kind (ex-data error))))
+        (is (= included-path (:source-path (ex-data error))))
+        (is (= "Unterminated YAML frontmatter" (:diagnostic (ex-data error))))
+        (is (= unclosed (await (.readFile fsp included-path "utf8")))))
+      (await (write-task first-dir "broken" "Repaired" "todo" "P1" []))
+      (let [snapshot (try (await (compose/compose-snapshot projects query))
+                          (catch :default err err))]
+        (is (= 3 (:total-tasks snapshot)))
+        (is (= #{"one" "two" "broken"}
+               (set (mapcat #(map :uuid (:tasks %)) (:columns snapshot))))))
+      (finally
+        (await (.rm fsp root #js {:recursive true :force true}))))))
+
 (deftest ^:async compose-snapshot-includes-drift-flag
   (testing "Tasks with a drift-detected ledger event are marked drift=true"
     (let [tmp-dir (path/join (js/process.cwd) "target" "compose-test-drift")

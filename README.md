@@ -59,13 +59,17 @@ no empty-frontmatter fallback creates a substitute identity or status. The CLI
 reports the path and reason on stderr with exit code 3, and existing HTTP error
 responses report that same message. Valid-load shapes, source bytes, configured
 projection exclusions, and non-Markdown discovery exclusions stay unchanged.
+Present decoded card titles must be strings; collection-valued titles are
+refused on load and before a frontmatter edit writes or emits events. Missing
+titles keep their filename fallback, scalar spelling stays compatible, and
+structured extension metadata remains supported.
 
 The update contract accepts a block mapping, simple string/keyword field names,
 and strings, finite numbers, booleans, nil, or vectors of those values. A missing
 frontmatter block is added after any file-leading BOM without reformatting the
-body. This is scoped to
-frontmatter mutation: `append-comment`, section rendering, and the general
-task serializer still reconstruct content and do not promise lossless editing.
+body. Comment append also retains the original YAML header before targeted
+`write-id` injection. Its body and section rendering, and the general task
+serializer, still reconstruct content and do not promise lossless editing.
 The status writeback adapter uses a native Promise; the standalone compiler
 does not transform the other existing `^:async`/`await` adapters.
 

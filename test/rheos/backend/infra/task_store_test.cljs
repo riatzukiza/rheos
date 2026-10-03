@@ -146,7 +146,9 @@
                ["uuid: first\nuuid: second\n" "invalid YAML"]
                ["{uuid: broken, status: incoming}\n" "block mapping"]
                ["uuid: broken\nextension: &cycle [*cycle]\n" "Cyclic YAML aliases"]
-               ["uuid: broken\nextension: !!int [one]\n" "standard YAML tag"]]]
+               ["uuid: broken\nextension: !!int [one]\n" "standard YAML tag"]
+               ["uuid: broken\ntitle: [one, two]\n" "Task title must be a string"]
+               ["uuid: broken\ntitle: {display: Broken}\n" "Task title must be a string"]]]
         (let [raw (str "---\n" source "---\n\n# Keep this body\n")]
           (await (.writeFile fsp bad-path raw "utf8"))
           (let [error (try (await (task-store/load-tasks dir))
@@ -164,6 +166,37 @@
       (let [tasks (await (task-store/load-tasks dir))]
         (is (vector? tasks) "repair restores the existing successful return shape")
         (is (= #{"valid" "real-card"} (set (map :uuid tasks)))))
+      (finally
+        (await (.rm fsp dir #js {:recursive true :force true}))))))
+
+(deftest ^:async unclosed-frontmatter-refuses-the-load-and-recovers
+  (let [dir (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-unclosed-source-")))
+        bad-path (path/join dir "broken.md")
+        prose-path (path/join dir "ordinary.md")
+        prose "# Ordinary Markdown\n\n```yaml\n---\nuuid: example\n---\n```\n\nBody  \n"]
+    (try
+      (await (write-card! dir "valid" "Valid"))
+      (await (.writeFile fsp prose-path prose "utf8"))
+      (doseq [raw ["---\nuuid: broken\n# Unclosed body\n"
+                   "--- \t\nuuid: broken\ntext ---\n"
+                   "\uFEFF---\r\nuuid: broken\r\n# Unclosed body\r\n"]]
+        (await (.writeFile fsp bad-path raw "utf8"))
+        (let [error (try (await (task-store/load-tasks dir))
+                         nil (catch :default err err))
+              data (ex-data error)]
+          (is (some? error) "a valid neighbor cannot turn a refused candidate into a partial board")
+          (is (= :refused (:kind data)))
+          (is (= bad-path (:source-path data)))
+          (is (= "Unterminated YAML frontmatter" (:diagnostic data)))
+          (is (and error (str/includes? (.-message error) bad-path)))
+          (is (= raw (await (.readFile fsp bad-path "utf8"))))))
+      (await (.writeFile fsp bad-path card-markdown "utf8"))
+      (let [tasks (await (task-store/load-tasks dir))
+            ordinary (first (filter #(= "ordinary" (:uuid %)) tasks))]
+        (is (vector? tasks))
+        (is (= #{"valid" "real-card" "ordinary"} (set (map :uuid tasks))))
+        (is (= prose (:content ordinary)) "truly frontmatter-free cards keep the existing read behavior")
+        (is (= prose (await (.readFile fsp prose-path "utf8")))))
       (finally
         (await (.rm fsp dir #js {:recursive true :force true}))))))
 

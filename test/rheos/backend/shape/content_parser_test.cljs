@@ -34,6 +34,23 @@
       (is (= {} (:frontmatter result)))
       (is (= "No frontmatter here" (:content result))))))
 
+(deftest frontmatter-read-refuses-an-unclosed-opening-fence
+  (testing "opening frontmatter without a closing delimiter is never plain Markdown"
+    (doseq [raw ["---\nuuid: broken\n# Body without a closing delimiter\n"
+                 "--- \t\nuuid: broken\ntext ---\n"
+                 "\uFEFF---\r\nuuid: broken\r\n# Body\r\n"]]
+      (is (thrown-with-msg? cljs.core/ExceptionInfo #"Unterminated YAML frontmatter"
+                           (parser/parse-frontmatter raw)))))
+  (testing "frontmatter-free Markdown, including body examples, remains byte-identical"
+    (doseq [raw ["# Heading\n\nBody  \n"
+                 "# Example\n\n```yaml\n---\nuuid: example\n---\n```\n"
+                 "---"]]
+      (is (= {:frontmatter {} :content raw} (parser/parse-frontmatter raw)))))
+  (testing "BOM and CRLF opening delimiters still accept a complete header"
+    (is (= {:frontmatter {:uuid "complete"} :content "\r\nBody  \r\n"}
+           (parser/parse-frontmatter
+            "\uFEFF--- \t\r\nuuid: complete\r\n---\r\n\r\nBody  \r\n")))))
+
 (deftest source-preserving-updates-remain-readable
   (testing "updated values retain YAML meaning despite preserved comments and aliases"
     (let [raw "---\nuuid: test\nstatus: &workflow incoming # keep\ncategory: *workflow\npoints: 3\nflag: false\nempty:\n---\n\nBody\n"
@@ -366,6 +383,25 @@
       (is (= 1 (count comments)))
       (is (re-find #"Existing" (:content (first comments))))
       (is (re-find #"More" (:content (first comments)))))))
+
+(deftest comment-appends-preserve-the-original-frontmatter-source
+  (doseq [fields ["title: 'Quotes \"and\" C:\\work'\r\n"
+                  "title: Complex\r\nsummary: |\r\n  Line one\r\n  Line two\r\n"]]
+    (let [header (str "\uFEFF--- \t\r\n# Retained YAML comment\r\nuuid: complex\r\n"
+                      fields "metadata: &shared\r\n  values: [3, true, null]\r\n"
+                      "copy: *shared\r\n--- \r\n")
+          raw (str header "\r\nBody  \r\n")
+          expected-frontmatter (:frontmatter (parser/parse-frontmatter raw))
+          appended (try (parser/append-comment raw "First comment") (catch :default err err))
+          again (try (parser/append-comment appended "Second comment") (catch :default err err))]
+      (doseq [[result text] [[appended "First comment"]
+                            [again "First comment\n\nSecond comment"]]]
+        (is (and (string? result) (str/starts-with? result header))
+            "comment append does not reserialize the YAML header")
+        (let [parsed (try (parser/parse-task-content result) (catch :default err err))]
+          (is (= expected-frontmatter (:frontmatter parsed)))
+          (is (= [{:type "body" :content "Body"} {:type "comment" :content text}]
+                 (:sections parsed))))))))
 
 (deftest test-comment-section-roundtrip
   (testing "serialization keeps a following body outside the comment block"

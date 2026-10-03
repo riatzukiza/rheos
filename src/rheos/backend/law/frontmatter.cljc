@@ -53,3 +53,11 @@
   "Human-readable rejection string naming the offending keys."
   [ks]
   (str "frontmatter keys not allowed: " (str/join ", " (map name ks))))
+
+(defn assert-title-shape
+  "A present decoded card title must satisfy Task's string shape. Missing titles
+   retain the loader's filename fallback; structured extension fields are open."
+  [frontmatter]
+  (when (and (contains? frontmatter :title) (not (string? (:title frontmatter))))
+    (throw (ex-info "Task title must be a string" {:kind :refused :field :title})))
+  frontmatter)

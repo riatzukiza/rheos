@@ -5,7 +5,8 @@
    [[rheos.backend.infra.task-edit]] reads the file, writes the result back, and
    emits those events. Like [[rheos.backend.domain.transition/decide-move]], the
    decision is here and the write path is one namespace up."
-  (:require [rheos.backend.shape.content-parser :as content-parser]))
+  (:require [rheos.backend.law.frontmatter :as law-frontmatter]
+            [rheos.backend.shape.content-parser :as content-parser]))
 
 (defn plan-frontmatter-update
   "Apply `updates` (a map of key -> value) to `raw`'s YAML frontmatter and stamp
@@ -18,9 +19,11 @@
   (let [old-frontmatter (:frontmatter (content-parser/parse-task-content raw))
         new-raw (-> raw
                     (content-parser/update-frontmatter-keys updates)
-                    (content-parser/inject-write-id write-id))]
+                    (content-parser/inject-write-id write-id))
+        new-frontmatter (law-frontmatter/assert-title-shape
+                         (:frontmatter (content-parser/parse-task-content new-raw)))]
     {:raw new-raw
-     :frontmatter (:frontmatter (content-parser/parse-task-content new-raw))
+     :frontmatter new-frontmatter
      :changes (mapv (fn [[k v]]
                       (let [key-str (if (keyword? k) (name k) (str k))]
                         {:key key-str
