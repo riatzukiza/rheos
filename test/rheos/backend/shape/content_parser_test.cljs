@@ -367,6 +367,29 @@
       (is (re-find #"Existing" (:content (first comments))))
       (is (re-find #"More" (:content (first comments)))))))
 
+(deftest test-comment-section-roundtrip
+  (testing "serialization keeps a following body outside the comment block"
+    (let [sections [{:type "body" :content "Before the comment."}
+                    {:type "comment" :content "First comment.\nContinued paragraph."}
+                    {:type "body" :content "After the comment."}]]
+      (is (= sections
+             (parser/parse-sections (parser/serialize-sections sections))))))
+  (testing "first and second appends preserve comment text and section identity"
+    (let [raw "---\nuuid: test\n---\n\nBody paragraph."
+          first-comment "First comment.\nContinued paragraph."
+          second-comment "Second comment."
+          first-append (parser/append-comment raw first-comment)
+          second-append (parser/append-comment first-append second-comment)]
+      (doseq [[result text] [[first-append first-comment]
+                            [second-append (str first-comment "\n\n" second-comment)]]]
+        (let [parsed (parser/parse-task-content result)]
+          (is (= [{:type "body" :content "Body paragraph."}
+                  {:type "comment" :content text}]
+                 (:sections parsed)))
+          (is (= parsed
+                 (parser/parse-task-content
+                   (parser/serialize-task-content parsed)))))))))
+
 (deftest test-roundtrip
   (testing "parse then serialize preserves data"
     (let [raw "---\nuuid: \"test\"\ntitle: \"Test\"\nstatus: done\npriority: P0\nlabels: [\"epics\", \"cljs\"]\n---\n\n# Title\n\nBody content"
