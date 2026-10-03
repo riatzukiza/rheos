@@ -67,6 +67,8 @@ remains supported. New cards escape double-quoted strings, including control
 characters and YAML line separators, and their rendered frontmatter must pass
 the same decoder and core-field law before creating a directory, writing a file,
 registering a watcher correlation or emitting an event.
+This qualifies decoded frontmatter strings, including lone UTF-16 units;
+generated or authored Markdown body bytes have no lossless-persistence guarantee.
 
 The update contract accepts a block mapping, simple string/keyword field names,
 and strings, finite numbers, booleans, nil, or vectors of those values. A missing

@@ -50,10 +50,11 @@
 (def ^:private quoted-string-escapes
   (into {\" "\\\"" \\ "\\\\" \newline "\\n" \return "\\r" \tab "\\t"}
         (map (fn [code] [(char code) (unicode-escape code)])
-             (remove #{9 10 13} (concat (range 32) [133 8232 8233])))))
+             (remove #{9 10 13}
+                     (concat (range 32) [133 8232 8233] (range 55296 57344))))))
 
 (defn- quoted-string
-  "Portable YAML double-quoted scalar encoding, including YAML line separators."
+  "Portable YAML double-quoted scalar encoding; preserve UTF-16 units at UTF-8 writes."
   [value]
   (str "\"" (str/escape value quoted-string-escapes) "\""))
 
