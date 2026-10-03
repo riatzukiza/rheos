@@ -71,6 +71,12 @@ result does not qualify the complete dependency manifest or browser release.
    `Fixed` settlement; disputed P0/P1 findings remain open for user adjudication.
    P2/P3 findings may be fixed, handled, deferred to a named card, or rejected
    with evidence before the final full review and merge gate.
+7. Receipt River qualification records retain the exact revisions, source pins,
+   tool and dependency versions, commands and exit results, test/assertion
+   counts, compiler diagnostics, findings and review dispositions, warnings,
+   and limitations. Append these records to the coordinator's existing
+   Foresight `.ημ/receipts.edn`, referencing the authoritative story and this
+   PR; preserve historical records and omit credentials.
 
 ## Verification sequence
 
@@ -79,6 +85,12 @@ its log. After the planning review is settled, move the authoritative story to
 `ready` through Rheos. Then qualify installation and lockfile generation in an
 isolated checkout, run the pinned source bootstrap, run the three existing
 package commands, inspect the release outputs, and run built CLI help.
+Append the observed results to Receipt River after baseline, local, and hosted
+qualification, including the exact revisions and commands, test/assertion
+counts and compiler diagnostics, failures or warnings, findings, and scope
+limitations. Reference retained logs and review evidence so the authoritative
+Foresight card's qualification record is inspectable without treating this
+plan or a passing check as a substitute for execution evidence.
 
 Validate workflow syntax and explicit script names without adding a second
 implementation of Rheos semantics. Push the implementation to the personal
