@@ -16,7 +16,7 @@
                 (string? raw) (str/split raw #",")
                 (vector? raw) raw
                 :else [])]
-    (vec (distinct (filter seq (mapv str/trim items))))))
+    (vec (distinct (filter seq (mapv #(str/trim (str %)) items))))))
 
 (defn- normalize-status [status]
   (case (-> (or status "incoming") str/lower-case str/trim)
