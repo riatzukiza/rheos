@@ -1,5 +1,7 @@
 (ns rheos.backend.shape.content-parser-test
   (:require [cljs.test :refer [deftest is testing]]
+            [clojure.string :as str]
+            ["yaml" :as yaml]
             [rheos.backend.shape.content-parser :as parser]))
 
 (deftest test-parse-frontmatter
@@ -31,6 +33,25 @@
           result (parser/parse-frontmatter raw)]
       (is (= {} (:frontmatter result)))
       (is (= "No frontmatter here" (:content result))))))
+
+(deftest source-preserving-updates-remain-readable
+  (testing "updated values retain YAML meaning despite preserved comments and aliases"
+    (let [raw "---\nuuid: test\nstatus: &workflow incoming # keep\ncategory: *workflow\npoints: 3\nflag: false\nempty:\n---\n\nBody\n"
+          updated (parser/update-frontmatter raw "status" "done")
+          frontmatter (:frontmatter (parser/parse-frontmatter updated))]
+      (is (= "done" (:status frontmatter)))
+      (is (= "done" (:category frontmatter)))
+      (is (= "3" (:points frontmatter)) "flat numeric fields keep their string convention")
+      (is (= "false" (:flag frontmatter)) "flat boolean fields keep their string convention")
+      (is (= "" (:empty frontmatter)))))
+
+  (testing "reading preserves full body spacing and decodes quoted/nested values"
+    (let [raw "---\n\"title\": 'Research'\nmetadata:\n  owner: Someone\nsummary: |\n  Line one\n  Line two\n---\n\nBody  \n\n"
+          parsed (parser/parse-frontmatter raw)]
+      (is (= "Research" (get-in parsed [:frontmatter :title])))
+      (is (= "Someone" (get-in parsed [:frontmatter :metadata :owner])))
+      (is (= "Line one\nLine two\n" (get-in parsed [:frontmatter :summary])))
+      (is (= "\nBody  \n\n" (:content parsed))))))
 
 (deftest test-parse-sections
   (testing "parses single body section"
@@ -113,6 +134,111 @@
           parsed (parser/parse-task-content result)]
       (is (= "done" (get-in parsed [:frontmatter :status])))
       (is (= "P0" (get-in parsed [:frontmatter :priority]))))))
+
+(deftest frontmatter-updates-preserve-source
+  (testing "updating one scalar preserves unrelated YAML and every body byte"
+    (let [raw (str "---\n"
+                   "# retained metadata\n"
+                   "uuid: 'test'\n"
+                   "status: incoming # workflow\n"
+                   "metadata:\n  author: Someone\n  links:\n    - docs/a.md\n"
+                   "summary: |\n  Line one\n  Line two\n"
+                   "---\n\n# Document\n\nParagraph.  \n\n"
+                   "```yaml\n---\nstatus: example\n---\n```\n\n")
+          expected (str "---\n"
+                        "# retained metadata\n"
+                        "uuid: 'test'\n"
+                        "status: \"done\" # workflow\n"
+                        "metadata:\n  author: Someone\n  links:\n    - docs/a.md\n"
+                        "summary: |\n  Line one\n  Line two\n"
+                        "---\n\n# Document\n\nParagraph.  \n\n"
+                        "```yaml\n---\nstatus: example\n---\n```\n\n")]
+      (is (= expected (parser/update-frontmatter raw "status" "done")))))
+
+  (testing "adding a field and a write-id preserves CRLF, delimiters and body spacing"
+    (let [raw "---  \r\nuuid: test\r\nsummary: >-\r\n  Keep this\r\n  folded value\r\n--- \r\n\r\nBody  \r\n\r\n"
+          expected "---  \r\nuuid: test\r\nsummary: >-\r\n  Keep this\r\n  folded value\r\npriority: \"P0\"\r\nwrite-id: \"wid-123\"\r\n--- \r\n\r\nBody  \r\n\r\n"]
+      (is (= expected (-> raw
+                          (parser/update-frontmatter "priority" "P0")
+                          (parser/inject-write-id "wid-123")))))))
+
+(deftest frontmatter-update-edge-cases
+  (testing "empty updates leave source byte-identical"
+    (let [raw "---\nmetadata:\n  nested: true\n---\n\nBody  \n"]
+      (is (= raw (parser/update-frontmatter-keys raw {})))))
+
+  (testing "ordinary Markdown receives frontmatter without normalizing its body"
+    (let [raw "# Heading\n\n```yaml\n---\nexample: value\n---\n```\n\n"]
+      (is (= (str "---\npriority: \"P0\"\n---\n\n" raw)
+             (parser/update-frontmatter raw "priority" "P0")))))
+
+  (testing "an empty frontmatter block remains distinct from the body"
+    (is (= "---\npriority: \"P0\"\n---\n\nBody\n"
+           (parser/update-frontmatter "---\n---\n\nBody\n" "priority" "P0"))))
+
+  (testing "an existing write-id changes without rewriting the surrounding source"
+    (is (= "---\nuuid: test\nwrite-id: \"new\" # correlation\n---\nBody  \n"
+           (parser/inject-write-id "---\nuuid: test\nwrite-id: \"old\" # correlation\n---\nBody  \n" "new")))))
+
+(deftest frontmatter-update-replaces-value-shapes
+  (testing "block values can become scalars or flow lists without consuming the next field"
+    (is (= "---\ndescription: \"Replacement\" # keep\n# next field\nlabels: [\"one\",\"two\"]\npriority: P0\n---\nBody\n"
+           (parser/update-frontmatter-keys
+             "---\ndescription: | # keep\n  Old first\n  Old second\n# next field\nlabels:\n  - old\npriority: P0\n---\nBody\n"
+             {"description" "Replacement" "labels" ["one" "two"]}))))
+
+  (testing "empty values retain their inline comment"
+    (is (= "---\ncategory: \"work\" # keep\n---\nBody\n"
+           (parser/update-frontmatter "---\ncategory: # keep\n---\nBody\n" "category" "work"))))
+
+  (testing "quoted keys and escaped replacement values remain valid YAML"
+    (let [result (parser/update-frontmatter "---\n\"title\": Old\npriority: P0\n---\nBody\n"
+                                             "title" "Quotes \"and\" a newline\nNext line")
+          frontmatter (second (re-matches #"---\n([\s\S]*?)\n---\n[\s\S]*" result))]
+      (is (= "Quotes \"and\" a newline\nNext line" (.-title (yaml/parse frontmatter))))
+      (is (str/ends-with? result "priority: P0\n---\nBody\n"))))
+
+  (testing "empty values without a space after the colon become valid scalars"
+    (is (= "---\nsummary: \"New summary\"\nstatus: \"done\"\n---\nBody\n"
+           (parser/update-frontmatter-keys "---\nsummary:\nstatus:\n---\nBody\n"
+                                           {"summary" "New summary" "status" "done"}))))
+
+  (testing "an anchored scalar retains its anchor and an alias can be replaced independently"
+    (let [raw "---\nstatus: &workflow incoming\ncategory: *workflow\n---\nBody\n"
+          result (parser/update-frontmatter raw "status" "done")
+          alias-result (parser/update-frontmatter raw "category" "work")]
+      (is (= "---\nstatus: &workflow \"done\"\ncategory: *workflow\n---\nBody\n" result))
+      (is (= "---\nstatus: &workflow incoming\ncategory: \"work\"\n---\nBody\n" alias-result))
+      (is (= "done" (.-category (yaml/parse "status: &workflow \"done\"\ncategory: *workflow\n"))))))
+
+  (testing "a closing delimiter at EOF is preserved"
+    (is (= "---\nstatus: \"done\"\n---"
+           (parser/update-frontmatter "---\nstatus: incoming\n---" "status" "done")))))
+
+(deftest frontmatter-update-refuses-ambiguous-source
+  (doseq [raw ["---\nstatus: incoming\nstatus: ready\n---\nBody\n"
+               "---\nmetadata: [unterminated\n---\nBody\n"
+               "---\nstatus: incoming\nBody without closing delimiter\n"
+               "---\nstatus: *missing\n---\nBody\n"
+               "---\n{status: incoming}\n---\nBody\n"]]
+    (testing (str "refuses invalid or unsupported source: " raw)
+      (is (thrown? js/Error (parser/update-frontmatter raw "status" "done"))))))
+
+(deftest frontmatter-update-refuses-invalid-updates
+  (doseq [updates [["status" "done"]
+                   {"status\ninjected" "done"}
+                   {:workflow/status "done"}
+                   {:status "done" "status" "ready"}
+                   {"title" {"nested" "value"}}
+                   {"points" js/NaN}]]
+    (testing (str "refuses invalid updates: " updates)
+      (is (thrown? js/Error
+                   (parser/update-frontmatter-keys "---\nstatus: incoming\n---\nBody\n" updates)))))
+
+  (testing "body delimiters are not treated as frontmatter"
+    (let [raw "Introduction\n\n---\nstatus: example\n---\nBody\n"]
+      (is (= (str "---\npriority: \"P0\"\n---\n\n" raw)
+             (parser/update-frontmatter raw "priority" "P0"))))))
 
 (deftest test-append-comment-creates-section
   (testing "appends a comment block when none exists"
