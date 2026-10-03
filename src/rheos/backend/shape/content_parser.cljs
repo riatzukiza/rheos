@@ -131,7 +131,8 @@
                                 (str (subs text 0 start) replacement (subs text end)))
                               source
                               (sort-by :start > patches))
-              newline (if (str/ends-with? opening "\r\n") "\r\n" "\n")
+              newline (or (re-find #"\r?\n" patched)
+                          (if (str/ends-with? opening "\r\n") "\r\n" "\n"))
               updated-source (str patched
                                   (when (seq additions)
                                     (str (when (and (seq patched) (not (str/ends-with? patched "\n"))) newline)
