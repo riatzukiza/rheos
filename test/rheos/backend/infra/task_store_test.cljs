@@ -2,6 +2,7 @@
   (:require ["node:fs/promises" :as fsp]
             ["node:os" :as os]
             ["node:path" :as path]
+            [clojure.string :as str]
             [cljs.test :refer [deftest testing is]]
             [rheos.backend.infra.task-store :as task-store]))
 
@@ -134,3 +135,50 @@
         (is (= #{"only"} uuids) "a cyclic directory symlink must not hang or duplicate cards"))
       (finally
         (await (.rm fsp base #js {:recursive true :force true}))))))
+
+(deftest ^:async refused-card-source-is-visible-without-a-partial-board
+  (let [dir (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-refused-source-")))
+        bad-path (path/join dir "broken.md")]
+    (try
+      (await (write-card! dir "valid" "Valid"))
+      (doseq [[source reason]
+              [["uuid: broken\nlabels: [unfinished\n" "invalid YAML"]
+               ["uuid: first\nuuid: second\n" "invalid YAML"]
+               ["{uuid: broken, status: incoming}\n" "block mapping"]
+               ["uuid: broken\nextension: &cycle [*cycle]\n" "Cyclic YAML aliases"]
+               ["uuid: broken\nextension: !!int [one]\n" "standard YAML tag"]]]
+        (let [raw (str "---\n" source "---\n\n# Keep this body\n")]
+          (await (.writeFile fsp bad-path raw "utf8"))
+          (let [error (try (await (task-store/load-tasks dir))
+                           nil (catch :default err err))
+                data (ex-data error)]
+            (is (some? error) "a refused source must not become a successful partial board")
+            (is (= :refused (:kind data)))
+            (is (= bad-path (:source-path data)))
+            (is (and (string? (:diagnostic data))
+                     (str/includes? (:diagnostic data) reason)))
+            (is (and error (str/includes? (.-message error) bad-path)))
+            (is (= raw (await (.readFile fsp bad-path "utf8")))
+                "diagnosing a refused source never changes its bytes"))))
+      (await (.writeFile fsp bad-path card-markdown "utf8"))
+      (let [tasks (await (task-store/load-tasks dir))]
+        (is (vector? tasks) "repair restores the existing successful return shape")
+        (is (= #{"valid" "real-card"} (set (map :uuid tasks)))))
+      (finally
+        (await (.rm fsp dir #js {:recursive true :force true}))))))
+
+(deftest ^:async refused-source-diagnostics-respect-card-discovery
+  (let [root (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-refusal-projection-")))
+        cards (path/join root "cards")
+        invalid "---\nlabels: [unfinished\n---\n"]
+    (try
+      (await (.mkdir fsp cards))
+      (await (write-card! cards "valid" "Valid"))
+      (await (.writeFile fsp (path/join root "unprojected.md") invalid "utf8"))
+      (await (.writeFile fsp (path/join cards "notes.txt") invalid "utf8"))
+      (is (= ["valid"]
+             (mapv :uuid (await (task-store/load-tasks
+                                {:tasks-dir root :card-projection {:paths [cards]}}))))
+          "only projected Markdown candidates are parsed; unrelated files stay skipped")
+      (finally
+        (await (.rm fsp root #js {:recursive true :force true}))))))
