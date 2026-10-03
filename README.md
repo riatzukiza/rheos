@@ -39,8 +39,9 @@ Frontmatter updates and `write-id` injection patch only requested top-level
 values. Unrelated YAML, comments, delimiters, line endings, body fences and
 spacing remain in their original source form. Reads share one YAML decoder,
 including the card loader, while flat scalar fields retain their string values
-and empty fields retain `""`. Invalid/duplicate-key YAML and invalid updates
-are refused before status writeback writes the file.
+and empty fields retain `""`. Invalid/duplicate-key YAML, incompatible standard
+YAML tags and invalid updates are refused before status writeback writes the
+file. Unrelated application-specific tags remain preserved.
 
 The update contract accepts a block mapping, simple string/keyword field names,
 and strings, finite numbers, booleans, nil, or vectors of those values. A missing
