@@ -53,6 +53,46 @@
       (is (= "Line one\nLine two\n" (get-in parsed [:frontmatter :summary])))
       (is (= "\nBody  \n\n" (:content parsed))))))
 
+(deftest structured-frontmatter-retains-scalar-types
+  (testing "legacy scalar spelling is retained only at the top level"
+    (let [raw "---\nuuid: 001\npoints: 3.0\nflag: TRUE\nempty:\nnull-text: null\nmetadata:\n  count: 3\n  active: true\n  missing: null\n  values: [3, false, null, \"null\"]\n---\nBody\n"
+          frontmatter (:frontmatter (parser/parse-frontmatter raw))]
+      (is (= {:uuid "001" :points "3.0" :flag "TRUE" :empty "" :null-text "null"}
+             (select-keys frontmatter [:uuid :points :flag :empty :null-text])))
+      (is (= {:count 3 :active true :missing nil :values [3 false nil "null"]}
+             (:metadata frontmatter)))))
+  (testing "accepted typed vector updates read back with the written types"
+    (let [updated (parser/update-frontmatter "---\nstatus: incoming\n---\nBody\n"
+                                            "values" [3 true nil [false 2.5]])]
+      (is (= [3 true nil [false 2.5]]
+             (get-in (parser/parse-frontmatter updated) [:frontmatter :values]))))))
+
+(deftest tagged-extension-data-remains-clojure-shaped
+  (let [raw "---\nmetadata:\n  set: !!set {a: null}\n  ordered: !!omap [{b: 2}]\n  timestamp: !!timestamp 2026-10-03\n  binary: !!binary SGVsbG8=\n  custom: !app {count: 3, active: true}\n---\nBody\n"
+        metadata (get-in (parser/parse-frontmatter raw) [:frontmatter :metadata])]
+    (is (= #{"a"} (:set metadata)))
+    (is (= {:b 2} (:ordered metadata)))
+    (is (= "2026-10-03T00:00:00.000Z" (:timestamp metadata)))
+    (is (= [72 101 108 108 111] (:binary metadata)))
+    (is (= {:count 3 :active true} (:custom metadata)))))
+
+(deftest frontmatter-aliases-refuse-cycles-and-support-sharing
+  (testing "cyclic aliases produce a deterministic refusal, not stack overflow"
+    (doseq [source ["metadata: &self {next: *self}\n"
+                    "metadata: &self [*self]\n"
+                    "metadata: &outer {next: &inner {parent: *outer}}\n"]]
+      (let [raw (str "---\nstatus: incoming\n" source "---\nBody  \n")]
+        (doseq [operation [#(parser/parse-frontmatter raw)
+                           #(parser/update-frontmatter raw "status" "done")]]
+          (let [error (try (operation) nil (catch :default e e))]
+            (is (= :cyclic-alias (:type (ex-data error)))))))))
+  (testing "acyclic shared mappings remain supported and preserve source"
+    (let [raw "---\nstatus: incoming\nmetadata: &shared {count: 3, active: true}\ncopy: *shared\n---\nBody  \n"
+          updated (parser/update-frontmatter raw "status" "done")
+          frontmatter (:frontmatter (parser/parse-frontmatter updated))]
+      (is (= (str/replace raw "status: incoming" "status: \"done\"") updated))
+      (is (= {:count 3 :active true} (:metadata frontmatter) (:copy frontmatter))))))
+
 (deftest test-parse-sections
   (testing "parses single body section"
     (let [content "\n# Heading\nBody text"
@@ -179,6 +219,16 @@
   (testing "an existing write-id changes without rewriting the surrounding source"
     (is (= "---\nuuid: test\nwrite-id: \"new\" # correlation\n---\nBody  \n"
            (parser/inject-write-id "---\nuuid: test\nwrite-id: \"old\" # correlation\n---\nBody  \n" "new")))))
+
+(deftest frontmatter-insertion-retains-leading-bom
+  (let [body "# Heading\r\n\r\nBody  \r\n"
+        raw (str "\uFEFF" body)
+        updated (-> raw
+                    (parser/update-frontmatter "status" "done")
+                    (parser/inject-write-id "bom-write"))]
+    (is (= (str "\uFEFF---\nstatus: \"done\"\nwrite-id: \"bom-write\"\n---\n\n" body)
+           updated))
+    (is (= (str "\n" body) (:content (parser/parse-frontmatter updated))))))
 
 (deftest frontmatter-update-replaces-value-shapes
   (testing "block values can become scalars or flow lists without consuming the next field"

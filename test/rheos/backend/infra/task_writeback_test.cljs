@@ -63,6 +63,8 @@
                    ["---\nstatus: !!set {a: null}\n---\nBody  \n" "done"]
                    ["---\nstatus: !!omap [{a: 3}]\n---\nBody  \n" "done"]
                    ["---\nstatus: !!pairs [{a: 3}]\n---\nBody  \n" "done"]
+                   ["---\nstatus: incoming\nmetadata: &self {next: *self}\n---\nBody  \n" "done"]
+                   ["---\nstatus: incoming\nmetadata: &self [*self]\n---\nBody  \n" "done"]
                    ["---\nstatus: incoming\n---\nBody  \n" {"invalid" "value"}]]]
         (-> (reduce (fn [pending [raw status]]
                       (.then pending
@@ -78,3 +80,22 @@
             (.finally (fn []
                         (.rmSync fs dir #js {:recursive true :force true})
                         (done))))))))
+
+#_{:clj-kondo/ignore [:promise-chain/prefer-async-workflow]}
+(deftest write-task-status-retains-leading-bom-before-inserted-frontmatter
+  (async done
+    (let [dir (tmp-dir)
+          file-path (path/join dir "bom.md")
+          body "# Heading\r\n\r\nBody  \r\n"
+          raw (str "\uFEFF" body)]
+      (.writeFileSync fs file-path raw "utf8")
+      (-> (writeback/write-task-status {:uuid "bom" :source-path file-path} dir "done" "bom-write")
+          (.then (fn [_]
+                   (let [updated (.readFileSync fs file-path "utf8")]
+                     (is (= (str "\uFEFF---\nstatus: \"done\"\nwrite-id: \"bom-write\"\n---\n\n" body)
+                            updated))
+                     (is (= (str "\n" body) (:content (content-parser/parse-frontmatter updated)))))))
+          (.catch (fn [error] (is false (str "Unexpected writeback failure: " error))))
+          (.finally (fn []
+                      (.rmSync fs dir #js {:recursive true :force true})
+                      (done)))))))
