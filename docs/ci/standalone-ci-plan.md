@@ -89,7 +89,8 @@ result does not qualify the complete dependency manifest or browser release.
    describes all four build targets: `server`, `cli`, `github-sync`, and `app`.
 9. The workflow has pull-request, `main` push, and manual triggers without
    inherited monorepo path filters; it uses read-only repository permissions,
-   pinned action revisions, the declared tool versions, and a bounded timeout.
+   pinned action revisions, the declared tool versions, a fixed runner label
+   (`ubuntu-24.04`, not a `-latest` alias), and a bounded timeout.
    Actual tool versions are visible, and the job requires no deployment or
    review credentials.
 10. After planning clearance and before implementation changes, retain an
@@ -117,7 +118,8 @@ plan or a passing check as a substitute for execution evidence.
 
 Check the README commands and release-target description against the standalone
 package and all four build targets. Inspect the workflow's triggers, permissions,
-action and tool pins, timeout, and version-reporting step against its scope.
+action and tool pins, fixed `ubuntu-24.04` runner label (reject `-latest` aliases),
+timeout, and version-reporting step against its scope.
 
 Validate workflow syntax and explicit script names without adding a second
 implementation of Rheos semantics. Push the implementation to the personal
