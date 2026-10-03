@@ -3,8 +3,10 @@
             ["node:os" :as os]
             ["node:path" :as path]
             [cljs.test :refer [deftest testing is]]
+            [clojure.string :as str]
             [rheos.backend.domain.events :as events]
             [rheos.backend.infra.task-edit :as task-edit]
+            [rheos.backend.infra.task-store :as task-store]
             [rheos.backend.shape.content-parser :as content-parser]
             [rheos.backend.infra.watcher :as watcher]))
 
@@ -96,6 +98,81 @@
         (finally
           (unsub)
           (await (.rm fsp dir #js {:recursive true :force true})))))))
+
+(deftest ^:async title-updates-refuse-collections-before-writing-or-emitting-events
+  (let [dir (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-title-update-")))
+        task-path (path/join dir "typed.md")
+        raw "---\nuuid: typed\ntitle: Original\nstatus: incoming\nmetadata:\n  values: [3, true, null]\n---\n\nBody  \n"
+        project {:id "test" :tasks-dir dir :meta {}}
+        task {:uuid "typed" :source-path task-path}
+        captured (atom [])
+        unsub (events/subscribe! #(swap! captured conj %))]
+    (try
+      (await (.writeFile fsp task-path raw "utf8"))
+      (doseq [value [["wrong"] [] [7 false nil]]]
+        (let [error (try (await (task-edit/update-frontmatter!
+                                {:project project :task task :updates {"title" value}}))
+                         nil (catch :default err err))]
+          (is (= :refused (:kind (ex-data error))))
+          (is (= :title (:field (ex-data error))))
+          (is (= task-path (:source-path (ex-data error))))
+          (is (and error (str/includes? (.-message error) "Task title must be a string")))
+          (is (= raw (await (.readFile fsp task-path "utf8"))))
+          (is (empty? @captured) "a refused edit emits no mutation event")))
+      (doseq [[value expected] [["Quotes \"and\" C:\\work\nNext line" "Quotes \"and\" C:\\work\nNext line"]
+                                [7 "7"] [false "false"] [nil ""]]]
+        (let [result (await (task-edit/update-frontmatter!
+                            {:project project :task task :updates {"title" value}}))
+              after (await (.readFile fsp task-path "utf8"))
+              parsed (:frontmatter (content-parser/parse-frontmatter after))
+              loaded (await (task-store/load-tasks dir))]
+          (is (:ok result))
+          (is (= expected (:title (first loaded))) "decoded scalar title spelling remains compatible")
+          (is (= {:values [3 true nil]} (:metadata parsed)))
+          (is (str/ends-with? after "---\n\nBody  \n"))))
+      (finally
+        (unsub)
+        (await (.rm fsp dir #js {:recursive true :force true}))))))
+
+(deftest ^:async complex-frontmatter-comment-writes-remain-readable-and-ledger-backed
+  (let [dir (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-complex-comment-")))
+        task-path (path/join dir "complex.md")
+        header (str "\uFEFF--- \t\r\nuuid: complex\r\n"
+                    "title: 'Quotes \"and\" C:\\work'\r\nsummary: |\r\n  Line one\r\n  Line two\r\n"
+                    "metadata: &shared\r\n  values: [3, true, null]\r\ncopy: *shared\r\n--- \r\n")
+        raw (str header "\r\nBody  \r\n")
+        project {:id "test" :tasks-dir dir :meta {}}
+        task {:uuid "complex" :source-path task-path}
+        captured (atom [])
+        unsub (events/subscribe! #(swap! captured conj %))]
+    (try
+      (await (.writeFile fsp task-path raw "utf8"))
+      (let [result (try (await (task-edit/append-comment!
+                               {:project project :task task :text "Reviewed" :source "test"}))
+                        (catch :default err err))
+            after (await (.readFile fsp task-path "utf8"))
+            parsed (content-parser/parse-task-content after)
+            frontmatter (:frontmatter parsed)
+            comment-events (filter #(= "comment" (:type %)) @captured)]
+        (is (:ok result) "a valid complex card accepts the real comment write")
+        (is (= "Quotes \"and\" C:\\work" (:title frontmatter)))
+        (is (= "Line one\nLine two\n" (:summary frontmatter)))
+        (is (= {:values [3 true nil]} (:metadata frontmatter) (:copy frontmatter)))
+        (is (string? (:write-id frontmatter)))
+        (is (str/starts-with? after
+                             (str/replace-first header "--- \r\n"
+                                                (str "write-id: " (js/JSON.stringify (:write-id frontmatter))
+                                                     "\r\n--- \r\n")))
+            "only the new write-id changes the original YAML header")
+        (is (= [{:type "body" :content "Body"} {:type "comment" :content "Reviewed"}]
+               (:sections parsed)))
+        (is (= 1 (count comment-events)))
+        (is (= "Reviewed" (:text (first comment-events))))
+        (is (= (:write-id frontmatter) (:write-id (first comment-events))))
+        (is (= "complex" (:uuid (first (await (task-store/load-tasks dir)))))))
+      (finally
+        (unsub)
+        (await (.rm fsp dir #js {:recursive true :force true}))))))
 
 (deftest ^:async append-comment-emits-event
   (testing "Appending a comment writes the file and records a comment event"
