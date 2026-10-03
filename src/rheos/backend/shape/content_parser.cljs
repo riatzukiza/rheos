@@ -13,7 +13,10 @@
 (defn parse-frontmatter [raw]
   (if-let [{:keys [source body]} (frontmatter-source raw)]
     {:frontmatter (yaml/read-frontmatter source) :content body}
-    {:frontmatter {} :content raw}))
+    (do
+      (when (re-find #"^(?:\uFEFF)?---[ \t]*\r?\n" raw)
+        (throw (ex-info "Unterminated YAML frontmatter" {})))
+      {:frontmatter {} :content raw})))
 
 (defn parse-sections [content]
   (let [lines (str/split-lines content)
