@@ -70,13 +70,24 @@ result does not qualify the complete dependency manifest or browser release.
    PR's current head and records a successful check. P0/P1 findings require a
    `Fixed` settlement; disputed P0/P1 findings remain open for user adjudication.
    P2/P3 findings may be fixed, handled, deferred to a named card, or rejected
-   with evidence before the final full review and merge gate.
+   with evidence when permitted by the canonical pr-flow settlement policy.
+   The final current-head full review must complete, and every finding it raises
+   must receive an explicit verified disposition before the PR is described as
+   reviewed or reaches the merge gate. A new push requires fresh qualification
+   and review evidence for the resulting head.
 7. Receipt River qualification records retain the exact revisions, source pins,
    tool and dependency versions, commands and exit results, test/assertion
    counts, compiler diagnostics, findings and review dispositions, warnings,
    and limitations. Append these records to the coordinator's existing
    Foresight `.ημ/receipts.edn`, referencing the authoritative story and this
    PR; preserve historical records and omit credentials.
+8. The README uses standalone commands instead of `pnpm -C packages/rheos` and
+   describes all four build targets: `server`, `cli`, `github-sync`, and `app`.
+9. The workflow has pull-request, `main` push, and manual triggers without
+   inherited monorepo path filters; it uses read-only repository permissions,
+   pinned action revisions, the declared tool versions, and a bounded timeout.
+   Actual tool versions are visible, and the job requires no deployment or
+   review credentials.
 
 ## Verification sequence
 
@@ -92,11 +103,18 @@ limitations. Reference retained logs and review evidence so the authoritative
 Foresight card's qualification record is inspectable without treating this
 plan or a passing check as a substitute for execution evidence.
 
+Check the README commands and release-target description against the standalone
+package and all four build targets. Inspect the workflow's triggers, permissions,
+action and tool pins, timeout, and version-reporting step against its scope.
+
 Validate workflow syntax and explicit script names without adding a second
 implementation of Rheos semantics. Push the implementation to the personal
 fork, inspect the hosted job output, and request one explicit full CodeRabbit
-review for the resulting head. A skipped, rate-limited, stale, or pending
-review is not a completed review. A new push requires new check and review
+review for the resulting head, alongside the canonical pr-flow review policy.
+After the final current-head full review completes, verify and record an
+explicit disposition for every finding before reporting the PR as reviewed or
+reaching the merge gate. A skipped, rate-limited, stale, or pending review is not
+a completed review. A new push requires new qualification, check, and review
 evidence.
 
 ### Declared-install baseline
