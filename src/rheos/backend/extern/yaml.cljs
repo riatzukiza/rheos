@@ -103,17 +103,18 @@
                    (throw (ex-info "Cannot update invalid YAML frontmatter" {}))))]
       ;; toJS permits actual circular references. Qualify the graph before any
       ;; recursive read conversion or before an update caller can write it.
-      (assert-acyclic! data))
-    document))
+      (assert-acyclic! data)
+      {:document document :data data})))
 
 (defn block-map-entries [source]
-  (let [^js contents (.-contents ^js (source-document source "core"))]
+  (let [{:keys [document]} (source-document source "core")
+        ^js contents (.-contents ^js document)]
     (if contents (mapv pair-source (seq (.-items contents))) [])))
 
 (defn read-frontmatter [source]
-  (let [^js document (source-document source "core")
-        ^js contents (.-contents document)
-        data (native->data (.toJS document #js {:maxAliasCount 100}))]
+  (let [{:keys [document data]} (source-document source "core")
+        ^js contents (.-contents ^js document)
+        frontmatter (native->data data)]
     ;; The library's Scalar.source is decoded text, retaining spelling such as
     ;; 001/3.0/TRUE and quoted escapes. Use it only for top-level scalar fields;
     ;; structured extension values retain their core-schema types.
@@ -123,7 +124,7 @@
                 (if (yaml/isScalar resolved)
                   (assoc result (data-key (.-value ^js (.-key pair))) (or (.-source resolved) ""))
                   result)))
-            (or data {})
+            (or frontmatter {})
             (seq (when contents (.-items contents))))))
 
 (defn finite-number? [value]
