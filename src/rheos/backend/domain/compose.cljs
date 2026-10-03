@@ -98,11 +98,16 @@
                                                :domain domain
                                                :org org
                                                :drift (boolean (drift-uuids (:uuid t)))))))
-              (catch :default _))
+              (catch :default err
+                ;; A refused projected source is not an absent project. Keep
+                ;; it visible to read-board/search callers instead of admitting
+                ;; a successful snapshot that silently drops that board.
+                (when (= :refused (:kind (ex-data err))) (throw err))))
             (recur (rest remaining)))))
       (let [filtered (filterv #(filter-task % query) @all-tasks)]
         (board/build-board-snapshot filtered)))
     (catch :default err
+      (when (= :refused (:kind (ex-data err))) (throw err))
       (js/console.error "compose-snapshot error:" (.-message err))
       (board/build-board-snapshot []))))
 
