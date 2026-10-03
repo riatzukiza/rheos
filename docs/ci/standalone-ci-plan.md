@@ -55,7 +55,10 @@ result does not qualify the complete dependency manifest or browser release.
   It pins protocols to eta-mu commit
   `0ed56aa74a53a1d1e9c2e55ce95451817a7f3a90` and chat-ui to
   `86385532b4f8606946555d0ada8e3fb22f35b4c3`, supplying the source paths already
-  declared in `shadow-cljs.edn`.
+  declared in `shadow-cljs.edn`. During implementation, require both source
+  trees to exist and contain at least one file before reporting `Source deps
+  ready`; exit with an error if either tree is missing or empty, including
+  after a suppressed copy failure.
 - Run `pnpm test`, `pnpm lint:kondo`, and `pnpm build` as separate visible
   steps. Preserve compiler diagnostics on failure, and retain installation and
   bootstrap failures in the normal job log. Correct the README's stale
@@ -67,7 +70,10 @@ result does not qualify the complete dependency manifest or browser release.
    `NODE_PATH` or an external tool/dependency prefix, and a subsequent frozen
    install succeeds against the committed lockfile.
 2. The existing source bootstrap supplies its pinned protocols and chat-ui
-   inputs before compilation. A missing dependency or tool fails the job.
+   inputs before compilation. Verify that both `deps/protocols/src` and
+   `deps/chat-ui/src` exist and are nonempty before reporting bootstrap success;
+   missing or empty trees fail with a nonzero exit. A missing dependency or
+   tool fails the job.
 3. The actual package test command completes with zero failures or errors, and
    lint succeeds. Compiler warnings remain visible and are assessed before
    claiming release qualification.
@@ -100,23 +106,26 @@ result does not qualify the complete dependency manifest or browser release.
    (`ubuntu-24.04`, not a `-latest` alias), and a bounded timeout.
    Actual tool versions are visible, and the job requires no deployment or
    review credentials.
-10. After planning clearance and before implementation changes, retain an
-    unchanged-source release baseline using the existing pinned source
-    bootstrap and `pnpm build`, with its exact revision and success or failure
-    diagnostics. This comparison point does not replace final qualification.
+10. Before the next planning-review resubmission, retain the clean
+    complete-manifest install and unchanged-source release baseline using the
+    existing pinned source bootstrap and `pnpm build`, with their exact revision
+    and success or failure diagnostics. This comparison point does not replace
+    final qualification or retrospectively qualify earlier planning reviews.
 11. Installation/build remediation keeps this story within its five-point
     estimate. Added work that would exceed five points is split into linked
     cards before scope expands, with its own acceptance and verification criteria.
 
 ## Verification sequence
 
-Before implementation, record the clean declared-install baseline and preserve
-its log. After planning review meets the canonical pr-flow exit conditions and
+Before the next planning-review resubmission, record both the clean
+declared-install baseline and the unchanged-source release baseline. Run the
+existing pinned source bootstrap and `pnpm build` at the recorded baseline
+revision, retaining success or failure diagnostics. Earlier planning reviews
+already occurred; these attempts precede resubmission and do not change that
+history. After planning review meets the canonical pr-flow exit conditions and
 all planning findings are settled, move the authoritative story to `ready`
-through Rheos. Before making implementation changes, run the existing pinned
-source bootstrap and unchanged `pnpm build` at the recorded baseline revision,
-retaining success or failure diagnostics. Then qualify installation and
-lockfile generation in an isolated checkout, run the pinned source bootstrap,
+through Rheos. Then qualify installation and lockfile generation in an isolated
+checkout, verify bootstrap success and its missing/empty-tree failure cases,
 run the three existing package commands, inspect the release outputs, and run
 built CLI help.
 
@@ -165,6 +174,29 @@ earlier shadow-cljs `3.4.10` test results as evidence for it. The installer
 reported deprecated transitive `glob@11.1.0`; it did not report an installation
 failure. No source bootstrap, tests, lint, release build, or frozen install was
 run as part of this baseline probe.
+
+### Unchanged-source release baseline for resubmission
+
+On 2026-10-03, a fresh isolated checkout at
+`4c2ade84ae58fc0d3b86019fb2266fc58efa0c3c` ran the complete declared install,
+`bash scripts/bootstrap-source-deps.sh`, and unchanged `pnpm build`; each exited
+zero. All commands used `env -u NODE_PATH NPM_TOKEN=` without an external
+dependency prefix. Node `24.14.1`, pnpm `10.15.0`, and OpenJDK `21.0.12.1` were
+observed. The resolved dependency versions match the earlier install baseline,
+including shadow-cljs `3.5.4`; deprecated transitive `glob@11.1.0` remained the
+only installer warning. The pinned bootstrap supplied 21 protocols files and
+10 chat-ui files. Release compilation passed for `server` (104 files, 45
+compiled), `cli` (108/48), `github-sync` (64/16), and `app` (95/49), each with
+zero compiler warnings; all four expected outputs exist and are nonempty.
+
+Logs, resolved versions, source/output hashes and exit results are retained in
+`/tmp/rheos-ci-release-baseline-20261003-m1we0wwj/` (`install.log`,
+`bootstrap.log`, `build.log`, and `baseline.json`) for the coordinator's
+qualification receipt. Tracked source/configuration files are unchanged; the
+generated lockfile remains baseline output only. No frozen install, tests,
+lint, CLI help, hosted standalone CI, or runtime interaction was qualified by
+this probe. These results support the next planning resubmission; no prior
+planning clearance or readiness transition is claimed.
 
 ## Risks and bounded follow-on work
 
