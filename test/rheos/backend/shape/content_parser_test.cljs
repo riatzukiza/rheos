@@ -240,6 +240,21 @@
       (is (= (str "---\npriority: \"P0\"\n---\n\n" raw)
              (parser/update-frontmatter raw "priority" "P0"))))))
 
+(deftest frontmatter-update-honors-explicit-tags
+  (testing "replacement values must satisfy retained standard YAML tags"
+    (is (thrown? js/Error
+                 (parser/update-frontmatter "---\ndescription: !!int 3\n---\nBody  \n"
+                                            "description" "new")))
+    (is (thrown? js/Error
+                 (parser/update-frontmatter "---\nstatus: !!bool true\n---\nBody  \n"
+                                            "status" "done"))))
+
+  (testing "unrelated custom tags survive alongside valid standard tags"
+    (doseq [tag ["!custom" "!<tag:example.com,2026:content>"]]
+      (let [raw (str "---\nmetadata: " tag " retained\npoints: !!int 3\nstatus: incoming\n---\nBody  \n")
+            expected (str "---\nmetadata: " tag " retained\npoints: !!int 3\nstatus: \"done\"\n---\nBody  \n")]
+        (is (= expected (parser/update-frontmatter raw "status" "done")))))))
+
 (deftest test-append-comment-creates-section
   (testing "appends a comment block when none exists"
     (let [raw "---\nuuid: \"test\"\n---\n\nBody"

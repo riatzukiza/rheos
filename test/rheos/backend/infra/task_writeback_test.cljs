@@ -58,6 +58,8 @@
             task {:uuid "invalid" :source-path file-path :status "incoming"}
             cases [["---\nstatus: incoming\nstatus: ready\n---\nBody  \n" "done"]
                    ["---\nmetadata: [unterminated\n---\nBody  \n" "done"]
+                   ["---\nstatus: !!int 3\n---\nBody  \n" "done"]
+                   ["---\nstatus: !!bool true\n---\nBody  \n" "done"]
                    ["---\nstatus: incoming\n---\nBody  \n" {"invalid" "value"}]]]
         (-> (reduce (fn [pending [raw status]]
                       (.then pending
