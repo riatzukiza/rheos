@@ -29,7 +29,7 @@
   (try
     (let [raw (await (.readFile fsp file-path "utf8"))
           {:keys [frontmatter content]} (content-parser/parse-frontmatter raw)
-          _ (law-frontmatter/assert-title-shape frontmatter)
+          _ (law-frontmatter/assert-task-frontmatter-shape frontmatter)
           title (or (:title frontmatter) (path/basename file-path ".md"))
           priority (-> (or (:priority frontmatter) "P3") str/upper-case str/trim)
           labels (normalize-labels (:labels frontmatter) (:tags frontmatter))

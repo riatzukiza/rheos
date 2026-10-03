@@ -11,7 +11,7 @@
    in the order updates iterates. Encoding and decoding belong to the adapter."
   [old-frontmatter new-frontmatter new-raw updates]
   {:raw new-raw
-   :frontmatter (law-frontmatter/assert-title-shape new-frontmatter)
+   :frontmatter (law-frontmatter/assert-task-frontmatter-shape new-frontmatter)
    :changes (mapv (fn [[key value]]
                     {:key key
                      :old-value (get old-frontmatter (keyword key))

@@ -12,6 +12,8 @@
             [clojure.string :as str]
             [rheos.backend.domain.events :as events]
             [rheos.backend.domain.task-create :as task-create]
+            [rheos.backend.law.frontmatter :as law-frontmatter]
+            [rheos.backend.infra.content-parser :as content-parser]
             [rheos.backend.infra.ledger :as ledger]
             [rheos.backend.infra.task-store :as tasks]
             [rheos.backend.infra.watcher :as watcher]))
@@ -115,7 +117,15 @@
                                        :category (path/basename card-dir)
                                        :write-id write-id
                                        :created-at (.toISOString (new js/Date))
-                                       :body body})]
+                                       :body body})
+        _ (try
+            (law-frontmatter/assert-task-frontmatter-shape
+              (:frontmatter (content-parser/parse-frontmatter (:raw card))))
+            (catch :default error
+              (throw (ex-info (str "Refused card source " file-path ": " (.-message error))
+                              (assoc (ex-data error) :kind :refused :source-path file-path
+                                     :diagnostic (.-message error))
+                              error))))]
     (await (.mkdir fsp card-dir #js {:recursive true}))
     (watcher/register-cli-event! write-id card-uuid)
     (await (write-card-exclusive! file-path (:raw card)))
