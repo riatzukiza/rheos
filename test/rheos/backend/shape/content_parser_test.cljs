@@ -436,3 +436,44 @@
       (is (= (get-in parsed [:frontmatter :title]) (get-in re-parsed [:frontmatter :title])))
       (is (= (get-in parsed [:frontmatter :status]) (get-in re-parsed [:frontmatter :status])))
       (is (= (get-in parsed [:frontmatter :labels]) (get-in re-parsed [:frontmatter :labels]))))))
+
+(deftest ordered-map-cyclic-aliases-refuse-reads-and-updates
+  (let [source "status: incoming\nmetadata: !!omap &self\n  - self: *self\n"
+        raw (str "---\n" source "---\nBody  \n")
+        ^js document (yaml/parseDocument source #js {:stringKeys true :schema "core"})
+        ^js native (.toJS document #js {:maxAliasCount 100})
+        ^js metadata (.-metadata native)]
+    (testing "the accepted standard tag resolves to an actual native Map cycle"
+      (is (empty? (seq (.-errors document))))
+      (is (instance? js/Map metadata))
+      (is (identical? metadata (.get metadata "self"))))
+    (testing "reads and low-level updates refuse that cycle with its declared type"
+      (doseq [operation [#(parser/parse-frontmatter raw)
+                         #(parser/parse-task-content raw)
+                         #(parser/update-frontmatter raw "status" "done")]]
+        (let [error (try (operation) nil (catch :default e e))]
+          (is (= :cyclic-alias (:type (ex-data error)))))))))
+
+(deftest ordered-map-shared-aliases-remain-readable-and-editable
+  (let [source "status: incoming\nmetadata: !!omap &shared\n  - a: &values [one, two]\n  - b: *values\ncopy: *shared\n"
+        raw (str "---\n" source "---\nBody  \n")
+        ^js document (yaml/parseDocument source #js {:stringKeys true :schema "core"})
+        ^js native (.toJS document #js {:maxAliasCount 100})
+        ^js metadata (.-metadata native)
+        expected {:a ["one" "two"] :b ["one" "two"]}
+        parsed (parser/parse-frontmatter raw)
+        updated (parser/update-frontmatter raw "status" "done")
+        reparsed (parser/parse-frontmatter updated)]
+    (testing "the acyclic fixture shares both a native Map and its nested values"
+      (is (empty? (seq (.-errors document))))
+      (is (instance? js/Map metadata))
+      (is (identical? metadata (.-copy native)))
+      (is (identical? (.get metadata "a") (.get metadata "b"))))
+    (testing "shared values remain Clojure-shaped before and after a targeted edit"
+      (is (= expected (get-in parsed [:frontmatter :metadata])
+             (get-in parsed [:frontmatter :copy])))
+      (is (= (str/replace raw "status: incoming" "status: \"done\"") updated))
+      (is (= "done" (get-in reparsed [:frontmatter :status])))
+      (is (= expected (get-in reparsed [:frontmatter :metadata])
+             (get-in reparsed [:frontmatter :copy])))
+      (is (= "Body  \n" (:content parsed) (:content reparsed))))))
