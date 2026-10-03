@@ -28,8 +28,11 @@ that installs this repository, bootstraps its declared source dependencies, and
 runs its existing test, lint, and release commands.
 
 The current stacked base includes `.github/workflows/eta-mu-review.yml` for
-native PR review with diff-stat evidence. That review infrastructure does not
-qualify this story's package installation, tests, lint, or release build.
+native PR review. Its caller repair requires complete-manifest unlocked install,
+pinned bootstrap, tests, lint and all four release gates; hosted results must
+qualify those commands at the exact head. That App-backed, unlocked review path
+does not implement this story's credential-free frozen-install workflow or its
+pull-request, main-push and manual lifecycle.
 
 The prior source-preservation qualification passed 166 tests and 858 assertions
 using an external prefix containing backend dependencies and shadow-cljs. That
