@@ -125,9 +125,9 @@ already occurred; these attempts precede resubmission and do not change that
 history. After planning review meets the canonical pr-flow exit conditions and
 all planning findings are settled, move the authoritative story to `ready`
 through Rheos. Then qualify installation and lockfile generation in an isolated
-checkout, verify bootstrap success and its missing/empty-tree failure cases,
-run the three existing package commands, inspect the release outputs, and run
-built CLI help.
+checkout, run `pnpm install --frozen-lockfile` against the committed lockfile,
+verify bootstrap success and its missing/empty-tree failure cases, run the three
+existing package commands, inspect the release outputs, and run built CLI help.
 
 For any installation/build remediation, record the failing command, cause,
 verification, and effect on the five-point estimate before changing scope.
