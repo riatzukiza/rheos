@@ -34,6 +34,23 @@
       (is (= {} (:frontmatter result)))
       (is (= "No frontmatter here" (:content result))))))
 
+(deftest frontmatter-read-refuses-an-unclosed-opening-fence
+  (testing "opening frontmatter without a closing delimiter is never plain Markdown"
+    (doseq [raw ["---\nuuid: broken\n# Body without a closing delimiter\n"
+                 "--- \t\nuuid: broken\ntext ---\n"
+                 "\uFEFF---\r\nuuid: broken\r\n# Body\r\n"]]
+      (is (thrown-with-msg? cljs.core/ExceptionInfo #"Unterminated YAML frontmatter"
+                           (parser/parse-frontmatter raw)))))
+  (testing "frontmatter-free Markdown, including body examples, remains byte-identical"
+    (doseq [raw ["# Heading\n\nBody  \n"
+                 "# Example\n\n```yaml\n---\nuuid: example\n---\n```\n"
+                 "---"]]
+      (is (= {:frontmatter {} :content raw} (parser/parse-frontmatter raw)))))
+  (testing "BOM and CRLF opening delimiters still accept a complete header"
+    (is (= {:frontmatter {:uuid "complete"} :content "\r\nBody  \r\n"}
+           (parser/parse-frontmatter
+            "\uFEFF--- \t\r\nuuid: complete\r\n---\r\n\r\nBody  \r\n")))))
+
 (deftest source-preserving-updates-remain-readable
   (testing "updated values retain YAML meaning despite preserved comments and aliases"
     (let [raw "---\nuuid: test\nstatus: &workflow incoming # keep\ncategory: *workflow\npoints: 3\nflag: false\nempty:\n---\n\nBody\n"
