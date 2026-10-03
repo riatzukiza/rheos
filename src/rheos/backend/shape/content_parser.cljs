@@ -140,12 +140,13 @@
           ;; properties such as tags and anchors can affect replacement syntax.
           (yaml/block-map-entries updated-source)
           (str opening updated-source closing body))
-        (do
+        (let [bom? (str/starts-with? raw "\uFEFF")
+              body (if bom? (subs raw 1) raw)]
           (when (re-find #"^(?:\uFEFF)?---[ \t]*\r?\n" raw)
             (throw (ex-info "Unterminated YAML frontmatter" {})))
-          (str "---\n"
+          (str (when bom? "\uFEFF") "---\n"
                (str/join "\n" (map (fn [[key value]] (str key ": " (yaml/replacement-value value))) entries))
-               "\n---\n\n" raw))))))
+               "\n---\n\n" body))))))
 
 (defn update-frontmatter [raw key value]
   (update-frontmatter-keys raw {key value}))

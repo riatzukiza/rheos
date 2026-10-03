@@ -38,9 +38,14 @@ below) and emits to `dist/web/js`, which the server then serves statically. A
 Frontmatter updates and `write-id` injection patch only requested top-level
 values. Unrelated YAML, comments, delimiters, line endings, body fences and
 spacing remain in their original source form. Reads share one YAML decoder,
-including the card loader, while flat scalar fields retain their string values
-and empty fields retain `""`. Invalid/duplicate-key YAML, incompatible or
-unresolved standard YAML tags and invalid updates are refused before status
+including the card loader. Top-level scalar fields retain their decoded source
+strings and empty fields retain `""`; nested mappings and vectors keep YAML
+number, boolean and null types. Within structured data, native tagged maps/sets
+become Clojure maps/sets, timestamps become ISO strings and binary values become
+byte vectors.
+Cyclic aliases are refused before recursive read conversion or a write, while
+shared acyclic aliases remain supported. Invalid/duplicate-key YAML, incompatible
+or unresolved standard YAML tags and invalid updates are refused before status
 writeback writes the file. Valid standard tagged collections such as `!!set`,
 `!!omap`, and `!!pairs` survive unrelated edits. A replacement must satisfy its
 retained standard tag, using the YAML library's resolution. Unrelated
@@ -48,7 +53,8 @@ application-specific tags remain preserved.
 
 The update contract accepts a block mapping, simple string/keyword field names,
 and strings, finite numbers, booleans, nil, or vectors of those values. A missing
-frontmatter block is added without reformatting the body. This is scoped to
+frontmatter block is added after any file-leading BOM without reformatting the
+body. This is scoped to
 frontmatter mutation: `append-comment`, section rendering, and the general
 task serializer still reconstruct content and do not promise lossless editing.
 The status writeback adapter uses a native Promise; the standalone compiler
