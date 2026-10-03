@@ -62,7 +62,7 @@
   (str/join "\n\n"
     (mapv (fn [section]
             (if (= (:type section) "comment")
-              (str "---\n" (:content section) "\n---")
+              (str "---\n" (:content section) "\n\n---")
               (:content section)))
           sections)))
 
