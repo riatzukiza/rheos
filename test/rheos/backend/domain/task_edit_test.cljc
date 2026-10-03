@@ -29,3 +29,16 @@
             {:key "title" :old-value "old" :new-value false}]
            (:changes plan)))
     (is (identical? value (:new-value (first (:changes plan)))))))
+
+(deftest frontmatter-plan-refuses-collection-valued-core-fields
+  (doseq [field [:title :priority :status]
+          value [["one" "two"] {:name "one"}]]
+    (let [error (try
+                  (task-edit/plan-frontmatter-update
+                    {} {field value :metadata {:keep [7 false nil]}}
+                    "candidate" {field value})
+                  nil
+                  (catch #?(:clj clojure.lang.ExceptionInfo :cljs :default) error error))]
+      (is (= {:kind :refused :field field} (ex-data error)))
+      (is (= (str "Task " (name field) " must be a string")
+             (when error (ex-message error)))))))
