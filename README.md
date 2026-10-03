@@ -173,10 +173,12 @@ UI, each using a domain / law / shape / infra layering:
   `task-edit`, `transition` (the last three are the write chokepoints: creation,
   frontmatter/comments, status)
 - `rheos.backend.law` — `frontmatter`, `fsm` (legal-transition rules)
-- `rheos.backend.shape` — `content-parser`, `kanban` (markdown card parsing)
+- `rheos.backend.shape` — portable `content-parser` source frames, sections and
+  range-based patches; `kanban` (markdown card parsing)
+- `rheos.backend.extern` — native YAML decoding/encoding and task-content JS conversion
 - `rheos.backend.infra` — `http-server`, `cli`, `mcp`, `config`, `projects`,
   `store` / `task-store` / `view-store`, `ledger`, `watcher`, `task-writeback`,
-  `agent-tools`, `chat-proxy`
+  `agent-tools`, `chat-proxy`, `content-parser` (validated YAML composition)
 - `rheos.ui.domain` — `board`, `filter-bar`, `layout`, `orchestrator`, `sidebar`
 - `rheos.ui.law` — `url`
 - `rheos.ui.infra` — `mount`, `api`, `chat-session`, `ledger-stream`

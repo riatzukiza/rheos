@@ -7,7 +7,7 @@
             [rheos.backend.domain.events :as events]
             [rheos.backend.infra.task-edit :as task-edit]
             [rheos.backend.infra.task-store :as task-store]
-            [rheos.backend.shape.content-parser :as content-parser]
+            [rheos.backend.infra.content-parser :as content-parser]
             [rheos.backend.infra.watcher :as watcher]))
 
 (defn- tmp-dir []
@@ -121,14 +121,24 @@
           (is (empty? @captured) "a refused edit emits no mutation event")))
       (doseq [[value expected] [["Quotes \"and\" C:\\work\nNext line" "Quotes \"and\" C:\\work\nNext line"]
                                 [7 "7"] [false "false"] [nil ""]]]
-        (let [result (await (task-edit/update-frontmatter!
+        (let [before (await (.readFile fsp task-path "utf8"))
+              before-title (get-in (content-parser/parse-frontmatter before) [:frontmatter :title])
+              previous-event-count (count @captured)
+              result (await (task-edit/update-frontmatter!
                             {:project project :task task :updates {"title" value}}))
               after (await (.readFile fsp task-path "utf8"))
               parsed (:frontmatter (content-parser/parse-frontmatter after))
-              loaded (await (task-store/load-tasks dir))]
+              loaded (await (task-store/load-tasks dir))
+              event (nth @captured previous-event-count nil)]
           (is (:ok result))
           (is (= expected (:title (first loaded))) "decoded scalar title spelling remains compatible")
           (is (= {:values [3 true nil]} (:metadata parsed)))
+          (is (= (inc previous-event-count) (count @captured)))
+          (is (= "frontmatter" (:type event)))
+          (is (= "title" (:key event)))
+          (is (= before-title (:old-value event)))
+          (is (= value (:new-value event)))
+          (is (= (:write-id parsed) (:write-id event)))
           (is (str/ends-with? after "---\n\nBody  \n"))))
       (finally
         (unsub)

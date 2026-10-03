@@ -11,6 +11,7 @@
   (:require ["node:fs/promises" :as fsp]
             [rheos.backend.domain.events :as events]
             [rheos.backend.domain.task-edit :as task-edit]
+            [rheos.backend.infra.content-parser :as content-parser]
             [rheos.backend.infra.ledger :as ledger]
             [rheos.backend.infra.watcher :as watcher]))
 
@@ -31,7 +32,12 @@
     (let [task-path (:source-path task)
           raw (await (.readFile fsp task-path "utf8"))
           write-id (events/generate-write-id)
-          plan (try (task-edit/plan-frontmatter-update raw updates write-id)
+          plan (try (let [old-frontmatter (:frontmatter (content-parser/parse-task-content raw))
+                          new-raw (-> raw
+                                      (content-parser/update-frontmatter-keys updates)
+                                      (content-parser/inject-write-id write-id))
+                          new-frontmatter (:frontmatter (content-parser/parse-task-content new-raw))]
+                      (task-edit/plan-frontmatter-update old-frontmatter new-frontmatter new-raw updates))
                     (catch :default err
                       (if (and (= :refused (:kind (ex-data err)))
                                (= :title (:field (ex-data err))))
@@ -58,7 +64,8 @@
   (let [task-path (:source-path task)
         raw (await (.readFile fsp task-path "utf8"))
         write-id (events/generate-write-id)
-        new-raw (task-edit/plan-comment raw text write-id)
+        new-raw (-> (task-edit/plan-comment raw (content-parser/parse-task-content raw) text)
+                    (content-parser/inject-write-id write-id))
         ledger (ledger/get-ledger (:tasks-dir project))]
     (watcher/register-cli-event! write-id (:uuid task))
     (await (.writeFile fsp task-path new-raw "utf8"))

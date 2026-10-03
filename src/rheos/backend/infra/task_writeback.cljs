@@ -1,7 +1,7 @@
 (ns rheos.backend.infra.task-writeback
   "Writing task changes back to markdown files."
   (:require ["node:fs/promises" :as fsp]
-            [rheos.backend.shape.content-parser :as content-parser]))
+            [rheos.backend.infra.content-parser :as content-parser]))
 
 ;; The standalone compiler does not transform ^:async/await. A native Promise
 ;; keeps this filesystem boundary executable without assuming an absent macro.

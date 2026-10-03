@@ -2,7 +2,8 @@
   (:require [cljs.test :refer [deftest is testing]]
             [clojure.string :as str]
             ["yaml" :as yaml]
-            [rheos.backend.shape.content-parser :as parser]))
+            [rheos.backend.infra.content-parser :as parser]
+            [rheos.backend.shape.content-parser :as content-shape]))
 
 (deftest test-parse-frontmatter
   (testing "parses quoted string values"
@@ -113,14 +114,14 @@
 (deftest test-parse-sections
   (testing "parses single body section"
     (let [content "\n# Heading\nBody text"
-          sections (parser/parse-sections content)]
+          sections (content-shape/parse-sections content)]
       (is (= 1 (count sections)))
       (is (= "body" (:type (first sections))))
       (is (= "# Heading\nBody text" (:content (first sections))))))
 
   (testing "parses body and comment sections"
     (let [content "\nBody text\n---\nComment text\n---\nMore body"
-          sections (parser/parse-sections content)]
+          sections (content-shape/parse-sections content)]
       (is (= 3 (count sections)))
       (is (= "body" (:type (nth sections 0))))
       (is (= "comment" (:type (nth sections 1))))
@@ -140,18 +141,18 @@
 (deftest test-serialize-frontmatter
   (testing "serializes quoted strings"
     (let [fm {:uuid "test" :title "Test"}
-          result (parser/serialize-frontmatter fm)]
+          result (content-shape/serialize-frontmatter fm)]
       (is (re-find #"uuid: \"test\"" result))
       (is (re-find #"title: \"Test\"" result))))
 
   (testing "serializes arrays"
     (let [fm {:labels ["epics" "cljs"]}
-          result (parser/serialize-frontmatter fm)]
+          result (content-shape/serialize-frontmatter fm)]
       (is (re-find #"labels: \[\"epics\", \"cljs\"\]" result))))
 
   (testing "serializes plain values"
     (let [fm {:status "done" :priority "P0"}
-          result (parser/serialize-frontmatter fm)]
+          result (content-shape/serialize-frontmatter fm)]
       (is (re-find #"status: \"done\"" result))
       (is (re-find #"priority: \"P0\"" result)))))
 
@@ -409,7 +410,7 @@
                     {:type "comment" :content "First comment.\nContinued paragraph."}
                     {:type "body" :content "After the comment."}]]
       (is (= sections
-             (parser/parse-sections (parser/serialize-sections sections))))))
+             (content-shape/parse-sections (content-shape/serialize-sections sections))))))
   (testing "first and second appends preserve comment text and section identity"
     (let [raw "---\nuuid: test\n---\n\nBody paragraph."
           first-comment "First comment.\nContinued paragraph."
@@ -424,13 +425,13 @@
                  (:sections parsed)))
           (is (= parsed
                  (parser/parse-task-content
-                   (parser/serialize-task-content parsed)))))))))
+                   (content-shape/serialize-task-content parsed)))))))))
 
 (deftest test-roundtrip
   (testing "parse then serialize preserves data"
     (let [raw "---\nuuid: \"test\"\ntitle: \"Test\"\nstatus: done\npriority: P0\nlabels: [\"epics\", \"cljs\"]\n---\n\n# Title\n\nBody content"
           parsed (parser/parse-task-content raw)
-          serialized (parser/serialize-task-content parsed)
+          serialized (content-shape/serialize-task-content parsed)
           re-parsed (parser/parse-task-content serialized)]
       (is (= (get-in parsed [:frontmatter :uuid]) (get-in re-parsed [:frontmatter :uuid])))
       (is (= (get-in parsed [:frontmatter :title]) (get-in re-parsed [:frontmatter :title])))

@@ -6,7 +6,7 @@
             [rheos.backend.domain.events :as events]
             [rheos.backend.domain.task-create :as card]
             [rheos.backend.infra.task-create :as task-create]
-            [rheos.backend.shape.content-parser :as content-parser]))
+            [rheos.backend.infra.content-parser :as content-parser]))
 
 (defn- tmp-dir []
   (path/join (.tmpdir os) (str "rheos-create-test-" (.now js/Date) "-" (rand-int 100000))))
