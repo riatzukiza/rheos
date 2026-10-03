@@ -138,8 +138,10 @@ If added work would exceed five points, create linked repair cards and review
 their scope and readiness through canonical pr-flow before implementing those
 changes. A failed check does not automatically broaden this story.
 
-Append the observed results to Receipt River after baseline, local, and hosted
-qualification, including the exact revisions and commands, test/assertion
+Before Receipt River cites baseline logs or result manifests, copy or upload
+them to a shared durable location and publish immutable links and hashes.
+Append the observed results after baseline, local, and hosted qualification,
+including the exact revisions and commands, test/assertion
 counts and compiler diagnostics, failures or warnings, findings, and scope
 limitations. Reference retained logs and review evidence so the authoritative
 Foresight card's qualification record is inspectable without treating this
@@ -166,8 +168,8 @@ On 2026-10-03, a clean worktree at `dda73f1` ran
 `env -u NODE_PATH NPM_TOKEN= pnpm install --no-frozen-lockfile` with Node
 `24.14.1` and pnpm `10.15.0`. It exited zero, installing all declared packages,
 including the pinned protocols Git dependency and the frontend dependencies.
-The full log is retained locally at
-`/tmp/rheos-standalone-ci-install-baseline-20261003.log`.
+The original full log is published as
+[declared-install evidence](https://github.com/riatzukiza/foresight/blob/a167d66e322af6dbedd6339fefe0c9ad9cb8bd85/.%CE%B7%CE%BC/diagnostics/rheos-declared-install-dda73f1-20261003/install.log).
 
 The generated lockfile is baseline output only; it is not introduced by this
 planning commit. Current ranges resolved shadow-cljs `3.5.4`, React/ReactDOM
@@ -192,11 +194,14 @@ only installer warning. The pinned bootstrap supplied 21 protocols files and
 compiled), `cli` (108/48), `github-sync` (64/16), and `app` (95/49), each with
 zero compiler warnings; all four expected outputs exist and are nonempty.
 
-Logs, resolved versions, source/output hashes and exit results are retained in
-`/tmp/rheos-ci-release-baseline-20261003-m1we0wwj/` (`install.log`,
-`bootstrap.log`, `build.log`, and `baseline.json`) for the coordinator's
-qualification receipt. Tracked source/configuration files are unchanged; the
-generated lockfile remains baseline output only. No frozen install, tests,
+The original logs and result manifest are durably published in Foresight
+commit `a167d66e322af6dbedd6339fefe0c9ad9cb8bd85`: [install.log](https://github.com/riatzukiza/foresight/blob/a167d66e322af6dbedd6339fefe0c9ad9cb8bd85/.%CE%B7%CE%BC/diagnostics/rheos-ci-release-baseline-4c2ade8-20261003/install.log),
+[bootstrap.log](https://github.com/riatzukiza/foresight/blob/a167d66e322af6dbedd6339fefe0c9ad9cb8bd85/.%CE%B7%CE%BC/diagnostics/rheos-ci-release-baseline-4c2ade8-20261003/bootstrap.log), [build.log](https://github.com/riatzukiza/foresight/blob/a167d66e322af6dbedd6339fefe0c9ad9cb8bd85/.%CE%B7%CE%BC/diagnostics/rheos-ci-release-baseline-4c2ade8-20261003/build.log)
+and [baseline.json](https://github.com/riatzukiza/foresight/blob/a167d66e322af6dbedd6339fefe0c9ad9cb8bd85/.%CE%B7%CE%BC/diagnostics/rheos-ci-release-baseline-4c2ade8-20261003/baseline.json). The manifest retains resolved
+versions, source/output hashes and command exits; the archived bytes match its
+recorded log hashes. These artifacts are published before receipt citation.
+Tracked source/configuration files are unchanged; the generated lockfile
+remains baseline output only. No frozen install, tests,
 lint, CLI help, hosted standalone CI, or runtime interaction was qualified by
 this probe. These results support the next planning resubmission; no prior
 planning clearance or readiness transition is claimed.
