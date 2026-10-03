@@ -99,3 +99,32 @@
           (.finally (fn []
                       (.rmSync fs dir #js {:recursive true :force true})
                       (done)))))))
+
+#_{:clj-kondo/ignore [:promise-chain/prefer-async-workflow]}
+(deftest write-task-status-appends-with-existing-yaml-line-ending
+  (async done
+    (let [dir (tmp-dir)
+          file-path (path/join dir "mixed.md")
+          body "\nBody  \r\n\n```yaml\r\n---\nexample: value\r\n---\n```\r\n"
+          task {:uuid "mixed" :source-path file-path :status "incoming"}]
+      (-> (reduce (fn [pending [opening-end yaml-end]]
+                    (.then pending
+                           (fn []
+                             (let [raw (str "---" opening-end
+                                            "uuid: mixed" yaml-end "status: incoming" yaml-end
+                                            "---" opening-end body)
+                                   expected (str "---" opening-end
+                                                 "uuid: mixed" yaml-end "status: \"done\"" yaml-end
+                                                 "write-id: \"mixed-write\"" yaml-end
+                                                 "---" opening-end body)]
+                               (.writeFileSync fs file-path raw "utf8")
+                               (-> (writeback/write-task-status task dir "done" "mixed-write")
+                                   (.then (fn [_]
+                                            (let [updated (.readFileSync fs file-path "utf8")]
+                                              (is (= expected updated))
+                                              (is (= body (:content (content-parser/parse-frontmatter updated))))))))))))
+                  (js/Promise.resolve) [["\r\n" "\n"] ["\n" "\r\n"]])
+          (.catch (fn [error] (is false (str "Unexpected writeback failure: " error))))
+          (.finally (fn []
+                      (.rmSync fs dir #js {:recursive true :force true})
+                      (done)))))))

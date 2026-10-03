@@ -202,6 +202,26 @@
                           (parser/update-frontmatter "priority" "P0")
                           (parser/inject-write-id "wid-123")))))))
 
+(deftest frontmatter-appends-follow-existing-yaml-line-endings
+  (testing "the delimiter style does not replace the YAML entries' style"
+    (doseq [[opening-end yaml-end] [["\r\n" "\n"] ["\n" "\r\n"]]]
+      (let [body "\nBody  \r\n\n```yaml\r\n---\nexample: value\r\n---\n```\r\n"
+            raw (str "---" opening-end "# kept" yaml-end
+                     "uuid: mixed" yaml-end "status: incoming" yaml-end
+                     "---" opening-end body)
+            updated (-> raw
+                        (parser/update-frontmatter-keys {"status" "done" "priority" "P0"})
+                        (parser/inject-write-id "mixed-write"))
+            expected (str "---" opening-end "# kept" yaml-end
+                          "uuid: mixed" yaml-end "status: \"done\"" yaml-end
+                          "priority: \"P0\"" yaml-end "write-id: \"mixed-write\"" yaml-end
+                          "---" opening-end body)]
+        (is (= expected updated))
+        (is (= body (:content (parser/parse-frontmatter updated)))))))
+  (testing "empty YAML falls back to the opening delimiter's line ending"
+    (is (= "---\r\npriority: \"P0\"\r\n---\nBody  \r\n"
+           (parser/update-frontmatter "---\r\n---\nBody  \r\n" "priority" "P0")))))
+
 (deftest frontmatter-update-edge-cases
   (testing "empty updates leave source byte-identical"
     (let [raw "---\nmetadata:\n  nested: true\n---\n\nBody  \n"]
