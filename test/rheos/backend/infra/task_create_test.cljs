@@ -226,7 +226,10 @@
   (doseq [title ["Fix \"quoted\" work" "Fix C:\\work" "Literal C:\\new\\temp"
                  "Line one\nLine two\r\n\tTabbed"
                  (str "Controls " (apply str (map char (range 32))))
-                 "Unicode\u0085next\u2028line\u2029paragraph"]]
+                 "Unicode\u0085next\u2028line\u2029paragraph"
+                 (str "Lone high " (char 55296) " end")
+                 (str "Lone low " (char 56320) " end")
+                 (str "Supplementary " (char 55357) (char 56832))]]
     (let [project (await (scratch-project))
           captured (atom [])
           unsub (events/subscribe! #(swap! captured conj %))]
