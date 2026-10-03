@@ -59,10 +59,16 @@ no empty-frontmatter fallback creates a substitute identity or status. The CLI
 reports the path and reason on stderr with exit code 3, and existing HTTP error
 responses report that same message. Valid-load shapes, source bytes, configured
 projection exclusions, and non-Markdown discovery exclusions stay unchanged.
-Present decoded card titles must be strings; collection-valued titles are
-refused on load and before a frontmatter edit writes or emits events. Missing
-titles keep their filename fallback, scalar spelling stays compatible, and
-structured extension metadata remains supported.
+Present decoded card titles, priorities and statuses must be strings;
+collection-valued core fields are refused with a named diagnostic on load and
+before a frontmatter edit writes or emits events. Missing fields keep their
+fallbacks, scalar spelling stays compatible, and structured extension metadata
+remains supported. New cards escape double-quoted strings, including control
+characters and YAML line separators, and their rendered frontmatter must pass
+the same decoder and core-field law before creating a directory, writing a file,
+registering a watcher correlation or emitting an event.
+This qualifies decoded frontmatter strings, including lone UTF-16 units;
+generated or authored Markdown body bytes have no lossless-persistence guarantee.
 
 The update contract accepts a block mapping, simple string/keyword field names,
 and strings, finite numbers, booleans, nil, or vectors of those values. A missing

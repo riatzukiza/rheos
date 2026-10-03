@@ -42,11 +42,27 @@
   [frontmatter content]
   {:frontmatter frontmatter :sections (parse-sections content)})
 
+(defn- unicode-escape [code]
+  (str "\\u" (apply str (map #(nth "0123456789abcdef"
+                                  (bit-and 15 (bit-shift-right code %)))
+                             [12 8 4 0]))))
+
+(def ^:private quoted-string-escapes
+  (into {\" "\\\"" \\ "\\\\" \newline "\\n" \return "\\r" \tab "\\t"}
+        (map (fn [code] [(char code) (unicode-escape code)])
+             (remove #{9 10 13}
+                     (concat (range 32) [133 8232 8233] (range 55296 57344))))))
+
+(defn- quoted-string
+  "Portable YAML double-quoted scalar encoding; preserve UTF-16 units at UTF-8 writes."
+  [value]
+  (str "\"" (str/escape value quoted-string-escapes) "\""))
+
 (defn serialize-frontmatter [frontmatter]
   (let [lines (mapv (fn [[k v]]
                       (cond
-                        (vector? v) (str (name k) ": [" (str/join ", " (mapv #(str "\"" % "\"") v)) "]")
-                        (string? v) (str (name k) ": \"" v "\"")
+                        (vector? v) (str (name k) ": [" (str/join ", " (mapv #(quoted-string (str %)) v)) "]")
+                        (string? v) (str (name k) ": " (quoted-string v))
                         (nil? v) (str (name k) ": ")
                         :else (str (name k) ": " v)))
                     frontmatter)]

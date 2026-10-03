@@ -23,6 +23,28 @@
                  "---\n\n# " title "\n\nBody")]
     (.writeFile fsp file-path raw "utf8")))
 
+(deftest ^:async collection-priority-edit-is-refused-before-write-or-event
+  (let [dir (tmp-dir)
+        _ (await (.mkdir fsp dir #js {:recursive true}))
+        _ (await (write-task! dir "t1" "Task One"))
+        project {:id "test" :tasks-dir dir}
+        task {:uuid "t1" :source-path (path/join dir "t1.md")}
+        before (await (.readFile fsp (:source-path task) "utf8"))
+        captured (atom [])
+        unsub (events/subscribe! #(swap! captured conj %))]
+    (try
+      (let [error (try (await (task-edit/update-frontmatter!
+                               {:project project :task task :updates {:priority ["P0" "P1"]}}))
+                       nil (catch :default error error))]
+        (is (= :refused (:kind (ex-data error))))
+        (is (= :priority (:field (ex-data error))))
+        (is (= (:source-path task) (:source-path (ex-data error))))
+        (is (= before (await (.readFile fsp (:source-path task) "utf8"))))
+        (is (empty? @captured)))
+      (finally
+        (unsub)
+        (await (.rm fsp dir #js {:recursive true :force true}))))))
+
 (deftest ^:async update-frontmatter-emits-events
   (testing "Updating frontmatter writes the file and records events"
     (let [dir (tmp-dir)
