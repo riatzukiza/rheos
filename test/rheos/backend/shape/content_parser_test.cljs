@@ -255,6 +255,29 @@
             expected (str "---\nmetadata: " tag " retained\npoints: !!int 3\nstatus: \"done\"\n---\nBody  \n")]
         (is (= expected (parser/update-frontmatter raw "status" "done")))))))
 
+(deftest frontmatter-update-honors-standard-collection-tags
+  (testing "valid standard tagged collections survive unrelated updates"
+    (doseq [[tag value] [["!!set" "{a: null}"]
+                        ["!!omap" "[{a: 3}]"]
+                        ["!!pairs" "[{a: 3}]"]]]
+      (let [raw (str "---\nmetadata: " tag " " value "\nstatus: incoming\n---\nBody  \n")
+            expected (str "---\nmetadata: " tag " " value "\nstatus: \"done\"\n---\nBody  \n")]
+        (is (= expected (parser/update-frontmatter raw "status" "done"))))))
+
+  (testing "replacements must satisfy retained standard collection tags"
+    (doseq [[tag value] [["!!set" "{a: null}"]
+                        ["!!omap" "[{a: 3}]"]
+                        ["!!pairs" "[{a: 3}]"]]]
+      (is (thrown? js/Error
+                   (parser/update-frontmatter
+                     (str "---\nmetadata: " tag " " value "\n---\nBody  \n")
+                     "metadata" "new"))))
+    ;; The library reports this map/sequence mismatch separately from an
+    ;; unresolved scalar tag; both diagnostics must refuse the replacement.
+    (is (thrown? js/Error
+                 (parser/update-frontmatter "---\nmetadata: !!set {a: null}\n---\nBody  \n"
+                                            "metadata" ["new"])))))
+
 (deftest test-append-comment-creates-section
   (testing "appends a comment block when none exists"
     (let [raw "---\nuuid: \"test\"\n---\n\nBody"

@@ -60,6 +60,9 @@
                    ["---\nmetadata: [unterminated\n---\nBody  \n" "done"]
                    ["---\nstatus: !!int 3\n---\nBody  \n" "done"]
                    ["---\nstatus: !!bool true\n---\nBody  \n" "done"]
+                   ["---\nstatus: !!set {a: null}\n---\nBody  \n" "done"]
+                   ["---\nstatus: !!omap [{a: 3}]\n---\nBody  \n" "done"]
+                   ["---\nstatus: !!pairs [{a: 3}]\n---\nBody  \n" "done"]
                    ["---\nstatus: incoming\n---\nBody  \n" {"invalid" "value"}]]]
         (-> (reduce (fn [pending [raw status]]
                       (.then pending
