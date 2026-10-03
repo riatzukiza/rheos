@@ -182,3 +182,27 @@
           "only projected Markdown candidates are parsed; unrelated files stay skipped")
       (finally
         (await (.rm fsp root #js {:recursive true :force true}))))))
+
+(deftest ^:async yaml-label-items-normalize-without-refusing-valid-cards
+  (let [dir (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-label-values-")))
+        card-path (path/join dir "mixed.md")]
+    (try
+      (doseq [[fields expected]
+              [["labels: [7, ' ui ', 7, '7', null, false, ' ', ops]\ntags: [ignored]\n"
+                ["7" "ui" "false" "ops"]]
+               ["tags: [13, ' ops ', 13, null, '']\n" ["13" "ops"]]
+               ["labels: ' ops, 7, ops, , ui '\ntags: [ignored]\n" ["ops" "7" "ui"]]
+               ["labels: []\ntags: [13]\n" []]]]
+        (let [raw (str "---\nuuid: mixed\ntitle: Mixed labels\nstatus: incoming\n"
+                       fields "---\n\n# Preserve this body\n")]
+          (await (.writeFile fsp card-path raw "utf8"))
+          (let [result (try (await (task-store/load-tasks dir))
+                            (catch :default err err))
+                task (when (vector? result) (first result))]
+            (is (vector? result) "valid YAML label values must not refuse the card load")
+            (is (= "mixed" (:uuid task)))
+            (is (= expected (:labels task))
+                "stringify, trim, remove blanks, and deduplicate in first-seen order")
+            (is (= raw (await (.readFile fsp card-path "utf8")))))))
+      (finally
+        (await (.rm fsp dir #js {:recursive true :force true}))))))
