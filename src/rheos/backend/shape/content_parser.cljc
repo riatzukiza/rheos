@@ -1,22 +1,18 @@
 (ns rheos.backend.shape.content-parser
-  "Parse task markdown into frontmatter + body/comment sections."
-  (:require [clojure.string :as str]
-            [rheos.backend.extern.yaml :as yaml]))
+  "Pure source frames, section morphisms and range-based task content patches."
+  (:require [clojure.string :as str]))
 
-(defn- frontmatter-source [raw]
-  ;; Delimiters must occupy lines at the beginning of the file. In particular,
-  ;; never search the body for a YAML-looking fenced example or comment block.
-  (when-let [[_ opening source closing body]
-             (re-matches #"(?m)^((?:\uFEFF)?---[ \t]*\r?\n)([\s\S]*?)(^---[ \t]*(?:\r?\n|$))([\s\S]*)" raw)]
-    {:opening opening :source source :closing closing :body body}))
-
-(defn parse-frontmatter [raw]
-  (if-let [{:keys [source body]} (frontmatter-source raw)]
-    {:frontmatter (yaml/read-frontmatter source) :content body}
+(defn frontmatter-source
+  "Locate an initial frontmatter frame without decoding its YAML source.
+   Returns opening/source/closing/body strings or nil for frontmatter-free text."
+  [raw]
+  (if-let [[_ opening source closing body]
+           (re-matches #"(?m)^((?:\uFEFF)?---[ \t]*\r?\n)([\s\S]*?)(^---[ \t]*(?:\r?\n|$))([\s\S]*)" raw)]
+    {:opening opening :source source :closing closing :body body}
     (do
       (when (re-find #"^(?:\uFEFF)?---[ \t]*\r?\n" raw)
         (throw (ex-info "Unterminated YAML frontmatter" {})))
-      {:frontmatter {} :content raw})))
+      nil)))
 
 (defn parse-sections [content]
   (let [lines (str/split-lines content)
@@ -41,15 +37,10 @@
                        (recur rest-lines current-type (conj buffer line) sections)))))]
     result))
 
-(defn parse-task-content [raw]
-  (let [{:keys [frontmatter content]} (parse-frontmatter raw)
-        sections (parse-sections content)]
-    {:frontmatter frontmatter
-     :sections sections}))
-
-(defn task-content->js [parsed]
-  #js {:frontmatter (clj->js (:frontmatter parsed))
-       :sections (clj->js (mapv (fn [s] #js {:type (:type s) :content (:content s)}) (:sections parsed)))})
+(defn parse-task-content
+  "Combine decoded frontmatter with the sections parsed from its source body."
+  [frontmatter content]
+  {:frontmatter frontmatter :sections (parse-sections content)})
 
 (defn serialize-frontmatter [frontmatter]
   (let [lines (mapv (fn [[k v]]
@@ -76,10 +67,12 @@
 
 (defn- update-value? [value]
   (or (nil? value) (string? value) (boolean? value)
-      (and (number? value) (yaml/finite-number? value))
+      (and (number? value) (< ##-Inf value ##Inf))
       (and (vector? value) (every? update-value? value))))
 
-(defn- checked-updates [updates]
+(defn checked-updates
+  "Normalize keys and admit only the portable values supported for updates."
+  [updates]
   (when-not (map? updates)
     (throw (ex-info "Frontmatter updates must be a map" {})))
   (let [entries (mapv (fn [[key value]]
@@ -109,26 +102,25 @@
     {:start (if block-separator? (inc key-end) start)
      :end end
      :replacement (str (when (or block-separator? (= ":" separator)) " ")
-                       (yaml/replacement-value value)
+                       value
                        (when header-comment (str " " header-comment))
                        (when empty-before-comment? " ")
                        trailing-newline)}))
 
-(defn update-frontmatter-keys
+(defn patch-frontmatter-source
   "Patch requested top-level YAML fields without serializing unrelated source.
-   Frontmatter must be a valid block mapping. Body bytes are never parsed or
-   rewritten; the general task serializer and comment append remain separate."
-  [raw updates]
-  (let [entries (checked-updates updates)]
-    (if (empty? entries)
-      raw
-      (if-let [{:keys [opening source closing body]} (frontmatter-source raw)]
-        (let [pairs (yaml/block-map-entries source)
-              {:keys [patches additions]}
+   Entries contain normalized key names and already encoded replacement strings.
+   Pairs contain decoded source ranges; the caller validates YAML before and after
+   this pure patch. Body bytes are never parsed or rewritten."
+  [raw entries pairs]
+  (if (empty? entries)
+    raw
+    (if-let [{:keys [opening source closing body]} (frontmatter-source raw)]
+        (let [{:keys [patches additions]}
               (reduce (fn [result [key value]]
                         (if-let [pair (some #(when (= key (:key %)) %) pairs)]
                           (update result :patches conj (value-patch source pair value))
-                          (update result :additions conj (str key ": " (yaml/replacement-value value)))))
+                          (update result :additions conj (str key ": " value))))
                       {:patches [] :additions []} entries)
               patched (reduce (fn [text {:keys [start end replacement]}]
                                 (str (subs text 0 start) replacement (subs text end)))
@@ -140,27 +132,17 @@
                                   (when (seq additions)
                                     (str (when (and (seq patched) (not (str/ends-with? patched "\n"))) newline)
                                          (str/join newline additions) newline)))]
-          ;; Qualify the replacement before any caller can write it. Source
-          ;; properties such as tags and anchors can affect replacement syntax.
-          (yaml/block-map-entries updated-source)
           (str opening updated-source closing body))
         (let [bom? (str/starts-with? raw "\uFEFF")
               body (if bom? (subs raw 1) raw)]
-          (when (re-find #"^(?:\uFEFF)?---[ \t]*\r?\n" raw)
-            (throw (ex-info "Unterminated YAML frontmatter" {})))
           (str (when bom? "\uFEFF") "---\n"
-               (str/join "\n" (map (fn [[key value]] (str key ": " (yaml/replacement-value value))) entries))
-               "\n---\n\n" body))))))
+               (str/join "\n" (map (fn [[key value]] (str key ": " value)) entries))
+               "\n---\n\n" body)))))
 
-(defn update-frontmatter [raw key value]
-  (update-frontmatter-keys raw {key value}))
-
-(defn inject-write-id [raw write-id]
-  (update-frontmatter raw "write-id" write-id))
-
-(defn append-comment [raw comment-text]
-  (let [parsed (parse-task-content raw)
-        sections (:sections parsed)
+(defn append-comment
+  "Render a comment using already decoded task data and the original source frame."
+  [raw parsed comment-text]
+  (let [sections (:sections parsed)
         last-section (last sections)
         updated (if (= "comment" (:type last-section))
                   (assoc-in parsed [:sections (dec (count sections)) :content]

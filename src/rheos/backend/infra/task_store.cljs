@@ -5,7 +5,7 @@
             [clojure.string :as str]
             [rheos.backend.infra.projects :as projects]
             [rheos.backend.law.frontmatter :as law-frontmatter]
-            [rheos.backend.shape.content-parser :as content-parser]
+            [rheos.backend.infra.content-parser :as content-parser]
             [rheos.backend.shape.kanban :as shape]))
 
 (def status-index

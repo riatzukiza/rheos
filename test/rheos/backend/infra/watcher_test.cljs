@@ -6,7 +6,7 @@
             [rheos.backend.infra.watcher :as watcher]
             [rheos.backend.domain.events :as events]
             [rheos.backend.law.fsm :as fsm]
-            [rheos.backend.shape.content-parser :as content-parser]))
+            [rheos.backend.infra.content-parser :as content-parser]))
 
 (defn- tmp-dir []
   (path/join (.tmpdir os) (str "rheos-watcher-test-" (.now js/Date) "-" (rand-int 100000))))

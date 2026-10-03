@@ -51,7 +51,8 @@
   (let [^js active (js/WeakSet.)
         ^js complete (js/WeakSet.)]
     (letfn [(visit! [node]
-              (when (or (array? node) (object? node))
+              (when (or (array? node) (object? node)
+                        (instance? js/Map node) (instance? js/Set node))
                 (when (.has active node)
                   (throw (ex-info "Cyclic YAML aliases are unsupported" {:type :cyclic-alias})))
                 (when-not (.has complete node)

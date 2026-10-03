@@ -22,7 +22,7 @@
             [rheos.backend.infra.task-store :as tasks]
             [rheos.backend.infra.transition :as transition]
             [rheos.backend.law.frontmatter :as law-frontmatter]
-            [rheos.backend.shape.content-parser :as content-parser]))
+            [rheos.backend.infra.content-parser :as content-parser]))
 
 (defn- env [k default] (or (aget js/process.env k) default))
 (def project-root (path/resolve (env "KANBAN_PROJECT_ROOT" (js/process.cwd))))

@@ -11,7 +11,7 @@
 
             [rheos.backend.domain.compose :as compose]
             [rheos.backend.infra.config :as config]
-            [rheos.backend.shape.content-parser :as content-parser]
+            [rheos.backend.infra.content-parser :as content-parser]
              [rheos.backend.domain.events :as events]
              [rheos.backend.infra.task-edit :as task-edit]
              [rheos.backend.infra.chat-proxy :as chat-proxy]

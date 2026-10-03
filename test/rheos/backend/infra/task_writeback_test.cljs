@@ -5,7 +5,7 @@
             [cljs.test :refer [async deftest testing is]]
             [clojure.string :as str]
             [rheos.backend.infra.task-writeback :as writeback]
-            [rheos.backend.shape.content-parser :as content-parser]))
+            [rheos.backend.infra.content-parser :as content-parser]))
 
 (defn- tmp-dir []
   (.mkdtempSync fs (path/join (.tmpdir os) "rheos-writeback-test-")))

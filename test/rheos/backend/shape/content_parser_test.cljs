@@ -2,7 +2,8 @@
   (:require [cljs.test :refer [deftest is testing]]
             [clojure.string :as str]
             ["yaml" :as yaml]
-            [rheos.backend.shape.content-parser :as parser]))
+            [rheos.backend.infra.content-parser :as parser]
+            [rheos.backend.shape.content-parser :as content-shape]))
 
 (deftest test-parse-frontmatter
   (testing "parses quoted string values"
@@ -113,14 +114,14 @@
 (deftest test-parse-sections
   (testing "parses single body section"
     (let [content "\n# Heading\nBody text"
-          sections (parser/parse-sections content)]
+          sections (content-shape/parse-sections content)]
       (is (= 1 (count sections)))
       (is (= "body" (:type (first sections))))
       (is (= "# Heading\nBody text" (:content (first sections))))))
 
   (testing "parses body and comment sections"
     (let [content "\nBody text\n---\nComment text\n---\nMore body"
-          sections (parser/parse-sections content)]
+          sections (content-shape/parse-sections content)]
       (is (= 3 (count sections)))
       (is (= "body" (:type (nth sections 0))))
       (is (= "comment" (:type (nth sections 1))))
@@ -140,18 +141,18 @@
 (deftest test-serialize-frontmatter
   (testing "serializes quoted strings"
     (let [fm {:uuid "test" :title "Test"}
-          result (parser/serialize-frontmatter fm)]
+          result (content-shape/serialize-frontmatter fm)]
       (is (re-find #"uuid: \"test\"" result))
       (is (re-find #"title: \"Test\"" result))))
 
   (testing "serializes arrays"
     (let [fm {:labels ["epics" "cljs"]}
-          result (parser/serialize-frontmatter fm)]
+          result (content-shape/serialize-frontmatter fm)]
       (is (re-find #"labels: \[\"epics\", \"cljs\"\]" result))))
 
   (testing "serializes plain values"
     (let [fm {:status "done" :priority "P0"}
-          result (parser/serialize-frontmatter fm)]
+          result (content-shape/serialize-frontmatter fm)]
       (is (re-find #"status: \"done\"" result))
       (is (re-find #"priority: \"P0\"" result)))))
 
@@ -409,7 +410,7 @@
                     {:type "comment" :content "First comment.\nContinued paragraph."}
                     {:type "body" :content "After the comment."}]]
       (is (= sections
-             (parser/parse-sections (parser/serialize-sections sections))))))
+             (content-shape/parse-sections (content-shape/serialize-sections sections))))))
   (testing "first and second appends preserve comment text and section identity"
     (let [raw "---\nuuid: test\n---\n\nBody paragraph."
           first-comment "First comment.\nContinued paragraph."
@@ -424,15 +425,56 @@
                  (:sections parsed)))
           (is (= parsed
                  (parser/parse-task-content
-                   (parser/serialize-task-content parsed)))))))))
+                   (content-shape/serialize-task-content parsed)))))))))
 
 (deftest test-roundtrip
   (testing "parse then serialize preserves data"
     (let [raw "---\nuuid: \"test\"\ntitle: \"Test\"\nstatus: done\npriority: P0\nlabels: [\"epics\", \"cljs\"]\n---\n\n# Title\n\nBody content"
           parsed (parser/parse-task-content raw)
-          serialized (parser/serialize-task-content parsed)
+          serialized (content-shape/serialize-task-content parsed)
           re-parsed (parser/parse-task-content serialized)]
       (is (= (get-in parsed [:frontmatter :uuid]) (get-in re-parsed [:frontmatter :uuid])))
       (is (= (get-in parsed [:frontmatter :title]) (get-in re-parsed [:frontmatter :title])))
       (is (= (get-in parsed [:frontmatter :status]) (get-in re-parsed [:frontmatter :status])))
       (is (= (get-in parsed [:frontmatter :labels]) (get-in re-parsed [:frontmatter :labels]))))))
+
+(deftest ordered-map-cyclic-aliases-refuse-reads-and-updates
+  (let [source "status: incoming\nmetadata: !!omap &self\n  - self: *self\n"
+        raw (str "---\n" source "---\nBody  \n")
+        ^js document (yaml/parseDocument source #js {:stringKeys true :schema "core"})
+        ^js native (.toJS document #js {:maxAliasCount 100})
+        ^js metadata (.-metadata native)]
+    (testing "the accepted standard tag resolves to an actual native Map cycle"
+      (is (empty? (seq (.-errors document))))
+      (is (instance? js/Map metadata))
+      (is (identical? metadata (.get metadata "self"))))
+    (testing "reads and low-level updates refuse that cycle with its declared type"
+      (doseq [operation [#(parser/parse-frontmatter raw)
+                         #(parser/parse-task-content raw)
+                         #(parser/update-frontmatter raw "status" "done")]]
+        (let [error (try (operation) nil (catch :default e e))]
+          (is (= :cyclic-alias (:type (ex-data error)))))))))
+
+(deftest ordered-map-shared-aliases-remain-readable-and-editable
+  (let [source "status: incoming\nmetadata: !!omap &shared\n  - a: &values [one, two]\n  - b: *values\ncopy: *shared\n"
+        raw (str "---\n" source "---\nBody  \n")
+        ^js document (yaml/parseDocument source #js {:stringKeys true :schema "core"})
+        ^js native (.toJS document #js {:maxAliasCount 100})
+        ^js metadata (.-metadata native)
+        expected {:a ["one" "two"] :b ["one" "two"]}
+        parsed (parser/parse-frontmatter raw)
+        updated (parser/update-frontmatter raw "status" "done")
+        reparsed (parser/parse-frontmatter updated)]
+    (testing "the acyclic fixture shares both a native Map and its nested values"
+      (is (empty? (seq (.-errors document))))
+      (is (instance? js/Map metadata))
+      (is (identical? metadata (.-copy native)))
+      (is (identical? (.get metadata "a") (.get metadata "b"))))
+    (testing "shared values remain Clojure-shaped before and after a targeted edit"
+      (is (= expected (get-in parsed [:frontmatter :metadata])
+             (get-in parsed [:frontmatter :copy])))
+      (is (= (str/replace raw "status: incoming" "status: \"done\"") updated))
+      (is (= "done" (get-in reparsed [:frontmatter :status])))
+      (is (= expected (get-in reparsed [:frontmatter :metadata])
+             (get-in reparsed [:frontmatter :copy])))
+      (is (= "Body  \n" (:content parsed) (:content reparsed))))))
