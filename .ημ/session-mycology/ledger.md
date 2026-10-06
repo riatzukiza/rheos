@@ -1,0 +1,9 @@
+- ts: 2026-10-06T17:41:11.704569+00:00
+  session: /home/err/.codex/parallel-goal/rheos-relationships-plan-20261006/worktree
+  task: rheos-issue3-relationship-planning-20261006
+  p-efficiency: 0.91
+  p-friction: 0.42
+  p-skill-candidate: 0.39
+  spore: none
+  receipt-refs: rheos-issue3-relationship-planning-20261006
+  note: A descriptive-key whitelist cannot establish graph admission or read/replay parity. Review complete boundaries, and keep native discovery evidence separate from relationship validation. Existing skills cover the boundary; no duplicate spore.

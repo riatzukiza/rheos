@@ -1,0 +1,50 @@
+{
+  "personal_base": "11811264a308d406cb612aefa1dad40818675e5e",
+  "upstream_main": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+  "source_hashes": {
+    "src/rheos/backend/law/frontmatter.cljs": {
+      "personal_base_sha256": "af08622f7b673f123dbb9d263cc18e6842f85a6a616b3ad839c7bc81768d6b0a",
+      "upstream_sha256": "af08622f7b673f123dbb9d263cc18e6842f85a6a616b3ad839c7bc81768d6b0a",
+      "byte_equal": true
+    },
+    "src/rheos/backend/domain/task_create.cljs": {
+      "personal_base_sha256": "d1cfd72c3441ebf51d3c01babbe3bdf4412745cfb94ecdda92f249329697775d",
+      "upstream_sha256": "d1cfd72c3441ebf51d3c01babbe3bdf4412745cfb94ecdda92f249329697775d",
+      "byte_equal": true
+    },
+    "src/rheos/backend/domain/task_edit.cljs": {
+      "personal_base_sha256": "3d51c26657f5df150d67188705db070a9472ad0665b7066bbe5cbfd28789bb86",
+      "upstream_sha256": "3d51c26657f5df150d67188705db070a9472ad0665b7066bbe5cbfd28789bb86",
+      "byte_equal": true
+    },
+    "src/rheos/backend/infra/task_edit.cljs": {
+      "personal_base_sha256": "bb89e530664378e212512f212488d627531f77e1f5281a2e231de3d12370213f",
+      "upstream_sha256": "bb89e530664378e212512f212488d627531f77e1f5281a2e231de3d12370213f",
+      "byte_equal": true
+    },
+    "src/rheos/backend/infra/task_store.cljs": {
+      "personal_base_sha256": "8983f678c5b8e54552f444373c46b954688e8b25777e806e03e6a85ac36a4f58",
+      "upstream_sha256": "8983f678c5b8e54552f444373c46b954688e8b25777e806e03e6a85ac36a4f58",
+      "byte_equal": true
+    },
+    "src/rheos/backend/shape/kanban.cljs": {
+      "personal_base_sha256": "1342a62a8205f9a7133236a9dd2b265df9e4b33fbbfcc0ec818f55f4f03d3b28",
+      "upstream_sha256": "1342a62a8205f9a7133236a9dd2b265df9e4b33fbbfcc0ec818f55f4f03d3b28",
+      "byte_equal": true
+    },
+    "src/rheos/backend/infra/agent_tools.cljs": {
+      "personal_base_sha256": "63cc9e4519aab7450923d7041f424943122e581e2e9cb4c4f9ce8b2fef309f10",
+      "upstream_sha256": "63cc9e4519aab7450923d7041f424943122e581e2e9cb4c4f9ce8b2fef309f10",
+      "byte_equal": true
+    },
+    "src/rheos/backend/domain/events.cljs": {
+      "personal_base_sha256": "5fd19ce700a47ec7bf2645f9086d5feb1bc1f0b2f6345f7f878c3fc393f2edd3",
+      "upstream_sha256": "5fd19ce700a47ec7bf2645f9086d5feb1bc1f0b2f6345f7f878c3fc393f2edd3",
+      "byte_equal": true
+    }
+  },
+  "tracked_event_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "tracked_event_byte_unchanged": true,
+  "existing_card_and_config_absence": "git tree inspection; native readback uses explicit private configuration",
+  "scope": "planning only"
+}
