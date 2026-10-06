@@ -18,7 +18,9 @@ alone therefore cannot fulfill author/edit/read parity.
 `infra/task_edit.cljs` writes a card then emits frontmatter events through the
 existing ledger. It does not currently supply graph validation or inter-process
 serialization. `domain/events.cljs` and existing event-ledger authority own
-event projection/replay. This plan reuses those seams and requires their actual
+event publication, projection and query. This inspection establishes no current
+task-replay materializer. Relationship reconstruction and replay evidence remain
+future verification through those canonical seams. The plan requires actual
 failure/concurrency behavior to be specified before green implementation.
 
 ## Proposed rules to settle

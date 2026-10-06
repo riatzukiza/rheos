@@ -32,7 +32,8 @@ use the existing event vocabulary with accurate old/new values and provenance.
 Wire the accepted contract into creation and existing-card edits; retain fields
 through task loading/shapes and content/board/event projections. Expose the
 reviewed CLI flags and HTTP/MCP schemas, with boundary conversion to Clojure data.
-Keep the currently supported `--set dependency=<existing-uuid>` use case.
+Admit the existing `--set dependency=<existing-uuid>` syntax through the reviewed
+relationship contract; the current engine refuses that dependency edit.
 
 ## Non-goals
 
