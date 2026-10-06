@@ -1,0 +1,41 @@
+{
+  "verified_wrappers": 16,
+  "commands": 8,
+  "verified_source_paths_at_each_of_two_revisions": 8,
+  "tracked_event_bytes": 0,
+  "tracked_event_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "capture_paths": [
+    "native-board.stderr.b64",
+    "native-board.stdout.b64",
+    "personal-open-prs.stderr.b64",
+    "personal-open-prs.stdout.b64",
+    "personal-repository.stderr.b64",
+    "personal-repository.stdout.b64",
+    "rheos-issue-3-relationship-authoring.stderr.b64",
+    "rheos-issue-3-relationship-authoring.stdout.b64",
+    "rheos-issue-3-relationship-contract.stderr.b64",
+    "rheos-issue-3-relationship-contract.stdout.b64",
+    "rheos-issue-3-relationship-parity.stderr.b64",
+    "rheos-issue-3-relationship-parity.stdout.b64",
+    "rheos-issue-3-relationship-writer.stderr.b64",
+    "rheos-issue-3-relationship-writer.stdout.b64",
+    "upstream-issue3.stderr.b64",
+    "upstream-issue3.stdout.b64"
+  ],
+  "source_paths": [
+    "src/rheos/backend/law/frontmatter.cljs",
+    "src/rheos/backend/domain/task_create.cljs",
+    "src/rheos/backend/domain/task_edit.cljs",
+    "src/rheos/backend/infra/task_edit.cljs",
+    "src/rheos/backend/infra/task_store.cljs",
+    "src/rheos/backend/shape/kanban.cljs",
+    "src/rheos/backend/infra/agent_tools.cljs",
+    "src/rheos/backend/domain/events.cljs"
+  ],
+  "old_receipts_sha256": "ee69ec0a10b81ad858928882b5fe417a8cb51f2a82bd26f598389baf76e88ed5",
+  "old_head": "b29d86eed1eab56bee0f392c578f8f014f43b815",
+  "native_review_id": 5432514860,
+  "native_inline_comment_id": 4198681185,
+  "native_thread_id": "PRRT_kwDOU4Vf-c6pl6O0",
+  "observation_timestamp": "2026-10-06T18:00:44.390275+00:00"
+}
