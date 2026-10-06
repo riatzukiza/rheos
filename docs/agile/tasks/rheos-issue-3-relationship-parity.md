@@ -30,8 +30,9 @@ concurrency contract in isolated fixtures. Required hosted gates bind the head.
 
 Real create/edit/read round trips, classified errors, removals/no-ops, whole-batch
 refusals, protected fields, graph races, append-only history and runtime parity.
-The browser client consuming HTTP must preserve accepted references; a new UI
-editor is not required unless planning review explicitly adds it to scope.
+HTTP acceptance covers canonical server reads and projections that preserve
+accepted references. Browser-client code, a new UI editor and end-to-end browser
+tests are outside this story's scope.
 
 ## Non-goals
 
@@ -43,6 +44,10 @@ presented as native admission, synthetic provider review or custom event parser.
 - [ ] Equivalent request matrices exercise actual compiled CLI and real isolated
   HTTP/MCP handlers. Success, malformed input, missing/ambiguous target, cycles,
   protected-field edits and mixed-batch refusals agree under the accepted law.
+- [ ] Canonical HTTP reads and server projections retain accepted dependency,
+  parent and epic UUID references and task identity, matching canonical CLI/MCP
+  readback. Acceptance requires this server/read contract, not browser-client
+  execution.
 - [ ] Seed canonical ledger events; every successful mutation preserves their
   exact byte prefix and appends the reviewed event count/old/new/correlation
   values. Refusals and no-ops preserve the full card and ledger. Canonical replay

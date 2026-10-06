@@ -1,0 +1,184 @@
+[
+  {
+    "label": "upstream-issue3",
+    "command": [
+      "gh",
+      "api",
+      "repos/open-hax/rheos/issues/3"
+    ],
+    "cwd": "/tmp/rheos4-parity-scope-repair-20261006/native-fixture",
+    "exit": 0,
+    "at": "2026-10-06T19:13:13.009751+00:00",
+    "stdout": {
+      "capture": "upstream-issue3.stdout.b64",
+      "bytes": 3643,
+      "sha256": "a3a0242727f65e33930af148fbcc2fab5179eafdb75735be0bef98f7e2da1c74"
+    },
+    "stderr": {
+      "capture": "upstream-issue3.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "native-version",
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "--version"
+    ],
+    "cwd": "/tmp/rheos4-parity-scope-repair-20261006/native-fixture",
+    "exit": 0,
+    "at": "2026-10-06T19:13:13.490146+00:00",
+    "stdout": {
+      "capture": "native-version.stdout.b64",
+      "bytes": 6,
+      "sha256": "cc52f678848b814373757b460383bf61960e4943c203735adde0a350b3e50989"
+    },
+    "stderr": {
+      "capture": "native-version.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "native-board",
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-board",
+      "--config",
+      "/tmp/rheos4-parity-scope-repair-20261006/native-readback.json"
+    ],
+    "cwd": "/tmp/rheos4-parity-scope-repair-20261006/native-fixture",
+    "exit": 0,
+    "at": "2026-10-06T19:13:16.707071+00:00",
+    "stdout": {
+      "capture": "native-board.stdout.b64",
+      "bytes": 1855,
+      "sha256": "288e0e2512ec832eb0cdcd36c712fb288937a153b20cfb26e0d35a53c17e34bd"
+    },
+    "stderr": {
+      "capture": "native-board.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "rheos-issue-3-relationship-authoring",
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-task",
+      "rheos-issue-3-relationship-authoring",
+      "--config",
+      "/tmp/rheos4-parity-scope-repair-20261006/native-readback.json"
+    ],
+    "cwd": "/tmp/rheos4-parity-scope-repair-20261006/native-fixture",
+    "exit": 0,
+    "at": "2026-10-06T19:13:18.872251+00:00",
+    "stdout": {
+      "capture": "rheos-issue-3-relationship-authoring.stdout.b64",
+      "bytes": 4735,
+      "sha256": "e3e95c1d8a73f662cd61efd8712c514db3913a1efb7bbb6ea4cce2f3ab4b0d6f"
+    },
+    "stderr": {
+      "capture": "rheos-issue-3-relationship-authoring.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "rheos-issue-3-relationship-contract",
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-task",
+      "rheos-issue-3-relationship-contract",
+      "--config",
+      "/tmp/rheos4-parity-scope-repair-20261006/native-readback.json"
+    ],
+    "cwd": "/tmp/rheos4-parity-scope-repair-20261006/native-fixture",
+    "exit": 0,
+    "at": "2026-10-06T19:13:21.307795+00:00",
+    "stdout": {
+      "capture": "rheos-issue-3-relationship-contract.stdout.b64",
+      "bytes": 3212,
+      "sha256": "28504d1430cb664b03c3f83053d8cea256f6478522aff8b6382c009c93f9079a"
+    },
+    "stderr": {
+      "capture": "rheos-issue-3-relationship-contract.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "rheos-issue-3-relationship-writer",
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-task",
+      "rheos-issue-3-relationship-writer",
+      "--config",
+      "/tmp/rheos4-parity-scope-repair-20261006/native-readback.json"
+    ],
+    "cwd": "/tmp/rheos4-parity-scope-repair-20261006/native-fixture",
+    "exit": 0,
+    "at": "2026-10-06T19:13:23.526496+00:00",
+    "stdout": {
+      "capture": "rheos-issue-3-relationship-writer.stdout.b64",
+      "bytes": 3827,
+      "sha256": "a8f2bab3e687ccade9736b457ea5c0e326a233430f95a341ebc3cc1abf7b59c7"
+    },
+    "stderr": {
+      "capture": "rheos-issue-3-relationship-writer.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "rheos-issue-3-relationship-parity",
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-task",
+      "rheos-issue-3-relationship-parity",
+      "--config",
+      "/tmp/rheos4-parity-scope-repair-20261006/native-readback.json"
+    ],
+    "cwd": "/tmp/rheos4-parity-scope-repair-20261006/native-fixture",
+    "exit": 0,
+    "at": "2026-10-06T19:13:25.613493+00:00",
+    "stdout": {
+      "capture": "rheos-issue-3-relationship-parity.stdout.b64",
+      "bytes": 4073,
+      "sha256": "8a64cadb2730ac8567f7257cd1a216e4d68e3d6ca10b17206bc56cf1df7a7091"
+    },
+    "stderr": {
+      "capture": "rheos-issue-3-relationship-parity.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "canonical-prospective-receipts",
+    "command": [
+      "nbb",
+      "-cp",
+      "/tmp/foresight3-native-triage-20261006/worktree/scripts:/tmp/foresight3-native-triage-20261006/worktree/src",
+      "/tmp/rheos4-parity-scope-repair-20261006/canonical-prospective-receipt-probe.cljs"
+    ],
+    "cwd": "/tmp/rheos4-parity-scope-repair-20261006",
+    "exit": 0,
+    "at": "2026-10-06T19:18:27.545756+00:00",
+    "stdout": {
+      "capture": "canonical-prospective-receipts.stdout.b64",
+      "bytes": 206,
+      "sha256": "dfb4d3e163e4e5b0e8a60f9877e5eb71b129b950b8bb39c8d079a8001080a93a"
+    },
+    "stderr": {
+      "capture": "canonical-prospective-receipts.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+]

@@ -36,6 +36,7 @@ failure/concurrency behavior to be specified before green implementation.
 | Repetition | Accepted replacement/removal and true no-op behavior have explicit bytes/event contracts. Repeating an identical relationship must not fabricate another successful graph change. |
 | Concurrency | Define a canonical revision/serialization boundary shared across actual CLI processes and service writers. Revalidate or visibly refuse stale proposals. Specify file/event failure recovery without rewriting immutable history. |
 | Authority | Pure shapes/normalization/graph decisions are `.cljc` Clojure data. Existing creation/edit infra supplies host facts and effects; status stays with the FSM. Public callers cannot bypass the accepted relationship contract through generic frontmatter. |
+| Public surfaces | Canonical CLI, HTTP/API and MCP authoring/read parity. HTTP acceptance ends at server reads and projections preserving accepted references. Browser-client code, a new UI editor and end-to-end browser tests are outside this issue's 3/5/5 story scope. |
 
 ## Review and implementation checkpoints
 

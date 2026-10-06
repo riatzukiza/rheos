@@ -35,8 +35,13 @@ complete these proposed stories in order:
 1. `rheos-issue-3-relationship-contract`: portable shapes and graph laws, 3 points.
 2. `rheos-issue-3-relationship-writer`: canonical creation/edit/read adapters,
    5 points, dependent on the contract story.
-3. `rheos-issue-3-relationship-parity`: compiled public-surface, history and
-   concurrent-write evidence, 5 points, dependent on the writer story.
+3. `rheos-issue-3-relationship-parity`: compiled CLI/HTTP/MCP, server-read
+   projections, history and concurrent-write evidence, 5 points, dependent on
+   the writer story.
+
+HTTP acceptance ends at canonical server reads and projections that preserve
+accepted references. Browser-client code, a new UI editor and end-to-end browser
+tests are outside these stories.
 
 These are provisional estimates for native planning review, not accepted
 capacity assignments. The dependency UUIDs on the new Markdown stories are

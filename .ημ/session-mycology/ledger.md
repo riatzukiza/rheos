@@ -17,3 +17,13 @@
   spore: none
   receipt-refs: rheos-issue3-capture-count-correction
   note: A schema-valid receipt can contain an inaccurate factual count. Derive wrapper counts from the manifest, verify every hash, and append an explicit superseding observation while preserving historical bytes. Existing receipt discipline covers the repair; no new skill or board implementation.
+
+- ts: 2026-10-06T19:15:30.023517Z
+  session: /home/err/.codex/parallel-goal/rheos-relationships-plan-20261006/worktree
+  task: rheos-issue3-parity-scope-clarification
+  p-efficiency: 0.94
+  p-friction: 0.19
+  p-skill-candidate: 0.18
+  spore: none
+  receipt-refs: rheos-issue3-parity-scope-clarification
+  note: Name the server read contract explicitly when HTTP parity could imply browser implementation. Native discovery and independent byte preservation support planning only; existing skills cover this boundary.
