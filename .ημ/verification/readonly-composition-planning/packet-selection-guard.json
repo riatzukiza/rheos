@@ -1,0 +1,6 @@
+{
+  "attempt1": "Refused publication of origin-main full metadata capture because historical commit content contains an account path. Guard halted before copying that capture; earlier selected safe files unchanged.",
+  "attempt2": "Explicit selected families exclude origin/personal full main/meta captures; original bytes remain private immutable. Derived baseline facts/full source identities and original hash references retained.",
+  "no_opaque_or_account_value_printed": true,
+  "no_product_or_foreign_effect": true
+}

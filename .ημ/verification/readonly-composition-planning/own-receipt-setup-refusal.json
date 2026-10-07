@@ -1,0 +1,19 @@
+{
+  "attempt1": {
+    "exit": 1,
+    "reason": "Own wrong classpath src instead of actual owning src/cljs; namespace unavailable, no receipt append executed",
+    "captures": [
+      {
+        "path": "native/append-own-receipt-attempt1.stdout.b64",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "native/append-own-receipt-attempt1.stderr.b64",
+        "bytes": 986,
+        "sha256": "cba876a3c635fc149212c0a7142387b3808c5976c71046cc82c7a2ce0636aa6f"
+      }
+    ]
+  },
+  "correction": "Use exact copied owning src/cljs classpath; no owner/source schema changes or historical normalization"
+}

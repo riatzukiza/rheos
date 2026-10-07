@@ -1,0 +1,306 @@
+{
+  "scope": "Selected safe native views and immutable source archives. Command argv/context private paths normalized only in labeled derived manifests. Full private metadata captures retained by hash, not silently omitted or qualified.",
+  "streams": [
+    {
+      "path": "native/canonical-first-personal-1.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/canonical-first-personal-1.stdout.b64",
+      "bytes": 457,
+      "sha256": "0e3e64d59e372952e3d165e21f0cddd20f97cd71924cfd492cb9037757d161a0",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/canonical-first-personal-2.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/canonical-first-personal-2.stdout.b64",
+      "bytes": 458,
+      "sha256": "3f5010325b37d16e22e1648a20696c88977cb3a7be0660fd8afcd5cd9cde3ca2",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/canonical-first-personal-3.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/canonical-first-personal-3.stdout.b64",
+      "bytes": 465,
+      "sha256": "15c4df0c9331a8ca54661cd7332795e2e996dc44b31d041579f6c3ce09f2c317",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/canonical-first-personal-4.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/canonical-first-personal-4.stdout.b64",
+      "bytes": 465,
+      "sha256": "d0bf471dee110ef59141e8ac76644c18e0dc333b8d66394e857e6d63b61bb5ae",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/issue5-comments.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/issue5-comments.stdout.b64",
+      "bytes": 9,
+      "sha256": "93a632246f28a39eedc6577fda8be826f662ca408592e96b1b2b26b4256eea3d",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/issue5.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/issue5.stdout.b64",
+      "bytes": 6362,
+      "sha256": "68b4fce4c5ca16474dcf1725b6c0bc3c3705b6d83b25528bcedee7bcd8716f6e",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/owner-cli-help.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/owner-cli-help.stdout.b64",
+      "bytes": 2667,
+      "sha256": "fd00e6c7da9b4303f1477b6877316600ee7ff461b49d2c4ea7def9866937e21b",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/owner-read-task-1.stderr.b64",
+      "bytes": 97,
+      "sha256": "fd9af62dd5622f52850262f5c915f9def6181e3286da9a8f85607b3259a4c85c",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/owner-read-task-1.stdout.b64",
+      "bytes": 4067,
+      "sha256": "555632854cffb354a0a51c64abfae7f40a3eb757a0cb46ccf41f617e40bf1839",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/owner-read-task-2.stderr.b64",
+      "bytes": 97,
+      "sha256": "fd9af62dd5622f52850262f5c915f9def6181e3286da9a8f85607b3259a4c85c",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/owner-read-task-2.stdout.b64",
+      "bytes": 4558,
+      "sha256": "d528c4a8cca27a1b7870198b12463665cb7f3cfdaabb3e70560715e3e8219d96",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/owner-read-task-3.stderr.b64",
+      "bytes": 97,
+      "sha256": "fd9af62dd5622f52850262f5c915f9def6181e3286da9a8f85607b3259a4c85c",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/owner-read-task-3.stdout.b64",
+      "bytes": 4512,
+      "sha256": "6ba79107be99d86b89e8a44447127cbc238e2d348d623f3154904c6a4a2c11fb",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/owner-read-task-4.stderr.b64",
+      "bytes": 97,
+      "sha256": "fd9af62dd5622f52850262f5c915f9def6181e3286da9a8f85607b3259a4c85c",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/owner-read-task-4.stdout.b64",
+      "bytes": 4754,
+      "sha256": "ffb03c3aadbb8843f0fc4d0befd4c5ba8167cce662ebfde2a662fb703fdec566",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/personal-pr1.stdout.b64",
+      "bytes": 20038,
+      "sha256": "2a27c4f142580729452a2a70c84d12ffd326110de8c2d4c3bf0de07033dbd128",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/personal-pr2.stdout.b64",
+      "bytes": 18186,
+      "sha256": "6e06af5d2c21e1550f5509f240de3c021f2f75b3fead5bbeb2a14bfb6697c3fc",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/personal-pr3.stdout.b64",
+      "bytes": 18371,
+      "sha256": "50e132dfe1e2bfac2d3682c0ad312932abf5f85e174d860745fad87a0b6aed7a",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "native/personal-pr4.stdout.b64",
+      "bytes": 18109,
+      "sha256": "8fcf7680db9becfdbfff9228066e4d08b10cfe908ebec39db47ba452210bb197",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Safe native transport view; structurally withheld scoped URL fields before original persistence where present. Original/derived hashes remain distinct."
+    },
+    {
+      "path": "source/00-compose.cljs.b64",
+      "bytes": 6064,
+      "sha256": "8d76b5ae91ab2bf4590904675bb82e422c85dd99c747562d85700886e12b719f",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Exact immutable owning Git source archive, not executable product implementation"
+    },
+    {
+      "path": "source/01-ledger.cljs.b64",
+      "bytes": 765,
+      "sha256": "ab2c02c885144dda0665fb2be1f9bec84098a2d4187447a988e822611e70f622",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Exact immutable owning Git source archive, not executable product implementation"
+    },
+    {
+      "path": "source/02-events.cljs.b64",
+      "bytes": 7541,
+      "sha256": "5fd19ce700a47ec7bf2645f9086d5feb1bc1f0b2f6345f7f878c3fc393f2edd3",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Exact immutable owning Git source archive, not executable product implementation"
+    },
+    {
+      "path": "source/03-task_store.cljs.b64",
+      "bytes": 8190,
+      "sha256": "8983f678c5b8e54552f444373c46b954688e8b25777e806e03e6a85ac36a4f58",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Exact immutable owning Git source archive, not executable product implementation"
+    },
+    {
+      "path": "source/04-agent_tools.cljs.b64",
+      "bytes": 21528,
+      "sha256": "63cc9e4519aab7450923d7041f424943122e581e2e9cb4c4f9ce8b2fef309f10",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Exact immutable owning Git source archive, not executable product implementation"
+    },
+    {
+      "path": "source/05-cli.cljs.b64",
+      "bytes": 31782,
+      "sha256": "6ababe29d9b3025a85864c284826bfdae31997e366f7b370bcbcccb2ccf3f31a",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Exact immutable owning Git source archive, not executable product implementation"
+    },
+    {
+      "path": "source/06-http_server.cljs.b64",
+      "bytes": 22236,
+      "sha256": "933f3c16df3896fd6a7687550fdeb08dc9c0a0d5a0aead469eff0f47909571eb",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Exact immutable owning Git source archive, not executable product implementation"
+    },
+    {
+      "path": "source/07-mcp.cljs.b64",
+      "bytes": 2868,
+      "sha256": "e6b7879b5fd4aaccfea9bc7dca346f9f797dba68fb4e4f7f365ca1fec1c35de8",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Exact immutable owning Git source archive, not executable product implementation"
+    },
+    {
+      "path": "source/08-package.json.b64",
+      "bytes": 1372,
+      "sha256": "d090e67573ebb9d05049a38523a85280ecc1a8725209971ad52837feda6c6119",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Exact immutable owning Git source archive, not executable product implementation"
+    },
+    {
+      "path": "source/09-bb.edn.b64",
+      "bytes": 492,
+      "sha256": "7b25e88eb04ac00ff47c0824148977934289ffa22464b2c61b8dacc04f8eac05",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Exact immutable owning Git source archive, not executable product implementation"
+    },
+    {
+      "path": "source/10-shadow-cljs.edn.b64",
+      "bytes": 3156,
+      "sha256": "362bfaf9bf1d5ea4ff4be7388ef50a9f1bdf860821de215785c85cb2b8640611",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Exact immutable owning Git source archive, not executable product implementation"
+    },
+    {
+      "path": "source/11-bootstrap-source-deps.sh.b64",
+      "bytes": 1821,
+      "sha256": "06cf9c5cba68011132cd4cfa411f798adb115a6c1a14ea624d6c912ed80e6ead",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Exact immutable owning Git source archive, not executable product implementation"
+    },
+    {
+      "path": "source/12-pinned-event-admission.cljs.b64",
+      "bytes": 7032,
+      "sha256": "f7c7ae3b377144f414b82af10297cefaa87752eee924928a85a1557be58465b8",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Exact immutable owning Git source archive, not executable product implementation"
+    },
+    {
+      "path": "native/append-own-receipt-attempt2.stdout.b64",
+      "bytes": 108,
+      "sha256": "067a547d8503b11f333a6ba01517bcd6f368f4b067e103d9c4a47115d51d60de",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Actual current owning API or canonical portable reflection output"
+    },
+    {
+      "path": "native/append-own-receipt-attempt2.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Actual current owning API or canonical portable reflection output"
+    },
+    {
+      "path": "native/portable-reflection-read.stdout.b64",
+      "bytes": 658,
+      "sha256": "7ab165eb33926511d742e1e47d36d0ad1bd3352aed4f52390bc34ab39a1ba9c6",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Actual current owning API or canonical portable reflection output"
+    },
+    {
+      "path": "native/portable-reflection-read.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF",
+      "scope": "Actual current owning API or canonical portable reflection output"
+    }
+  ]
+}

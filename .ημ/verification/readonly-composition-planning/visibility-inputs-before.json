@@ -1,0 +1,27 @@
+{
+  "cards/readonly-composition-epic.md": {
+    "mode": "0o664",
+    "bytes": 3771,
+    "sha256": "d5a0dad2a80eaf1c721369eab2c4a8a7eb0420afe546b3ef95d87ff0f1700436"
+  },
+  "cards/readonly-composition-qualification.md": {
+    "mode": "0o664",
+    "bytes": 4430,
+    "sha256": "1b75f12dfbfc754dad956e369b8a38e42625f19568674dfc4f269f90d655ee79"
+  },
+  "cards/readonly-evidence-contract.md": {
+    "mode": "0o664",
+    "bytes": 4251,
+    "sha256": "12e22d2448269d3e7685c017791fc69f59c73351204660b2f17f6535767230b8"
+  },
+  "cards/readonly-native-surfaces.md": {
+    "mode": "0o664",
+    "bytes": 4198,
+    "sha256": "427d2a85d306490d95bdbc309cc9d328e22bfe0da6579d0ec885d1cc634ec7a0"
+  },
+  "diagnostic.json": {
+    "mode": "0o664",
+    "bytes": 45,
+    "sha256": "11ca8915eb6710f8ad51db30609c3042e279f4ff1fd8215b550da971576d4858"
+  }
+}

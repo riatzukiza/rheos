@@ -1,0 +1,98 @@
+[
+  {
+    "label": "canonical-first-personal-1",
+    "argv": [
+      "<owned-planning-context>/runtime/bin/node",
+      "<owned-planning-context>/runtime/nbb/cli.js",
+      "-cp",
+      "<owned-planning-context>/runtime/pr-flow/scripts",
+      "<owned-planning-context>/runtime/pr-flow/scripts/pr.cljs",
+      "status",
+      "riatzukiza/rheos",
+      "1"
+    ],
+    "exit": 0,
+    "stdout": {
+      "path": "native/canonical-first-personal-1.stdout.b64",
+      "bytes": 457,
+      "sha256": "0e3e64d59e372952e3d165e21f0cddd20f97cd71924cfd492cb9037757d161a0"
+    },
+    "stderr": {
+      "path": "native/canonical-first-personal-1.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "canonical-first-personal-2",
+    "argv": [
+      "<owned-planning-context>/runtime/bin/node",
+      "<owned-planning-context>/runtime/nbb/cli.js",
+      "-cp",
+      "<owned-planning-context>/runtime/pr-flow/scripts",
+      "<owned-planning-context>/runtime/pr-flow/scripts/pr.cljs",
+      "status",
+      "riatzukiza/rheos",
+      "2"
+    ],
+    "exit": 0,
+    "stdout": {
+      "path": "native/canonical-first-personal-2.stdout.b64",
+      "bytes": 458,
+      "sha256": "3f5010325b37d16e22e1648a20696c88977cb3a7be0660fd8afcd5cd9cde3ca2"
+    },
+    "stderr": {
+      "path": "native/canonical-first-personal-2.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "canonical-first-personal-3",
+    "argv": [
+      "<owned-planning-context>/runtime/bin/node",
+      "<owned-planning-context>/runtime/nbb/cli.js",
+      "-cp",
+      "<owned-planning-context>/runtime/pr-flow/scripts",
+      "<owned-planning-context>/runtime/pr-flow/scripts/pr.cljs",
+      "status",
+      "riatzukiza/rheos",
+      "3"
+    ],
+    "exit": 0,
+    "stdout": {
+      "path": "native/canonical-first-personal-3.stdout.b64",
+      "bytes": 465,
+      "sha256": "15c4df0c9331a8ca54661cd7332795e2e996dc44b31d041579f6c3ce09f2c317"
+    },
+    "stderr": {
+      "path": "native/canonical-first-personal-3.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "canonical-first-personal-4",
+    "argv": [
+      "<owned-planning-context>/runtime/bin/node",
+      "<owned-planning-context>/runtime/nbb/cli.js",
+      "-cp",
+      "<owned-planning-context>/runtime/pr-flow/scripts",
+      "<owned-planning-context>/runtime/pr-flow/scripts/pr.cljs",
+      "status",
+      "riatzukiza/rheos",
+      "4"
+    ],
+    "exit": 0,
+    "stdout": {
+      "path": "native/canonical-first-personal-4.stdout.b64",
+      "bytes": 465,
+      "sha256": "d0bf471dee110ef59141e8ac76644c18e0dc333b8d66394e857e6d63b61bb5ae"
+    },
+    "stderr": {
+      "path": "native/canonical-first-personal-4.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+]

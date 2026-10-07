@@ -1,0 +1,138 @@
+[
+  {
+    "label": "correction-owning-append",
+    "argv": [
+      "<owned-correction-context>/runtime/bin/node",
+      "<owned-correction-context>/runtime/nbb/cli.js",
+      "-cp",
+      "<owned-correction-context>/runtime/receipt-owner/src/cljs",
+      "<owned-correction-context>/outside/append-correction.cljs",
+      "<owned-correction-context>/worktree/.\u03b7\u03bc/receipts.edn"
+    ],
+    "cwd": "<owned-correction-context>/worktree",
+    "exit": 0,
+    "stdout": {
+      "path": "native/correction-owning-append.stdout.b64",
+      "bytes": 108,
+      "sha256": "9c664124daefc827f248f57c909b1e6da80bab1032853c08011bb138090397a2"
+    },
+    "stderr": {
+      "path": "native/correction-owning-append.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "correction-portable-reflection",
+    "argv": [
+      "/usr/local/bin/bb",
+      "--config",
+      "/dev/null",
+      "<owned-correction-context>/runtime/mycology/sm-log.bb",
+      "--task",
+      "Correct implied existing MCP HTTP regression coverage in full Rheos5 plan",
+      "--efficiency",
+      "0.92",
+      "--friction",
+      "0.12",
+      "--candidate",
+      "0.08",
+      "--receipt-refs",
+      "Rheos5 correction declared row15; original frozen f121",
+      "--note",
+      "Peer source inventory distinguishes retained suites from newly required handler fixtures. Preserve full outcomes, original evidence and separate source store; no runtime repair or admission."
+    ],
+    "cwd": "<owned-correction-context>/worktree",
+    "exit": 0,
+    "stdout": {
+      "path": "native/correction-portable-reflection.stdout.b64",
+      "bytes": 143,
+      "sha256": "b98b7aad1139a8ab8807201b19307b0ef940c60b8ead1424695e32e5e08f6707"
+    },
+    "stderr": {
+      "path": "native/correction-portable-reflection.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "correction-portable-read",
+    "argv": [
+      "/usr/local/bin/bb",
+      "--config",
+      "/dev/null",
+      "<owned-correction-context>/runtime/mycology/sm-list.bb",
+      "--ledger-only",
+      "--limit",
+      "1"
+    ],
+    "cwd": "<owned-correction-context>/worktree",
+    "exit": 0,
+    "stdout": {
+      "path": "native/correction-portable-read.stdout.b64",
+      "bytes": 543,
+      "sha256": "b41a4d217b1534a6193866fcbffeb0da2b032d4ecb106c6357f50653e47a035d"
+    },
+    "stderr": {
+      "path": "native/correction-portable-read.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "accepted-test-inventory",
+    "argv": [
+      "git",
+      "--git-dir",
+      "<owned-correction-context>/source.git",
+      "ls-tree",
+      "-r",
+      "--name-only",
+      "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+      "test"
+    ],
+    "exit": 0,
+    "interpretation": "Exact accepted test path inventory, not test execution",
+    "stdout": {
+      "path": "native/accepted-test-inventory.stdout.b64",
+      "bytes": 1111,
+      "sha256": "51cb243e3bdb0f7ed90c5feedfe21dba3aada0eb2b513ced64f9de903b01a694",
+      "grammar": "base64-single-line-exactly-one-terminal-LF"
+    },
+    "stderr": {
+      "path": "native/accepted-test-inventory.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF"
+    }
+  },
+  {
+    "label": "accepted-mcp-http-handler-test-references",
+    "argv": [
+      "git",
+      "--git-dir",
+      "<owned-correction-context>/source.git",
+      "grep",
+      "-n",
+      "-E",
+      "rheos[.]backend[.]infra[.](mcp|http-server)|handle-compose|/api/boards/compose",
+      "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+      "--",
+      "test"
+    ],
+    "exit": 1,
+    "interpretation": "Git source inspection only; exit1 means no matched handler references, not a product test failure",
+    "stdout": {
+      "path": "native/accepted-mcp-http-handler-test-references.stdout.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF"
+    },
+    "stderr": {
+      "path": "native/accepted-mcp-http-handler-test-references.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF"
+    }
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "parent_checkpoint": "f12173730ef0bd38390fd2693c27fdb7c0c93957",
+  "original_43_containers_exact": true,
+  "new_correction_tool_and_static_inspection_streams": [
+    {
+      "path": "native/correction-owning-append.stdout.b64",
+      "bytes": 108,
+      "sha256": "9c664124daefc827f248f57c909b1e6da80bab1032853c08011bb138090397a2",
+      "grammar": "base64-single-line-exactly-one-terminal-LF"
+    },
+    {
+      "path": "native/correction-owning-append.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF"
+    },
+    {
+      "path": "native/correction-portable-read.stdout.b64",
+      "bytes": 543,
+      "sha256": "b41a4d217b1534a6193866fcbffeb0da2b032d4ecb106c6357f50653e47a035d",
+      "grammar": "base64-single-line-exactly-one-terminal-LF"
+    },
+    {
+      "path": "native/correction-portable-read.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF"
+    },
+    {
+      "path": "native/accepted-test-inventory.stdout.b64",
+      "bytes": 1111,
+      "sha256": "51cb243e3bdb0f7ed90c5feedfe21dba3aada0eb2b513ced64f9de903b01a694",
+      "grammar": "base64-single-line-exactly-one-terminal-LF"
+    },
+    {
+      "path": "native/accepted-test-inventory.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF"
+    },
+    {
+      "path": "native/accepted-mcp-http-handler-test-references.stdout.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF"
+    },
+    {
+      "path": "native/accepted-mcp-http-handler-test-references.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grammar": "base64-single-line-exactly-one-terminal-LF"
+    }
+  ]
+}

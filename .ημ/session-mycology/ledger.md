@@ -55,3 +55,30 @@
   spore: none
   receipt-refs: accepted-ef3-sync decision
   note: Keep accepted synchronization distinct from divergent unmerged proposals; inspect pinned draft execution guards before proposing publication. Preserve every inherited history byte; root owns publication.
+- ts: 2026-10-07T10:34:53.384808906Z
+  session: codex/rheos5-readonly-composition-planning
+  task: Plan all five Rheos readonly-composition outcomes without hidden source sync
+  p-efficiency: 0.80
+  p-friction: 0.24
+  p-skill-candidate: 0.10
+  spore: none
+  receipt-refs: Rheos5 planning line14; parent ea925; source ef3
+  note: Separate accepted-sync history from divergent proposals; preserve adapter and public completeness authority. Own outside filename collision, selection guard and classpath mistake corrected before commit. Native read-task visibility is not accepted board or release admission. No spore or live channels.
+- ts: 2026-10-07T10:43:28.503050277Z
+  session: codex/rheos5-coverage-wording-repair
+  task: Correct implied existing MCP HTTP regression coverage in full Rheos5 plan
+  p-efficiency: 0.92
+  p-friction: 0.12
+  p-skill-candidate: 0.08
+  spore: none
+  receipt-refs: Rheos5 correction declared row15; original frozen f121
+  note: Peer source inventory distinguishes retained suites from newly required handler fixtures. Preserve full outcomes, original evidence and separate source store; no runtime repair or admission.
+- ts: 2026-10-07T17:28:37.913470100Z
+  session: /home/err/.codex/parallel-goal/rheos6-native-reference-correction-kveax3kz/worktree
+  task: Restore exact paired reflection transports for Rheos6 without rewriting manifests
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0
+  spore: none
+  receipt-refs: Rheos6 declared row16; review5445787250 root4209801600; source7ea
+  note: Verify exact documented transport identities before claiming published availability. Preserve deliberate private provenance and original grammar. Own inspector field and terminal-LF assumptions refused, retained and corrected before meaningful missing-reference RED and complete closure GREEN. One positive and ten hostile transport controls; no board or provider actions.
