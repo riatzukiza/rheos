@@ -73,3 +73,12 @@
   spore: none
   receipt-refs: Rheos5 correction declared row15; original frozen f121
   note: Peer source inventory distinguishes retained suites from newly required handler fixtures. Preserve full outcomes, original evidence and separate source store; no runtime repair or admission.
+- ts: 2026-10-07T17:28:37.913470100Z
+  session: /home/err/.codex/parallel-goal/rheos6-native-reference-correction-kveax3kz/worktree
+  task: Restore exact paired reflection transports for Rheos6 without rewriting manifests
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0
+  spore: none
+  receipt-refs: Rheos6 declared row16; review5445787250 root4209801600; source7ea
+  note: Verify exact documented transport identities before claiming published availability. Preserve deliberate private provenance and original grammar. Own inspector field and terminal-LF assumptions refused, retained and corrected before meaningful missing-reference RED and complete closure GREEN. One positive and ten hostile transport controls; no board or provider actions.

@@ -17,3 +17,39 @@ Actual current Receipt River 154440 validates this candidate's new declared row 
 An ordinary successor corrects one implied-existing-coverage statement in the design. Actual ef3 has no MCP/HTTP regression tests; new handler fixtures remain full future obligations alongside existing suites. `coverage-wording-correction.md` records the correction and preserved checkpoint/body hashes. New declared adjudication row 15 and canonical portable reflection record this local preparation only. Original 43 containers and all historical prefixes remain exact; four additional canonical tool containers record the correction. No card/state/config/runtime changes or native approval are claimed.
 
 Four static Git inventory/reference-search streams are recorded separately from the four correction-tool streams, for eight new containers. The reference search exits 1 because it finds no matching MCP/HTTP handler namespace/endpoint references in accepted tests; this is source inspection, not a failed executed product test.
+
+## Reflection transport restoration — current correction
+
+Native review 5445787250, root 4209801600, thread
+`PRRT_kwDOU4Vf-c6qA45B`, item `cr-comment:v1:14c5694581936735693c1a63`
+identified two absent stdout references. Their exact original captured outputs
+are now tracked, together with both paired empty stderr containers. The stdout
+records decode to 143 and 137 bytes with their unchanged recorded hashes; all
+four original containers preserve canonical Base64 plus exactly one terminal LF.
+No reflection operation is recaptured or reinterpreted to repair old evidence.
+
+`reflection-reference-restoration.json` inventories all 107 local transport
+reference occurrences in nine named historical manifests. There are 69 unique
+paths: 58 current published transports verify, while 11 deliberately private
+metadata/setup paths remain explicitly external provenance, as described by the
+original README and selection/refusal records. They are not available review
+input. The historical manifests and every original capture remain unchanged.
+The additive inventory separates restored availability from that private scope.
+
+`reflection-reference-command-collection.json` records actual corrected RED
+(missing original reflection transport), complete GREEN, one positive and ten
+hostile controls: removal/tampering of each paired stream, omitted manifest and
+changed identity tuple. These are transport checks, not a board parser, runtime
+repair, source-product test or native approval. An initial own inspector assumed
+no terminal LF and generic bytes/hash fields where derived PR records explicitly
+use safe_bytes/safe_sha256; those refusals remain recorded and are superseded by
+the corrected meaningful checks. Original evidence was not normalized.
+
+The whole five-outcome plan, proposed eight-point epic and three/three/two stories,
+cards, FSM, events, source and old ledger prefixes remain unchanged. A single new
+declared Receipt River correction record and one canonical portable reflection
+record this local repair. Current immutable API checks keep historical refusals
+separate from accepted owned records. Native DRAFT/blocked/automatic-merge-off
+qualification and root publication/settlement remain separate holds. The latest
+review footer reports zero remaining at one included review/hour, with no reset
+deadline; no retry or capacity permission is inferred.
