@@ -1,0 +1,7 @@
+# Existing suites versus new surface fixtures
+
+This ordinary successor corrects one planning preparation statement in the design: accepted ef3 has config, projection/task, composition, agent-tool, CLI and lifecycle tests, but its test inventory and source search do not establish MCP/HTTP regression suites. The complete issue #5 proposal still requires new MCP/HTTP fixtures against actual handler paths, alongside retained existing suites. All five outcomes, estimates, Incoming card metadata/bodies and read-only fixture observations remain unchanged. No implementation or product test/build command is run for this wording correction.
+
+Checkpoint `f12173730ef0bd38390fd2693c27fdb7c0c93957`, its source/proof and all captured histories remain immutable in the original independent store. This correction is authored in a separate complete Git store/worktree/private tool context; it neither fixes the runtime bug nor supplies native review/admission. The original frozen proof has SHA256 `a7d20446483c1fb5612656db1f286724da990c5725b76ad395d67ac5040cf097`.
+
+The original prospective PR body remains outside the frozen checkpoint with SHA256 `6cfc2a5f45041bd4d1d62d7663ab9ce5c3ebea713cf174a4cd75181ea8f0c25d`. Its successor wording distinguishes canonical base64 containers from redacted safe native transport views and exact source archives; it does not claim lossless original native URL content. Root remains sole DRAFT/blocked/autooff publisher.

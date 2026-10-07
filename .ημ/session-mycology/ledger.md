@@ -64,3 +64,12 @@
   spore: none
   receipt-refs: Rheos5 planning line14; parent ea925; source ef3
   note: Separate accepted-sync history from divergent proposals; preserve adapter and public completeness authority. Own outside filename collision, selection guard and classpath mistake corrected before commit. Native read-task visibility is not accepted board or release admission. No spore or live channels.
+- ts: 2026-10-07T10:43:28.503050277Z
+  session: codex/rheos5-coverage-wording-repair
+  task: Correct implied existing MCP HTTP regression coverage in full Rheos5 plan
+  p-efficiency: 0.92
+  p-friction: 0.12
+  p-skill-candidate: 0.08
+  spore: none
+  receipt-refs: Rheos5 correction declared row15; original frozen f121
+  note: Peer source inventory distinguishes retained suites from newly required handler fixtures. Preserve full outcomes, original evidence and separate source store; no runtime repair or admission.
