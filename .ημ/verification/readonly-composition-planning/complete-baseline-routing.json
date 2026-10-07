@@ -1,0 +1,73 @@
+{
+  "base": "11811264a308d406cb612aefa1dad40818675e5e",
+  "origin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+  "fork_ancestor": true,
+  "origin_only_commits": [
+    {
+      "sha": "2ec344f26f2b5ded1df457bd409e64b6863728b9",
+      "subject": "test: reproduce setext headings in Rheos comment rendering",
+      "paths": [
+        "A\t\".\\316\\267\\316\\274/receipts.edn\"",
+        "M\ttest/rheos/backend/infra/task_edit_test.cljs",
+        "A\ttest/rheos/backend/shape/comment_fixtures.cljs",
+        "M\ttest/rheos/backend/shape/content_parser_test.cljs"
+      ]
+    },
+    {
+      "sha": "66e8b67951971af541503c4a556c5645eaa727c0",
+      "subject": "fix: separate Rheos comment prose from Markdown delimiters",
+      "paths": [
+        "A\t\".\\316\\267\\316\\274/comment-rendering-verification.md\"",
+        "M\t\".\\316\\267\\316\\274/receipts.edn\"",
+        "A\t\".\\316\\267\\316\\274/session-mycology/ledger.md\"",
+        "M\tdocs/cli.md",
+        "M\tsrc/rheos/backend/shape/content_parser.cljs"
+      ]
+    },
+    {
+      "sha": "8f54da094a9e9156c6a31d3d06b322a4ad947444",
+      "subject": "ci: qualify Rheos reviews with complete immutable input",
+      "paths": [
+        "A\t.github/fixtures/rheos-evidence-caller.test.mjs",
+        "A\t.github/workflows/eta-mu-evidence-review.yml",
+        "M\t\".\\316\\267\\316\\274/receipts.edn\"",
+        "M\t\".\\316\\267\\316\\274/session-mycology/ledger.md\""
+      ]
+    },
+    {
+      "sha": "ab6b227becd8585742b5130df9ae624d8744928e",
+      "subject": "Narrow reviewer secret delegation and document serializer writes",
+      "paths": [
+        "M\t.github/workflows/eta-mu-evidence-review.yml",
+        "M\t\".\\316\\267\\316\\274/receipts.edn\"",
+        "M\t\".\\316\\267\\316\\274/session-mycology/ledger.md\"",
+        "M\tdocs/cli.md",
+        "M\tsrc/rheos/backend/shape/content_parser.cljs"
+      ]
+    },
+    {
+      "sha": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+      "subject": "Merge pull request #2 from open-hax/codex/rheos-comment-rendering",
+      "paths": []
+    }
+  ],
+  "fork_only_commits": [],
+  "complete_diff_paths": [
+    "A\t.github/fixtures/rheos-evidence-caller.test.mjs",
+    "A\t.github/workflows/eta-mu-evidence-review.yml",
+    "A\t\".\\316\\267\\316\\274/comment-rendering-verification.md\"",
+    "A\t\".\\316\\267\\316\\274/receipts.edn\"",
+    "A\t\".\\316\\267\\316\\274/session-mycology/ledger.md\"",
+    "M\tdocs/cli.md",
+    "M\tsrc/rheos/backend/shape/content_parser.cljs",
+    "M\ttest/rheos/backend/infra/task_edit_test.cljs",
+    "A\ttest/rheos/backend/shape/comment_fixtures.cljs",
+    "M\ttest/rheos/backend/shape/content_parser_test.cljs"
+  ],
+  "raw_diff_bytes": 58283,
+  "raw_diff_sha256": "8b5a96d17a25afd0fa78943912bb74c627f278253302052529875445bfa84588",
+  "saved_safe_diff_bytes": 58283,
+  "saved_safe_diff_sha256": "8b5a96d17a25afd0fa78943912bb74c627f278253302052529875445bfa84588",
+  "saved_diff_is_lossless": true,
+  "withheld_url_count": 0
+}

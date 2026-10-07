@@ -1,0 +1,192 @@
+[
+  {
+    "label": "origin-meta",
+    "argv": [
+      "gh",
+      "api",
+      "repos/open-hax/rheos"
+    ],
+    "exit": 0,
+    "raw_stdout_bytes": 6562,
+    "raw_stdout_sha256": "ccfa5e7865dc12e0811d84ee4bb041edcd37505032b4d3ac1108ad37d5f0b4f6",
+    "stdout": {
+      "path": "native/origin-meta.stdout.b64",
+      "bytes": 6080,
+      "sha256": "b9691be8d2465039254f3062d96ab8a53d0a7fb9de798b81d63b99843813feef",
+      "derived_structurally_safe": true
+    },
+    "stderr": {
+      "path": "native/origin-meta.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "derived_structurally_safe": true
+    }
+  },
+  {
+    "label": "personal-meta",
+    "argv": [
+      "gh",
+      "api",
+      "repos/riatzukiza/rheos"
+    ],
+    "exit": 0,
+    "raw_stdout_bytes": 15270,
+    "raw_stdout_sha256": "db42a0dc6ac1967611c9712f4a8e84d3aa92a33970394ab4704e8a5058610584",
+    "stdout": {
+      "path": "native/personal-meta.stdout.b64",
+      "bytes": 13917,
+      "sha256": "303db504fdab6361db87937c26430e9c0af15694dff17bd55c6aa918e76de84e",
+      "derived_structurally_safe": true
+    },
+    "stderr": {
+      "path": "native/personal-meta.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "derived_structurally_safe": true
+    }
+  },
+  {
+    "label": "origin-main",
+    "argv": [
+      "gh",
+      "api",
+      "repos/open-hax/rheos/commits/main"
+    ],
+    "exit": 0,
+    "raw_stdout_bytes": 68775,
+    "raw_stdout_sha256": "5add13d8056cb2ef72957a7299d9599e60f03e8090e98b1d971446a025cfa284",
+    "stdout": {
+      "path": "native/origin-main.stdout.b64",
+      "bytes": 68393,
+      "sha256": "9386bc953bec911ea4f173367dc54c2651ae8ca9aea692870944cfacb7b9d715",
+      "derived_structurally_safe": true
+    },
+    "stderr": {
+      "path": "native/origin-main.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "derived_structurally_safe": true
+    }
+  },
+  {
+    "label": "personal-main",
+    "argv": [
+      "gh",
+      "api",
+      "repos/riatzukiza/rheos/commits/main"
+    ],
+    "exit": 0,
+    "raw_stdout_bytes": 5217,
+    "raw_stdout_sha256": "81840eec710101d7793795237040af421eb627a60a31a5f176ece7e5fc8cfd3c",
+    "stdout": {
+      "path": "native/personal-main.stdout.b64",
+      "bytes": 5168,
+      "sha256": "6ff2d2ea17ba7599b1535f579961d688ccf42757f5eb68145b79365053f953b8",
+      "derived_structurally_safe": true
+    },
+    "stderr": {
+      "path": "native/personal-main.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "derived_structurally_safe": true
+    }
+  },
+  {
+    "label": "issue5",
+    "argv": [
+      "gh",
+      "api",
+      "repos/open-hax/rheos/issues/5"
+    ],
+    "exit": 0,
+    "raw_stdout_bytes": 6360,
+    "raw_stdout_sha256": "ea3577db091a0be197c5075abfc7e29d0d5975c68fa79b5a584eda6e9e9a9cb2",
+    "stdout": {
+      "path": "native/issue5.stdout.b64",
+      "bytes": 6362,
+      "sha256": "68b4fce4c5ca16474dcf1725b6c0bc3c3705b6d83b25528bcedee7bcd8716f6e",
+      "derived_structurally_safe": true
+    },
+    "stderr": {
+      "path": "native/issue5.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "derived_structurally_safe": true
+    }
+  },
+  {
+    "label": "issue5-comments",
+    "argv": [
+      "gh",
+      "api",
+      "--paginate",
+      "--slurp",
+      "repos/open-hax/rheos/issues/5/comments"
+    ],
+    "exit": 0,
+    "raw_stdout_bytes": 4,
+    "raw_stdout_sha256": "cf1cbb66a638b4860a516671fb74850e6ccf787fe6c4c8d29e9c04efe880bd05",
+    "stdout": {
+      "path": "native/issue5-comments.stdout.b64",
+      "bytes": 9,
+      "sha256": "93a632246f28a39eedc6577fda8be826f662ca408592e96b1b2b26b4256eea3d",
+      "derived_structurally_safe": true
+    },
+    "stderr": {
+      "path": "native/issue5-comments.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "derived_structurally_safe": true
+    }
+  },
+  {
+    "label": "origin-issues",
+    "argv": [
+      "gh",
+      "api",
+      "--paginate",
+      "--slurp",
+      "repos/open-hax/rheos/issues?state=open&per_page=100"
+    ],
+    "exit": 0,
+    "raw_stdout_bytes": 14899,
+    "raw_stdout_sha256": "9663d566f21833c88acab01ffe8874b592d5b5c2dbbad316c22f4381836c8a2b",
+    "stdout": {
+      "path": "native/origin-issues.stdout.b64",
+      "bytes": 15930,
+      "sha256": "bb5e8b07d8608aae0930d859daacc37cddebd04ac6051689542b222ca49834aa",
+      "derived_structurally_safe": true
+    },
+    "stderr": {
+      "path": "native/origin-issues.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "derived_structurally_safe": true
+    }
+  },
+  {
+    "label": "personal-issues",
+    "argv": [
+      "gh",
+      "api",
+      "--paginate",
+      "--slurp",
+      "repos/riatzukiza/rheos/issues?state=open&per_page=100"
+    ],
+    "exit": 0,
+    "raw_stdout_bytes": 26789,
+    "raw_stdout_sha256": "abefe218e4890915adb21bd9b77549a3dbff6552c7403e0b619faa4b75583569",
+    "stdout": {
+      "path": "native/personal-issues.stdout.b64",
+      "bytes": 27993,
+      "sha256": "34a4b707341719c3802ab80d8d2be4702eed5e7a4f3db31651e3600c9b18f3ed",
+      "derived_structurally_safe": true
+    },
+    "stderr": {
+      "path": "native/personal-issues.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "derived_structurally_safe": true
+    }
+  }
+]

@@ -1,0 +1,133 @@
+[
+  {
+    "source_repo": "open-hax/rheos",
+    "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+    "source_path": "src/rheos/backend/domain/compose.cljs",
+    "source_blob": "99a0318d09cab8d65edd2834533318b6498eeffc",
+    "archive": "00-compose.cljs.b64",
+    "bytes": 6064,
+    "sha256": "8d76b5ae91ab2bf4590904675bb82e422c85dd99c747562d85700886e12b719f",
+    "grammar": "base64-single-line-exactly-one-terminal-LF"
+  },
+  {
+    "source_repo": "open-hax/rheos",
+    "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+    "source_path": "src/rheos/backend/infra/ledger.cljs",
+    "source_blob": "2a90d029bea9b63c42d1293fb6f8a42ac95a949a",
+    "archive": "01-ledger.cljs.b64",
+    "bytes": 765,
+    "sha256": "ab2c02c885144dda0665fb2be1f9bec84098a2d4187447a988e822611e70f622",
+    "grammar": "base64-single-line-exactly-one-terminal-LF"
+  },
+  {
+    "source_repo": "open-hax/rheos",
+    "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+    "source_path": "src/rheos/backend/domain/events.cljs",
+    "source_blob": "dab4f6ce03e7e8b687835fe3efd2322192eab595",
+    "archive": "02-events.cljs.b64",
+    "bytes": 7541,
+    "sha256": "5fd19ce700a47ec7bf2645f9086d5feb1bc1f0b2f6345f7f878c3fc393f2edd3",
+    "grammar": "base64-single-line-exactly-one-terminal-LF"
+  },
+  {
+    "source_repo": "open-hax/rheos",
+    "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+    "source_path": "src/rheos/backend/infra/task_store.cljs",
+    "source_blob": "2bb16649fc9fbefb99c48d2257f051d1d3886c3d",
+    "archive": "03-task_store.cljs.b64",
+    "bytes": 8190,
+    "sha256": "8983f678c5b8e54552f444373c46b954688e8b25777e806e03e6a85ac36a4f58",
+    "grammar": "base64-single-line-exactly-one-terminal-LF"
+  },
+  {
+    "source_repo": "open-hax/rheos",
+    "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+    "source_path": "src/rheos/backend/infra/agent_tools.cljs",
+    "source_blob": "c91d08c536e84fb1fa6925c476c9f1f949c2a9c8",
+    "archive": "04-agent_tools.cljs.b64",
+    "bytes": 21528,
+    "sha256": "63cc9e4519aab7450923d7041f424943122e581e2e9cb4c4f9ce8b2fef309f10",
+    "grammar": "base64-single-line-exactly-one-terminal-LF"
+  },
+  {
+    "source_repo": "open-hax/rheos",
+    "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+    "source_path": "src/rheos/backend/infra/cli.cljs",
+    "source_blob": "88d7a01751c51cb39e65f598a5d6500a692ec31a",
+    "archive": "05-cli.cljs.b64",
+    "bytes": 31782,
+    "sha256": "6ababe29d9b3025a85864c284826bfdae31997e366f7b370bcbcccb2ccf3f31a",
+    "grammar": "base64-single-line-exactly-one-terminal-LF"
+  },
+  {
+    "source_repo": "open-hax/rheos",
+    "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+    "source_path": "src/rheos/backend/infra/http_server.cljs",
+    "source_blob": "805db722b065935a99764b80503cd9438b38b590",
+    "archive": "06-http_server.cljs.b64",
+    "bytes": 22236,
+    "sha256": "933f3c16df3896fd6a7687550fdeb08dc9c0a0d5a0aead469eff0f47909571eb",
+    "grammar": "base64-single-line-exactly-one-terminal-LF"
+  },
+  {
+    "source_repo": "open-hax/rheos",
+    "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+    "source_path": "src/rheos/backend/infra/mcp.cljs",
+    "source_blob": "c35f0dced0c7ab146fd48b4133bb1ad65ea49d4d",
+    "archive": "07-mcp.cljs.b64",
+    "bytes": 2868,
+    "sha256": "e6b7879b5fd4aaccfea9bc7dca346f9f797dba68fb4e4f7f365ca1fec1c35de8",
+    "grammar": "base64-single-line-exactly-one-terminal-LF"
+  },
+  {
+    "source_repo": "open-hax/rheos",
+    "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+    "source_path": "package.json",
+    "source_blob": "34160f534f169a5b59d212dba6fd6215bd4a4b66",
+    "archive": "08-package.json.b64",
+    "bytes": 1372,
+    "sha256": "d090e67573ebb9d05049a38523a85280ecc1a8725209971ad52837feda6c6119",
+    "grammar": "base64-single-line-exactly-one-terminal-LF"
+  },
+  {
+    "source_repo": "open-hax/rheos",
+    "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+    "source_path": "bb.edn",
+    "source_blob": "bf0a534984de70e580ca20251a32a193e94f4da0",
+    "archive": "09-bb.edn.b64",
+    "bytes": 492,
+    "sha256": "7b25e88eb04ac00ff47c0824148977934289ffa22464b2c61b8dacc04f8eac05",
+    "grammar": "base64-single-line-exactly-one-terminal-LF"
+  },
+  {
+    "source_repo": "open-hax/rheos",
+    "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+    "source_path": "shadow-cljs.edn",
+    "source_blob": "8c7030b2935675c33502e455540ea80640641782",
+    "archive": "10-shadow-cljs.edn.b64",
+    "bytes": 3156,
+    "sha256": "362bfaf9bf1d5ea4ff4be7388ef50a9f1bdf860821de215785c85cb2b8640611",
+    "grammar": "base64-single-line-exactly-one-terminal-LF"
+  },
+  {
+    "source_repo": "open-hax/rheos",
+    "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+    "source_path": "scripts/bootstrap-source-deps.sh",
+    "source_blob": "2a9f8cc221477082b34c49d8304a039d900e7a83",
+    "archive": "11-bootstrap-source-deps.sh.b64",
+    "bytes": 1821,
+    "sha256": "06cf9c5cba68011132cd4cfa411f798adb115a6c1a14ea624d6c912ed80e6ead",
+    "grammar": "base64-single-line-exactly-one-terminal-LF"
+  },
+  {
+    "source_repo": "open-hax/eta-mu",
+    "source_pin": "0ed56aa74a53a1d1e9c2e55ce95451817a7f3a90",
+    "source_path": "packages/protocols/src/open_hax/records/edn/event_admission.cljs",
+    "source_blob": "3eb7b90148d964c85106ae85bc093181c569ed67",
+    "archive": "12-pinned-event-admission.cljs.b64",
+    "bytes": 7032,
+    "sha256": "f7c7ae3b377144f414b82af10297cefaa87752eee924928a85a1557be58465b8",
+    "grammar": "base64-single-line-exactly-one-terminal-LF",
+    "scope": "Immutable source inspection only; no donor execution/implementation copy into product namespace"
+  }
+]

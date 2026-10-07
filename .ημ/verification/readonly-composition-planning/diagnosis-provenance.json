@@ -1,0 +1,27 @@
+{
+  "source": "Attributed independent child audit, not repeated execution",
+  "audit_head": "7c0a8f1c084b20768155901cf84f749047e31d93",
+  "proof_sha256": "929060af235357214db6efefcfd6c5ff800f4b13ce7081803919d0e017d75abc",
+  "original_proof_relative_path": "final-proof/final-proof.json",
+  "original_audit_locator": "child-prs/rheos-readonly-visibility-e57vj8pe",
+  "full_original_counts": {
+    "strict_containers": 40,
+    "fixture_file_link_mode_identities": 504
+  },
+  "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+  "source_cli_sha256": "791418bc9767260df804b5a972acb4bee7a5ffb409ea1edb899c348a2b8546a4",
+  "actual_observation": {
+    "direct_tasks": 60,
+    "aggregate_tasks": 0,
+    "aggregate_exit": 0,
+    "existing_ledger_append_open": "EROFS refusal"
+  },
+  "installed_artifact": "@eta-mu/rheos0.1.0 also observed; separate from private source-bound CLI",
+  "all_original_captures_preserved_in_immutable_audit": true,
+  "not_claimed": [
+    "new diagnosis run",
+    "release qualification",
+    "implementation",
+    "zero write attempts"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "issue": "private initial verification story and guide shared filename; guide overwrote uncommitted story",
+  "no_git_or_operational_effect": true,
+  "retained_guide_sha256": "69aa1ad87b40c98c43d6972d07b392a4f8c9b62e175111e0199f99d97c39a676",
+  "distinct_final_draft_paths": [
+    "verification-story.md",
+    "verification-guide.md"
+  ],
+  "whole_story_restored": true
+}

@@ -55,3 +55,12 @@
   spore: none
   receipt-refs: accepted-ef3-sync decision
   note: Keep accepted synchronization distinct from divergent unmerged proposals; inspect pinned draft execution guards before proposing publication. Preserve every inherited history byte; root owns publication.
+- ts: 2026-10-07T10:34:53.384808906Z
+  session: codex/rheos5-readonly-composition-planning
+  task: Plan all five Rheos readonly-composition outcomes without hidden source sync
+  p-efficiency: 0.80
+  p-friction: 0.24
+  p-skill-candidate: 0.10
+  spore: none
+  receipt-refs: Rheos5 planning line14; parent ea925; source ef3
+  note: Separate accepted-sync history from divergent proposals; preserve adapter and public completeness authority. Own outside filename collision, selection guard and classpath mistake corrected before commit. Native read-task visibility is not accepted board or release admission. No spore or live channels.

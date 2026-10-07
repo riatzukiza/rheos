@@ -1,0 +1,12 @@
+{
+  "source_pin": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+  "artifact_sha256": "791418bc9767260df804b5a972acb4bee7a5ffb409ea1edb899c348a2b8546a4",
+  "artifact_bytes": 2115588,
+  "private_copy_not_rebuild": true,
+  "dependency_regular_files": 13773,
+  "private_relative_links": 515,
+  "no_external_dependency_targets": true,
+  "no_shared_file_inodes": true,
+  "Node": "22.20.0",
+  "qualification": "source-bound read capability only; no release/fullsuite/transition proof"
+}

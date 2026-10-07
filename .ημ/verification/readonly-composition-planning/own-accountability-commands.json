@@ -1,0 +1,82 @@
+[
+  {
+    "label": "append-own-receipt-attempt2",
+    "argv": [
+      "<owned-planning-context>/runtime/bin/node",
+      "<owned-planning-context>/runtime/nbb/cli.js",
+      "-cp",
+      "<owned-planning-context>/runtime/receipt-owner/src/cljs",
+      "<owned-planning-context>/outside/append-own-receipt.cljs",
+      "<owned-planning-context>/worktree/.\u03b7\u03bc/receipts.edn"
+    ],
+    "cwd": "<owned-planning-context>/worktree",
+    "exit": 0,
+    "stdout": {
+      "path": "native/append-own-receipt-attempt2.stdout.b64",
+      "bytes": 108,
+      "sha256": "067a547d8503b11f333a6ba01517bcd6f368f4b067e103d9c4a47115d51d60de"
+    },
+    "stderr": {
+      "path": "native/append-own-receipt-attempt2.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "portable-reflection-append",
+    "argv": [
+      "/usr/local/bin/bb",
+      "--config",
+      "/dev/null",
+      "<owned-planning-context>/runtime/mycology/sm-log.bb",
+      "--task",
+      "Plan all five Rheos readonly-composition outcomes without hidden source sync",
+      "--efficiency",
+      "0.80",
+      "--friction",
+      "0.24",
+      "--candidate",
+      "0.10",
+      "--receipt-refs",
+      "Rheos5 planning line14; parent ea925; source ef3",
+      "--note",
+      "Separate accepted-sync history from divergent proposals; preserve adapter and public completeness authority. Own outside filename collision, selection guard and classpath mistake corrected before commit. Native read-task visibility is not accepted board or release admission. No spore or live channels."
+    ],
+    "cwd": "<owned-planning-context>/worktree",
+    "exit": 0,
+    "stdout": {
+      "path": "native/portable-reflection-append.stdout.b64",
+      "bytes": 137,
+      "sha256": "96c4e1b32de7f5207bed77300c21cc317cf98f5d00de022e4066a5349656aa23"
+    },
+    "stderr": {
+      "path": "native/portable-reflection-append.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "portable-reflection-read",
+    "argv": [
+      "/usr/local/bin/bb",
+      "--config",
+      "/dev/null",
+      "<owned-planning-context>/runtime/mycology/sm-list.bb",
+      "--ledger-only",
+      "--limit",
+      "1"
+    ],
+    "cwd": "<owned-planning-context>/worktree",
+    "exit": 0,
+    "stdout": {
+      "path": "native/portable-reflection-read.stdout.b64",
+      "bytes": 658,
+      "sha256": "7ab165eb33926511d742e1e47d36d0ad1bd3352aed4f52390bc34ab39a1ba9c6"
+    },
+    "stderr": {
+      "path": "native/portable-reflection-read.stderr.b64",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+]
