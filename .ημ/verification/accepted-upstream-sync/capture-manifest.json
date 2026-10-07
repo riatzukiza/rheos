@@ -1,0 +1,1046 @@
+[
+  {
+    "name": "canonical-personal-1",
+    "at": "2026-10-07T10:16:00.130668+00:00",
+    "argv": [
+      "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/runtime/node_modules/nbb/cli.js",
+      "-cp",
+      "/home/err/.agents/skills/pr-flow/scripts",
+      "/home/err/.agents/skills/pr-flow/scripts/pr.cljs",
+      "status",
+      "riatzukiza/rheos",
+      "1"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "canonical-personal-1.stdout.b64",
+      "raw_sha256": "0e3e64d59e372952e3d165e21f0cddd20f97cd71924cfd492cb9037757d161a0",
+      "raw_bytes": 457,
+      "display_sha256": "0e3e64d59e372952e3d165e21f0cddd20f97cd71924cfd492cb9037757d161a0",
+      "display_bytes": 457,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-personal-1.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "canonical-personal-1.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-personal-1.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "canonical-personal-2",
+    "at": "2026-10-07T10:16:17.586393+00:00",
+    "argv": [
+      "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/runtime/node_modules/nbb/cli.js",
+      "-cp",
+      "/home/err/.agents/skills/pr-flow/scripts",
+      "/home/err/.agents/skills/pr-flow/scripts/pr.cljs",
+      "status",
+      "riatzukiza/rheos",
+      "2"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "canonical-personal-2.stdout.b64",
+      "raw_sha256": "3f5010325b37d16e22e1648a20696c88977cb3a7be0660fd8afcd5cd9cde3ca2",
+      "raw_bytes": 458,
+      "display_sha256": "3f5010325b37d16e22e1648a20696c88977cb3a7be0660fd8afcd5cd9cde3ca2",
+      "display_bytes": 458,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-personal-2.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "canonical-personal-2.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-personal-2.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "canonical-personal-3",
+    "at": "2026-10-07T10:16:27.800736+00:00",
+    "argv": [
+      "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/runtime/node_modules/nbb/cli.js",
+      "-cp",
+      "/home/err/.agents/skills/pr-flow/scripts",
+      "/home/err/.agents/skills/pr-flow/scripts/pr.cljs",
+      "status",
+      "riatzukiza/rheos",
+      "3"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "canonical-personal-3.stdout.b64",
+      "raw_sha256": "15c4df0c9331a8ca54661cd7332795e2e996dc44b31d041579f6c3ce09f2c317",
+      "raw_bytes": 465,
+      "display_sha256": "15c4df0c9331a8ca54661cd7332795e2e996dc44b31d041579f6c3ce09f2c317",
+      "display_bytes": 465,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-personal-3.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "canonical-personal-3.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-personal-3.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "canonical-personal-4",
+    "at": "2026-10-07T10:16:36.246102+00:00",
+    "argv": [
+      "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/runtime/node_modules/nbb/cli.js",
+      "-cp",
+      "/home/err/.agents/skills/pr-flow/scripts",
+      "/home/err/.agents/skills/pr-flow/scripts/pr.cljs",
+      "status",
+      "riatzukiza/rheos",
+      "4"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "canonical-personal-4.stdout.b64",
+      "raw_sha256": "d0bf471dee110ef59141e8ac76644c18e0dc333b8d66394e857e6d63b61bb5ae",
+      "raw_bytes": 465,
+      "display_sha256": "d0bf471dee110ef59141e8ac76644c18e0dc333b8d66394e857e6d63b61bb5ae",
+      "display_bytes": 465,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-personal-4.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "canonical-personal-4.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-personal-4.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "canonical-upstream-2",
+    "at": "2026-10-07T10:17:21.799159+00:00",
+    "argv": [
+      "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/runtime/node_modules/nbb/cli.js",
+      "-cp",
+      "/home/err/.agents/skills/pr-flow/scripts",
+      "/home/err/.agents/skills/pr-flow/scripts/pr.cljs",
+      "status",
+      "open-hax/rheos",
+      "2"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "canonical-upstream-2.stdout.b64",
+      "raw_sha256": "35f0c8e58b154d9a462627cc359b3c0f0d4f0c3375276b232a5119f1bc21c172",
+      "raw_bytes": 527,
+      "display_sha256": "35f0c8e58b154d9a462627cc359b3c0f0d4f0c3375276b232a5119f1bc21c172",
+      "display_bytes": 527,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-upstream-2.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "canonical-upstream-2.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-upstream-2.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "personal-repo",
+    "at": "2026-10-07T10:17:36.070863+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "repos/riatzukiza/rheos"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "personal-repo.stdout.b64",
+      "raw_sha256": "db42a0dc6ac1967611c9712f4a8e84d3aa92a33970394ab4704e8a5058610584",
+      "raw_bytes": 15270,
+      "display_sha256": "5d05b794ba7bbacb7e8df80985b3a7a887ee07bb29352bbbb513b86ef922d735",
+      "display_bytes": 16919,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-repo.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "personal-repo.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-repo.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "upstream-repo",
+    "at": "2026-10-07T10:17:36.572825+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "repos/open-hax/rheos"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "upstream-repo.stdout.b64",
+      "raw_sha256": "ccfa5e7865dc12e0811d84ee4bb041edcd37505032b4d3ac1108ad37d5f0b4f6",
+      "raw_bytes": 6562,
+      "display_sha256": "a482e60e0935633783c0f62d301fe2fc0b1cb58886e19cf4440809c96b81b5ad",
+      "display_bytes": 7196,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-repo.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "upstream-repo.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-repo.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "personal-main",
+    "at": "2026-10-07T10:17:37.106682+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "repos/riatzukiza/rheos/commits/main"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "personal-main.stdout.b64",
+      "raw_sha256": "81840eec710101d7793795237040af421eb627a60a31a5f176ece7e5fc8cfd3c",
+      "raw_bytes": 5217,
+      "display_sha256": "bdad6f9b12caa30c5a71981a17b38f87fc30326d09cdce91734c186bb1cb40e4",
+      "display_bytes": 5469,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-main.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "personal-main.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-main.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "upstream-main",
+    "at": "2026-10-07T10:17:37.557190+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "repos/open-hax/rheos/commits/main"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "upstream-main.stdout.b64",
+      "raw_sha256": "5add13d8056cb2ef72957a7299d9599e60f03e8090e98b1d971446a025cfa284",
+      "raw_bytes": 68775,
+      "display_sha256": "67792676a9930f29046fbc7ca055687c36d5615efa2d19432f48240942eb6cb8",
+      "display_bytes": 68928,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-main.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "upstream-main.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-main.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "personal-open-PRs",
+    "at": "2026-10-07T10:17:38.197951+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "--paginate",
+      "--slurp",
+      "repos/riatzukiza/rheos/pulls?state=open&per_page=100"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "personal-open-PRs.stdout.b64",
+      "raw_sha256": "82774fad7eb6360562cb8b00571aa7e629b99c7d1cd27e509cc2b6515a1099cd",
+      "raw_bytes": 76883,
+      "display_sha256": "5f4cb920e6806a1e692aad86ffe2e7b737aea4bc5bde9de4519be8227be61173",
+      "display_bytes": 91539,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-open-PRs.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "personal-open-PRs.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-open-PRs.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "upstream-PR2",
+    "at": "2026-10-07T10:17:39.735851+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "repos/open-hax/rheos/pulls/2"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "upstream-PR2.stdout.b64",
+      "raw_sha256": "45cee53b159a263b0d4554fcac292f6a8f7bda5c41295a80982af96f5292b2fc",
+      "raw_bytes": 18405,
+      "display_sha256": "c15fc3a816f6fe1ec1d3c40e13a709c460886db7f872e49591c4b7932c2ca07a",
+      "display_bytes": 20746,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-PR2.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "upstream-PR2.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-PR2.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "upstream-PR2-files",
+    "at": "2026-10-07T10:17:40.597792+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "--paginate",
+      "--slurp",
+      "repos/open-hax/rheos/pulls/2/files?per_page=100"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "upstream-PR2-files.stdout.b64",
+      "raw_sha256": "cf32d4a7eb116ec3e5d1e71206fcda585994175e938f899d9bfba5181d223433",
+      "raw_bytes": 63937,
+      "display_sha256": "9f8349641f8ee8da15744e38251331e5a50a63d6c956a3234d72c1c841f742c9",
+      "display_bytes": 63618,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-PR2-files.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "upstream-PR2-files.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-PR2-files.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "upstream-PR2-reviews",
+    "at": "2026-10-07T10:17:41.252891+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "--paginate",
+      "--slurp",
+      "repos/open-hax/rheos/pulls/2/reviews?per_page=100"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "upstream-PR2-reviews.stdout.b64",
+      "raw_sha256": "298a8d5816841ce189ae0383fddad73b07fa1910fc4e246b1e4f98dcb68ed3e0",
+      "raw_bytes": 14945,
+      "display_sha256": "fd24029a58571c8578f0b1b86eb347ecb0e10380d832c16cbcce1e930045763d",
+      "display_bytes": 16546,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-PR2-reviews.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "upstream-PR2-reviews.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-PR2-reviews.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "upstream-PR2-inlines",
+    "at": "2026-10-07T10:17:41.898500+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "--paginate",
+      "--slurp",
+      "repos/open-hax/rheos/pulls/2/comments?per_page=100"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "upstream-PR2-inlines.stdout.b64",
+      "raw_sha256": "e8847bdde17c0c6566a1886d051885a004b1e75c6f825b8d3a4843795dfd66bf",
+      "raw_bytes": 16197,
+      "display_sha256": "bb782886bc15a70f4327151e4759976b6a0fa40e184507d18e9db0bc016336a6",
+      "display_bytes": 17334,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-PR2-inlines.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "upstream-PR2-inlines.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-PR2-inlines.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "upstream-PR2-comments",
+    "at": "2026-10-07T10:17:42.379969+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "--paginate",
+      "--slurp",
+      "repos/open-hax/rheos/issues/2/comments?per_page=100"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "upstream-PR2-comments.stdout.b64",
+      "raw_sha256": "bf6fa4f36d8a35c03337eff6331b098fe99ce89d43dafdc7d6906cca1d7c4419",
+      "raw_bytes": 44277,
+      "display_sha256": "6def851154a3d67606e1652df4f3c236dff732739caf098fc4859cfd8b4608b5",
+      "display_bytes": 48753,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-PR2-comments.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "upstream-PR2-comments.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/upstream-PR2-comments.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "source-clone",
+    "at": "2026-10-07T10:17:42.877902+00:00",
+    "argv": [
+      "git",
+      "clone",
+      "--bare",
+      "--no-local",
+      "--no-hardlinks",
+      "https://github.com/riatzukiza/rheos.git",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/source.git"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "source-clone.stdout.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/source-clone.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "source-clone.stderr.b64",
+      "raw_sha256": "1af178b612618aae1b6bc9d7bfafaf7b17c9f54a5ca1b1af4ae2df64f4be159b",
+      "raw_bytes": 124,
+      "display_sha256": "1af178b612618aae1b6bc9d7bfafaf7b17c9f54a5ca1b1af4ae2df64f4be159b",
+      "display_bytes": 124,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/source-clone.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "pinned-workflow",
+    "at": "2026-10-07T10:17:43.633336+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "repos/open-hax/eta-mu/contents/.github/workflows/opencode-code-review.yml?ref=694a2602709d130b2a60045a25537f1b4476ec1f"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "pinned-workflow.stdout.b64",
+      "raw_sha256": "7a28e24d8772f815dd2a6b4d36b2538bc856bbab4099052a4876e5c201f715ea",
+      "raw_bytes": 108915,
+      "display_sha256": "07bfc1b7c5b59bf7760e89f9664f1ee280d7453b31b30e3d19ca38f7baaa01fe",
+      "display_bytes": 108744,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/pinned-workflow.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "pinned-workflow.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/pinned-workflow.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "personal-1-files",
+    "at": "2026-10-07T10:17:44.291335+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "--paginate",
+      "--slurp",
+      "repos/riatzukiza/rheos/pulls/1/files?per_page=100"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "personal-1-files.stdout.b64",
+      "raw_sha256": "05b8840a03d875b50f0fcbb719726b3bb379ec0d576b5ab715aa3bc262a05d6b",
+      "raw_bytes": 135687,
+      "display_sha256": "eaf738a8f72b9fe43f4ff141c5c17160782d3550238d8b6321512ba1179e5335",
+      "display_bytes": 134661,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-1-files.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "personal-1-files.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-1-files.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "personal-2-files",
+    "at": "2026-10-07T10:17:44.942250+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "--paginate",
+      "--slurp",
+      "repos/riatzukiza/rheos/pulls/2/files?per_page=100"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "personal-2-files.stdout.b64",
+      "raw_sha256": "a4164fc4218c30e6d99c2dc52d860603da999e456c1f8f21fb2ed22223c3f043",
+      "raw_bytes": 16177,
+      "display_sha256": "0e89f1067695ccddc9e9b019da1addab068998c8c4da393bfdb9fc3fb6848eb2",
+      "display_bytes": 16162,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-2-files.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "personal-2-files.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-2-files.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "personal-3-files",
+    "at": "2026-10-07T10:17:45.422993+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "--paginate",
+      "--slurp",
+      "repos/riatzukiza/rheos/pulls/3/files?per_page=100"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "personal-3-files.stdout.b64",
+      "raw_sha256": "16a97c32ea1eef6f12821f0abb55af49f91c93b633f9234a5628eb6f2e679f12",
+      "raw_bytes": 17716,
+      "display_sha256": "67f702adca5cee2ab369973317527e73cf2f82864aa6c287ea8b740e118b5dee",
+      "display_bytes": 17583,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-3-files.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "personal-3-files.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-3-files.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "personal-4-files",
+    "at": "2026-10-07T10:17:46.100715+00:00",
+    "argv": [
+      "gh",
+      "api",
+      "--paginate",
+      "--slurp",
+      "repos/riatzukiza/rheos/pulls/4/files?per_page=100"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "personal-4-files.stdout.b64",
+      "raw_sha256": "4a57be0c8245e4c69942ec57df5db7577308af17e4503be6596eebfbacdf65dc",
+      "raw_bytes": 174537,
+      "display_sha256": "27c87859a62fd353d34afdbf2ca91518f0cdc23598247ad51149ccc84dc9f65b",
+      "display_bytes": 170657,
+      "redacted": true,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-4-files.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "personal-4-files.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/personal-4-files.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "fetch-accepted-origin",
+    "at": "2026-10-07T10:17:46.845669+00:00",
+    "argv": [
+      "git",
+      "--git-dir=/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/source.git",
+      "fetch",
+      "https://github.com/open-hax/rheos.git",
+      "main"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "fetch-accepted-origin.stdout.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/fetch-accepted-origin.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "fetch-accepted-origin.stderr.b64",
+      "raw_sha256": "d97b930754804d656084712aae8b360f47d499275985ecc9d67b3bcf31b1203d",
+      "raw_bytes": 85,
+      "display_sha256": "d97b930754804d656084712aae8b360f47d499275985ecc9d67b3bcf31b1203d",
+      "display_bytes": 85,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/fetch-accepted-origin.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "new-worktree",
+    "at": "2026-10-07T10:17:47.278240+00:00",
+    "argv": [
+      "git",
+      "--git-dir=/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/source.git",
+      "worktree",
+      "add",
+      "-b",
+      "codex/sync-rheos-origin-main",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/worktree",
+      "ef3c4abf1ea75199486f693e9470df3fec88dd49"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "new-worktree.stdout.b64",
+      "raw_sha256": "68c44d2dd5867523daff37346bfd230221392b3fa5486e143adc5881236f4064",
+      "raw_bytes": 89,
+      "display_sha256": "68c44d2dd5867523daff37346bfd230221392b3fa5486e143adc5881236f4064",
+      "display_bytes": 89,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/new-worktree.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "new-worktree.stderr.b64",
+      "raw_sha256": "2028f8b87c5199d8049f8f70289d5a4c8e195cd56fbc41bcb65bf4a389f5c3f5",
+      "raw_bytes": 63,
+      "display_sha256": "2028f8b87c5199d8049f8f70289d5a4c8e195cd56fbc41bcb65bf4a389f5c3f5",
+      "display_bytes": 63,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/new-worktree.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "git-connectivity",
+    "at": "2026-10-07T10:21:29.166604+00:00",
+    "argv": [
+      "git",
+      "--git-dir=/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/source.git",
+      "fsck",
+      "--full"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "git-connectivity.stdout.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/git-connectivity.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "git-connectivity.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/git-connectivity.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "reachable-objects",
+    "at": "2026-10-07T10:21:29.215877+00:00",
+    "argv": [
+      "git",
+      "--git-dir=/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/source.git",
+      "rev-list",
+      "--objects",
+      "--all",
+      "--missing=print"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "reachable-objects.stdout.b64",
+      "raw_sha256": "13aa55b501734a0eaec7ebb63efd0fbe2600bb8f304283ee8a7db96306f52dcc",
+      "raw_bytes": 40813,
+      "display_sha256": "13aa55b501734a0eaec7ebb63efd0fbe2600bb8f304283ee8a7db96306f52dcc",
+      "display_bytes": 40813,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/reachable-objects.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "reachable-objects.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/reachable-objects.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "caller-fixture",
+    "at": "2026-10-07T10:21:29.221532+00:00",
+    "argv": [
+      "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+      "--test",
+      ".github/fixtures/rheos-evidence-caller.test.mjs"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/worktree",
+    "exit": 0,
+    "stdout": {
+      "path": "caller-fixture.stdout.b64",
+      "raw_sha256": "52f9eb5c61085d807a81701f3ed874bdde9dc4c6700f9a60990c80d486af489c",
+      "raw_bytes": 2308,
+      "display_sha256": "52f9eb5c61085d807a81701f3ed874bdde9dc4c6700f9a60990c80d486af489c",
+      "display_bytes": 2308,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/caller-fixture.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "caller-fixture.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/caller-fixture.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "pinned-draft-gate",
+    "at": "2026-10-07T10:21:30.287503+00:00",
+    "argv": [
+      "env",
+      "PULL_REQUEST_EVENT=true",
+      "ELIGIBLE_REVIEW_EVENT=false",
+      "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/outside/draft-gate.js"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+    "exit": 0,
+    "stdout": {
+      "path": "pinned-draft-gate.stdout.b64",
+      "raw_sha256": "5b29f895dc71efd6054e979b729cf3cb53a51cfe36b51aa05fc1212c0992dfb8",
+      "raw_bytes": 80,
+      "display_sha256": "5b29f895dc71efd6054e979b729cf3cb53a51cfe36b51aa05fc1212c0992dfb8",
+      "display_bytes": 80,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/pinned-draft-gate.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "pinned-draft-gate.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/pinned-draft-gate.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "append-own-decision",
+    "at": "2026-10-07T10:21:30.410717+00:00",
+    "argv": [
+      "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/runtime/node_modules/nbb/cli.js",
+      "-cp",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/receipt-owner/src/cljs",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/receipt.cljs",
+      "append",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/receipt-input.json",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/worktree/.\u03b7\u03bc/receipts.edn"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/worktree",
+    "exit": 0,
+    "stdout": {
+      "path": "append-own-decision.stdout.b64",
+      "raw_sha256": "ee0bab0760dfec748daec13836e9874f01fc5ea311d478de3027292c90299cfd",
+      "raw_bytes": 115,
+      "display_sha256": "ee0bab0760dfec748daec13836e9874f01fc5ea311d478de3027292c90299cfd",
+      "display_bytes": 115,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/append-own-decision.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "append-own-decision.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/append-own-decision.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "canonical-reflection",
+    "at": "2026-10-07T10:21:30.647159+00:00",
+    "argv": [
+      "bwrap",
+      "--ro-bind",
+      "/",
+      "/",
+      "--dev",
+      "/dev",
+      "--proc",
+      "/proc",
+      "--bind",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+      "--bind",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/tmp",
+      "/tmp",
+      "--unshare-net",
+      "--die-with-parent",
+      "--chdir",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/worktree",
+      "/usr/local/bin/bb",
+      "/home/err/.agents/skills/session-mycology/scripts/sm-log.bb",
+      "--task",
+      "Prepare exact accepted Rheos upstream synchronization",
+      "--efficiency",
+      "0.88",
+      "--friction",
+      "0.18",
+      "--candidate",
+      "0.10",
+      "--receipt-refs",
+      "accepted-ef3-sync decision",
+      "--note",
+      "Keep accepted synchronization distinct from divergent unmerged proposals; inspect pinned draft execution guards before proposing publication. Preserve every inherited history byte; root owns publication."
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/worktree",
+    "exit": 0,
+    "stdout": {
+      "path": "canonical-reflection.stdout.b64",
+      "raw_sha256": "0c2fa63699417f422c229e004f08af5337ed8feffdb5f7c236facbdb752a320c",
+      "raw_bytes": 133,
+      "display_sha256": "0c2fa63699417f422c229e004f08af5337ed8feffdb5f7c236facbdb752a320c",
+      "display_bytes": 133,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-reflection.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "canonical-reflection.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-reflection.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  },
+  {
+    "name": "canonical-reflection-reader",
+    "at": "2026-10-07T10:21:30.695602+00:00",
+    "argv": [
+      "bwrap",
+      "--ro-bind",
+      "/",
+      "/",
+      "--dev",
+      "/dev",
+      "--proc",
+      "/proc",
+      "--bind",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p",
+      "--bind",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/tmp",
+      "/tmp",
+      "--unshare-net",
+      "--die-with-parent",
+      "--chdir",
+      "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/worktree",
+      "/usr/local/bin/bb",
+      "/home/err/.agents/skills/session-mycology/scripts/sm-list.bb",
+      "--ledger-only",
+      "--limit",
+      "1"
+    ],
+    "cwd": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/worktree",
+    "exit": 0,
+    "stdout": {
+      "path": "canonical-reflection-reader.stdout.b64",
+      "raw_sha256": "e8566a6db919ee63b8c90eca6414c657c582c475c28a0cfebdfd31c1f16e6986",
+      "raw_bytes": 559,
+      "display_sha256": "e8566a6db919ee63b8c90eca6414c657c582c475c28a0cfebdfd31c1f16e6986",
+      "display_bytes": 559,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-reflection-reader.stdout",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    },
+    "stderr": {
+      "path": "canonical-reflection-reader.stderr.b64",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "display_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "display_bytes": 0,
+      "redacted": false,
+      "raw_private": "/home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/private/canonical-reflection-reader.stderr",
+      "grammar": "unwrapped standard base64 followed by exactly one LF"
+    }
+  }
+]

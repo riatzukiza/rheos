@@ -1,0 +1,6 @@
+{
+  "path": "pinned-reusable-workflow.b64",
+  "bytes": 78222,
+  "sha256": "58203c0309193c9e5cd24c3d6147cd5328f2744147635fab2ff55e36a1ec3b66",
+  "grammar": "unwrapped standard base64 followed by exactly one LF"
+}

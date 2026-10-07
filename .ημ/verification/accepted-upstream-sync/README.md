@@ -1,0 +1,9 @@
+# Accepted upstream synchronization evidence
+
+This packet records the accepted origin history, native fork routing, existing proposal boundaries and pinned workflow draft behavior. It is local preparation, not hosted review, implementation admission, release qualification or deployment evidence.
+
+`capture-manifest.json` binds each native command to its exit status and original private hash/size. Native JSON with query URLs is structurally redacted inside string values only; explicitly marked displayed bytes are not the raw original. Safe raw transports preserve their exact bytes. Every `.b64` here uses unwrapped standard base64 with exactly one terminal LF. Three additional transport metadata files bind the complete accepted binary diff, accepted caller and pinned reusable workflow.
+
+All five accepted upstream commits are retained as ancestors. Existing personal PRs 1–4 are separately proposed changes and are not adopted. The source remains exactly accepted ef3 except the new sync note/evidence and append-only owned accountability. The tracked board event ledger is unchanged. Historical receipts/reflection remain exact prefixes; only declared new receipt rows are validated against the actual current Receipt River API, without claiming historical validity.
+
+The accepted caller delegates named App credentials and invokes eta-mu workflow694a260. Its deterministic, context and model jobs explicitly exclude draft events; the always-on review gate has empty permissions, no candidate checkout and reports a draft as not applicable. This supports a DRAFT proposal only. It does not establish safe READY candidate execution or a trusted publisher isolation boundary. No secret values/settings, provider requests, native board state or upstream/personal branch were changed. Full product runtime/compiler/build suites are not rerun or claimed here; accepted history and native origin records remain separate from sync qualification.

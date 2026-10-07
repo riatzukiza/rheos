@@ -1,0 +1,6 @@
+{
+  "path": "accepted-delta.b64",
+  "bytes": 58283,
+  "sha256": "8b5a96d17a25afd0fa78943912bb74c627f278253302052529875445bfa84588",
+  "grammar": "unwrapped standard base64 followed by exactly one LF"
+}

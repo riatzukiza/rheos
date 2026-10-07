@@ -46,3 +46,12 @@
   spore: none
   receipt-refs: rheos/pr2/explicit-review-delegation-and-serializer-docs; 2026-10-04T08:55:38.487526Z
   note: A working same-org inherited-secret path can still delegate excess authority. Preserve exact caller selections and gates while restricting references to declared reviewer inputs. Document all actual shared serializer users, and prove a docstring-only source delta rather than creating mirror runtime tests. Old-head review evidence remains historical after publication; successor native qualification belongs to parent. No board or identity activation.
+- ts: 2026-10-07T10:21:30.690871611Z
+  session: /home/err/.codex/parallel-goal/child-prs-20261006/rheos-accepted-sync-noaij70p/worktree
+  task: Prepare exact accepted Rheos upstream synchronization
+  p-efficiency: 0.88
+  p-friction: 0.18
+  p-skill-candidate: 0.10
+  spore: none
+  receipt-refs: accepted-ef3-sync decision
+  note: Keep accepted synchronization distinct from divergent unmerged proposals; inspect pinned draft execution guards before proposing publication. Preserve every inherited history byte; root owns publication.
