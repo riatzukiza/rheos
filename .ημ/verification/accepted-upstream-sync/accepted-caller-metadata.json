@@ -1,0 +1,6 @@
+{
+  "path": "accepted-caller.b64",
+  "bytes": 8483,
+  "sha256": "343cf979411b175d481ecc82fd801334f0e311d7ebfaa265452e1d4400454ac5",
+  "grammar": "unwrapped standard base64 followed by exactly one LF"
+}

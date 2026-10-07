@@ -1,0 +1,22 @@
+{
+  "callee_revision": "694a2602709d130b2a60045a25537f1b4476ec1f",
+  "callee_sha256": "58203c0309193c9e5cd24c3d6147cd5328f2744147635fab2ff55e36a1ec3b66",
+  "non_draft_same_repo_jobs": [
+    "deterministic_evidence",
+    "prepare_review_context",
+    "review"
+  ],
+  "always_gate": {
+    "job": "review_gate",
+    "permissions": {},
+    "checkout": false,
+    "secret_references": false,
+    "candidate_script": false,
+    "actual_draft_execution": "exit0 not-applicable"
+  },
+  "publication": "DRAFT/blocked/autooff only",
+  "ready_execution_trust": "unqualified; same-job candidate gates and named App credential steps",
+  "historical_review": "originPR2nativeMiMo approval is source history, not sync-head approval",
+  "caller_container_sha256": "43fa90636600270c6fe58dd5d6c82fc0727439f38c7642689da6ed586d7a88d5",
+  "caller_decoded_sha256": "343cf979411b175d481ecc82fd801334f0e311d7ebfaa265452e1d4400454ac5"
+}

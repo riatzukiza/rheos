@@ -1,0 +1,169 @@
+{
+  "captured_native_prs": [
+    {
+      "number": 4,
+      "head": "ebf970eeda2eda33e0b8624f2671619ebec56fdc",
+      "base": "11811264a308d406cb612aefa1dad40818675e5e",
+      "head_ref": "codex/rheos-relationships-plan",
+      "contains_accepted": false,
+      "accepted_vs_proposal_counts": [
+        "5",
+        "4"
+      ],
+      "scope_paths": [
+        ".\u03b7\u03bc/receipts.edn",
+        ".\u03b7\u03bc/session-mycology/ledger.md",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/README.md",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/capture-count-correction-proof.json",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/capture-manifest.json",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/native-board.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/native-board.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/personal-open-prs.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/personal-open-prs.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/personal-repository.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/personal-repository.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-authoring.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-authoring.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-contract.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-contract.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-parity.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-parity.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-writer.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-writer.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/source-proof.json",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/upstream-issue3.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos-issue3-planning-20261006/upstream-issue3.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/README.md",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/canonical-prospective-receipts.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/canonical-prospective-receipts.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/capture-manifest.json",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/final-verification.json",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/native-board.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/native-board.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/native-fixture-preservation.json",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/native-version.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/native-version.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/planning-preservation-proof.json",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-authoring.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-authoring.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-contract.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-contract.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-parity.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-parity.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-writer.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-writer.stdout.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/upstream-issue3.stderr.b64",
+        ".\u03b7\u03bc/verification/rheos4-parity-scope-20261006/upstream-issue3.stdout.b64",
+        "docs/agile/epics/rheos-issue-3-relationship-authoring.md",
+        "docs/agile/tasks/rheos-issue-3-relationship-contract.md",
+        "docs/agile/tasks/rheos-issue-3-relationship-parity.md",
+        "docs/agile/tasks/rheos-issue-3-relationship-writer.md",
+        "docs/notes/uuid-relationship-authoring-plan.md"
+      ]
+    },
+    {
+      "number": 3,
+      "head": "4731f44cd7d5c988ea3170dc1015040cb9b33538",
+      "base": "11811264a308d406cb612aefa1dad40818675e5e",
+      "head_ref": "codex/plan-direct-blocker-reporting",
+      "contains_accepted": false,
+      "accepted_vs_proposal_counts": [
+        "5",
+        "1"
+      ],
+      "scope_paths": [
+        ".\u03b7\u03bc/receipts.edn",
+        ".\u03b7\u03bc/session-mycology/ledger.md",
+        "docs/agile/tasks/4a68e0a9-072f-49f0-9f60-dbcdf70d3d5a.md",
+        "docs/notes/direct-blocker-reporting-plan.md"
+      ]
+    },
+    {
+      "number": 2,
+      "head": "4a38902520b5e34ef66aa9d440f15ab9d97e3efe",
+      "base": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+      "head_ref": "codex/standalone-rheos-ci",
+      "contains_accepted": false,
+      "accepted_vs_proposal_counts": [
+        "5",
+        "48"
+      ],
+      "scope_paths": [
+        "docs/ci/standalone-ci-plan.md"
+      ]
+    },
+    {
+      "number": 1,
+      "head": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+      "base": "11811264a308d406cb612aefa1dad40818675e5e",
+      "head_ref": "codex/preserve-markdown-source",
+      "contains_accepted": false,
+      "accepted_vs_proposal_counts": [
+        "5",
+        "30"
+      ],
+      "scope_paths": [
+        ".github/workflows/eta-mu-review.yml",
+        "README.md",
+        "docs/cli.md",
+        "package.json",
+        "src/rheos/backend/domain/compose.cljs",
+        "src/rheos/backend/domain/task_edit.cljc",
+        "src/rheos/backend/domain/task_edit.cljs",
+        "src/rheos/backend/extern/content_parser.cljs",
+        "src/rheos/backend/extern/yaml.cljs",
+        "src/rheos/backend/infra/agent_tools.cljs",
+        "src/rheos/backend/infra/content_parser.cljs",
+        "src/rheos/backend/infra/http_server.cljs",
+        "src/rheos/backend/infra/task_create.cljs",
+        "src/rheos/backend/infra/task_edit.cljs",
+        "src/rheos/backend/infra/task_store.cljs",
+        "src/rheos/backend/infra/task_writeback.cljs",
+        "src/rheos/backend/infra/watcher.cljs",
+        "src/rheos/backend/law/frontmatter.cljc",
+        "src/rheos/backend/shape/content_parser.cljc",
+        "src/rheos/backend/shape/content_parser.cljs",
+        "test/rheos/backend/domain/compose_test.cljs",
+        "test/rheos/backend/domain/task_edit_test.cljc",
+        "test/rheos/backend/infra/task_create_test.cljs",
+        "test/rheos/backend/infra/task_edit_test.cljs",
+        "test/rheos/backend/infra/task_store_test.cljs",
+        "test/rheos/backend/infra/task_writeback_test.cljs",
+        "test/rheos/backend/infra/watcher_test.cljs",
+        "test/rheos/backend/shape/content_parser_test.cljs",
+        "test/rheos/backend/shape/frontmatter_serialization_test.cljc"
+      ]
+    }
+  ],
+  "personal_main": "11811264a308d406cb612aefa1dad40818675e5e",
+  "accepted": "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+  "ahead_behind": {
+    "fork_only": 0,
+    "upstream_only": 5
+  },
+  "delta_paths": [
+    ".github/fixtures/rheos-evidence-caller.test.mjs",
+    ".github/workflows/eta-mu-evidence-review.yml",
+    ".\u03b7\u03bc/comment-rendering-verification.md",
+    ".\u03b7\u03bc/receipts.edn",
+    ".\u03b7\u03bc/session-mycology/ledger.md",
+    "docs/cli.md",
+    "src/rheos/backend/shape/content_parser.cljs",
+    "test/rheos/backend/infra/task_edit_test.cljs",
+    "test/rheos/backend/shape/comment_fixtures.cljs",
+    "test/rheos/backend/shape/content_parser_test.cljs"
+  ],
+  "delta_bytes": 58283,
+  "delta_sha256": "8b5a96d17a25afd0fa78943912bb74c627f278253302052529875445bfa84588",
+  "merged_origin_PR": 2,
+  "merged_origin_head": "ab6b227becd8585742b5130df9ae624d8744928e",
+  "accepted_commits": [
+    "ef3c4abf1ea75199486f693e9470df3fec88dd49",
+    "ab6b227becd8585742b5130df9ae624d8744928e",
+    "8f54da094a9e9156c6a31d3d06b322a4ad947444",
+    "66e8b67951971af541503c4a556c5645eaa727c0",
+    "2ec344f26f2b5ded1df457bd409e64b6863728b9"
+  ],
+  "publication_recommendation": "DRAFT only, generic blocked, auto-merge off; READY trust boundary not qualified",
+  "purpose": "terminal accepted-upstream synchronization; no feature deployment"
+}
