@@ -8,6 +8,7 @@
             [rheos.backend.infra.task-edit :as task-edit]
             [rheos.backend.infra.task-store :as task-store]
             [rheos.backend.infra.content-parser :as content-parser]
+            [rheos.backend.shape.content-parser :as content-shape]
             [rheos.backend.infra.watcher :as watcher]))
 
 (defn- tmp-dir []
@@ -172,7 +173,8 @@
         header (str "\uFEFF--- \t\r\nuuid: complex\r\n"
                     "title: 'Quotes \"and\" C:\\work'\r\nsummary: |\r\n  Line one\r\n  Line two\r\n"
                     "metadata: &shared\r\n  values: [3, true, null]\r\ncopy: *shared\r\n--- \r\n")
-        raw (str header "\r\nBody  \r\n")
+        body "    code begins here  \r\n\r\nBody  \r\n\tlast line\t \r\n\r\n"
+        raw (str header body)
         project {:id "test" :tasks-dir dir :meta {}}
         task {:uuid "complex" :source-path task-path}
         captured (atom [])
@@ -196,7 +198,10 @@
                                                 (str "write-id: " (js/JSON.stringify (:write-id frontmatter))
                                                      "\r\n--- \r\n")))
             "only the new write-id changes the original YAML header")
-        (is (= [{:type "body" :content "Body"} {:type "comment" :content "Reviewed"}]
+        (is (str/starts-with? (:body (content-shape/frontmatter-source after)) body)
+            "the real write retains every existing body byte, including leading code indentation and CRLF")
+        (is (= [{:type "body" :content "code begins here  \n\nBody  \n\tlast line"}
+                {:type "comment" :content "Reviewed"}]
                (:sections parsed)))
         (is (= 1 (count comment-events)))
         (is (= "Reviewed" (:text (first comment-events))))

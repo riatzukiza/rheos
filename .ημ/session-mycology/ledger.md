@@ -118,3 +118,18 @@
 - Preserve original source/deletions and immutable ledger prefixes, inspect shared-path merges, and retain both workflow gate sets. Correct private fixture framing failures without claiming product regressions.
 - Local combined product/JVM/releases and bounded workflow branches pass; hosted full-head execution/review, writer/parity/release and B1/B2/B3 remain required.
 - GoalACTIVE/heartbeatPAUSED; no board/runtime/maker/owner/publication change, scope expansion or spore.
+
+## 2026-10-08T12:32:43.625Z — source writer publication and truthful receiver review
+
+- Receipt `cephalon-rheos1-published-integration-and-receiver-commented-source-20261008`; provisional efficiency0.81, friction0.27, skill-candidate0.10.
+- Preserve originals and satisfy the reviewer’s explicit description alternative; actual COMMENTED scope supplies findings, not approval. Verify hosted artifact contents independently of status labels.
+- Ordinary source integration and ten hosted gates advance the selected prerequisite. Reuse pending review handles and recapture actual stale metadata only through the existing producer. Keep current quota/policy evidence separate from convergence.
+- GoalACTIVE/heartbeatPAUSED; no B1/B2/B3, board/runtime/maker/owner/publication change or spore.
+
+## cephalon-rheos1-comment-source-preservation-red-20261008
+
+- Evidence: `.ημ/review-evidence/rheos1-comment-source-preservation-RED-20261008.json` SHA256 `9bdee3ae35f97334fd6b8566c1a91109b6f7a6921ab6b0f11e0a57cfe21a2620`; native review5456587835/root4218934107.
+- Actual final Node RED214/1760/18fail0error and JVM4/54/17fail0error. Existing body reconstruction is destructive; real write-id/event readback assertions remain. Initial tool selection and test-range/syntax mistakes were corrected and retained separately.
+- Friction p=0.43; efficiency p=0.78; skill-candidate p=0.20. No spore incubated or promoted.
+- Preserve history through fresh appends. No runtime, board, approval or milestone completion claim.
+- Receipt guard rejected an initial timestamp spelling before writing; corrected the new row to three-digit UTC Z. Existing rows and validator remain unchanged.
