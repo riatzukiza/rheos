@@ -10,6 +10,7 @@ epic: "rheos-issue-3-relationship-authoring"
 parent: "rheos-issue-3-relationship-authoring"
 dependency: "rheos-issue-3-relationship-writer"
 created_at: "2026-10-06"
+write-id: "1791479227871-0.wsa2kye35pae6gowisb"
 ---
 
 # Prove relationship parity, concurrent admission and preserved history
@@ -86,12 +87,24 @@ hosted job IDs. Replay and relationship interpretation use Rheos's canonical
 code. Native planning review and lawful readiness precede these implementation
 tests; this incoming card supplies neither.
 
-Fresh review must assess whether the existing provisional 5-point parity
-estimate covers this explicit admission matrix. Required additional work is
-reported against the fixed consumer milestone before selection.
+The fresh proposal retains this story at 5 points: two for the compiled
+CLI/HTTP/MCP matrix using shared fixture data, two for independent-process
+races and partial effects with immutable-prefix checks, and one for consumed
+package identity plus native admission readback. Existing test and compiled
+surface seams are reuse inputs, not evidence that the new cases already pass.
+Fresh review must assess this breakdown and the explicit admission matrix.
+Required additional work is reported against the fixed consumer milestone
+before selection. The writer must actually satisfy its predecessor obligation;
+its being Ready is not completion evidence for this successor.
 
 ## Risks
 
 In-process locks do not serialize two CLI processes. File-only success can omit
 an immutable fact, while reused fixture roots can contaminate another lane.
 Explicit inter-process and recovery evidence is required to close those gaps.
+
+
+---
+Fresh planning proposal after qualified PR7 merge54ae39a598fe813ddea7f19b19cb4122a907d060: retain this existing parity story at5points, pending current-head native planning review. Breakdown within this card:2 for compiled CLI/isolated HTTP/MCP accepted/refused/create/edit/read/transition matrices using shared fixture data;2 for real independent-process graph races, predecessor changes during command gates and classified file/event failure with immutable prefix proof;1 for consumed immutable package/bundle identity and repeated native admission readback. Reuse the existing test/compiled-surface seams, but do not call unexecuted cases passing or treat browser tests as scope. This follows the writer; it must not be made Ready merely because its predecessor is itself Ready. Incoming remains truthful; source tests/local candidate alone do not authorize character implementation.
+
+---

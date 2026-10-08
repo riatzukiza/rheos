@@ -1,0 +1,68 @@
+{
+  "schema": "cephalon.observed-command-output-transcription/v1",
+  "epistemic_tier": "observed",
+  "observed_at": "2026-10-08T17:39:11.063Z",
+  "source": "Actual native GitHub review/inline/run/artifact, full captured attempt read and independent Git comparison; this transcription is not rawREST or provider approval",
+  "repository": "riatzukiza/rheos",
+  "pr": 8,
+  "reviewed_head": "fcee7c1dd8499240cf38dfb43cb8737482816a47",
+  "base": "54ae39a598fe813ddea7f19b19cb4122a907d060",
+  "native_review": {
+    "id": 5460549405,
+    "login": "eta-mu-ai[bot]",
+    "state": "COMMENTED",
+    "submitted_at": "2026-10-08T17:32:30Z",
+    "approval_credit": 0,
+    "whole_body_equals_captured_submission": true,
+    "raw_review_list_sha256": "8c98e40fadf835e5f86eb5aafc3b2abc738ff3677a2f288ea01f84371b36a6e0"
+  },
+  "finding": {
+    "root": 4222178580,
+    "thread": "PRRT_kwDOU4Vf-c6qetOA",
+    "review_line": 124,
+    "native_severity": "low/non-blocking",
+    "action": "Verified wrong preceding-paragraph reference; corrected pointer and explicitly historical 13/3-5-5/5-5 estimates, plus related original-epic verification claims; no rejected/deferred finding"
+  },
+  "artifact": {
+    "id": 11567527833,
+    "zip_bytes": 17331,
+    "sha256": "46e29e605397df1251e9d2545a6b826127e6c2933bd082f1f289e1095c0e79a6",
+    "six_files_fully_read": true,
+    "input_verified_before_after": true,
+    "full_diff_bytes": 85487,
+    "full_diff_sha256": "bcedf717dc1a8b555b4b35597a876d114cdbc1787c81d1fc3e1f55b58b3f9e37",
+    "actual_Git_equal": true,
+    "chunks_delivered_assessed": 12,
+    "contiguous_UTF16_end": 85305,
+    "all_actual_UTF8_bytes_covered": true,
+    "recovery_attempts": 1,
+    "attempt_exit_code": 0
+  },
+  "hosted": {
+    "run": 37814778535,
+    "conclusion": "SUCCESS",
+    "review_job": 113441542344,
+    "started_at": "2026-10-08T17:15:03Z",
+    "completed_at": "2026-10-08T17:32:39Z",
+    "observed_job_duration_seconds": 1056,
+    "duration_is_not_future_bound": true,
+    "required_evidence": "All10 gates0/220tests2043assertions twice/lint0-0/builds0compilerwarnings at reviewed fcee; no tests executed by model shell"
+  },
+  "local_fix_checks": {
+    "diff_sha256": "21a97ebaf71001cca210a60ce27f585fdd125c24fd31f3325fa11157d5897b55",
+    "diff_hygiene_pass": true,
+    "all_card_frontmatter_identical": true,
+    "native_epic_comment_tail_identical": true,
+    "all_prior_journal_prefixes_identical": true,
+    "writer_parity_contract_files_identical": true,
+    "no_new_tests_for_prose_only_fix": true
+  },
+  "limits": [
+    "COMMENTED with confirmed finding supplies no approval; fresh head must receive own required checks and full planning review",
+    "Reviewer arithmetic27455+1135=28590 is historical first-append checkpoint; committed fcee whole reflection is29707 with2252-byte suffix/16lines",
+    "Two model shell attempts denied and PROCESS.md read absent; subsequent permitted summary/log/full-file reads succeeded, no declared omitted changed input",
+    "External unchanged Foresight milestone links not staged/not independently read; JSON observation hashes not independent provider execution",
+    "Nonfrozen/no-lockfile dependency resolution not reproducibility proof",
+    "No Ready/RED/implemented admission/B1/B2/B3/runtime/owner/PM2/cloud/model/publication/spore change; preserve unrelated deps and root dirt"
+  ]
+}

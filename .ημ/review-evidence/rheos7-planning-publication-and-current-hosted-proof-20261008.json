@@ -1,0 +1,161 @@
+{
+  "epistemic_tier": "observed-command-output-transcription",
+  "observed_at": "2026-10-08T16:53:55.771Z",
+  "repository": "riatzukiza/rheos",
+  "pull_request": 7,
+  "url": "https://github.com/riatzukiza/rheos/pull/7",
+  "head": "5d0348c74c99523b9ff0cb24f6702b44c5001abb",
+  "base": "e29551fefe5aac3c69568412724d4810bf64a5a9",
+  "branch": "codex/rheos-dependency-admission-plan",
+  "both_repositories_personal": true,
+  "tracking_and_push_remote": "personal",
+  "ordinary_history": true,
+  "source_test_workflow_bytes_equal_merged_base": true,
+  "opening_description": {
+    "bytes": 6302,
+    "sha256": "809fb448d5007b712a7b67bd41b4b0bbf0680583efec7ea66b0588c31994b242",
+    "whole_body_readback_equal": true,
+    "auto_merge": null
+  },
+  "stage_history": {
+    "id": 6064677404,
+    "native_actor": "riatzukiza",
+    "created_at": "2026-10-08T16:44:49Z",
+    "updated_at": "2026-10-08T16:44:49Z",
+    "body_readback_equal": true,
+    "head_bound_planning_declaration_only": true,
+    "request_or_review_credit": false
+  },
+  "coderabbit_request": {
+    "id": 6064720260,
+    "created_at": "2026-10-08T16:47:19Z",
+    "body_bytes": 3273,
+    "body_sha256": "0faa61fe79231a2dcd10b848996467e6e858677a901db0d9a841b753f7cdaac3",
+    "raw_bytes": 4964,
+    "raw_sha256": "42e2e3036cb5263992c4c5afe94786f4c7f6e381ab1cc56bde9060912f077696",
+    "all16changed_paths_named": true,
+    "full_receipt_reflection_event_and_evidence_suffix_scope_named": true,
+    "native_prior_rate_limit_id": 6064658313,
+    "prior_rate_limit_updated_at": "2026-10-08T16:43:41Z",
+    "native_next_included_minutes": 3,
+    "canonical_request_after_known_expiry": true,
+    "cli_exit": 0,
+    "bot_trigger_reply": 6064722247,
+    "bot_reply_updated_at": "2026-10-08T16:47:26Z",
+    "bot_reply_state": "Full review triggered",
+    "completed": false,
+    "paid_or_duplicate_request": false
+  },
+  "codex": {
+    "native_account_quota_id": 6064656088,
+    "updated_at": "2026-10-08T16:43:33Z",
+    "reset": "UNKNOWN",
+    "approval_or_review_credit": false,
+    "no_duplicate_invite": true
+  },
+  "hosted": {
+    "run": 37811031608,
+    "observed_run_state": "in_progress",
+    "deterministic_job": 113427610483,
+    "deterministic_conclusion": "success",
+    "muse_job": 113427610941,
+    "muse_conclusion": "success",
+    "mimo_job": 113428342727,
+    "mimo_observed_state": "in_progress",
+    "mimo_started_at": "2026-10-08T16:45:13Z",
+    "mimo_cap_minutes": 45,
+    "artifact_id": 11565640370,
+    "artifact_zip_bytes": 68511,
+    "artifact_zip_sha256": "762be95c8e72908b6e8f8ea4404087a5b3e33a6d6757818ce44d0dd8983d0c81",
+    "exact_native_artifact": true,
+    "checkout_expected_executed_completion_head_exact": true,
+    "initial_final_clean": true,
+    "all10gates_attempted_exit0": {
+      "diff_stat": 0,
+      "diff_hygiene": 0,
+      "tool_versions": 0,
+      "generated_path_policy": 0,
+      "install": 0,
+      "bootstrap": 0,
+      "lint": 0,
+      "test": 0,
+      "build": 0,
+      "release_outputs": 0
+    },
+    "actual_node": "v22.20.0",
+    "actual_pnpm": "10.14.0",
+    "actual_java": "Temurin21.0.12.1",
+    "actual_kondo": "2025.10.23",
+    "lint_errors": 0,
+    "lint_warnings": 0,
+    "lint_infos": 8,
+    "actual_compiled_tests": {
+      "tests": 220,
+      "assertions": 2043,
+      "failures": 0,
+      "errors": 0,
+      "executed_twice": true
+    },
+    "test_and_four_release_compiler_warnings": 0,
+    "release_outputs_nonempty": true,
+    "observed_hosted_install": "--no-frozen-lockfile --no-lockfile; not a reproducible-dependency proof",
+    "separate_notices": [
+      "one deprecatedglob subdependency",
+      "missing source-map-support after tests; compiler warnings0"
+    ],
+    "manifest": {
+      "schema": "open-hax.review-input/v1",
+      "base_sha": "e29551fefe5aac3c69568412724d4810bf64a5a9",
+      "head_sha": "5d0348c74c99523b9ff0cb24f6702b44c5001abb",
+      "diff_base_sha": "e29551fefe5aac3c69568412724d4810bf64a5a9",
+      "full_diff": {
+        "path": "basehead.diff",
+        "bytes": 103239,
+        "sha256": "e7d3eafeb57a2a69ec53191fc81236fbc33688bbabb28e1d283cf699f4b86580"
+      },
+      "preview": {
+        "path": "pr.diff",
+        "limit_bytes": 300000,
+        "truncated": false
+      },
+      "provenance": {
+        "repository": "riatzukiza/rheos",
+        "pull_request": "7",
+        "run_id": "37811031608",
+        "run_attempt": "1",
+        "workflow_sha": "7be11409c2d608e6cf6a23beab6cfc8033e31671",
+        "workflow_ref": "riatzukiza/rheos/.github/workflows/eta-mu-review.yml@refs/pull/7/merge"
+      }
+    },
+    "full103239byte_diff_sha256": "e7d3eafeb57a2a69ec53191fc81236fbc33688bbabb28e1d283cf699f4b86580",
+    "full_diff_equals_actual_git": true,
+    "preview_equals_full": true,
+    "full_log_bytes": 27944,
+    "full_log_sha256": "a39691fa2eac5a6a91792e554377a7d6621ef9c4c5025f4a944608332fa75538"
+  },
+  "canonical_status": {
+    "stage": "planning",
+    "coderabbit": "pending",
+    "checks_pass": 2,
+    "threads": 0,
+    "unresolved": 0,
+    "approvals": [],
+    "completed_cohorts": 0,
+    "soft_minimum": 5,
+    "available_participants": [
+      "coderabbit",
+      "mimo"
+    ],
+    "gate": "BLOCKED",
+    "status_exit": 0,
+    "status_stdout_sha256": "92e0612477110fc70a98a86c192f191ef432a8d6a634112692e045c436e8dc17"
+  },
+  "limits": [
+    "No approval transferred from merged PR1/PR4. Required current review completion and all findings/checks remain obligations.",
+    "Writer/parity Incoming5/5 and epicIncoming13 remain provisional; no Ready, accepted re-estimate, new selected inventory or source implementation.",
+    "No installed dependency admission or B1/B2/B3 delivery. Native pure-contract Done is bookkeeping of its qualified limited scope.",
+    "Localspace17728794624bytes below20GiB: no additional fullcopy/install. Downloaded only68KB required hosted proof.",
+    "Initial metadata reader erroneously invoked git HEAD and exited1 before posting stage. Preserved actual opening snapshot, corrected to git rev-parse, exact fresh native/local head/base and full bodyreadback succeeded.",
+    "No runtime, maker, PM2, owner, cloud, credentials, publication, paid usage or spore changes."
+  ]
+}

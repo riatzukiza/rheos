@@ -1,0 +1,93 @@
+{
+  "schema": "cephalon.observed-command-output-transcription/v1",
+  "epistemic_tier": "observed",
+  "observed_at": "2026-10-08T17:05:36.496398+00:00",
+  "source": "actual native GitHub responses, canonical gate and independently compared Git blobs; transcription is not raw REST or provider approval",
+  "repository": "riatzukiza/rheos",
+  "pr": 7,
+  "head": "5d0348c74c99523b9ff0cb24f6702b44c5001abb",
+  "base": "e29551fefe5aac3c69568412724d4810bf64a5a9",
+  "merged": true,
+  "merged_at": "2026-10-08T17:02:51Z",
+  "merge": "54ae39a598fe813ddea7f19b19cb4122a907d060",
+  "parents": [
+    "e29551fefe5aac3c69568412724d4810bf64a5a9",
+    "5d0348c74c99523b9ff0cb24f6702b44c5001abb"
+  ],
+  "tree": "44f3e77987da99661d6bc527b674c445651a59cb",
+  "exact_reviewed_tree_and_diff": true,
+  "full_diff_bytes": 103239,
+  "diff_sha256": "e7d3eafeb57a2a69ec53191fc81236fbc33688bbabb28e1d283cf699f4b86580",
+  "canonical": {
+    "checks": "3PASS",
+    "threads": 0,
+    "unsettled": 0,
+    "available_planning_rounds": 1,
+    "soft_minimum": 5,
+    "approving_agents": [
+      "coderabbit",
+      "mimo"
+    ],
+    "native_account_quota": 6064656088,
+    "reset": "UNKNOWN",
+    "gate": "PASS",
+    "apply_exit": 0,
+    "method": "merge"
+  },
+  "coderabbit": {
+    "request": 6064720260,
+    "completion": 6064722247,
+    "summary": 6064658313,
+    "updated_summary": "2026-10-08T16:54:18Z",
+    "updated_reply": "2026-10-08T16:54:24Z",
+    "selected_inputs": 16,
+    "no_actionable": true,
+    "kind": "explicit completed issue verdict; not formal APPROVED",
+    "raw_summary_sha256": "5ae868302c2fde1f27cdbb04260bcb24a0f7564446778281089db28a03940943"
+  },
+  "mimo": {
+    "review": 5460076318,
+    "state": "APPROVED",
+    "submitted_at": "2026-10-08T16:52:07Z",
+    "native_summary_equals_authenticated_submission": true,
+    "complete_pages": 14,
+    "contiguous_utf16_units": 102959,
+    "utf8_bytes": 103239,
+    "artifact": 11565193541,
+    "artifact_bytes": 14403,
+    "artifact_sha256": "36968d12bfa96008c37ff109bfcec252f22294514879fddb3f0cdb1dc0fcd4cf",
+    "source_count_clarification": "intro says seven JSON; actual eight. All16 inputs/pages delivered+assessed; original body retained.",
+    "limits": [
+      "external consumer links not independently staged/read by reviewer",
+      "historical PR1 hashes operator proof, not independent executed evidence",
+      "estimates/policy explicit beforeRED decision remains required"
+    ]
+  },
+  "hosted": {
+    "run": 37811031608,
+    "conclusion": "SUCCESS",
+    "completed_at": "2026-10-08T16:52:18Z",
+    "mimo_observed_duration_seconds": 415,
+    "cap_seconds": 2700,
+    "deterministic_all10gates_attempted_exit0": true,
+    "tests": "220tests2043assertions0fail0errors twice",
+    "lint": "0errors0warnings8existinginfos",
+    "builds": "fourrelease0compilerwarnings",
+    "dependency_limit": "nonfrozen/no-lockfile hosted resolution not reproducible-dependency proof"
+  },
+  "native_explanation": 6064958721,
+  "body_readback": {
+    "bytes": 9004,
+    "sha256": "37e1eaa4108d93ea097b9af10fa35fa416d57152290a5f3e9d8dff537b2b0ad9",
+    "full_readback_equal": true,
+    "prior_body_prefix_preserved": true
+  },
+  "limits": [
+    "writer/parity Incoming, implementation and native predecessor admission unavailable",
+    "B1 B2 B3 unimplemented/unverified",
+    "no installed or runtime proof",
+    "no duplicate request, paid usage, history rewrite, spore or runtime mutation",
+    "operator cat/rg read failures used nonexistent pre-conversion .cljs/frontmatter and old cli paths; corrected using actual .cljc/infra sources, not production failures",
+    "private filename T1706/T1708 labels are approximate operation identifiers; actual native/command timestamps above control"
+  ]
+}

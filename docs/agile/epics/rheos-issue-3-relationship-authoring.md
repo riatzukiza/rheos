@@ -4,9 +4,10 @@ title: "Admit UUID relationships through canonical Rheos authoring"
 type: "epic"
 status: "incoming"
 priority: "P1"
-points: "13"
+points: "16"
 labels: "relationships, cli, ledger, planning"
 created_at: "2026-10-06"
+write-id: "1791479229481-0.qd9md44myxvjj9ft2b"
 ---
 
 # Admit UUID relationships through canonical Rheos authoring
@@ -43,10 +44,10 @@ complete these proposed stories in order:
 1. `rheos-issue-3-relationship-contract`: portable shapes and graph laws, 3 points.
 2. `rheos-issue-3-relationship-writer`: canonical creation/edit/read adapters
    and dependency-aware admission through the existing FSM transition path,
-   provisionally 5 points, dependent on the contract story.
+   proposed 8 points, dependent on the contract story.
 3. `rheos-issue-3-relationship-parity`: compiled CLI/HTTP/MCP, server-read
    projections, lifecycle admission, history and concurrent-write evidence,
-   provisionally 5 points, dependent on the writer story.
+   proposed 5 points, dependent on the writer story.
 
 HTTP acceptance ends at canonical server reads and projections that preserve
 accepted references. Browser-client code, a new UI editor and end-to-end browser
@@ -57,11 +58,22 @@ capacity assignments. The dependency UUIDs on the new Markdown stories are
 first-class planning input; their presence does not demonstrate that the
 currently unsupported edit operation admitted them.
 
-Fresh planning review must assess whether the remaining 5/5 split is still
-adequate. The 13-point frontmatter is retained as historical/provisional input,
-not an accepted estimate for the amended scope. A required additional story or
-capacity change must be reported against the consumer's fixed milestone before
-it is selected; this amendment supplies no silent inventory expansion.
+The explicit fresh proposal is 3/8/5, totaling 16 points. Rheos recorded the
+writer's estimate change and this aggregate; the original 13-point estimate
+remains in history. The three added estimated points have been reported against
+the consumer's fixed milestone as existing prerequisite capacity, without a
+new story or behavioral inventory item. Native planning review must assess the
+within-card breakdown below and the admission policy before readiness or RED.
+An additional story or further capacity change still requires an explicit
+report before selection; this proposal supplies no silent expansion.
+
+The writer's eight points comprise three for complete scoped reads and
+creation/edit/read integration, three for FSM admission and the shared writer
+reservation, and two for boundary/error handling and refusal/no-op evidence.
+The parity story's five comprise two for the compiled public-surface matrix,
+two for independent-process races and partial effects, and one for consumed
+package identity plus native admission readback. These are estimates of the
+existing stories, not additional cards or claims of completed implementation.
 
 ## Non-goals
 
@@ -99,11 +111,15 @@ their own scopes.
 
 ## Verification
 
-This documentation change adds manually authored incoming cards, a supported
-Rheos input. It changes no engine source, existing card, configuration or tracked
-event. Current verification is source inspection, exact changed-path/prefix
-checks and native readback when available. Future executable acceptance belongs
-to the stories; no implementation or hosted pass is claimed here.
+The initial planning revision added manually authored incoming cards, a
+supported Rheos input, without changing engine source, existing cards,
+configuration or tracked events. Later revisions added the qualified portable
+contract and amended these existing cards through native Rheos comments and
+estimate writes, with their tracked event appends. Those executed operations
+are historical evidence; they do not establish writer integration or lifecycle
+admission. Current planning verification uses source inspection, exact
+changed-path/prefix checks and native readback. Future writer/parity acceptance
+belongs to the remaining stories; no implemented admission is claimed here.
 
 ## Risks
 
@@ -111,3 +127,9 @@ A whitelist-only patch can admit dangling/cyclic links, and the current task
 projection discards relationship fields. Validation against a stale board can
 let concurrent edits violate a graph that each isolated request accepted.
 Writer, event and replay evidence must address these boundaries explicitly.
+
+
+---
+Fresh planning capacity proposal after qualified PR7 merge54ae39a598fe813ddea7f19b19cb4122a907d060: existing three-story scope becomes3+8+5=16points instead of the prior provisional13, pending current-head native planning review. The portable contract3 is already qualified and Done; writer8 and parity5 remain Incoming. This explicitly reports3additional estimated points for an already selected Cephalon prerequisite; no new story or B1-B3 inventory expansion is selected. The proposal and within-card breakdown address the estimate question left unanswered by the prior no-actionable reviews. Do not infer implementation readiness from PR7's planning merge. Retain supported Markdown input and the sole native Rheos transition/writer/event authority.
+
+---
