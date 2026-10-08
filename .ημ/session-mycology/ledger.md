@@ -133,3 +133,10 @@
 - Friction p=0.43; efficiency p=0.78; skill-candidate p=0.20. No spore incubated or promoted.
 - Preserve history through fresh appends. No runtime, board, approval or milestone completion claim.
 - Receipt guard rejected an initial timestamp spelling before writing; corrected the new row to three-digit UTC Z. Existing rows and validator remain unchanged.
+
+## cephalon-rheos1-comment-source-preservation-green-20261008
+
+- Native root4218934107; RED `3c92255ea2fc6c708364f0d808bdd1ad93ee6103`. Final Node214/1760 twice and JVM4/54 pass; lint0/0/four releases0warnings. Source-offset insertion preserves bytes, including indented code, CRLF and final fences. Existing roundtrip tests caught firstGREEN duplicated spacing and remain unchanged.
+- Evidence: `.ημ/review-evidence/rheos1-comment-source-preservation-GREEN-20261008.json` SHA256 `efff7a40781fd60443e6afd9c219e4a3beca0216119f7780f34154cbfbb38853`. Prior7d native MiMo5456765945APPROVED remains historical after the coming push; source scope/notes are retained, no synthetic new-head approval.
+- Efficiency p=0.84; friction p=0.30; skill-candidate p=0.20. No spore incubated or promoted.
+- Receipts stay append-only; milestoneB1/B2/B3, native readiness/deployment remain unproved.

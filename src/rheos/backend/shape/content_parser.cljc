@@ -155,19 +155,41 @@
                (str/join "\n" (map (fn [[key value]] (str key ": " value)) entries))
                "\n---\n\n" body)))))
 
+(defn- comment-insertion
+  "Locate the final comment boundary using the section delimiter grammar.
+   Retain source offsets; never render existing sections from decoded text."
+  [body]
+  (let [{:keys [open? fence]}
+        (reduce (fn [{:keys [offset] :as state} line]
+                  (let [end (+ offset (count line))]
+                    (cond-> (assoc state :offset end)
+                      (= "---" (str/trim line))
+                      (assoc :open? (not (:open? state))
+                             :fence {:start offset :end end}))))
+                {:offset 0 :open? false}
+                (re-seq #"[^\n]*(?:\n|$)" body))
+        closing? (and fence (not open?)
+                      (str/blank? (subs body (:end fence))))]
+    {:offset (if closing? (:start fence) (count body))
+     :open? open?
+     :closing? (boolean closing?)}))
+
 (defn append-comment
-  "Render a comment using already decoded task data and the original source frame."
-  [raw parsed comment-text]
-  (let [sections (:sections parsed)
-        last-section (last sections)
-        updated (if (= "comment" (:type last-section))
-                  (assoc-in parsed [:sections (dec (count sections)) :content]
-                            (str (:content last-section) "\n\n" comment-text))
-                  (update parsed :sections conj {:type "comment" :content comment-text}))]
-    (if-let [{:keys [opening source closing]} (frontmatter-source raw)]
-      ;; Only the section body is reconstructed. Retain valid YAML spelling,
-      ;; typed extension values, comments and aliases for write-id injection.
-      (str opening source closing
-           (if (str/ends-with? closing "\n") "\n" "\n\n")
-           (serialize-sections (:sections updated)))
-      (serialize-task-content updated))))
+  "Insert a comment without rewriting any existing Markdown or YAML bytes.
+   A closed final comment receives text before its closing fence; an open one
+   receives text at EOF. New delimiter spelling follows the existing newline."
+  [raw _parsed comment-text]
+  (let [body (or (:body (frontmatter-source raw)) raw)
+        {:keys [offset open? closing?]} (comment-insertion body)
+        insertion (+ (- (count raw) (count body)) offset)
+        prefix (subs raw 0 insertion)
+        newline (or (re-find #"\r?\n" body) (re-find #"\r?\n" raw) "\n")
+        separator (str newline newline)]
+    (str prefix
+         ;; A serialized comment already leaves a blank line before its fence.
+         ;; Keep that source spacing rather than doubling it on every append.
+         (when-not (re-find #"(?:\r?\n){2}$" prefix) separator)
+         (when-not (or open? closing?) (str "---" newline))
+         comment-text separator
+         (when-not closing? "---")
+         (subs raw insertion))))
