@@ -1,0 +1,197 @@
+{
+  "evidence_type": "observed-native-cli-command-results",
+  "observedAt": "2026-10-08T20:53:23.024499Z",
+  "parent_HEAD": "22e15295e2ee15a6400d65a32a290c3f860c7ecd",
+  "source_state": "GREEN worktree above RED commit; not an installed release",
+  "cli": {
+    "path": "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+    "bytes": 2236725,
+    "sha256": "76251ae169560fb43a2239998ac117297c7f4f208874fe06b8d1463d3f692f3c"
+  },
+  "source_inputs": {
+    "src/rheos/backend/infra/cli.cljs": {
+      "bytes": 32253,
+      "sha256": "ca4b5db84e4670d80c74b9361f6208ee5bca41e5efb450de13dfa5b331709b55"
+    },
+    "src/rheos/backend/infra/task_create.cljs": {
+      "bytes": 9619,
+      "sha256": "22926832c76a71a57b3cad2f71f27f7da25de44c0dbecda9ef8f9594d113e6a4"
+    },
+    "src/rheos/backend/infra/http_server.cljs": {
+      "bytes": 22884,
+      "sha256": "d667d2d4afa59573232fce26f09281a00570491699a9a9be815803f74c77db70"
+    }
+  },
+  "fixture": {
+    "root": "/tmp/rheos-writer-boundary-current-k2dhyfml",
+    "config": "{:tasks-dir \"/tmp/rheos-writer-boundary-current-k2dhyfml/board\" :fsm {:extends :promethean :build-gate-commands [\"/home/err/.volta/tools/image/node/22.20.0/bin/node /tmp/rheos-writer-boundary-current-k2dhyfml/gate.cjs\"]}}\n",
+    "config_sha256": "5cc61524cab00c1e9bb067b033879bec86c58d4b4ad6ed194dedcfd2b7a0615e",
+    "source_cards": {
+      "subject": "---\nuuid: subject\ntitle: Subject\ntype: task\nstatus: in_progress\ndependency: predecessor\n---\n\nRetained body.\n",
+      "predecessor": "---\nuuid: predecessor\ntitle: Predecessor\ntype: task\nstatus: done\n---\n\nPredecessor body.\n"
+    },
+    "gate_script": "const fs=require('node:fs');fs.writeFileSync(\"/tmp/rheos-writer-boundary-current-k2dhyfml/entered\",'entered');const start=Date.now();const timer=setInterval(()=>{if(fs.existsSync(\"/tmp/rheos-writer-boundary-current-k2dhyfml/release\")){clearInterval(timer);process.exit(0);}if(Date.now()-start>25000){clearInterval(timer);process.exit(2);}},25);\n"
+  },
+  "commands": [
+    {
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "add-comment",
+        "subject",
+        "--text",
+        "Native prefix seed",
+        "--config",
+        "/tmp/rheos-writer-boundary-current-k2dhyfml/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T20:53:19.556661Z",
+      "finishedAt": "2026-10-08T20:53:20.057196Z",
+      "code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"uuid\": \"subject\",\n  \"comment\": \"Native prefix seed\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "frontmatter",
+        "subject",
+        "--set",
+        "dependency=predecessor",
+        "--json",
+        "--config",
+        "/tmp/rheos-writer-boundary-current-k2dhyfml/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T20:53:20.563608Z",
+      "finishedAt": "2026-10-08T20:53:21.084545Z",
+      "code": 3,
+      "stdout": "{\n  \"reservation-path\": \"/tmp/rheos-writer-boundary-current-k2dhyfml/board/.rheos-writer-reservation\",\n  \"kind\": \"conflict\",\n  \"ok\": false,\n  \"error\": \"Another or unresolved canonical writer owns the project reservation\"\n}\n",
+      "stderr": "rheos: Another or unresolved canonical writer owns the project reservation\n"
+    },
+    {
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "create",
+        "--title",
+        "Contender",
+        "--uuid",
+        "contender",
+        "--dependency",
+        "predecessor",
+        "--json",
+        "--config",
+        "/tmp/rheos-writer-boundary-current-k2dhyfml/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T20:53:21.084765Z",
+      "finishedAt": "2026-10-08T20:53:21.518468Z",
+      "code": 3,
+      "stdout": "{\n  \"reservation-path\": \"/tmp/rheos-writer-boundary-current-k2dhyfml/board/.rheos-writer-reservation\",\n  \"kind\": \"conflict\",\n  \"ok\": false,\n  \"error\": \"Another or unresolved canonical writer owns the project reservation\"\n}\n",
+      "stderr": "rheos: Another or unresolved canonical writer owns the project reservation\n"
+    },
+    {
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "add-comment",
+        "subject",
+        "--text",
+        "Concurrent comment",
+        "--json",
+        "--config",
+        "/tmp/rheos-writer-boundary-current-k2dhyfml/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T20:53:21.518638Z",
+      "finishedAt": "2026-10-08T20:53:21.981413Z",
+      "code": 3,
+      "stdout": "{\n  \"reservation-path\": \"/tmp/rheos-writer-boundary-current-k2dhyfml/board/.rheos-writer-reservation\",\n  \"kind\": \"conflict\",\n  \"ok\": false,\n  \"error\": \"Another or unresolved canonical writer owns the project reservation\"\n}\n",
+      "stderr": "rheos: Another or unresolved canonical writer owns the project reservation\n"
+    },
+    {
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "move",
+        "subject",
+        "--to",
+        "testing",
+        "--json",
+        "--config",
+        "/tmp/rheos-writer-boundary-current-k2dhyfml/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T20:53:21.981553Z",
+      "finishedAt": "2026-10-08T20:53:22.484906Z",
+      "code": 3,
+      "stdout": "{\n  \"reservation-path\": \"/tmp/rheos-writer-boundary-current-k2dhyfml/board/.rheos-writer-reservation\",\n  \"kind\": \"conflict\",\n  \"ok\": false,\n  \"reason\": \"Another or unresolved canonical writer owns the project reservation\",\n  \"from\": \"in_progress\",\n  \"to\": \"testing\",\n  \"uuid\": \"subject\",\n  \"error\": \"transition refused: Another or unresolved canonical writer owns the project reservation\"\n}\n",
+      "stderr": "rheos: transition refused: Another or unresolved canonical writer owns the project reservation\n"
+    },
+    {
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "move",
+        "subject",
+        "--to",
+        "review",
+        "--json",
+        "--config",
+        "/tmp/rheos-writer-boundary-current-k2dhyfml/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T20:53:20.057351Z",
+      "finishedAt": "2026-10-08T20:53:22.549202Z",
+      "code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"task\": {\n    \"labels\": [],\n    \"slug\": \"subject\",\n    \"dependency\": [\n      \"predecessor\"\n    ],\n    \"content\": \"\\nRetained body.\\n\\n\\n---\\nNative prefix seed\\n\\n---\",\n    \"type\": \"task\",\n    \"title\": \"Subject\",\n    \"source-path\": \"/tmp/rheos-writer-boundary-current-k2dhyfml/board/subject.md\",\n    \"source-revision\": \"ef9ea9dc67e8779f822c0e0966f5e426b7b75beafcd2ec08f5e0618517e01ad6\",\n    \"priority\": \"P3\",\n    \"status\": \"review\",\n    \"uuid\": \"subject\",\n    \"created-at\": \"2026-10-08T20:53:22.510Z\",\n    \"frontmatter\": {\n      \"uuid\": \"subject\",\n      \"title\": \"Subject\",\n      \"type\": \"task\",\n      \"status\": \"review\",\n      \"dependency\": \"predecessor\",\n      \"write-id\": \"1791492802512-0.r8odsvcbt5q7e1tfbo0\"\n    }\n  },\n  \"from\": \"in_progress\",\n  \"to\": \"review\"\n}\n",
+      "stderr": "▶ build-gate: /home/err/.volta/tools/image/node/22.20.0/bin/node /tmp/rheos-writer-boundary-current-k2dhyfml/gate.cjs\n"
+    },
+    {
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "read-task",
+        "subject",
+        "--config",
+        "/tmp/rheos-writer-boundary-current-k2dhyfml/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T20:53:22.549343Z",
+      "finishedAt": "2026-10-08T20:53:23.024421Z",
+      "code": 0,
+      "stdout": "{\n  \"uuid\": \"subject\",\n  \"frontmatter\": {\n    \"uuid\": \"subject\",\n    \"title\": \"Subject\",\n    \"type\": \"task\",\n    \"status\": \"review\",\n    \"dependency\": \"predecessor\",\n    \"write-id\": \"1791492802512-0.r8odsvcbt5q7e1tfbo0\"\n  },\n  \"sections\": [\n    {\n      \"type\": \"body\",\n      \"content\": \"Retained body.\"\n    },\n    {\n      \"type\": \"comment\",\n      \"content\": \"Native prefix seed\"\n    }\n  ],\n  \"source-path\": \"/tmp/rheos-writer-boundary-current-k2dhyfml/board/subject.md\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "checks": {
+    "four_independent_contenders_refused": "conflict/nonzero3",
+    "each_refusal_card_and_ledger_byte_identical": true,
+    "owner_token_unchanged": true,
+    "owner_effect_passed": true,
+    "returned_and_read_frontmatter_status_current": true,
+    "old_event_prefix_equal": true,
+    "owned_reservation_released": true
+  },
+  "before": {
+    "card": {
+      "bytes": 185,
+      "sha256": "5055ccb0928096aa010263ffea23f0bc13b89e23b9b19614dda43fc51a06acc4"
+    },
+    "ledger": {
+      "bytes": 366,
+      "sha256": "b8d9a33dda3c794edc53eccac761c2f2b48debc6234877b9f6449bfdf8c892f9"
+    }
+  },
+  "after": {
+    "card": {
+      "bytes": 182,
+      "sha256": "ef9ea9dc67e8779f822c0e0966f5e426b7b75beafcd2ec08f5e0618517e01ad6"
+    },
+    "ledger": {
+      "bytes": 751,
+      "sha256": "beea39bc3526a3d4d8c93795cfa080ee6a9e85bbce436db4ab630632ee08d8c7"
+    }
+  },
+  "limits": [
+    "Private candidate CLI proof, not installed consumer enforcement",
+    "One held command gate; not full reciprocal-cycle/HTTP/MCP parity",
+    "No live board, maker, owner, watcher or publication changed"
+  ],
+  "owned_fixture_removed": true
+}

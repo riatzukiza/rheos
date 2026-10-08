@@ -37,6 +37,8 @@
      :title (:title payload)
      :card-type (:card-type payload)
      :parent (:parent payload)
+     :epic (:epic payload)
+     :dependency (:dependency payload)
      :source-path (:source-path payload)
      :body (:body payload)
      :write-id (:write-id payload)
@@ -125,12 +127,12 @@
    rather than something only the filesystem knows.
 
    See [[rheos.backend.domain.task-create/create-task!]], the single caller."
-  [ledger board-id task-id {:keys [title card-type status parent source-path body]} write-id source]
+  [ledger board-id task-id {:keys [title card-type status parent epic dependency source-path body]} write-id source]
   (record!
    ledger
    (kanban-envelope board-id "task-created"
                     {:task-id task-id :title title :card-type card-type
-                     :status status :parent parent :source-path source-path
+                     :status status :parent parent :epic epic :dependency dependency :source-path source-path
                      :body body :source (or source "cli") :agent "eta-mu"
                      :write-id write-id})))
 

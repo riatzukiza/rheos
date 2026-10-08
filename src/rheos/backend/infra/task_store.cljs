@@ -1,11 +1,15 @@
 (ns rheos.backend.infra.task-store
   "Task loading from projected Markdown files with YAML frontmatter parsing."
   (:require ["node:fs/promises" :as fsp]
+            ["node:crypto" :as crypto]
             ["node:path" :as path]
             [clojure.string :as str]
             [rheos.backend.infra.projects :as projects]
             [rheos.backend.law.frontmatter :as law-frontmatter]
             [rheos.backend.infra.content-parser :as content-parser]
+            [rheos.backend.infra.publication :as publication]
+            [rheos.backend.domain.relationships :as relationships]
+            [rheos.backend.law.relationships :as relationship-law]
             [rheos.backend.shape.kanban :as shape]))
 
 (def status-index
@@ -39,8 +43,10 @@
           status (normalize-status (:status frontmatter))
           created-at (or (:created_at frontmatter)
                          (:createdAt frontmatter)
-                         (.toISOString (new js/Date)))]
-      {:uuid uuid
+                         (.toISOString (new js/Date)))
+          relationship-input (select-keys frontmatter relationship-law/fields)
+          normalized (relationships/normalize relationship-input)]
+      (merge {:uuid uuid
        :title title
        :slug (or (:slug frontmatter) uuid)
        :status status
@@ -48,24 +54,18 @@
        :labels labels
        :created-at created-at
        :content content
-       :source-path file-path})
+       :source-path file-path
+       :source-revision (.digest (.update (.createHash crypto "sha256") raw "utf8") "hex")
+       :frontmatter frontmatter}
+             (select-keys frontmatter [:type])
+             (if (:ok? normalized)
+               (:value normalized)
+               (assoc relationship-input :relationship-errors (:errors normalized)))))
     (catch :default err
       (let [diagnostic (or (.-message err) (str err))]
         (throw (ex-info (str "Refused card source " file-path ": " diagnostic)
-                        {:kind :refused :source-path file-path :diagnostic diagnostic}
+                        (merge (ex-data err) {:kind :refused :source-path file-path :diagnostic diagnostic})
                         err))))))
-
-(defn- ^:async is-directory? [full-path]
-  (try
-    (let [stat (await (.stat fsp full-path))]
-      (.isDirectory stat))
-    (catch :default _ false)))
-
-(defn- ^:async is-file? [full-path]
-  (try
-    (let [stat (await (.stat fsp full-path))]
-      (.isFile stat))
-    (catch :default _ false)))
 
 (defn- ^:async entry-kind
   "`:file`, `:dir`, `:link`, or nil — read with `lstat`, so a symlink reports as
@@ -80,23 +80,27 @@
         (.isDirectory st) :dir
         (.isFile st) :file
         :else nil))
-    (catch :default _ nil)))
+    (catch :default error
+      (throw (ex-info "Unavailable selected card entry"
+                      {:kind :refused :cause :incomplete-projection
+                       :source-path full-path :diagnostic (.-message error)} error)))))
 
 (declare collect-entry)
 
 (defn- ^:async collect-below
   "Markdown files below `dir`, one level at a time."
-  [dir]
+  [dir metadata-paths]
   (try
     (let [names (await (.readdir fsp dir))
           nested (await
                   (js/Promise.all
                    (clj->js
-                    (mapv #(collect-entry (path/join dir %)) names))))]
+                    (mapv #(collect-entry (path/join dir %) metadata-paths) names))))]
       (vec (apply concat nested)))
     (catch :default err
-      (js/console.error "collect error:" dir (.-message err))
-      [])))
+      (throw (ex-info "Unavailable selected card directory"
+                      {:kind :refused :cause :incomplete-projection
+                       :source-path dir :diagnostic (.-message err)} err)))))
 
 (defn- ^:async collect-entry
   "One discovered entry, classified with `lstat`.
@@ -107,12 +111,16 @@
    otherwise pull cards in from anywhere the process can read, and a link back
    to an ancestor would recurse until the process died. Neither is hypothetical:
    `stat` follows links, and this walk used it."
-  [entry-path]
-  (let [kind (await (entry-kind entry-path))]
-    (case kind
-      :file (if (str/ends-with? entry-path ".md") [entry-path] [])
-      :dir (await (collect-below entry-path))
-      [])))
+  [entry-path metadata-paths]
+  ;; Exclude only the owning project's known metadata before even lstat.
+  ;; Missing discovered cards/directories still refuse an incomplete graph.
+  (if (contains? metadata-paths (path/resolve entry-path))
+    []
+    (let [kind (await (entry-kind entry-path))]
+      (case kind
+        :file (if (str/ends-with? entry-path ".md") [entry-path] [])
+        :dir (await (collect-below entry-path metadata-paths))
+        []))))
 
 (defn- ^:async collect-markdown-files
   "Markdown files at or under a configured projection root.
@@ -121,19 +129,42 @@
    `shape.config` has already resolved it and checked it stays inside the task
    root. Everything discovered *below* it goes through [[collect-entry]], which
    does not follow links."
-  [entry-path]
+  [entry-path metadata-paths]
   (try
-    (cond
-      (await (is-file? entry-path))
+    (let [^js stat (await (.stat fsp entry-path))]
+      (cond
+      (.isFile stat)
       (if (str/ends-with? entry-path ".md") [entry-path] [])
 
-      (await (is-directory? entry-path))
-      (await (collect-below entry-path))
+      (.isDirectory stat)
+      (await (collect-below entry-path metadata-paths))
 
-      :else [])
+      :else (throw (ex-info "Unsupported selected projection root"
+                            {:kind :refused :cause :incomplete-projection
+                             :source-path entry-path}))))
     (catch :default err
-      (js/console.error "collect error:" entry-path (.-message err))
-      [])))
+      (throw (ex-info "Unavailable selected projection root"
+                      {:kind :refused :cause :incomplete-projection
+                       :source-path entry-path :diagnostic (.-message err)} err)))))
+
+(defn relationship-snapshot
+  "Use stored identity/relationships, not display fallback UUIDs. Loader aliases
+   for status remain the canonical read spelling; raw frontmatter stays intact."
+  [loaded]
+  (mapv #(merge (:frontmatter %)
+                {:status (:status %) :source-path (:source-path %)}) loaded))
+
+(defn source-revisions [loaded]
+  (into (sorted-map) (map (juxt :source-path :source-revision)) loaded))
+
+(defn- ^:async writer-metadata-paths [tasks-dir]
+  (let [real-root (try (await (.realpath fsp tasks-dir))
+                       (catch :default error
+                         (throw (ex-info "Unavailable selected project root"
+                                         {:kind :refused :cause :incomplete-projection
+                                          :source-path tasks-dir :diagnostic (.-message error)} error))))]
+    #{(path/resolve tasks-dir publication/reservation-dir-name)
+      (path/join real-root publication/reservation-dir-name)}))
 
 (defn- task-sort-key [task]
   [(get status-index (:status task) 99)
@@ -182,8 +213,9 @@
         roots (if (and projection (contains? projection :paths))
                 (:paths projection)
                 [tasks-dir])
+        metadata-paths (await (writer-metadata-paths tasks-dir))
         nested (await (js/Promise.all
-                       (clj->js (mapv collect-markdown-files roots))))
+                       (clj->js (mapv #(collect-markdown-files % metadata-paths) roots))))
         files (vec (distinct (apply concat nested)))
         tasks (vec (await (js/Promise.all
                            (clj->js

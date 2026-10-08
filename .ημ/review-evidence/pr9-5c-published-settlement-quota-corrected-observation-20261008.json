@@ -1,0 +1,61 @@
+{
+  "evidence_type": "selected-observed-native-metadata-correction",
+  "observedAt": "2026-10-08T21:04:27.764676Z",
+  "head": "5c44cd7b22e492af7f8ccae3f0c4f4a89e795a83",
+  "base": "660a6f880769edcf9e52cc5e21e477a5545133f8",
+  "settlements": [
+    {
+      "root": 4223884206,
+      "thread": "PRRT_kwDOU4Vf-c6qizMR",
+      "reply": 4224061673,
+      "url": "https://github.com/riatzukiza/rheos/pull/9#discussion_r4224061673",
+      "resolved": true,
+      "writer": "riatzukiza"
+    },
+    {
+      "root": 4223884217,
+      "thread": "PRRT_kwDOU4Vf-c6qizMY",
+      "reply": 4224062350,
+      "url": "https://github.com/riatzukiza/rheos/pull/9#discussion_r4224062350",
+      "resolved": true,
+      "writer": "riatzukiza"
+    },
+    {
+      "root": 4223884239,
+      "thread": "PRRT_kwDOU4Vf-c6qizMm",
+      "reply": 4224062969,
+      "url": "https://github.com/riatzukiza/rheos/pull/9#discussion_r4224062969",
+      "resolved": true,
+      "writer": "riatzukiza"
+    }
+  ],
+  "commit_status": [
+    {
+      "id": 55933329679,
+      "context": "CodeRabbit",
+      "state": "success",
+      "description": "Review rate limited",
+      "updatedAt": "2026-10-08T20:56:02Z"
+    }
+  ],
+  "actual_formal_review_footer": [
+    "- **Plan**: Essentials",
+    "**Included review availability:** This review used your included allowance. 0 included reviews remain after this review. Your included PR review attempts over the past 7 days set your current allowance at 1 review per hour."
+  ],
+  "review_footer_source": {
+    "review": 5462560894,
+    "commit": "28b2a9bf11e98b86628f3f5cf75ebbb0adbfab72",
+    "submittedAt": "2026-10-08T20:37:24Z",
+    "sha256": "564fd091452176156311aa55350cd2fa179e25a9f19e27b2939270d9131a5834"
+  },
+  "corrections": [
+    "Previous broad selected scan matched estimated effort/delivery prose, not native cooldown or allowance. Those bytes remain intact; these actual native status/footer fields correct that selection.",
+    "Initial operator issue-comment filter used GraphQL login spelling against REST Bot login and returned no selected matches. This was not absence of native Bot context. Actual complete REST context has coderabbitai[bot], authenticated completed6068513141 and quota-unavailable Codex6067513632.",
+    "Current native CodeRabbit status success means Review rate limited, not a completed or approving review. Current issue summary has removed an earlier quota notice. Actual formal footer has0remaining/current1reviewperhour but supplies no explicit parsed reset deadline. A conservative after21:32UTC boundary is derived from last request20:32/nativehourly allowance, not a fabricated native reset or fixed global policy. Fresh native guard/pending/cooldown evidence remains necessary before any new full request."
+  ],
+  "raw_previous_selected_sha256": "af6d9a545bd878962d556e481f0535a527a0a9d8e1d0b720f5d3c68fc9fa342c",
+  "limits": [
+    "Selected metadata derivative, not raw REST, current approval or full-review credit",
+    "Private raw native summaries/context remain private and unmodified"
+  ]
+}

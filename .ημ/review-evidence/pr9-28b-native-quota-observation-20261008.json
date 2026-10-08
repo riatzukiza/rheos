@@ -1,0 +1,13 @@
+{
+  "epistemicTier": "observed-command-output transcription",
+  "observedAt": "2026-10-08T20:13:58.344816Z",
+  "sourceId": 6067518120,
+  "sourceUpdatedAt": "2026-10-08T20:00:48Z",
+  "rawNativeBytes": 14793,
+  "rawNativeSHA256": "16b40c2d538919d85e9179834df832d57fef8a0b4d44d64650ac2e97e384c35d",
+  "rawNativePrivatePath": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/pr9-28b-coderabbit-rate-native-20261008T2014.json",
+  "notice": "Review limit reached\n> \n> This review is too large to run within your organization's remaining usage spending cap. Raise or remove your spending cap in the [billing tab](https://app.coderabbit.ai/settings/billing?tab=usage&orgId=0208d398-13f9-4644-b623-062e27189ee6), then retry.\n> \n> **Next included review available in 30 minutes.**\n> \n> [Check out review usage here](https://app.coderabbit.ai/dashboard/review-capacity?orgId=0208d398-13f9-4644-b623-062e27189ee6).\n> \n> <details>\n> <summary>View limit details</summary>\n> \n> **Limit details:** You’ve used the included review currently available. Your 114 included PR review attempts over the past 7 days set your current allowance at 1 review per hour.\n> \n> [Learn how review limits work](https://docs.coderabbit.ai/management/plans#rate-limits).\n> \n> **Review configuration:**\n> \n> <details>\n> <summary>⚙️ Run configuration</summary>\n> \n> - **Configuration used**: defaults\n> - **Review profile**: CHILL\n> - **Plan**: Essentials\n> - **Run ID**: `70accb25-3e98-4463-806c-78a0d0e18682`\n> \n> ",
+  "retryConservativeAfter": "2026-10-08T20:30:48Z",
+  "isCompletedReview": false,
+  "approvalOrRoundCredit": false
+}

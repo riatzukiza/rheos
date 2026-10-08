@@ -174,7 +174,7 @@
    [[rheos.backend.shape.content-parser/serialize-frontmatter]] iterates whatever
    it is handed, and a CLJS map of this size is a hash map with arbitrary
    iteration order. Pairs keep new cards readable and diff-stable."
-  [{:keys [uuid title status card-type priority points labels parent
+  [{:keys [uuid title status card-type priority points labels parent epic dependency
            category write-id created-at]}]
   (cond-> [[:uuid uuid]
            [:title title]
@@ -184,6 +184,8 @@
     points        (conj [:points (str points)])
     (seq labels)  (conj [:labels (str/join ", " labels)])
     parent        (conj [:parent parent])
+    epic          (conj [:epic epic])
+    (seq dependency) (conj [:dependency dependency])
     category      (conj [:category category])
     true          (conj [:write-id write-id])
     true          (conj [:created_at created-at])))

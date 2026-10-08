@@ -155,6 +155,21 @@
                (str/join "\n" (map (fn [[key value]] (str key ": " value)) entries))
                "\n---\n\n" body)))))
 
+(defn remove-frontmatter-source
+  "Remove selected whole top-level pairs using boundary-supplied AST offsets.
+   Preserve every other source/body byte; decode and validate aliases afterward."
+  [raw keys-to-remove pairs]
+  (if-let [{:keys [opening source closing body]} (frontmatter-source raw)]
+    (let [selected (filter #(contains? keys-to-remove (:key %)) pairs)
+          ranges (map (fn [{:keys [key-start pair-end]}]
+                        {:start (- key-start (count (or (re-find #"[^\n]*$" (subs source 0 key-start)) "")))
+                         :end pair-end}) selected)
+          updated (reduce (fn [text {:keys [start end]}]
+                            (str (subs text 0 start) (subs text end)))
+                          source (sort-by :start > ranges))]
+      (str opening updated closing body))
+    raw))
+
 (defn- comment-insertion
   "Locate the final comment boundary using the section delimiter grammar.
    Retain source offsets; never render existing sections from decoded text."

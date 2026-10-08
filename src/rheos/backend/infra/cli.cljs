@@ -37,7 +37,7 @@
 
 (def exit-codes
   "What a caller may branch on. Stable — treat changes as breaking."
-  {:ok 0 :usage 1 :not-found 2 :refused 3 :internal 4})
+  {:ok 0 :usage 1 :not-found 2 :refused 3 :conflict 3 :internal 4 :partial-effect 4})
 
 (defn- debug? []
   (or (= "1" (aget js/process.env "RHEOS_DEBUG"))
@@ -136,6 +136,8 @@
     :flags [["--title <text>" "card title (required)"]
             ["--type <task|epic>" "card type; default task"]
             ["--parent <uuid>" "parent card uuid — omit for a root card"]
+            ["--epic <uuid>" "existing epic UUID"]
+            ["--dependency <uuid[,uuid]>" "existing dependency UUID or CSV"]
             ["--priority <P0..P3>" "priority; default P3"]
             ["--points <n>" "Fibonacci size estimate"]
             ["--labels <a,b,c>" "comma-separated labels"]
@@ -185,10 +187,10 @@
 
    {:verb "frontmatter" :group "lifecycle" :mutates? true
     :args "<uuid> --set <key>=<value>"
-    :summary "Update descriptive frontmatter (title, priority, labels, points, category, description, estimate, assignee)."
+    :summary "Update descriptive fields or exact UUID relationships through the canonical graph writer."
     :flags [["--set <key>=<value>" "repeatable; one ledger event per changed key"]]
     :example "rheos frontmatter my-card --set points=3 --set priority=P1"
-    :notes "`--set status=…` is refused: status is FSM-governed, use `move`. Identity and provenance keys (uuid, created_at, write-id, source-path) are never writable."}
+    :notes "Parent/epic take an exact UUID; dependency takes one UUID or CSV. Use --set parent=, --set epic= or --set dependency= to remove that field. Semantic relationship no-ops write nothing. Status is FSM-governed, use move; identity and provenance remain protected."}
 
    {:verb "read-task" :group "read"
     :args "<uuid>"
@@ -486,6 +488,8 @@
                         :title (require-flag flags "title" verb)
                         :card-type (get-flag flags "type")
                         :parent parent
+                        :epic (get-flag flags "epic")
+                        :dependency (get-flag flags "dependency")
                         :status (get-flag flags "status")
                         :priority (get-flag flags "priority")
                         :points (get-flag flags "points")
@@ -519,8 +523,7 @@
       (and (:ok result) (flag-true? flags "json")) (print-json result)
       (:ok result) (println (str "moved " uuid ": " (:from result) " -> " (:to result)))
       :else (throw (ex-info (str "transition refused: " (:reason result))
-                            {:kind :refused :uuid uuid
-                             :from (:from result) :to new-status})))))
+                            (merge result {:uuid uuid :from (:from result) :to new-status}))))))
 
 (defn- ^:async cmd-status-update [_ parsed]
   (let [flags (:flags parsed)]
@@ -689,4 +692,6 @@
           (let [data (ex-data err)
                 kind (or (:kind data) :internal)
                 hint (:hint data)]
+            (when (flag-true? (:flags parsed) "json")
+              (print-json (assoc data :ok false :kind kind :error (.-message err))))
             (fail! kind (str (.-message err) (when hint (str " — try `" hint "`"))) err)))))))

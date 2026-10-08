@@ -8,6 +8,7 @@
              ["node:child_process" :as cp]
              [clojure.string :as str]
              [rheos.backend.domain.board :as board]
+             [rheos.backend.domain.relationships :as relationships]
 
             [rheos.backend.domain.compose :as compose]
             [rheos.backend.infra.config :as config]
@@ -36,6 +37,9 @@
        :status (:status task)
        :priority (:priority task)
        :labels (clj->js (:labels task))
+       :type (clj->js (:type task)) :parent (clj->js (:parent task)) :epic (clj->js (:epic task))
+       :dependency (clj->js (:dependency task))
+       :relationshipErrors (clj->js (:relationship-errors task))
        :createdAt (:created-at task)
        :sourcePath (:source-path task)})
 
@@ -53,7 +57,14 @@
 
 (defn- send-json [reply data] (.send reply data))
 ;; Fastify requires .code BEFORE .send; the reverse leaves the status at 200.
-(defn- send-error [reply code msg] (.send (.code reply code) #js {:error msg}))
+(defn- send-error
+  ([reply code msg] (send-error reply code msg {}))
+  ([reply code msg data] (.send (.code reply code) (clj->js (assoc data :error msg)))))
+
+(defn- send-writer-error [reply error]
+  (let [data (ex-data error)
+        code (case (:kind data) :usage 400 :not-found 404 :refused 409 :conflict 409 500)]
+    (send-error reply code (.-message error) data)))
 
 (defn- handle-get-projects [_req reply]
   (send-json reply
@@ -139,8 +150,9 @@
                     (if (:ok result)
                       (send-json reply (serialize-task (:task result)))
                       ;; 409 Conflict: the FSM refused this transition.
-                      (send-error reply 409 (:reason result))))))
-              (catch :default err (send-error reply 500 (.-message err)))))))
+                      (send-error reply (if (= :partial-effect (:kind result)) 500 409)
+                                  (:reason result) (dissoc result :task))))))
+              (catch :default err (send-writer-error reply err))))))
 
 (defn ^:async handle-update-frontmatter [^js req reply]
   (let [project-id (.. req -query -project)
@@ -152,7 +164,7 @@
         ;; the law (keyword set) can decide both the `:updates` and `:key` shapes.
         updates (when (map? updates)
                   (reduce-kv (fn [m k v] (assoc m (keyword k) v)) {} updates))
-        bad-keys (when (seq updates) (law-frontmatter/disallowed-keys updates))
+        bad-keys (when (seq updates) (relationships/disallowed-update-keys updates))
         project (find-project project-id)]
     (cond
       (not project) (send-error reply 404 "unknown project")
@@ -178,7 +190,7 @@
                                           :frontmatter (clj->js (:frontmatter new-parsed))
                                           :sections (clj->js (mapv (fn [s] #js {:type (:type s) :content (:content s)}) (:sections new-parsed)))
                                           :sourcePath (:source-path task)}))))
-              (catch :default err (send-error reply 500 (.-message err)))))))
+              (catch :default err (send-writer-error reply err))))))
 
 (defn ^:async handle-post-comment [^js req reply]
   (let [project-id (.. req -query -project)
@@ -203,7 +215,7 @@
                                           :frontmatter (clj->js (:frontmatter new-parsed))
                                           :sections (clj->js (mapv (fn [s] #js {:type (:type s) :content (:content s)}) (:sections new-parsed)))
                                           :sourcePath (:source-path task)}))))
-              (catch :default err (send-error reply 500 (.-message err)))))))
+              (catch :default err (send-writer-error reply err))))))
 
 
 (defn ^:async handle-open-editor [^js req reply]

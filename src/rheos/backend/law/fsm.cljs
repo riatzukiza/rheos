@@ -30,6 +30,8 @@
 (def promethean-fsm
   {:enabled true
    :enforcement :supportive
+   :dependency-admission {:successful-states ["done"]
+                          :guarded-targets ["ready" "todo" "in_progress"]}
    :states ["icebox" "incoming" "accepted" "breakdown" "blocked" "ready"
             "todo" "in_progress" "testing" "review" "document" "done"
             "rejected" "archived"]

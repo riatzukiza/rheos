@@ -17,6 +17,13 @@
    [:created-at :string]
    [:content :string]
    [:source-path :string]
+   ;; Read projections retain raw malformed legacy values with diagnostics.
+   ;; Accepted writes are separately governed by shape/domain.relationships.
+   [:type {:optional true} :any]
+   [:parent {:optional true} :any]
+   [:epic {:optional true} :any]
+   [:dependency {:optional true} :any]
+   [:relationship-errors {:optional true} [:vector :any]]
    [:domain {:optional true} [:maybe :string]]
    [:org {:optional true} [:maybe :string]]
    [:drift {:optional true} [:maybe :boolean]]])

@@ -1,0 +1,61 @@
+{
+  "kind": "observed-command-output-and-source-readback",
+  "observed_at": "2026-10-08T21:14:04.392170Z",
+  "checked_source_head": "5c44cd7b22e492af7f8ccae3f0c4f4a89e795a83",
+  "application_source_unchanged": true,
+  "checks": [
+    {
+      "command": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "dist/cli.cjs",
+        "help",
+        "create"
+      ],
+      "exit": 0,
+      "stdout": "rheos create --title <text>\n\n  Create a card (epic or task, root or child) and record a task-created event.\n  Mutating: writes the card file and records a ledger event.\n\nFLAGS\n  --title <text>           card title (required)\n  --type <task|epic>       card type; default task\n  --parent <uuid>          parent card uuid — omit for a root card\n  --epic <uuid>            existing epic UUID\n  --dependency <uuid[,uuid existing dependency UUID or CSV\n  --priority <P0..P3>      priority; default P3\n  --points <n>             Fibonacci size estimate\n  --labels <a,b,c>         comma-separated labels\n  --body-file <path>       read the card body from a file; `-` reads stdin\n  --dir <path>             target dir relative to the task root; default epics/ or tasks/\n  --uuid <id>              explicit uuid; refused if already taken\n  --status <s>             refused unless it is the FSM initial state\n  --force-status           allow a non-initial --status\n\nCOMMON FLAGS\n  --config <path>          board config file (else $KANBAN_CONFIG, else discovered)\n  --tasks-dir <path>       override the resolved task root\n  --project <id>           scope to one project (see `rheos projects`)\n\nNOTES\n  A card is written with a skeleton body unless --body-file is given, so it can pass its first gate.\n\nEXAMPLE\n  rheos create --type epic --title \"Ledger cutover\" --priority P0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "dist/cli.cjs",
+        "help",
+        "frontmatter"
+      ],
+      "exit": 0,
+      "stdout": "rheos frontmatter <uuid> --set <key>=<value>\n\n  Update descriptive fields or exact UUID relationships through the canonical graph writer.\n  Mutating: writes the card file and records a ledger event.\n\nFLAGS\n  --set <key>=<value>      repeatable; one ledger event per changed key\n\nCOMMON FLAGS\n  --config <path>          board config file (else $KANBAN_CONFIG, else discovered)\n  --tasks-dir <path>       override the resolved task root\n  --project <id>           scope to one project (see `rheos projects`)\n\nNOTES\n  Parent/epic take an exact UUID; dependency takes one UUID or CSV. Use --set parent=, --set epic= or --set dependency= to remove that field. Semantic relationship no-ops write nothing. Status is FSM-governed, use move; identity and provenance remain protected.\n\nEXAMPLE\n  rheos frontmatter my-card --set points=3 --set priority=P1\n",
+      "stderr": ""
+    }
+  ],
+  "sources": {
+    "docs/cli.md": {
+      "bytes": 10717,
+      "sha256": "9278dbf1e33f1b2e29efd313e045748adb74add1ce0b93d704d6899b3aeb2bde"
+    },
+    "docs/verification/relationship-writer.md": {
+      "bytes": 15193,
+      "sha256": "f9c1d9e84b6e724c54f193e7645194f8ab0ae235debc866bf418f42f1eb71444"
+    },
+    "src/rheos/backend/infra/cli.cljs": {
+      "bytes": 32253,
+      "sha256": "ca4b5db84e4670d80c74b9361f6208ee5bca41e5efb450de13dfa5b331709b55"
+    },
+    "src/rheos/backend/domain/relationships.cljc": {
+      "bytes": 11819,
+      "sha256": "ba1bbf4b79e41d5275ef08fbad74ef6fa8d2e4e6886a2df3c65052e2648a29ce"
+    },
+    "src/rheos/backend/infra/task_edit.cljs": {
+      "bytes": 8630,
+      "sha256": "eef683e00f9c42ddc90484326dab714090c11c9da7167bb3e55cb80780458fae"
+    },
+    "dist/cli.cjs": {
+      "bytes": 2236725,
+      "sha256": "76251ae169560fb43a2239998ac117297c7f4f208874fe06b8d1463d3f692f3c"
+    }
+  },
+  "diff_hygiene": {
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+}

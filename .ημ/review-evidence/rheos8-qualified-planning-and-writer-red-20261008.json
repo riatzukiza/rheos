@@ -1,0 +1,82 @@
+{
+  "tier": "observed-command-output-transcription",
+  "observed_at": "2026-10-08T18:52:09.635178+00:00",
+  "planning": {
+    "pr": "https://github.com/riatzukiza/rheos/pull/8",
+    "head": "fe7c3075f281fb65eb0fe7197b6c5ea3dbddc08e",
+    "base": "54ae39a598fe813ddea7f19b19cb4122a907d060",
+    "merge": "660a6f880769edcf9e52cc5e21e477a5545133f8",
+    "merged_at": "2026-10-08T18:33:00Z",
+    "gate": "PASS",
+    "reviews": {
+      "coderabbit_request": 6065817371,
+      "coderabbit_reply": 6065819838,
+      "coderabbit_summary": 6065155993,
+      "mimo_approved": 5461157462
+    },
+    "checks": "3 PASS; 2 settled threads; one unanimous available-agent planning cohort",
+    "scope": "20 changed inputs; full 128947-byte diff; corrected native body11471; no declared omitted input",
+    "tree_equals_reviewed_head": true
+  },
+  "native_board": {
+    "writer": "in_progress",
+    "predecessor_contract": "done",
+    "parity_and_epic": "incoming",
+    "candidate_cli_sha256": "2493ad986309c431355c09e022306b07ef3dbbd7c83bc8f074f7e757d0bdfafe",
+    "events": "five status changes and one comment; original13925-byte event prefix preserved",
+    "installed_dependency_guard": false
+  },
+  "red": {
+    "tests": 227,
+    "assertions": 2130,
+    "failures": 73,
+    "errors": 0,
+    "executed_twice": true,
+    "compiler_exit": 0,
+    "compiled_bundle_exit": 1,
+    "compiler_warnings": 0,
+    "targeted_lint_errors": 0,
+    "targeted_lint_warnings": 0,
+    "prior_baseline": "220 tests/2043 assertions unaffected",
+    "reasons": [
+      "loader loses four accepted relationship fields",
+      "incomplete selected root returns partial success",
+      "guarded admission publishes unfinished/missing/malformed/cyclic/transitive predecessors",
+      "resolved Promethean FSM lacks reviewed policy"
+    ],
+    "setup_attempt": "initial pnpm11 dependency-refresh attempt aborted NO_TTY before tests; no RED credit, dependency installation or purge; installed compiler direct route used"
+  },
+  "raw_files": [
+    {
+      "name": "pr8-fe7-review-5461157462-20261008T183027Z-native.json",
+      "bytes": 4168,
+      "sha256": "c8eafaa634a275ff45500e3cf89d5087808ae8f76e26f4970afa222f0ea132c5",
+      "representation": "raw native GitHub JSON"
+    },
+    {
+      "name": "pr8-qualified-merge-660a6f88-20261008T1834-native.json",
+      "bytes": 27697,
+      "sha256": "1af68b1a57dd6f92dd78898b7d1e0dd8af775b1138758db04151605fd399942e",
+      "representation": "raw native GitHub JSON"
+    },
+    {
+      "name": "rheos-writer-native-in-progress-20261008T1836.json",
+      "bytes": 12213,
+      "sha256": "6ec7e278c54b491870748797de23b44798276796c0f4f5fb9a7a83d0e0238aac",
+      "representation": "observed-command-output-transcription"
+    },
+    {
+      "name": "rheos-writer-admission-red-committable-20261008.log",
+      "bytes": 118838,
+      "sha256": "8f7eb4cbb0589e735afe0da7305da73610575f17a55d1c6048bef3564a452061",
+      "representation": "raw process stdout/stderr"
+    }
+  ],
+  "limits": [
+    "planning approval is not writer-code approval",
+    "only initial writer RED; creation/edit/shared reservation/partial effects/public surface coverage still required",
+    "B1/B2/B3 unimplemented and unverified",
+    "receipt attribution may be implied by containing repository; prior rows never rewritten",
+    "fixed scope unchanged; no runtime/PM2/cloud/model/owner/publication/spore change; heartbeat remains paused"
+  ]
+}

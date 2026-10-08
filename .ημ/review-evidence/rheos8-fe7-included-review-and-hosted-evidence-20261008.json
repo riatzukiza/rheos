@@ -1,0 +1,137 @@
+{
+  "epistemic_tier": "observed-command-output transcription; not raw REST, synthetic GitHub APPROVED or provider test execution",
+  "observed_at": "2026-10-08T17:58:19.601094Z",
+  "repository": "riatzukiza/rheos",
+  "pr": 8,
+  "head": "fe7c3075f281fb65eb0fe7197b6c5ea3dbddc08e",
+  "base": "54ae39a598fe813ddea7f19b19cb4122a907d060",
+  "concrete_fix": {
+    "commit": "fe7c3075f281fb65eb0fe7197b6c5ea3dbddc08e",
+    "ordinary_parent": "fcee7c1dd8499240cf38dfb43cb8737482816a47",
+    "paths": 10,
+    "insertions": 212,
+    "deletions": 16,
+    "confirmed_review": 5460549405,
+    "confirmed_inline": 4222178580,
+    "thread": "PRRT_kwDOU4Vf-c6qetOA",
+    "canonical_settlement": "exit0 Fixed, resolved; current native1thread0unresolved",
+    "itemized_native_explanation": 6065653748,
+    "explanation_body_bytes": 2875,
+    "explanation_body_sha256": "817313cb42899545090007c3d0412d0bb898fcddea47d11b114f4d3c612cbcf1"
+  },
+  "native_description": {
+    "bytes": 8271,
+    "sha256": "7ffc87f9b0df583d300584d1c6dc97a09d1c5d768cbb6a497da0a1127fbcfd41",
+    "whole_readback": "PASS",
+    "captured_hosted_context": "Old fcee14-input opening body was captured before native amendment; preserved, not rewritten or assumed current."
+  },
+  "required_hosted_evidence": {
+    "run": 37818309456,
+    "muse_job": 113452543046,
+    "deterministic_job": 113452543452,
+    "both": "SUCCESS",
+    "artifact": 11567484660,
+    "zip_bytes": 80147,
+    "zip_sha256": "cbc921d3c0b486c6fe9aeb975e564d9f2d0490aead4322a54295855c03050d1b",
+    "all10_attempted_gates": "exit0",
+    "tests": "220tests2043assertions0fail0errors twice",
+    "lint": "0errors0warnings/8existing architecture infos",
+    "compiler": "test+4releasebuilds0warnings/nonemptyoutputs",
+    "diff_bytes": 128947,
+    "diff_sha256": "ff43a0d1028f23e662fd5886ddfe45a7fd32325325626fa3616cd6263584c679",
+    "full_diff": "Both downloaded diff files independently byte-equal to default-quoted Git diff; complete log/context read",
+    "dependency_boundary": "Hosted nonfrozen/no-lockfile resolution, not reproducibility proof"
+  },
+  "review_input": {
+    "actual_paths": 20,
+    "evidence_json_inputs": 13,
+    "committed_receipt_suffix_records": 4,
+    "reflection_suffix_lines": 32,
+    "native_event_suffixes": 5,
+    "manifest_bytes": 4549,
+    "manifest_sha256": "6e43d60880b6b2b971d7d96037f2f5d12747cf9baba4d05193146c6f2d2923d2",
+    "brief_bytes": 5792,
+    "brief_sha256": "1dc13657b29469348927a5c33d6a0d89dc17946c880ce4eb1a853033cc072b3c",
+    "brief_native_readback": "whole brief plus exact head/reviewer/stage markers PASS"
+  },
+  "coderabbit": {
+    "request": 6065817371,
+    "request_created_at": "2026-10-08T17:51:28Z",
+    "native_prior_cooldown": 6065155993,
+    "prior_updated_at": "2026-10-08T17:40:02Z",
+    "prior_included_wait": "7minutes, deadline17:47:02UTC; request after parsed window",
+    "reply": 6065819838,
+    "reply_updated_at": "2026-10-08T17:54:04Z",
+    "reply_verdict": "Full review finished",
+    "summary": 6065155993,
+    "summary_updated_at": "2026-10-08T17:53:58Z",
+    "summary_verdict": "No actionable comments; all20 selected; exactfe7 final_review_risk_coverage kindreviewed; no declared omitted changed-input scope",
+    "run_id": "aed17cf3-6a90-48f0-8aac-48d40fcdfa36",
+    "plan": "Essentials, used included allowance,0remain,dynamic1review/hour",
+    "canonical_approval_channel": "completed native passing verdict, not formal GitHub APPROVED"
+  },
+  "mimo": {
+    "job": 113453517626,
+    "started_at": "2026-10-08T17:42:11Z",
+    "latest_state": "IN_PROGRESS; no new current-head verdict assumed"
+  },
+  "canonical_status": {
+    "checks": "2PASS",
+    "threads": "1total0unresolved",
+    "eligible_exact_head_approval": [
+      "coderabbit"
+    ],
+    "available_cohort": [
+      "coderabbit",
+      "mimo"
+    ],
+    "completed_planning_cohorts": 0,
+    "codex_quota": 6065153330,
+    "quota_reset": "UNKNOWN",
+    "gate": "BLOCKED convergence; MiMo current-head completion still pending"
+  },
+  "canonical_skill": {
+    "actual_remote_main": "4b4f48dae1b804b2581974e604cca618ecedadf1",
+    "installed_pr_flow_sha256": "efe5e0818d673b8aab6f962a711ba80c10b7a1877b24b0e986217601b6042472",
+    "policy": "soft5 or unanimous available exact-head exit, no stale cap/identity override/paid credits"
+  },
+  "actual_raw_native_archives": [
+    {
+      "private_raw_archive": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/pr8-fe7-canonical-request-native-20261008T1755.json",
+      "bytes": 8017,
+      "sha256": "081343fe37db3381d8d82891dbc6e9138ca5c2156d0eda5ecb2c7daf3f997239",
+      "native_id": 6065817371,
+      "updated_at": "2026-10-08T17:51:28Z"
+    },
+    {
+      "private_raw_archive": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/pr8-fe7-command-reply-native-20261008T1755.json",
+      "bytes": 4523,
+      "sha256": "2f45f2c7f256972a692f1b9758007f74244a099f6843316ea204f9c7d1ebcec5",
+      "native_id": 6065819838,
+      "updated_at": "2026-10-08T17:51:37Z"
+    },
+    {
+      "private_raw_archive": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/pr8-fe7-summary-20261008T1754-native.json",
+      "bytes": 12751,
+      "sha256": "ee9bb6226567417b2a115eba91e215409093cc4822d3d315fb6bf86e75080494",
+      "native_id": 6065155993,
+      "updated_at": "2026-10-08T17:53:58Z"
+    },
+    {
+      "private_raw_archive": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/pr8-fe7-reply-20261008T1754-native.json",
+      "bytes": 4526,
+      "sha256": "26aecbcfac235b9c9c671da0c3d666e5137f8ed57b468184c97ab9936f1c8d82",
+      "native_id": 6065819838,
+      "updated_at": "2026-10-08T17:54:04Z"
+    }
+  ],
+  "resource_free_bytes": 17527783424,
+  "limits": [
+    "Original receipt/reflection/event and native body bytes preserved. Source post-publication appends stay uncommitted until next concrete owned change.",
+    "No fresh MiMo/Codex request, paid credits or billing change; no duplicate completed CodeRabbit request.",
+    "Source dependency graph/writer/transition seams inspected read-only; no RED before native planning and Ready.",
+    "B1/B2/B3 unimplemented/unverified, native goal ACTIVE, heartbeat stays PAUSED.",
+    "No runtime, maker, publication, owner, PM2, cloud, model, credential or spore mutation.",
+    "Initial private brief assertion used unquoted diff128289/SHA5408af7a86dd04093a7011da4c10ccc2f26ba0442d0d396630abfc4b1a4b5392; it stopped before brief/request mutation. Corrected to artifact default-quoted diff128947; literal Unicode name manifest remains separate. Missing deps.edn read was corrected by actual shadow-cljs/package configuration, not a production or gate failure."
+  ]
+}

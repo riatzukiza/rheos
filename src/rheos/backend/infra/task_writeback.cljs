@@ -1,6 +1,8 @@
 (ns rheos.backend.infra.task-writeback
   "Writing task changes back to markdown files."
   (:require ["node:fs/promises" :as fsp]
+            ["node:crypto" :as crypto]
+            [rheos.backend.infra.publication :as publication]
             [rheos.backend.infra.content-parser :as content-parser]
             [rheos.backend.law.frontmatter :as law-frontmatter]))
 
@@ -11,7 +13,12 @@
   (let [file-path (:source-path task)]
     (-> (.readFile fsp file-path "utf8")
         (.then (fn [raw]
-                 (let [_ (try
+                 (let [_ (when (and (:source-revision task)
+                                    (not= (:source-revision task)
+                                          (.digest (.update (.createHash crypto "sha256") raw "utf8") "hex")))
+                           (publication/conflict! "Card source changed before status publication"
+                                                  {:source-path file-path}))
+                       _ (try
                            (law-frontmatter/assert-task-frontmatter-shape
                             (:frontmatter (content-parser/parse-frontmatter raw)))
                            (catch :default error
@@ -25,5 +32,9 @@
                        updated-raw (-> raw
                                        (content-parser/update-frontmatter "status" new-status)
                                        (content-parser/inject-write-id write-id))]
-                   (.writeFile fsp file-path updated-raw "utf8"))))
-        (.then (fn [] (assoc task :status new-status))))))
+                   (-> (.writeFile fsp file-path updated-raw "utf8")
+                       (.then (fn []
+                                (assoc task :status new-status
+                                       :frontmatter (:frontmatter (content-parser/parse-frontmatter updated-raw))
+                                       :source-revision (.digest (.update (.createHash crypto "sha256")
+                                                                         updated-raw "utf8") "hex")))))))))))
