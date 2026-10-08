@@ -240,3 +240,31 @@
 - Unchanged RED tests GREEN: directNode220/2043/0/0 twice, JVM5/80/0/0, kondo0/0 and fourrelease0compilerwarnings. Conditional status diagnostics explain12 assertion difference.
 - Historical MiMo5459085043 approval and hosted37798017359SUCCESS bindbc3 only. CLIexit3 end-to-end claim exceeds independently retained mapping test evidence. No complete lookup/fencing/live/B1-B3 proof.
 - Evidence: .ημ/review-evidence/rheos1-identity-shape-GREEN-20261008.json SHA256a22b95b0fda80fe7c4b31916acdb3b3ffe0a54fa0cbc1140ef0e3a1d19bfb1f0. All previous receipt/reflection/proof bytes preserved; no spore or new installation.
+
+## 2026-10-08T15:53:40.685Z — cephalon-rheos1-b858-published-identity-source-20261008T1549
+
+- p-efficiency: 0.90; p-friction: 0.10; p-skill-candidate: 0.02.
+- IdentityRED/GREEN publishedb858, nativefinding4220740165 fixed4221012975/readback/resolution. Historicalbc3MiMoapproval is separate.
+- Hostedall10gatesPASS/Node220/2043/0/0twice/lint0/0/fourrelease0warnings/nativeZIP+full612713-byte diff verified. Initialpreview-label comparison preserved/corrected.
+- CodeRabbit6063654053 aftercooldown nowpending; existingMiMo37802050234 reused; newCodexquota6063443452 availability admittedcanonically, no repeatinvite/credits.
+- Bot regenerated only its own summary in nativePRbody after actual15:40 wholebodyreadback; initialproof preparation stopped beforewrites, both snapshots retained and all outsidegeneratedsection bytes unchanged.
+- B1/B2/B3 unimplemented/unverified. Hold observerappends for next concrete change; no extraheadchurn/runtime/board/spore/install.
+- Evidence: .ημ/review-evidence/rheos1-b858-published-identity-and-hosted-evidence-20261008.json SHA2562e57730e329a59c086f93439e86759bd852c4154d2800af83506e5d5b67e1bbb.
+
+## 2026-10-08T16:07:07.131Z — cephalon-rheos1-b858-coderabbit-completed-source-20261008T1612
+
+- p-efficiency: 0.89; p-friction: 0.11; p-skill-candidate: 0.03.
+- CodeRabbit full request6063654053 actually completed6063656846 at15:51:02; native summary5966686355 updated15:50:56/all55inputs/no actionable/no declared omission/exactb858. Canonical approval channel remains native issue verdict, not formal APPROVED.
+- Prior pending records preserved; existing MiMo job113397556241/run37802050234 remains live and reused. Canonical2PASS/17settled/0cohort rounds still BLOCKED convergence.
+- Recovered native human standing non-destructive Git/GitHub permission item-120, including merges. Authorization does not clear review gates.
+- PR2 cached REST basee634 is stale relative actual remote parentb858; preserve distinction before any future stack integration.
+- B1/B2/B3 unimplemented/unverified. No additional review request, observer-only commit/push, runtime/board/deployment mutation or spore.
+- Evidence: .ημ/review-evidence/rheos1-b858-coderabbit-completion-and-standing-authority-20261008.json, SHA256 268e68b89eddf5f4ba04b6125ccc97a877b6f03c42f0b162939986a541a1b8bc.
+
+## 2026-10-08T16:39:10.711Z — cephalon-rheos1-actual-merge-and-admission-plan-source-20261008T1639
+
+- p-efficiency: 0.90; p-friction: 0.10; p-skill-candidate: 0.03.
+- Current MiMo5459643811 and completedCodeRabbit qualify exactb858; canonical1unanimousavailablecohort/3PASS/17settled passes with nativeCodexquota retained. Authorized canonicalMERGE observed e29551fe, parentsc5+b858/tree+fullrevieweddiffexact.
+- Purecontract closes throughnativeRheosReview→Document→Done only. ExistingIncomingwriter/parity amendment names required predecessor-status admission and revalidation; no new accepted estimate/inventory or installed/B1-B3 proof.
+- Actualnativecommentreadback is exact inside a combinedcommentsection, not a separatesection. Preserve failedoperator assertions and originalproof; no replay.
+- Disk16.5GiB below20GiB threshold: reuseexistingcheckout/cache, no newcopy/install. Evidence: rheos1-b858-mimo-qualified-merge-and-selected-admission-plan-20261008.json SHA256207f81c64216cf102ed20c69d276c76d1f1f10f21e8293ce74b6d9106c7a05b7. All priorjournalprefixes preserved; no spore or runtime/publication change.

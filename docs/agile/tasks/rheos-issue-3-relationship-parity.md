@@ -30,6 +30,8 @@ concurrency contract in isolated fixtures. Required hosted gates bind the head.
 
 Real create/edit/read round trips, classified errors, removals/no-ops, whole-batch
 refusals, protected fields, graph races, append-only history and runtime parity.
+Include actual dependency-aware implementation admission through the existing
+FSM path, using the writer story's reviewed policy and complete-read boundary.
 HTTP acceptance covers canonical server reads and projections that preserve
 accepted references. Browser-client code, a new UI editor and end-to-end browser
 tests are outside this story's scope.
@@ -59,6 +61,20 @@ presented as native admission, synthetic provider review or custom event parser.
 - [ ] Controlled failure between file/event effects is reported according to
   the accepted recovery contract; no success is claimed without its required
   history/readback. Historical events are never rewritten to repair the fixture.
+- [ ] Actual compiled CLI and isolated HTTP/MCP transition calls refuse a
+  missing predecessor, an unfinished predecessor and a dependency cycle, and
+  admit the corresponding completed-predecessor graph. Include reachable
+  transitive predecessors, malformed/ambiguous identities, incomplete reads,
+  rejected/archived predecessors and no-dependency cards. Assert preserved
+  card/ledger bytes and classified blocker diagnostics on refusal.
+- [ ] A completed-predecessor case still fails an invalid FSM edge, saturated
+  WIP or nonzero executable gate. A controlled inter-process predecessor
+  change during an executable gate cannot commit admission from the old
+  snapshot; record the actual reservation/conflict/refusal and final readback.
+- [ ] Consumer delivery records the qualified immutable source and actual
+  package/bundle identity, then repeats native positive/negative admission
+  under that consumed revision. Source tests and a local candidate CLI do not
+  prove installed enforcement or authorize character implementation.
 - [ ] Hosted tests/build/lint run on the eventual exact head with pinned source
   dependencies and no signing/deployment credentials. Existing standalone
   qualification owns bootstrap; missing tools remain failures, not passes.
@@ -69,6 +85,10 @@ Store raw red/green commands, fixture identities, before/after hashes and exact
 hosted job IDs. Replay and relationship interpretation use Rheos's canonical
 code. Native planning review and lawful readiness precede these implementation
 tests; this incoming card supplies neither.
+
+Fresh review must assess whether the existing provisional 5-point parity
+estimate covers this explicit admission matrix. Required additional work is
+reported against the fixed consumer milestone before selection.
 
 ## Risks
 

@@ -26,6 +26,14 @@ relationships by exact UUID through its existing write authority. CLI, HTTP and
 MCP share the same decision and event path. Identity, status and provenance
 remain protected. A successful relationship edit grants no lifecycle admission.
 
+The selected Cephalon consumer also requires dependency-aware lifecycle
+admission. The existing Rheos FSM remains the status authority: its canonical
+transition path must refuse missing, unfinished or cyclic predecessors before
+implementation admission, and admit the corresponding completed-predecessor
+case. This requirement was already recorded in the consumer's character epic;
+the original authoring plan did not cover the unfinished-predecessor predicate.
+This amendment makes that delivery gap explicit for fresh planning review.
+
 ## Scope
 
 Review the proposed contract in
@@ -33,11 +41,12 @@ Review the proposed contract in
 complete these proposed stories in order:
 
 1. `rheos-issue-3-relationship-contract`: portable shapes and graph laws, 3 points.
-2. `rheos-issue-3-relationship-writer`: canonical creation/edit/read adapters,
-   5 points, dependent on the contract story.
+2. `rheos-issue-3-relationship-writer`: canonical creation/edit/read adapters
+   and dependency-aware admission through the existing FSM transition path,
+   provisionally 5 points, dependent on the contract story.
 3. `rheos-issue-3-relationship-parity`: compiled CLI/HTTP/MCP, server-read
-   projections, history and concurrent-write evidence, 5 points, dependent on
-   the writer story.
+   projections, lifecycle admission, history and concurrent-write evidence,
+   provisionally 5 points, dependent on the writer story.
 
 HTTP acceptance ends at canonical server reads and projections that preserve
 accepted references. Browser-client code, a new UI editor and end-to-end browser
@@ -47,6 +56,12 @@ These are provisional estimates for native planning review, not accepted
 capacity assignments. The dependency UUIDs on the new Markdown stories are
 first-class planning input; their presence does not demonstrate that the
 currently unsupported edit operation admitted them.
+
+Fresh planning review must assess whether the remaining 5/5 split is still
+adequate. The 13-point frontmatter is retained as historical/provisional input,
+not an accepted estimate for the amended scope. A required additional story or
+capacity change must be reported against the consumer's fixed milestone before
+it is selected; this amendment supplies no silent inventory expansion.
 
 ## Non-goals
 
@@ -72,6 +87,12 @@ their own scopes.
 - [ ] Accepted relationships survive canonical loading, content reads, board
   projections and existing event replay without silently dropping references.
   The rejected cases and historical bytes remain inspectable.
+- [ ] The owning FSM/configuration defines predecessor success and the
+  implementation-admission boundaries. Native transition calls refuse missing,
+  unfinished and cyclic predecessor cases, admit completed predecessors, and
+  retain every existing FSM, WIP and executable gate. Relationship authoring,
+  a successful pure graph decision or a passing command alone cannot supply
+  that admission.
 - [ ] Required hosted tests/build/lint qualify the eventual exact implementation
   head and dependency revisions. Final consumer integration uses a qualified
   immutable Rheos revision.

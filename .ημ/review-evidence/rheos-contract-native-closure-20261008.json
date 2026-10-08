@@ -1,0 +1,154 @@
+{
+  "epistemic_tier": "observed-command-output-transcription",
+  "observed_at": "2026-10-08T16:37:26.612Z",
+  "source": "e29551fefe5aac3c69568412724d4810bf64a5a9",
+  "node": "v22.20.0",
+  "cli_sha256": "2493ad986309c431355c09e022306b07ef3dbbd7c83bc8f074f7e757d0bdfafe",
+  "operations": [
+    {
+      "label": "comment",
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "comment",
+        "rheos-issue-3-relationship-contract",
+        "--text",
+        "Portable contract source qualified and merged in riatzukiza/rheos PR4, reviewed head d556ead443290c11fa958fa8f7512a7a31366877 / merge c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f. Its retained JVM1.12.4 and compiled CLJS1.12.134/Node22.20 fixtures each passed23tests497assertions; RED146a43d and19bf20b and the actual projection RED2tests8assertions4failures remain preserved. This closes only the3-point portable relationship contract after exact-head code qualification. Source-preserving PR1 subsequently passed canonical gate with CodeRabbit/MiMo,3checks and17settled threads and merged exact b858 source as e29551fefe5aac3c69568412724d4810bf64a5a9. Existing writer/parity stories remain Incoming; a fresh planning amendment now explicitly covers required unfinished-predecessor lifecycle admission. No adapter/projection repair, inter-process reservation, installed dependency enforcement, released bundle, B1/B2/B3, runtime or publication proof is claimed.",
+        "--config",
+        "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/selected-rheos-board-after-merge-config.json"
+      ],
+      "observed_exit": 0,
+      "streams": [
+        {
+          "stream": "stdout",
+          "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/contract-closure-comment.stdout",
+          "bytes": 1041,
+          "sha256": "1934c8c5042d392469e9d9e488781bd851351c389d0d9390fdad06389a513716"
+        },
+        {
+          "stream": "stderr",
+          "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/contract-closure-comment.stderr",
+          "bytes": 261,
+          "sha256": "872851017e443041bc79487b55cdf21ec4336e0141709d21637f81daa375907a"
+        }
+      ]
+    },
+    {
+      "label": "document",
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "move",
+        "rheos-issue-3-relationship-contract",
+        "--to",
+        "document",
+        "--config",
+        "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/selected-rheos-board-after-merge-config.json"
+      ],
+      "observed_exit": 0,
+      "streams": [
+        {
+          "stream": "stdout",
+          "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/contract-closure-document.stdout",
+          "bytes": 62,
+          "sha256": "928ae5661c3474fdbf30b7f74ef48626d68109a4b79f48c33e28dea93935ddea"
+        },
+        {
+          "stream": "stderr",
+          "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/contract-closure-document.stderr",
+          "bytes": 261,
+          "sha256": "872851017e443041bc79487b55cdf21ec4336e0141709d21637f81daa375907a"
+        }
+      ]
+    },
+    {
+      "label": "done",
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "move",
+        "rheos-issue-3-relationship-contract",
+        "--to",
+        "done",
+        "--config",
+        "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/selected-rheos-board-after-merge-config.json"
+      ],
+      "observed_exit": 0,
+      "streams": [
+        {
+          "stream": "stdout",
+          "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/contract-closure-done.stdout",
+          "bytes": 60,
+          "sha256": "f355c3dc5cb2e0234caf0b0752ddc0ea049f467526c5226a51ff9b79c481ef1f"
+        },
+        {
+          "stream": "stderr",
+          "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/contract-closure-done.stderr",
+          "bytes": 261,
+          "sha256": "872851017e443041bc79487b55cdf21ec4336e0141709d21637f81daa375907a"
+        }
+      ]
+    },
+    {
+      "label": "readback",
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "read-task",
+        "rheos-issue-3-relationship-contract",
+        "--config",
+        "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/selected-rheos-board-after-merge-config.json"
+      ],
+      "observed_exit": 0,
+      "streams": [
+        {
+          "stream": "stdout",
+          "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/contract-closure-readback.stdout",
+          "bytes": 7260,
+          "sha256": "62e9f64bf41b97bb1906cf0399cd28429140e83160b45b4c350f3a64b1060845"
+        },
+        {
+          "stream": "stderr",
+          "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/contract-closure-readback.stderr",
+          "bytes": 261,
+          "sha256": "872851017e443041bc79487b55cdf21ec4336e0141709d21637f81daa375907a"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "docs/agile/tasks/rheos-issue-3-relationship-contract.md",
+      "before_bytes": 5837,
+      "before_sha256": "7a699163c860837a2af1cfe866f9228a561de3a0e40ac19d0fc2342d6e5bebf9",
+      "after_bytes": 6797,
+      "after_sha256": "184a28b3067d96bb753da7125007444f54519c6838415b9b5de33db804b2d1af",
+      "prefix_preserved": null,
+      "new_lines": null
+    },
+    {
+      "path": "docs/agile/.events/ledger.edn",
+      "before_bytes": 6808,
+      "before_sha256": "1823d08d8024d12e9f70880f87fa617554c38af06459363fa04a0fe0c5389fa1",
+      "after_bytes": 9043,
+      "after_sha256": "9aff6c927ff01bf462a13f995842697e301a4723388b71224165ef4bf5dd880c",
+      "prefix_preserved": true,
+      "new_lines": 3
+    },
+    {
+      "path": "docs/agile/tasks/.events/ledger.edn",
+      "before_bytes": 0,
+      "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after_bytes": 0,
+      "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "prefix_preserved": true,
+      "new_lines": 0
+    }
+  ],
+  "raw_card_and_native_comment_section_contain_exact_appended_comment": true,
+  "local_operator_failures": [
+    "Initial duplicate private snapshot basename assertion failed before any native mutation; preserved initial snapshots and used unique repository-relative path names.",
+    "All four actual native operations exited0. Subsequent operator assertion incorrectly expected one separate parsed section for the appended comment. Native readback contains the exact full comment once inside its existing combined comment section; raw source contains the exact bytes. No native operation was replayed."
+  ],
+  "scope": "pure relationship contract only; writer/parity remain Incoming; no installed/runtime/B1-B3 proof"
+}
