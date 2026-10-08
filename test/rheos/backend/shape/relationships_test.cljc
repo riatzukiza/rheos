@@ -4,7 +4,7 @@
                :cljs [cljs.test :refer-macros [deftest is]])
             [malli.core :as m]
             [malli.registry :as mr]
-            [rheos.backend.law.relationships :as law]
+            [rheos.backend.domain.relationships :as relationships]
             [rheos.backend.shape.relationships :as shape]))
 
 (deftest named-registry-round-trips-as-plain-edn
@@ -31,7 +31,7 @@
   (doseq [input [{} {:parent nil} {:epic ""} {:dependency []}
                  {:parent "a"} {:epic "epic"} {:dependency "b, a"}
                  {:parent "a" :epic "epic" :dependency ["b" "a"]}]]
-    (let [result (law/normalize input)]
+    (let [result (relationships/normalize input)]
       (is (:ok? result))
       (is (shape/valid-normalized? (:value result)))
-      (is (= result (law/normalize (:value result)))))))
+      (is (= result (relationships/normalize (:value result)))))))

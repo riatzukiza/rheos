@@ -1,0 +1,14 @@
+{
+  "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+  "argv": [
+    "/usr/local/bin/clojure",
+    "-Srepro",
+    "-Sdeps",
+    "{:paths [\"src\" \"test\"] :deps {org.clojure/clojure {:mvn/version \"1.12.4\"} metosin/malli {:mvn/version \"0.16.4\"} org.clojure/clojurescript {:mvn/version \"1.12.134\"}}}",
+    "-M",
+    "-m",
+    "rheos.relationship-contract-runner"
+  ],
+  "exit_code": 0,
+  "schema": "observed-command-output"
+}

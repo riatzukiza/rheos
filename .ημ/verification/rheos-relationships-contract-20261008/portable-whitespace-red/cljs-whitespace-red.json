@@ -1,0 +1,9 @@
+{
+  "schema": "observed-command-output",
+  "cwd": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/cljs-whitespace-red",
+  "argv": [
+    "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+    "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/cljs-whitespace-red/runner.cjs"
+  ],
+  "exit_code": 1
+}

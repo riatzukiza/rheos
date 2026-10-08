@@ -5,11 +5,9 @@
   (:require [malli.core :as m]
             [malli.registry :as mr]))
 
-(def fields #{:parent :epic :dependency})
-
 (def registry
   {::reference [:string {:min 1}]
-   ::singular-input [:maybe [:ref ::reference]]
+   ::singular-input [:maybe :string]
    ::dependency-input [:maybe [:or :string [:vector [:ref ::reference]]]]
    ::input [:map {:closed true}
             [:parent {:optional true} [:ref ::singular-input]]
