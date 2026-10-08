@@ -1,0 +1,382 @@
+{
+  "schema": "observed-command-output-transcription",
+  "not_native_review_or_raw_rest": true,
+  "source_sha256": {
+    "src/rheos/backend/law/frontmatter.cljc": "af08622f7b673f123dbb9d263cc18e6842f85a6a616b3ad839c7bc81768d6b0a",
+    "src/rheos/backend/law/relationships.cljc": "0dad737d6fe802395ab482aba590e7fb85b0215097a2debf97fdbca35fb68ba8",
+    "src/rheos/backend/domain/relationships.cljc": "3ae609c1f5115de07358f89e55bedee665236500d1a8abfd1884605278ac2b70",
+    "src/rheos/backend/shape/relationships.cljc": "455078ccdd0e4b1c2c6a1fc46a7507e6620bee415dcd02096d7318b3ad4313ac",
+    "test/rheos/backend/domain/relationships_test.cljc": "1c37c7bf64c1258f4bf2d0341e6c4a2577f798e3bfd1ba1654b332568cfbc75c",
+    "test/rheos/backend/shape/relationships_test.cljc": "a845ac7675779c80a9eee04d57290dd65958c90e9efbbe6b6248ce3be5b8061f",
+    "test/rheos/relationship_contract_runner.cljc": "398fe2a12434abb88d62aae73b3cc173e030ab8bbb12242e77c123581b1dca0a"
+  },
+  "executions": [
+    {
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+      "argv": [
+        "/usr/local/bin/clojure",
+        "-Srepro",
+        "-Sdeps",
+        "{:paths [\"src\" \"test\"] :deps {org.clojure/clojure {:mvn/version \"1.12.4\"} metosin/malli {:mvn/version \"0.16.4\"} org.clojure/clojurescript {:mvn/version \"1.12.134\"}}}",
+        "-M",
+        "-m",
+        "rheos.relationship-contract-runner"
+      ],
+      "exit_code": 0,
+      "schema": "observed-command-output",
+      "stdout": {
+        "bytes": 160,
+        "sha256": "1f03132a87a2546cb0e16f6f72e31e1d3d5d68a21635ea9179202915ffed994c",
+        "text": "\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 23 tests containing 497 assertions.\n0 failures, 0 errors.\n"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      }
+    },
+    {
+      "schema": "observed-command-output",
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+      "argv": [
+        "/usr/local/bin/clojure",
+        "-Srepro",
+        "-Sdeps",
+        "{:paths [\"src\" \"test\"] :deps {org.clojure/clojure {:mvn/version \"1.12.4\"} metosin/malli {:mvn/version \"0.16.4\"} org.clojure/clojurescript {:mvn/version \"1.12.134\"}}}",
+        "-M",
+        "-m",
+        "cljs.main",
+        "-co",
+        "{:target :nodejs :output-to \"/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/cljs-green/runner.cjs\" :output-dir \"/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/cljs-green/out\" :optimizations :none :main rheos.relationship-contract-runner}",
+        "-c",
+        "rheos.relationship-contract-runner"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      }
+    },
+    {
+      "schema": "observed-command-output",
+      "cwd": "/",
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/cljs-green/runner.cjs"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 160,
+        "sha256": "1f03132a87a2546cb0e16f6f72e31e1d3d5d68a21635ea9179202915ffed994c",
+        "text": "\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 23 tests containing 497 assertions.\n0 failures, 0 errors.\n"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      }
+    },
+    {
+      "schema": "observed-command-output",
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "install",
+        "--no-frozen-lockfile",
+        "--lockfile=false"
+      ],
+      "exit_code": 0,
+      "free_bytes_before": 24086716416,
+      "started_at": "2026-10-08T08:46:22.269457+00:00",
+      "finished_at": "2026-10-08T08:46:26.214075+00:00",
+      "stdout": {
+        "bytes": 874,
+        "sha256": "42e3456aa55eeca9f728383a675b4a5704f914824195ccd2c9cc34804f1e8d2c",
+        "text": "Progress: resolved 1, reused 0, downloaded 0, added 0\nProgress: resolved 15, reused 13, downloaded 0, added 0\nProgress: resolved 187, reused 185, downloaded 1, added 0\n WARN  1 deprecated subdependencies found: glob@11.1.0\nPackages: +220\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\nProgress: resolved 243, reused 219, downloaded 1, added 220, done\n\ndependencies:\n+ @fastify/cors 11.3.0\n+ @fastify/static 8.3.0 (10.1.5 is available)\n+ @modelcontextprotocol/sdk 1.32.1\n+ chokidar 4.0.3 (5.0.0 is available)\n+ fastify 5.12.5\n\ndevDependencies:\n+ @open-hax/protocols 0.1.0\n+ @open-hax/uxx-helix 0.1.0\n+ @vitejs/plugin-react 6.1.2\n+ dompurify 3.4.16\n+ helix 0.3.1\n+ marked 18.1.0\n+ process 0.11.10\n+ react 19.3.0\n+ react-dom 19.3.0\n+ scheduler 0.23.2 (0.28.0 is available)\n+ shadow-cljs 3.5.5\n+ ws 8.22.0\n\nDone in 3.7s using pnpm v10.15.0\n"
+      },
+      "stderr": {
+        "bytes": 97,
+        "sha256": "b1a73e8d61369efcbb995662dafac3cc34fddd603cedc2618c34c048491cf8e2",
+        "text": " WARN  Issue while reading \"/home/err/.npmrc\". Failed to replace env in config: ${NPM_TOKEN}\n"
+      }
+    },
+    {
+      "schema": "observed-command-output",
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+      "argv": [
+        "bash",
+        "scripts/bootstrap-source-deps.sh"
+      ],
+      "exit_code": 0,
+      "free_bytes_before": 24056303616,
+      "started_at": "2026-10-08T08:47:38.594515+00:00",
+      "finished_at": "2026-10-08T08:47:49.227421+00:00",
+      "stdout": {
+        "bytes": 300,
+        "sha256": "f70b62dcb8fcecd1da041e2163e81840a37b4c379d4fd2c0820fdb895e276a5c",
+        "text": "Fetching Protocols source from eta-mu@0ed56aa74a53a1d1e9c2e55ce95451817a7f3a90...\n  protocols/src: 21 files\nFetching Chat UI source from open-hax/chat-ui@86385532b4f8606946555d0ada8e3fb22f35b4c3...\n  chat-ui/src: 10 files\nSource deps ready at /home/err/spaces/cephalon-rheos-relationships/rheos/deps\n"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      }
+    },
+    {
+      "schema": "observed-command-output",
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "lint:kondo"
+      ],
+      "PATH_prefix": "/home/err/.volta/tools/image/node/22.20.0/bin",
+      "exit_code": 0,
+      "started_at": "2026-10-08T08:49:52.756360+00:00",
+      "finished_at": "2026-10-08T08:49:54.263958+00:00",
+      "stdout": {
+        "bytes": 1512,
+        "sha256": "0f371272ddeabe99eda05c5d25cba2dfeef7e5edf407381f7715c859b2084089",
+        "text": "\n> @eta-mu/rheos@0.1.0 lint:kondo /home/err/spaces/cephalon-rheos-relationships/rheos\n> clj-kondo --lint src test\n\nsrc/rheos/backend/domain/compose.cljs:6:14: info: a domain namespace must not require rheos.backend.infra.ledger (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/backend/domain/compose.cljs:7:14: info: a domain namespace must not require rheos.backend.infra.task-store (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/backend/law/fsm.cljs:7:14: info: a law namespace must not require the host: \"node:child_process\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nsrc/rheos/ui/domain/layout.cljs:11:14: info: a domain namespace must not require rheos.ui.infra.api (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/layout.cljs:12:14: info: a domain namespace must not require rheos.ui.infra.ledger-stream (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/orchestrator.cljs:17:14: info: a domain namespace must not require rheos.ui.infra.chat-session (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/sidebar.cljs:7:14: info: a domain namespace must not require the host: \"marked\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nsrc/rheos/ui/domain/sidebar.cljs:8:14: info: a domain namespace must not require the host: \"dompurify\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nlinting took 1143ms, errors: 0, warnings: 0\n"
+      },
+      "stderr": {
+        "bytes": 97,
+        "sha256": "b1a73e8d61369efcbb995662dafac3cc34fddd603cedc2618c34c048491cf8e2",
+        "text": " WARN  Issue while reading \"/home/err/.npmrc\". Failed to replace env in config: ${NPM_TOKEN}\n"
+      }
+    },
+    {
+      "schema": "observed-command-output",
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "test"
+      ],
+      "PATH_prefix": "/home/err/.volta/tools/image/node/22.20.0/bin",
+      "exit_code": 0,
+      "started_at": "2026-10-08T08:49:54.264333+00:00",
+      "finished_at": "2026-10-08T08:50:22.034024+00:00",
+      "stdout": {
+        "bytes": 2942,
+        "sha256": "4ec39bf6d64f08452f356ea65408e167cd35339b41bc0a59651b99da13f18726",
+        "text": "\n> @eta-mu/rheos@0.1.0 test /home/err/spaces/cephalon-rheos-relationships/rheos\n> shadow-cljs compile test && node dist/test.cjs\n\nshadow-cljs - updating dependencies\nshadow-cljs - dependencies updated\n[:test] Compiling ...\n========= Running Tests =======================\n\nTesting rheos.backend.domain.board-test\n\nTesting rheos.backend.domain.compose-test\n\nTesting rheos.backend.domain.events-test\n\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.domain.task-create-test\n\nTesting rheos.backend.domain.transition-test\n\nTesting rheos.backend.infra.agent-tools-test\n{\n  \"ok\": true,\n  \"uuid\": \"t1\",\n  \"from\": \"breakdown\",\n  \"to\": \"ready\"\n}\n\nTesting rheos.backend.infra.cli-test\n\nTesting rheos.backend.infra.config-card-creation-test\n\nTesting rheos.backend.infra.config-test\n\nTesting rheos.backend.infra.github-issue-preflight-test\n\nTesting rheos.backend.infra.github-issues-test\n\nTesting rheos.backend.infra.store-test\n\nTesting rheos.backend.infra.task-create-conflict-test\n\nTesting rheos.backend.infra.task-create-test\n\nTesting rheos.backend.infra.task-edit-test\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 173 tests containing 1269 assertions.\n0 failures, 0 errors.\n===============================================\n[:test] Build completed. (143 files, 142 compiled, 0 warnings, 12.81s)\n\nTesting rheos.backend.domain.board-test\n\nTesting rheos.backend.domain.compose-test\n\nTesting rheos.backend.domain.events-test\n\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.domain.task-create-test\n\nTesting rheos.backend.domain.transition-test\n\nTesting rheos.backend.infra.agent-tools-test\n{\n  \"ok\": true,\n  \"uuid\": \"t1\",\n  \"from\": \"breakdown\",\n  \"to\": \"ready\"\n}\n\nTesting rheos.backend.infra.cli-test\n\nTesting rheos.backend.infra.config-card-creation-test\n\nTesting rheos.backend.infra.config-test\n\nTesting rheos.backend.infra.github-issue-preflight-test\n\nTesting rheos.backend.infra.github-issues-test\n\nTesting rheos.backend.infra.store-test\n\nTesting rheos.backend.infra.task-create-conflict-test\n\nTesting rheos.backend.infra.task-create-test\n\nTesting rheos.backend.infra.task-edit-test\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 173 tests containing 1269 assertions.\n0 failures, 0 errors.\n"
+      },
+      "stderr": {
+        "bytes": 413,
+        "sha256": "8d360b7189072fc0c1ae169d5c63965192069b903b8f5e68e5b793b1334c7dee",
+        "text": " WARN  Issue while reading \"/home/err/.npmrc\". Failed to replace env in config: ${NPM_TOKEN}\nshadow-cljs - config: /home/err/spaces/cephalon-rheos-relationships/rheos/shadow-cljs.edn\nrheos: transition rejected: No transition from 'review' to 'in_review'\nno \"source-map-support\" (run \"npm install source-map-support --save-dev\" to get it)\nrheos: transition rejected: No transition from 'review' to 'in_review'\n"
+      }
+    },
+    {
+      "schema": "observed-command-output",
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "build"
+      ],
+      "PATH_prefix": "/home/err/.volta/tools/image/node/22.20.0/bin",
+      "exit_code": 0,
+      "started_at": "2026-10-08T08:50:22.034517+00:00",
+      "finished_at": "2026-10-08T08:51:12.711804+00:00",
+      "stdout": {
+        "bytes": 509,
+        "sha256": "3accb7c9972da03cc33edcde970c9fef887b865820c91011b9f9c05b83a92e77",
+        "text": "\n> @eta-mu/rheos@0.1.0 build /home/err/spaces/cephalon-rheos-relationships/rheos\n> shadow-cljs release server cli github-sync app\n\n[:server] Compiling ...\n[:server] Build completed. (102 files, 44 compiled, 0 warnings, 16.94s)\n[:cli] Compiling ...\n[:cli] Build completed. (106 files, 47 compiled, 0 warnings, 8.45s)\n[:github-sync] Compiling ...\n[:github-sync] Build completed. (61 files, 14 compiled, 0 warnings, 6.86s)\n[:app] Compiling ...\n[:app] Build completed. (95 files, 49 compiled, 0 warnings, 11.80s)\n"
+      },
+      "stderr": {
+        "bytes": 187,
+        "sha256": "d05e15188f65c1060eb6b3b86cf0d52e8e812efb1aa4eb449c037b3281ac11a9",
+        "text": " WARN  Issue while reading \"/home/err/.npmrc\". Failed to replace env in config: ${NPM_TOKEN}\nshadow-cljs - config: /home/err/spaces/cephalon-rheos-relationships/rheos/shadow-cljs.edn\n"
+      }
+    }
+  ],
+  "projection_red": {
+    "schema": "observed-command-output",
+    "commands": {
+      "raw": {
+        "argv": [
+          "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+          "/home/err/spaces/cephalon-rheos-relationships/rheos/dist/cli.cjs",
+          "read-task",
+          "fixture-child",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection-baseline/kanban.json"
+        ],
+        "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+        "exit_code": 0,
+        "stdout_sha256": "03b281f42e7b5c86c67abe25bbcff5422f05d019fc8e7574f6335f08a6185a96"
+      },
+      "projected": {
+        "argv": [
+          "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+          "/home/err/spaces/cephalon-rheos-relationships/rheos/dist/cli.cjs",
+          "read-board",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection-baseline/kanban.json"
+        ],
+        "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+        "exit_code": 0,
+        "stdout_sha256": "f387e19f9edf2228be21da3e9fecf58407944208c4df677e9754127d920686fa"
+      }
+    },
+    "cli_sha256": "c1886b1df081321ed0827d2f4e76b74397d69d5e16abdb8b577d3fb3106bfe4e",
+    "task_store_sha256": "8983f678c5b8e54552f444373c46b954688e8b25777e806e03e6a85ac36a4f58",
+    "streams": {
+      "assertions-corrected.stdout": {
+        "bytes": 1144,
+        "sha256": "0a5f118e7196dce5e356c66d83fef273b6de2c7c1c3d73bda823101d1bd0c974",
+        "text": "\nTesting projection-red\n\nFAIL in (public-projection-must-retain-all-four-graph-facts) (/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection_red.cljs:11)\nexpected: (= value (get task field))\n  actual: (not (= \"fixture-epic\" nil))\n\nFAIL in (public-projection-must-retain-all-four-graph-facts) (/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection_red.cljs:11)\nexpected: (= value (get task field))\n  actual: (not (= \"fixture-epic\" nil))\n\nFAIL in (public-projection-must-retain-all-four-graph-facts) (/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection_red.cljs:11)\nexpected: (= value (get task field))\n  actual: (not (= \"fixture-pred\" nil))\n\nFAIL in (public-projection-must-retain-all-four-graph-facts) (/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection_red.cljs:11)\nexpected: (= value (get task field))\n  actual: (not (= \"task\" nil))\n\nRan 2 tests containing 8 assertions.\n4 failures, 0 errors.\n"
+      },
+      "raw.stdout": {
+        "bytes": 553,
+        "sha256": "03b281f42e7b5c86c67abe25bbcff5422f05d019fc8e7574f6335f08a6185a96",
+        "text": "{\n  \"uuid\": \"fixture-child\",\n  \"frontmatter\": {\n    \"dependency\": \"fixture-pred\",\n    \"parent\": \"fixture-epic\",\n    \"type\": \"task\",\n    \"title\": \"Fixture child\",\n    \"priority\": \"P1\",\n    \"status\": \"incoming\",\n    \"epic\": \"fixture-epic\",\n    \"uuid\": \"fixture-child\",\n    \"created_at\": \"2026-10-08\"\n  },\n  \"sections\": [\n    {\n      \"type\": \"body\",\n      \"content\": \"# Fixture child\"\n    }\n  ],\n  \"source-path\": \"/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection-baseline/cards/child.md\"\n}\n"
+      },
+      "assertions.stdout": {
+        "bytes": 1144,
+        "sha256": "0a5f118e7196dce5e356c66d83fef273b6de2c7c1c3d73bda823101d1bd0c974",
+        "text": "\nTesting projection-red\n\nFAIL in (public-projection-must-retain-all-four-graph-facts) (/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection_red.cljs:11)\nexpected: (= value (get task field))\n  actual: (not (= \"fixture-epic\" nil))\n\nFAIL in (public-projection-must-retain-all-four-graph-facts) (/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection_red.cljs:11)\nexpected: (= value (get task field))\n  actual: (not (= \"fixture-epic\" nil))\n\nFAIL in (public-projection-must-retain-all-four-graph-facts) (/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection_red.cljs:11)\nexpected: (= value (get task field))\n  actual: (not (= \"fixture-pred\" nil))\n\nFAIL in (public-projection-must-retain-all-four-graph-facts) (/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection_red.cljs:11)\nexpected: (= value (get task field))\n  actual: (not (= \"task\" nil))\n\nRan 2 tests containing 8 assertions.\n4 failures, 0 errors.\n"
+      },
+      "projected.stdout": {
+        "bytes": 1417,
+        "sha256": "f387e19f9edf2228be21da3e9fecf58407944208c4df677e9754127d920686fa",
+        "text": "{\n  \"total-tasks\": 3,\n  \"columns\": [\n    {\n      \"status\": \"icebox\",\n      \"count\": 0,\n      \"tasks\": []\n    },\n    {\n      \"status\": \"incoming\",\n      \"count\": 3,\n      \"tasks\": [\n        {\n          \"uuid\": \"fixture-child\",\n          \"title\": \"Fixture child\",\n          \"priority\": \"P1\",\n          \"board\": \"cards\"\n        },\n        {\n          \"uuid\": \"fixture-epic\",\n          \"title\": \"Fixture epic\",\n          \"priority\": \"P1\",\n          \"board\": \"cards\"\n        },\n        {\n          \"uuid\": \"fixture-pred\",\n          \"title\": \"Fixture pred\",\n          \"priority\": \"P1\",\n          \"board\": \"cards\"\n        }\n      ]\n    },\n    {\n      \"status\": \"accepted\",\n      \"count\": 0,\n      \"tasks\": []\n    },\n    {\n      \"status\": \"breakdown\",\n      \"count\": 0,\n      \"tasks\": []\n    },\n    {\n      \"status\": \"blocked\",\n      \"count\": 0,\n      \"tasks\": []\n    },\n    {\n      \"status\": \"ready\",\n      \"count\": 0,\n      \"tasks\": []\n    },\n    {\n      \"status\": \"todo\",\n      \"count\": 0,\n      \"tasks\": []\n    },\n    {\n      \"status\": \"in_progress\",\n      \"count\": 0,\n      \"tasks\": []\n    },\n    {\n      \"status\": \"review\",\n      \"count\": 0,\n      \"tasks\": []\n    },\n    {\n      \"status\": \"document\",\n      \"count\": 0,\n      \"tasks\": []\n    },\n    {\n      \"status\": \"done\",\n      \"count\": 0,\n      \"tasks\": []\n    },\n    {\n      \"status\": \"rejected\",\n      \"count\": 0,\n      \"tasks\": []\n    }\n  ],\n  \"wip-limits\": {}\n}\n"
+      },
+      "raw.stderr": {
+        "bytes": 208,
+        "sha256": "779425714d79540684017f4353331514f276d7ea3af1a643919c44a04bb270f3",
+        "text": "[rheos] JSON board config is deprecated: /home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection-baseline/kanban.json; migrate to openhax.kanban.edn\n"
+      },
+      "assertions.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "projected.stderr": {
+        "bytes": 208,
+        "sha256": "779425714d79540684017f4353331514f276d7ea3af1a643919c44a04bb270f3",
+        "text": "[rheos] JSON board config is deprecated: /home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection-baseline/kanban.json; migrate to openhax.kanban.edn\n"
+      },
+      "assertions-corrected.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      }
+    },
+    "assertions_initial": {
+      "schema": "observed-command-output",
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/.npm/_npx/0856042db19db713/node_modules/nbb/cli.js",
+        "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection_red.cljs"
+      ],
+      "exit_code": 0,
+      "note": "NBB assertions read actual raw and board stdout from built Node Rheos public CLI; reader is unchanged and remains defective, not a fabricated GREEN."
+    },
+    "assertions_corrected": {
+      "schema": "observed-command-output",
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/.npm/_npx/0856042db19db713/node_modules/nbb/cli.js",
+        "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection_red.cljs"
+      ],
+      "exit_code": 1,
+      "corrects": "assertions.json",
+      "note": "Use cljs.test end-run-tests reporter for process exit; earlier run printed four actual failures but erroneously returned0 because run-tests does not return a summary. Same immutable public CLI stdout, no product repair."
+    },
+    "assertion_source": "(ns projection-red\n (:require [cljs.test :as t :refer [deftest is run-tests]] [\"node:fs\" :as fs]))\n(def fixture \"/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection-baseline/\")\n(def raw (js->clj (js/JSON.parse (.readFileSync fs (str fixture \"raw.stdout\") \"utf8\")) :keywordize-keys true))\n(def board (js->clj (js/JSON.parse (.readFileSync fs (str fixture \"projected.stdout\") \"utf8\")) :keywordize-keys true))\n(def expected {:parent \"fixture-epic\" :epic \"fixture-epic\" :dependency \"fixture-pred\" :type \"task\"})\n(def task (first (filter #(= \"fixture-child\" (:uuid %)) (mapcat :tasks (:columns board)))))\n(deftest raw-source-retains-all-four-graph-facts\n (doseq [[field value] expected] (is (= value (get-in raw [:frontmatter field])))))\n(deftest public-projection-must-retain-all-four-graph-facts\n (doseq [[field value] expected] (is (= value (get task field)))))\n(defmethod t/report [::t/default :end-run-tests] [summary]\n (set! (.-exitCode js/process) (if (t/successful? summary) 0 1)))\n(run-tests 'projection-red)\n",
+    "initial_assertion_source": "(ns projection-red\n (:require [cljs.test :refer [deftest is run-tests]] [\"node:fs\" :as fs]))\n(def fixture \"/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection-baseline/\")\n(def raw (js->clj (js/JSON.parse (.readFileSync fs (str fixture \"raw.stdout\") \"utf8\")) :keywordize-keys true))\n(def board (js->clj (js/JSON.parse (.readFileSync fs (str fixture \"projected.stdout\") \"utf8\")) :keywordize-keys true))\n(def expected {:parent \"fixture-epic\" :epic \"fixture-epic\" :dependency \"fixture-pred\" :type \"task\"})\n(def task (first (filter #(= \"fixture-child\" (:uuid %)) (mapcat :tasks (:columns board)))))\n(deftest raw-source-retains-all-four-graph-facts\n (doseq [[field value] expected] (is (= value (get-in raw [:frontmatter field])))))\n(deftest public-projection-must-retain-all-four-graph-facts\n (doseq [[field value] expected] (is (= value (get task field)))))\n(let [{:keys [fail error]} (run-tests 'projection-red)]\n (.exit js/process (if (zero? (+ fail error)) 0 1)))\n",
+    "fixture_cards": {
+      "child.md": "---\nuuid: \"fixture-child\"\ntype: \"task\"\nparent: \"fixture-epic\"\nepic: \"fixture-epic\"\ndependency: \"fixture-pred\"\ntitle: \"Fixture child\"\nstatus: \"incoming\"\npriority: \"P1\"\ncreated_at: \"2026-10-08\"\n---\n\n# Fixture child\n",
+      "epic.md": "---\nuuid: \"fixture-epic\"\ntype: \"epic\"\ntitle: \"Fixture epic\"\nstatus: \"incoming\"\npriority: \"P1\"\ncreated_at: \"2026-10-08\"\n---\n\n# Fixture epic\n",
+      "pred.md": "---\nuuid: \"fixture-pred\"\ntype: \"task\"\ntitle: \"Fixture pred\"\nstatus: \"incoming\"\npriority: \"P1\"\ncreated_at: \"2026-10-08\"\n---\n\n# Fixture pred\n"
+    },
+    "private_config": {
+      "tasksDir": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/projection-baseline/cards",
+      "fsm": "promethean"
+    }
+  },
+  "native_rheos_handoff": {
+    "schema": "observed-command-output",
+    "commands": [
+      {
+        "label": "corrected-comment",
+        "argv": [
+          "/home/err/.volta/bin/eta-mu",
+          "kanban",
+          "add-comment",
+          "rheos-issue-3-relationship-contract",
+          "--text",
+          "Correction to the preceding literal --text comment: installed native help names add-comment UUID --text TEXT; comment is an older positional surface and the initial invocation preserved only its flag. Preserve that event unchanged. Portable contract checkpoint: JVM Clojure1.12.4 and compiled ClojureScript1.12.134/Node22.20/Malli0.16.4 each23tests497assertions0failures0errors; existing full lint0errors0warnings,173tests1269assertions0failures0errors,4releasebuilds0compilerwarnings. Input-removal mismatch RED146a43d and host-whitespace RED19bf20b are retained before the shared lexical law repair. New actual built public CLI raw task retains parent/epic/dependency/type but read-board drops all four:2tests8assertions4failures0errors/exit1 after correcting the NBB exit reporter; initial printed-failure/exit0 proof attempt is retained. Full documentation and command/source-hash evidence are in docs/verification/portable-relationship-contract.md and the existing .ημ paths. Native InProgress→Review additionally executed the configured full test gate successfully. No current implementation approval, projection repair, writer/parity readiness, release, persistent encounter, consumed mood, automatic recall, B1/B2/B3 completion or runtime mutation is claimed.",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/owned-rheos-board-config.json"
+        ],
+        "exit_code": 0
+      },
+      {
+        "label": "corrected-readback",
+        "argv": [
+          "/home/err/.volta/bin/eta-mu",
+          "kanban",
+          "read-task",
+          "rheos-issue-3-relationship-contract",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/owned-rheos-board-config.json"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "prior_event_bytes": 4278,
+    "prior_event_sha256": "836106cc2087ec3f738160acd8668a9a6b9e116219787e5838142206e9708669",
+    "prior_event_prefix_byte_identical": true,
+    "body_and_prior_comments_preserved": true,
+    "new_correcting_comment_count": 1,
+    "final_status": "review",
+    "held_neighbors_unchanged": [
+      "docs/agile/tasks/rheos-issue-3-relationship-writer.md",
+      "docs/agile/tasks/rheos-issue-3-relationship-parity.md",
+      "docs/agile/epics/rheos-issue-3-relationship-authoring.md",
+      "docs/agile/tasks/.events/ledger.edn"
+    ],
+    "initial_failure": "Initial comment invocation stored --text, then proof failed after successful move/readback; no transition replay. Correcting comment uses documented add-comment surface.",
+    "readback": {
+      "uuid": "rheos-issue-3-relationship-contract",
+      "frontmatter": {
+        "labels": "relationships, shapes, graph-laws, planning",
+        "parent": "rheos-issue-3-relationship-authoring",
+        "type": "task",
+        "write-id": "1791449847854-0.hq94ugnvtuckmviznfb",
+        "points": "3",
+        "title": "Specify portable UUID relationship shapes and graph admission",
+        "priority": "P1",
+        "status": "review",
+        "epic": "rheos-issue-3-relationship-authoring",
+        "uuid": "rheos-issue-3-relationship-contract",
+        "created_at": "2026-10-06"
+      },
+      "sections": [
+        {
+          "type": "body",
+          "content": "# Specify portable UUID relationship shapes and graph admission\n\n## Context\n\nThe existing descriptive frontmatter law refuses relationships, creation checks\nonly an existing parent, and loaded tasks do not retain relationship data. See\n[issue 3](https://github.com/open-hax/rheos/issues/3) and the epic's proposed\ncontract. Syntax, references and graph meaning must be reviewed before adapters.\n\n## Outcome\n\nPortable `.cljc` shapes, normalization and admission laws describe the reviewed\nrelationship contract on Clojure data. Host loaders supply board facts; pure\ndecisions depend on neither Node objects nor filesystem/HTTP/MCP effects.\n\n## Scope\n\nExact UUID membership, optional singular parent/epic, dependency cardinality,\nrepresentation compatibility, removals, duplicates, missing/ambiguous targets,\nself-reference, directed cycles and hierarchy consistency. Evaluate a complete\nproposed update against a complete selected-project snapshot before effects.\n\n## Non-goals\n\nNo title/similarity matching, consumer validation, status admission, file writer,\nnew ledger, cross-project inference or broad runtime migration.\n\n## Acceptance criteria\n\n- [ ] Planning explicitly settles every proposed rule in the linked design,\n  including legacy malformed graphs and mixed descriptive/relationship edits.\n- [ ] Red fixtures expose missing relationship admission and lost projections;\n  they fail assertions about behavior, not merely unresolved dependencies.\n- [ ] Pure fixtures cover exact existing UUIDs, a multi-dependency update,\n  unset/empty cases, malformed values, duplicate claims, unavailable targets,\n  self edges, direct/indirect cycles and contradictory parent/epic membership.\n- [ ] Rejected batches have a classified result with no partial admitted subset.\n  Deterministic normalization and decisions are insensitive to input map order.\n- [ ] The same graph fixtures run in two appropriate supported Clojure hosts;\n  compiled browser/Node adapters consume this one contract rather than fork it.\n\n## Verification\n\nReview the fixture matrix before implementation. Future red/green evidence\nrecords each pinned host and exact result. Native incoming-card readback does\nnot validate graph admission or supply readiness.\n\n## Risks\n\nCombined hierarchy/dependency cycles can be confused with separate edge\nsemantics. The accepted graph orientation and cycle sets must be explicit.\nMissing references from a configured projection must not be guessed globally."
+        },
+        {
+          "type": "comment",
+          "content": "Planning qualification: canonical pr-flow gate PASS at 2026-10-08T08:07:24Z on e8105ee22f3c71be7871fa77173d23554be69d8b/base11811264a308d406cb612aefa1dad40818675e5e. Native MiMo APPROVED5453342097 and CodeRabbit completed request6055459294/reply6055461197/current summary6022099803; all53 selected inputs, no declared omissions,1 completed available-agent planning round,3 passing deterministic checks,2 settled findings. Starting only this3-point pure contract story. Writer and parity prerequisites stay Incoming. Implementation choices within the reviewed scope: identity means exact existing nonblank UUID-field string including supported legacy opaque IDs, not a new hexadecimal-only restriction; parent/epic are optional singular references; dependency admits a single string, comma-separated strings or a vector of strings, with nil/blank/empty vector as explicit removal and malformed/duplicate members refused. Parent hierarchy and dependency graphs are independently acyclic; epic membership agrees with the nearest epic ancestor. Relationship mutations validate the whole proposed selected-project graph, with classified atomic refusal; descriptive-only legacy edits keep their existing authority. Deterministic normalized dependencies are sorted. Reading malformed legacy data reports it without silent repair. No-op relationship replacement/removal changes neither card bytes nor successful mutation history. Actual portable RED fixtures precede implementation and subsequent code review; these choices are author decisions, not a claim that either reviewer explicitly enumerated every spelling. This is prerequisite implementation, not B1/B2/B3 delivery or deployment.\n\n--text\n\nCorrection to the preceding literal --text comment: installed native help names add-comment UUID --text TEXT; comment is an older positional surface and the initial invocation preserved only its flag. Preserve that event unchanged. Portable contract checkpoint: JVM Clojure1.12.4 and compiled ClojureScript1.12.134/Node22.20/Malli0.16.4 each23tests497assertions0failures0errors; existing full lint0errors0warnings,173tests1269assertions0failures0errors,4releasebuilds0compilerwarnings. Input-removal mismatch RED146a43d and host-whitespace RED19bf20b are retained before the shared lexical law repair. New actual built public CLI raw task retains parent/epic/dependency/type but read-board drops all four:2tests8assertions4failures0errors/exit1 after correcting the NBB exit reporter; initial printed-failure/exit0 proof attempt is retained. Full documentation and command/source-hash evidence are in docs/verification/portable-relationship-contract.md and the existing .ημ paths. Native InProgress→Review additionally executed the configured full test gate successfully. No current implementation approval, projection repair, writer/parity readiness, release, persistent encounter, consumed mood, automatic recall, B1/B2/B3 completion or runtime mutation is claimed."
+        }
+      ],
+      "source-path": "/home/err/spaces/cephalon-rheos-relationships/rheos/docs/agile/tasks/rheos-issue-3-relationship-contract.md"
+    }
+  },
+  "review_bindings_observed": {
+    "published_head": "e8105ee22f3c71be7871fa77173d23554be69d8b",
+    "personal_base": "11811264a308d406cb612aefa1dad40818675e5e",
+    "local_red_head": "19bf20b55d7b2b79c388864e5156d93bd6230bb9",
+    "new_implementation_review": "not yet requested; no current-head approval"
+  },
+  "scope_limits": "Pure contract only; generic whitelist and loader unchanged. No writer/persistence/concurrency/read-parity/release/B1/B2/B3/runtime proof. Known operator/bootstrap/test-harness/comment failures retained and corrected append-only."
+}

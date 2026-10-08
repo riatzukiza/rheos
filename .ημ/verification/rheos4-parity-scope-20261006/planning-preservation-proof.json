@@ -1,0 +1,75 @@
+{
+  "baseHead": "6588b46fd0ac1e69c70facf977ba39051e9f830a",
+  "nativeReview": 5433246699,
+  "nativeThread": "PRRT_kwDOU4Vf-c6pnaKa",
+  "nativeRootComment": 4199300347,
+  "nativeItem": "47150f7be955df4b29b9ad66",
+  "scopeDecision": "Root coordinator selected the original issue3 CLI/API/MCP contract; server HTTP/read projections preserve accepted relationships. Exclude browser-client code/new editor/end-to-end browser tests; no implementation scope added.",
+  "changedPlanningFiles": [
+    "docs/agile/tasks/rheos-issue-3-relationship-parity.md",
+    "docs/agile/epics/rheos-issue-3-relationship-authoring.md",
+    "docs/notes/uuid-relationship-authoring-plan.md"
+  ],
+  "allOtherTrackedFilesUnchanged": true,
+  "beforeTrackedFiles": 110,
+  "cardFrontmatter": [
+    {
+      "path": "docs/agile/tasks/rheos-issue-3-relationship-parity.md",
+      "frontmatterBytes": 412,
+      "frontmatterSHA256": "8cf0ce78970fe842b1c3f73e312417c3f4198130fefb13c261e6504ef9fb39e7",
+      "frontmatterByteEqual": true,
+      "wholeFileByteEqual": false
+    },
+    {
+      "path": "docs/agile/tasks/rheos-issue-3-relationship-contract.md",
+      "frontmatterBytes": 353,
+      "frontmatterSHA256": "c796d5eb533f650cfdebf28e1e2e866846f2ada198171af3f051f303aa794438",
+      "frontmatterByteEqual": true,
+      "wholeFileByteEqual": true
+    },
+    {
+      "path": "docs/agile/tasks/rheos-issue-3-relationship-writer.md",
+      "frontmatterBytes": 404,
+      "frontmatterSHA256": "4c014726953cfaa565ee18fb52b0010854fe137fb968cbd8e2dc6c2c4cb6bd9c",
+      "frontmatterByteEqual": true,
+      "wholeFileByteEqual": true
+    },
+    {
+      "path": "docs/agile/epics/rheos-issue-3-relationship-authoring.md",
+      "frontmatterBytes": 253,
+      "frontmatterSHA256": "b7772caa016fa9f0d93b490830479cf8c28c338557f9783151e390dd101a35a3",
+      "frontmatterByteEqual": true,
+      "wholeFileByteEqual": false
+    }
+  ],
+  "estimates": "Original byte-identical epic13 and stories3/5/5 remain; native cards all incoming/0ready.",
+  "originalFourReceiptBytes": 4817,
+  "originalFourReceiptSHA256": "dae0618ee203b1fa44fec08db890b53ed301883052adee35e17f5223d3007f2d",
+  "originalReflectionBytes": 1170,
+  "originalReflectionSHA256": "606cc0e481e196c0f3597b7dfed1c7f37b3228b052fb356202a0dd83fc3cd083",
+  "historicalEventLedgersUnchanged": true,
+  "nativeReadback": "Installed eta-mu1.1.1; seven captured commands including upstreamissue3/version/read-board/fourread-task, each exit0. Separate fixture; all inputs unchanged, no new artifacts. No relationship validation/readiness/runtime claim.",
+  "hygiene": [
+    {
+      "label": "successor-diff-hygiene",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "6588b46fd0ac1e69c70facf977ba39051e9f830a"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "cumulative-diff-hygiene",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "11811264a308d406cb612aefa1dad40818675e5e"
+      ],
+      "exit": 0
+    }
+  ],
+  "portableContractStory": "Unchanged two-host pure-fixture/shared-contract criterion is portability, not browser-client implementation. The design note had no prior browser row; one public-surfaces row clarifies the accepted boundary without replacing other proposed rules."
+}

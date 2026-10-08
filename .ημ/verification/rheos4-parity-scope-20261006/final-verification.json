@@ -1,0 +1,32 @@
+{
+  "predecessor": "6588b46fd0ac1e69c70facf977ba39051e9f830a",
+  "canonicalActualLedger": "{:base #:receipt{:total 4, :evidence 0, :legacy-evidence 0}, :all #:receipt{:total 5, :evidence 0, :legacy-evidence 0}, :suffix #:receipt{:total 1, :evidence 0, :legacy-evidence 0}, :immutable-prefix true}",
+  "canonicalCommand": [
+    "nbb",
+    "-cp",
+    "/tmp/foresight3-native-triage-20261006/worktree/scripts:/tmp/foresight3-native-triage-20261006/worktree/src",
+    "/tmp/rheos4-parity-scope-repair-20261006/canonical-final-receipt-probe.cljs"
+  ],
+  "canonicalExit": 0,
+  "historicalReceiptPrefixBytes": 4817,
+  "historicalReceiptPrefixSHA256": "dae0618ee203b1fa44fec08db890b53ed301883052adee35e17f5223d3007f2d",
+  "historicalReceiptPrefixExact": true,
+  "historicalReflectionPrefixExact": true,
+  "preexistingTrackedFiles": 110,
+  "preexistingUnchangedOutsideFiveOwnedPaths": 105,
+  "allUnrelatedTrackedBytesUnchanged": true,
+  "captureCommands": 8,
+  "captureWrappers": 16,
+  "allCaptureDecodedHashesAndCountsPassed": true,
+  "hygiene": [
+    {
+      "base": "6588b46fd0ac1e69c70facf977ba39051e9f830a",
+      "exit": 0
+    },
+    {
+      "base": "11811264a308d406cb612aefa1dad40818675e5e",
+      "exit": 0
+    }
+  ],
+  "limits": "Planning only; native fixture readback/discovery is not relationship validation, readiness, runtime evidence or native approval."
+}

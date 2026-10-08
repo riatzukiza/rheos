@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Dependency, shadow-cljs and tool-generated outputs only.
+/node_modules/
+/dist/
+/dist-dev/
+/target/
+/.shadow-cljs/
+/.cpcache/
+/.clj-kondo/.cache/
+# Isolated canonical review context/evidence.
+/.opencode/review-evidence/
+/.review-context/
+
+# Immutable source dependencies materialized by the existing bootstrap script.
+# These exact generated roots are not owned product source; tracked edits stay visible.
+/deps/protocols/src/
+/deps/chat-ui/src/

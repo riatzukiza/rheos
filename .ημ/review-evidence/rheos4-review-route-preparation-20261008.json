@@ -1,0 +1,99 @@
+{
+  "schema": "cephalon.rheos-review-route-preparation.observation.v1",
+  "evidenceKind": "observed-operator/native-response-field transcription; not a raw REST response or approval",
+  "observedAt": "2026-10-08T06:36:01.212606+00:00",
+  "repository": "riatzukiza/rheos",
+  "pullRequest": 4,
+  "preparationParent": "ebf970eeda2eda33e0b8624f2671619ebec56fdc",
+  "base": "11811264a308d406cb612aefa1dad40818675e5e",
+  "branch": "codex/rheos-relationships-plan",
+  "reviewReceiver": "45ec644c2d15ed511e9bc1e797d1b4073b63dbfc",
+  "skills": "4b4f48dae1b804b2581974e604cca618ecedadf1",
+  "muse": "0b9a91492c8355e6933dc2164d35668cb76d9e60",
+  "node": "22.20.0",
+  "opencode": "1.18.31",
+  "model": "opencode/mimo-v2.6-flash-free",
+  "modelDocumentation": "https://opencode.ai/docs/zen/",
+  "currentAdvertisedFreeModel": true,
+  "directProviderCatalogHTTP": 403,
+  "directRegistryCatalogHTTP": 403,
+  "inferenceAvailability": "UNKNOWN",
+  "publisherSecretMetadata": [
+    {
+      "name": "ETA_MU_APP_ID",
+      "updatedAt": "2026-10-03T11:49:56Z"
+    },
+    {
+      "name": "ETA_MU_APP_PRIVATE_KEY",
+      "updatedAt": "2026-10-03T11:49:56Z"
+    }
+  ],
+  "secretValuesInspected": false,
+  "credentialMutation": false,
+  "freeGiBObserved": 22.99374771118164,
+  "existingRootRun37726105842": "completed/failure; no live slot",
+  "existingReceiptRiverJob113177600625": "in_progress at actual read; unchanged handle retained",
+  "originalReceiptPrefix": {
+    "bytes": 6499,
+    "sha256": "fb0f91b3ea49051267ee5b133b7a13e8b8e40774714f81e73b9062997dbb08b4",
+    "records": 5
+  },
+  "originalReflectionPrefix": {
+    "bytes": 1687,
+    "sha256": "14aaf2d95304de9c11c8a889023fcb62c34991a2fc7d3ba456b985bc6b7d14e3"
+  },
+  "gates": [
+    "diff_stat",
+    "diff_hygiene",
+    "install",
+    "lint",
+    "test",
+    "build"
+  ],
+  "packageExecution": "Not run locally; actual hosted proof required",
+  "nativeReview": "No current new-head approval or round claimed",
+  "relationshipReady": false,
+  "productionOrTestSourceChanges": false,
+  "runtimeOrBoardMutation": false,
+  "discoveryLimit": "The root rheos placeholder is not a child Git checkout; git discovery resolved the Foresight parent. No source ownership was inferred or parent/worktree changed. Prepared small files only; GitHub-native immutable tree is the source boundary.",
+  "localPreparationValidation": {
+    "actionlintExit": 0,
+    "realGitIgnoreFixture": {
+      "cases": 15,
+      "pass": 15,
+      "fail": 0,
+      "proofBytes": 1586,
+      "proofSHA256": "cc7e844b75ac35e02d424d41bb7d884b0b96644c3a168b1bc053f7adad5dcf4e",
+      "ownedFixtureRemoved": true
+    },
+    "newReceiptStrictValid": true,
+    "originalPrefixesByteIdentical": true
+  },
+  "historicalReceiptValidation": {
+    "validator": "eta-mu.receipt-river.law.receipt/record-errors from owning Receipt River checkout at 6370ff968841115e681e2b21d80277fd0f0a0289",
+    "results": [
+      [
+        "invalid ts: 2026-10-06T17:41:11.704569+00:00"
+      ],
+      [
+        "invalid ts: 2026-10-06T17:42:56.671793+00:00"
+      ],
+      [
+        "invalid ts: 2026-10-06T17:45:55.783642+00:00"
+      ],
+      [
+        "invalid ts: 2026-10-06T18:00:44.390275+00:00"
+      ],
+      []
+    ],
+    "historicalBytesRewritten": false,
+    "compatibilityRepair": "Newly discovered later-batch work; no implementation or validation waiver in this preparation"
+  },
+  "publicationPreparationFailure": {
+    "operation": "gh keyring POST Git tree",
+    "HTTP": 404,
+    "failedBeforeCommitOrRefCreation": true,
+    "selectedFallback": "Existing SSH Git with a small owned bare object store; no working checkout or installed dependencies; ordinary exact-parent push without force"
+  },
+  "localAllocation": "Small bare object store for ordinary Git publication only, free space22.930992126464844GiB measured before allocation; no full local working checkout or package installation"
+}

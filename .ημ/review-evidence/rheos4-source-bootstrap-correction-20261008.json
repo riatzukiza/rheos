@@ -1,0 +1,38 @@
+{
+  "schema": "cephalon.rheos-review-bootstrap-correction.observation.v1",
+  "evidenceKind": "observed native artifact/source field transcription, not rawREST or approval",
+  "observedAt": "2026-10-08T06:53:58.219359+00:00",
+  "repository": "riatzukiza/rheos",
+  "parent": "b9dd41f4abfb0dc5b6dbdb6399eafd3c7d770ce6",
+  "base": "11811264a308d406cb612aefa1dad40818675e5e",
+  "failedRun": 37739500781,
+  "artifactId": 11533600904,
+  "artifactZIPSHA256": "a05478f54f4fd2f2730a0354c92bd0f7caf991160e67d72f99b2db09a3a8adab",
+  "actualStatuses": {
+    "diff_stat": 0,
+    "diff_hygiene": 0,
+    "install": 0,
+    "lint": 0,
+    "test": 1,
+    "build": 1
+  },
+  "exactHead": true,
+  "cleanCheckout": true,
+  "causalGap": "Caller omitted existing committed source-dependency bootstrap; both actual compiler failures name unavailable open-hax.openplanner-protocols",
+  "existingBootstrapBlob": "2a9f8cc221477082b34c49d8304a039d900e7a83",
+  "declaredSourcePins": {
+    "protocols": "0ed56aa74a53a1d1e9c2e55ce95451817a7f3a90",
+    "chatUI": "86385532b4f8606946555d0ada8e3fb22f35b4c3"
+  },
+  "existingScriptChanged": false,
+  "productPackageTestCompilerSourceChanged": false,
+  "newBehavioralInventory": false,
+  "boardReady": false,
+  "hostedCorrectionExecution": "Not yet observed",
+  "localFreeGiB": 22.906169891357422,
+  "actionlintExit": 0,
+  "realGitIgnoreCases": 20,
+  "realGitIgnorePass": 20,
+  "realGitIgnoreFail": 0,
+  "ignoreProofSHA256": "afce10f628f9f365ae232179130dde0551d22a0f59063bbd3717931b12d3b5ee"
+}

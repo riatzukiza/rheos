@@ -1,0 +1,7 @@
+{
+  "inputFiles": 6,
+  "changedInputFiles": [],
+  "newNativeArtifacts": [],
+  "nativeVersion": "eta-mu1.1.1",
+  "scope": "Private native readback only; no source board invocation, admission/readiness/implementation claim."
+}

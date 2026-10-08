@@ -1,0 +1,232 @@
+{
+  "native-board.stdout.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "288e0e2512ec832eb0cdcd36c712fb288937a153b20cfb26e0d35a53c17e34bd",
+    "decoded_size": 1855,
+    "exit": 0,
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-board",
+      "--config",
+      "/home/err/.codex/parallel-goal/rheos-relationships-plan-20261006/runtime/readback.json"
+    ]
+  },
+  "native-board.stderr.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "decoded_size": 0,
+    "exit": 0,
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-board",
+      "--config",
+      "/home/err/.codex/parallel-goal/rheos-relationships-plan-20261006/runtime/readback.json"
+    ]
+  },
+  "rheos-issue-3-relationship-authoring.stdout.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "61b4f379db9afd062e0f0f9b2664498a4cffb21d90784d383a89d246b486aa56",
+    "decoded_size": 4530,
+    "exit": 0,
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-task",
+      "rheos-issue-3-relationship-authoring",
+      "--config",
+      "/home/err/.codex/parallel-goal/rheos-relationships-plan-20261006/runtime/readback.json"
+    ]
+  },
+  "rheos-issue-3-relationship-authoring.stderr.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "decoded_size": 0,
+    "exit": 0,
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-task",
+      "rheos-issue-3-relationship-authoring",
+      "--config",
+      "/home/err/.codex/parallel-goal/rheos-relationships-plan-20261006/runtime/readback.json"
+    ]
+  },
+  "rheos-issue-3-relationship-contract.stdout.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "6c9913fdbf31d70cd051d9aaaec14df1dfbcd5594b3297040f25ca83aaa243dc",
+    "decoded_size": 3230,
+    "exit": 0,
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-task",
+      "rheos-issue-3-relationship-contract",
+      "--config",
+      "/home/err/.codex/parallel-goal/rheos-relationships-plan-20261006/runtime/readback.json"
+    ]
+  },
+  "rheos-issue-3-relationship-contract.stderr.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "decoded_size": 0,
+    "exit": 0,
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-task",
+      "rheos-issue-3-relationship-contract",
+      "--config",
+      "/home/err/.codex/parallel-goal/rheos-relationships-plan-20261006/runtime/readback.json"
+    ]
+  },
+  "rheos-issue-3-relationship-writer.stdout.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "220835aaa28c5da721867ca5a62500ce5af0605680278ac3eb513bd23170a654",
+    "decoded_size": 3764,
+    "exit": 0,
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-task",
+      "rheos-issue-3-relationship-writer",
+      "--config",
+      "/home/err/.codex/parallel-goal/rheos-relationships-plan-20261006/runtime/readback.json"
+    ]
+  },
+  "rheos-issue-3-relationship-writer.stderr.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "decoded_size": 0,
+    "exit": 0,
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-task",
+      "rheos-issue-3-relationship-writer",
+      "--config",
+      "/home/err/.codex/parallel-goal/rheos-relationships-plan-20261006/runtime/readback.json"
+    ]
+  },
+  "rheos-issue-3-relationship-parity.stdout.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "3b87cbb80b3b8c078104aaa5154f2acf180f03d8238063631d34b56503e05cdd",
+    "decoded_size": 3795,
+    "exit": 0,
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-task",
+      "rheos-issue-3-relationship-parity",
+      "--config",
+      "/home/err/.codex/parallel-goal/rheos-relationships-plan-20261006/runtime/readback.json"
+    ]
+  },
+  "rheos-issue-3-relationship-parity.stderr.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "decoded_size": 0,
+    "exit": 0,
+    "command": [
+      "/home/err/.volta/bin/eta-mu",
+      "kanban",
+      "read-task",
+      "rheos-issue-3-relationship-parity",
+      "--config",
+      "/home/err/.codex/parallel-goal/rheos-relationships-plan-20261006/runtime/readback.json"
+    ]
+  },
+  "upstream-issue3.stdout.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "3239f6f445f6d984fcd712b30acdfce885436f74cd3571cca943567af7341dfb",
+    "decoded_size": 3540,
+    "exit": 0,
+    "command": [
+      "gh",
+      "issue",
+      "view",
+      "3",
+      "-R",
+      "open-hax/rheos",
+      "--json",
+      "number,title,body,url,comments"
+    ]
+  },
+  "upstream-issue3.stderr.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "decoded_size": 0,
+    "exit": 0,
+    "command": [
+      "gh",
+      "issue",
+      "view",
+      "3",
+      "-R",
+      "open-hax/rheos",
+      "--json",
+      "number,title,body,url,comments"
+    ]
+  },
+  "personal-repository.stdout.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "f9e35fd75638f54ff59dd78334777caffb52369a9d8f17092e441d11edc1d7c5",
+    "decoded_size": 15270,
+    "exit": 0,
+    "command": [
+      "gh",
+      "api",
+      "repos/riatzukiza/rheos"
+    ]
+  },
+  "personal-repository.stderr.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "decoded_size": 0,
+    "exit": 0,
+    "command": [
+      "gh",
+      "api",
+      "repos/riatzukiza/rheos"
+    ]
+  },
+  "personal-open-prs.stdout.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "7bdc64f722b4fba8944ecd5a6cc14cf92325f1f3b9e022aae44932fca7eb7db1",
+    "decoded_size": 651,
+    "exit": 0,
+    "command": [
+      "gh",
+      "pr",
+      "list",
+      "-R",
+      "riatzukiza/rheos",
+      "--state",
+      "open",
+      "--limit",
+      "100",
+      "--json",
+      "number,title,url,headRefOid,baseRefName"
+    ]
+  },
+  "personal-open-prs.stderr.b64": {
+    "encoding": "base64",
+    "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "decoded_size": 0,
+    "exit": 0,
+    "command": [
+      "gh",
+      "pr",
+      "list",
+      "-R",
+      "riatzukiza/rheos",
+      "--state",
+      "open",
+      "--limit",
+      "100",
+      "--json",
+      "number,title,url,headRefOid,baseRefName"
+    ]
+  }
+}

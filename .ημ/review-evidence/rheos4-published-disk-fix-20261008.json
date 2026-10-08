@@ -1,0 +1,141 @@
+{
+  "schema": "cephalon.observed-command-output-transcription/v1",
+  "observed_at": "2026-10-08T09:54:51.332Z",
+  "epistemic_tier": "observed",
+  "source_kind": "selected actual native REST/GraphQL, verified artifacts and Git command output; this JSON is a transcription, not raw REST or a provider verdict",
+  "repository": "riatzukiza/rheos",
+  "pull_request": 4,
+  "head": "4dcd025ffcd1576fbe8df0d15b7991c83e622d1a",
+  "base": "11811264a308d406cb612aefa1dad40818675e5e",
+  "publication": {
+    "ordinary_push": "7a39ec108e7a0bf8803f63d20b81fbd000349d30 -> 4dcd025ffcd1576fbe8df0d15b7991c83e622d1a",
+    "parent_review_was_native_terminal_before_push": true,
+    "native_local_personal_heads_bases_matched": true,
+    "auto_merge": null,
+    "body_readback_bytes": 39095,
+    "body_readback_sha256": "c1b6eddbf39ad6f1ae995a9643cd41aafbc6b86761b0caddc1b2444d49989c32"
+  },
+  "parent_review": {
+    "id": 5454592494,
+    "login": "eta-mu-ai[bot]",
+    "state": "APPROVED",
+    "commit_id": "7a39ec108e7a0bf8803f63d20b81fbd000349d30",
+    "submitted_at": "2026-10-08T09:37:58Z",
+    "raw_path": "/home/err/spaces/cephalon-rheos-relationships/rheos/.ημ/review-evidence/rheos4-mimo-5454592494-completion-7a.json",
+    "raw_bytes": 4798,
+    "raw_sha256": "debe457f73cb25cc2b4095c77c277927c8425831e645477d5bfe1d41d4426b51",
+    "no_confirmed_findings": true,
+    "reported_file_tally": 74,
+    "actual_full_diff_sections": 92,
+    "verified_coverage": "43 input pages delivered and assessed, missing[]; verified full 318666-byte immutable input, not inferred from tally",
+    "full_diff_sha256": "b6ac8be30f79f6a988bf3af3284a6e846e0e8cc109f206fbd032c1411e88ed08",
+    "artifact_ids": [
+      11539726109,
+      11540393889
+    ],
+    "explanation_comment_id": 6057162962,
+    "explanation_url": "https://github.com/riatzukiza/rheos/pull/4#issuecomment-6057162962",
+    "approval_does_not_transfer_to_current_head": true
+  },
+  "settlement": {
+    "thread": "PRRT_kwDOU4Vf-c6qSOib",
+    "root_comment_id": 4217078068,
+    "writer_reply": 4217381938,
+    "native_coderabbit_corroboration": 4217388842,
+    "resolved": true,
+    "all_native_threads": 3,
+    "unresolved_native_threads": 0,
+    "finding_verification_is_not_a_full_review_or_approval": true
+  },
+  "current_hosted_evidence": {
+    "run": 37758682796,
+    "job": 113249496515,
+    "artifact_id": 11540424109,
+    "artifact_bytes": 191769,
+    "artifact_sha256": "5b531c42f3aaafee069aeb926c1766695159412b8babf143b5111dc5251904cf",
+    "summary": {
+      "schema": "open-hax.review-evidence/v2",
+      "repository": "riatzukiza/rheos",
+      "pull_request": 4,
+      "base_sha": "11811264a308d406cb612aefa1dad40818675e5e",
+      "expected_head_sha": "4dcd025ffcd1576fbe8df0d15b7991c83e622d1a",
+      "executed_sha": "4dcd025ffcd1576fbe8df0d15b7991c83e622d1a",
+      "completion_sha": "4dcd025ffcd1576fbe8df0d15b7991c83e622d1a",
+      "head_sha": "4dcd025ffcd1576fbe8df0d15b7991c83e622d1a",
+      "exact_head": true,
+      "clean_checkout": true,
+      "generated_at": "2026-10-08T09:45:33.951Z",
+      "result": "success",
+      "statuses": {
+        "diff_stat": 0,
+        "diff_hygiene": 0,
+        "install": 0,
+        "source_dependencies": 0,
+        "lint": 0,
+        "test": 0,
+        "build": 0
+      },
+      "attempted": {
+        "diff_stat": true,
+        "diff_hygiene": true,
+        "install": true,
+        "source_dependencies": true,
+        "lint": true,
+        "test": true,
+        "build": true
+      },
+      "errors": [],
+      "interpretation": "Exit 125 means the gate was skipped because a required prerequisite failed."
+    },
+    "actual_measured_available_kib": 89107284,
+    "hosted_reserve_kib": 8388608,
+    "test_result": "173 tests /1269 assertions /0failures /0errors; compile autorun and explicit Node",
+    "release_builds": [
+      "server",
+      "cli",
+      "github-sync",
+      "app"
+    ],
+    "release_compiler_warnings": 0,
+    "lint_errors": 0,
+    "lint_warnings": 0,
+    "full_diff_bytes": 357504,
+    "full_diff_sha256": "03794bcf39c9db89bd05e6e57522c8bd71aaff536bcdaf315e392566a07ae2e7",
+    "full_diff_sections": 94,
+    "preview_is_truncated": true,
+    "reviewer_requires_full_immutable_input": true,
+    "raw_job_log_bytes": 68689,
+    "raw_job_log_sha256": "9fc2d5e2871bbb5589d35c20f24349a32c6e219c3aa158c353b3799a8a9ec37a",
+    "artifact_deterministic_log_bytes": 30680,
+    "artifact_deterministic_log_sha256": "63fa98d85a4e30b5272f1ac1e2a0d706d883d564e085d43a7687d27f0976cbf3"
+  },
+  "current_review_wait": {
+    "mimo_run": 37758682796,
+    "mimo_job": 113250132699,
+    "observed_status": "in_progress",
+    "started_at": "2026-10-08T09:45:42Z",
+    "canonical_status": {
+      "checks_pass": 2,
+      "trusted_exact_head_approvals": [],
+      "completed_code_rounds": 0,
+      "soft_minimum": 5,
+      "gate": "BLOCKED quorum/convergence"
+    },
+    "new_coderabbit_request_not_sent": true,
+    "conservative_next_possible_coderabbit_request_after": "2026-10-08T10:11:00Z",
+    "must_refresh_current_footer_pending_and_cooldown_before_request": true
+  },
+  "limits": [
+    "Install failure ladder still has no dedicated fixture; seven bounded disk/df/bootstrap cases do not claim that coverage.",
+    "Pure portable contract GREEN does not repair retained raw canonical reader projection RED, canonical writer/admission, release or installed dependency behavior.",
+    "No B1 encounter/field, B2 consumed mood or B3 automatic authorized graph recall result.",
+    "No observation-only commit/push, new reviewer request, synthetic approval, identity override or paid usage.",
+    "No runtime, maker, model, owner, PM2, cloud, social or board mutation; goal remains ACTIVE and heartbeat PAUSED.",
+    "Historical raw receipts, events, reflections and failures retained; correcting new rows retain owning repo."
+  ],
+  "operator_read_corrections": [
+    "gh refused terminal escape sequences when first reading job log; explicit safe raw capture then succeeded. The read refusal is not a failed hosted job.",
+    "Initial guessed architecture filenames were absent; actual repository paths were then enumerated. No source changed.",
+    "An unrecorded local review observer exit143 does not change the native successful parent review conclusion."
+  ]
+}
