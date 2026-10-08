@@ -19,6 +19,7 @@
                   (content-parser/checked-updates updates))})
 
 (defn plan-comment
-  "Render the proposed comment from already decoded task data; infra stamps it."
+  "Admit decoded core frontmatter before rendering a comment; infra stamps it."
   [raw parsed text]
+  (law-frontmatter/assert-task-frontmatter-shape (:frontmatter parsed))
   (content-parser/append-comment raw parsed text))

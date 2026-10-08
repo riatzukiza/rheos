@@ -165,3 +165,11 @@
 - Preserve historical receipts/proofs and RED349; commit correctedfixtures ordinarily. Never change the owning decoder to satisfy an incorrect test.
 - No spore, runtime/board mutation, policy waiver or B1/B2/B3 completion.
 - Evidence: .ημ/review-evidence/rheos1-comment-refusal-corrected-RED-20261008.json SHA256932f1b4f409cd8b9ae779f4facce616996720b0abd98bc26759b9fb2943ea5ba.
+
+## 2026-10-08T13:55:43.415Z — cephalon-rheos1-comment-refusal-GREEN-source-20261008
+
+- p-efficiency: 0.80; p-friction: 0.24; p-skill-candidate: 0.04.
+- Guard existing decoded frontmatterlaw in portable planner and preserve diagnostic context at actual write adapter. CorrectedRED218/1915/72 -> GREEN218/1915/0/0 twice; JVM5/51/30 ->0/0; lint0/0 andfourreleases0warnings.
+- Keep scalar YAML spelling/extension data/body unchanged, and retain all initial fixture mistakes as explicit correction history.
+- New sourcehead must acquire new hosted review; local GREEN and historical approvals cannot qualify it. No spore, runtime/board mutation, paidcredits or B1/B2/B3 completion.
+- Evidence: .ημ/review-evidence/rheos1-comment-refusal-GREEN-20261008.json SHA256699f90d60a8c7e84a8ea9c0e2a712b0ea1abb025686b88507a5a2d06c986e4ad.

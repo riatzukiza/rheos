@@ -59,13 +59,23 @@
       {:ok true :task task :frontmatter (:frontmatter plan)})))
 
 (defn ^:async append-comment!
-  "Append `text` to a task file as a comment block and emit a comment event."
+  "Append `text` to a qualified task source and emit a comment event.
+   Invalid decoded frontmatter is refused with source diagnostics before any
+   write-id registration, file write or ledger event."
   [{:keys [project task text source]}]
   (let [task-path (:source-path task)
         raw (await (.readFile fsp task-path "utf8"))
+        comment-raw (try
+                      (task-edit/plan-comment raw (content-parser/parse-task-content raw) text)
+                      (catch :default err
+                        (if (= :refused (:kind (ex-data err)))
+                          (throw (ex-info (str "Refused card source " task-path ": " (.-message err))
+                                          (assoc (ex-data err) :source-path task-path
+                                                 :diagnostic (.-message err))
+                                          err))
+                          (throw err))))
         write-id (events/generate-write-id)
-        new-raw (-> (task-edit/plan-comment raw (content-parser/parse-task-content raw) text)
-                    (content-parser/inject-write-id write-id))
+        new-raw (content-parser/inject-write-id comment-raw write-id)
         ledger (ledger/get-ledger (:tasks-dir project))]
     (watcher/register-cli-event! write-id (:uuid task))
     (await (.writeFile fsp task-path new-raw "utf8"))
