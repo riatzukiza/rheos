@@ -300,3 +300,33 @@
 - Corrected mutable planning prose and labeled original estimates/verification historically. Card frontmatter, native comments and all existing journal bytes are retained. New commit must receive fresh full review and hosted gates.
 - Evidence: .ημ/review-evidence/rheos8-mimo-completed-planning-finding-20261008.json SHAff8faa9a207ce70f1260a512df73721aaee626168a26b53c4e8ece37284d8791; native review5460549405/root4222178580. Whole suffix arithmetic remains distinct from an earlier observation checkpoint.
 - Containing repository supplies attribution when permitted; never repair historical rows in place. No spore or runtime mutation.
+
+## 2026-10-08T17:58:19.601094Z — cephalon-rheos8-fe7-included-review-source-20261008T1757
+
+- p-efficiency: 0.94; p-friction: 0.05; p-skill-candidate: 0.02.
+- Current canonical policy admitted one included CodeRabbit full review after the native cooldown; actual completed no-actionable verdict has exact fe7 coverage/all20 inputs. MiMo remains in progress, not approval.
+- Concrete fe7 fix, native Fixed/resolved thread, full required hosted diff/log/checks and later description readback are distinct from the earlier captured old description. Preserve that chronology and original journal bytes.
+- Evidence: .ημ/review-evidence/rheos8-fe7-included-review-and-hosted-evidence-20261008.json SHAf47cdd2caa76424f3d83e10568c9351006ea914e9921c7260df85b0bfeaa1fae; request6065817371/completion6065819838/summary6065155993.
+- Do not churn review heads for observations. Keep the accepted B1/B2/B3 finish condition and existing board prerequisite; no spore or runtime mutation.
+
+## 2026-10-08T18:18:35.854925Z — cephalon-rheos8-fe7-native-description-repair-source-20261008T1818
+
+- p-efficiency: 0.94; p-friction: 0.06; p-skill-candidate: 0.02.
+- Correct the current native scope declaration directly; retaining an older opening plus a current appendix can still mislead a staged reviewer. Keep original receipts and body snapshots intact.
+- The pinned reusable workflow stages original event payload. After a real description repair, one fresh native ready event captures the corrected body; rerunning the earlier event would replay the stale context.
+- Evidence: .ημ/review-evidence/rheos8-fe7-description-scope-repair-and-fresh-context-20261008.json SHA45668d5758c7b67d88ac2c29c4750116dc2a32fe0daa143a5cdb99547f98eee6; native MiMo5460892594/comment4222471377/Fixed4222556308; fresh artifact11570615504 body-equality/all10gates PASS; MiMo113468199177 pending.
+- No synthetic approval or observer-only push. Keep fixed B1/B2/B3 scope and native board prerequisites; no spore promoted.
+
+## 2026-10-08T18:52:09.635178Z — cephalon-rheos8-qualified-writer-red-source-20261008
+
+- p-efficiency: 0.95; p-friction: 0.05; p-skill-candidate: 0.02.
+- Qualified planning must become an actual native lifecycle transition and real failing owning-path tests. Compiler success with autorun failures is not GREEN; the compiled bundle exited1.
+- Evidence: .ημ/review-evidence/rheos8-qualified-planning-and-writer-red-20261008.json SHAad96588018d7629d395b97535dd7cb9860db17d8d60aaac0e7524ede85398ba3; actual native APPROVED5461157462; merge660; raw RED227/2130/73/0 twice.
+- Preserve original receipts and append corrections. No spore incubated or promoted; B1/B2/B3 remain open.
+
+## 2026-10-08T18:54:09.999041Z — cephalon-rheos-writer-red-lossless-log-source-20261008
+
+- p-efficiency: 0.96; p-friction: 0.04; p-skill-candidate: 0.01.
+- Raw test output can contain trailing spaces. A lossless JSON string preserves exact bytes and permits ordinary diff hygiene without a blanket waiver or editing evidence.
+- Original118838-byte SHA8f7eb4cbb0589e735afe0da7305da73610575f17a55d1c6048bef3564a452061 retained; wrapper .ημ/review-evidence/rheos-writer-admission-red-committable-20261008.log.json SHAe6fa8ebe33c1d811aee672cf51b750a92be0f79f5585fab1232acf4c09b0bb16.
+- Append correction; no spore created or promoted.

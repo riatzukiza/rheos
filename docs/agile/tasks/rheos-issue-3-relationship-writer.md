@@ -2,7 +2,7 @@
 uuid: "rheos-issue-3-relationship-writer"
 title: "Route relationship creation and edits through the canonical writer"
 type: "task"
-status: "incoming"
+status: "in_progress"
 priority: "P1"
 points: "8"
 labels: "relationships, adapters, ledger, planning"
@@ -10,7 +10,7 @@ epic: "rheos-issue-3-relationship-authoring"
 parent: "rheos-issue-3-relationship-authoring"
 dependency: "rheos-issue-3-relationship-contract"
 created_at: "2026-10-06"
-write-id: "1791479228946-0.12675rt8h88mx8ar0fl9"
+write-id: "1791484522887-0.w79xt229fcixmwqpq6h"
 ---
 
 # Route relationship creation and edits through the canonical writer
@@ -114,5 +114,7 @@ consume its qualified revision if implementation needs it.
 
 ---
 Fresh planning proposal after qualified PR7 merge54ae39a598fe813ddea7f19b19cb4122a907d060: estimate8 for this existing writer story, replacing provisional5, pending current-head native planning review. Breakdown within this card:3 for retained complete scoped source/loader and create/edit/read wiring to the accepted portable graph contract;3 for FSM-owned predecessor policy and shared inter-process reservation/revalidation across existing mutation paths;2 for boundary conversion, classified partial effects and adapter refusal/no-op evidence. These are estimate components, not new cards or silently selected work. Policy proposal: owning Promethean FSM names done as predecessor success and ready/todo/in_progress as guarded target admission; graph edges keep their distinct semantics, all reachable dependency predecessors are checked, and existing FSM/WIP/command gates remain required. Timeout alone cannot transfer a live writer's reservation. Exact diagnostic/recovery behavior is stated in the amended plan. Incoming remains truthful until fresh planning settles these decisions; no RED, installed enforcement or B1-B3 proof yet.
+
+Planning qualified on exactfe7c3075f281fb65eb0fe7197b6c5ea3dbddc08e/base54ae39a598fe813ddea7f19b19cb4122a907d060 and merged as660a6f880769edcf9e52cc5e21e477a5545133f8 at2026-10-08T18:33:00Z. Canonical gate PASS: current CodeRabbit completed request6065817371/reply6065819838/summary6065155993, actual MiMo APPROVED5461157462, one completed available-agent planning round, three passing checks, two settled findings; exact full20-input scope and corrected body were checked. Reviewed owning-FSM proposal uses done predecessors and guarded ready/todo/in_progress admission, complete scoped graphs, shared inter-process writer reservation and post-gate revalidation; estimates remain3/8/5=16. Native contract-card readback is done. Native FSM moves advanced only this writer story through accepted/breakdown/ready/todo/in_progress. This existing bundle does not yet enforce the proposed dependency guard; actual RED laws/tests precede domain/adapters. Parity/epic remain Incoming, and candidate tests do not establish consumed admission or B1/B2/B3. Fixed finite milestone unchanged, no extra repository copy/dependency install below20GiB, no runtime/owner/PM2/cloud/publication change.
 
 ---

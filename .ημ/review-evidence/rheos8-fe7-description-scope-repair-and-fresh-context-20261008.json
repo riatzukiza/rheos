@@ -1,0 +1,207 @@
+{
+  "schema": "cephalon.observed-command-output-transcription/v1",
+  "observedAt": "2026-10-08T18:18:35.854925Z",
+  "repo": "riatzukiza/rheos",
+  "pullRequest": 8,
+  "head": "fe7c3075f281fb65eb0fe7197b6c5ea3dbddc08e",
+  "base": "54ae39a598fe813ddea7f19b19cb4122a907d060",
+  "evidenceKind": "observed-command-output transcription with references to exact native captures, not raw REST or provider approval",
+  "completedReview": {
+    "run": 37818309456,
+    "runConclusion": "SUCCESS",
+    "mimoJob": 113453517626,
+    "startedAt": "2026-10-08T17:42:11Z",
+    "completedAt": "2026-10-08T18:03:48Z",
+    "observedDurationSeconds": 1297,
+    "review": 5460892594,
+    "nativeState": "COMMENTED",
+    "approval": false,
+    "finding": 4222471377,
+    "thread": "PRRT_kwDOU4Vf-c6qfa0Q",
+    "artifact": 11569935169,
+    "zipBytes": 19584,
+    "zipSHA256": "e82c77522f2e3a01733ba712ca2b3f252dafd484f89b07bea0cb01d934d6de07",
+    "allSixFilesRead": true,
+    "fullDiffBytes": 128947,
+    "fullDiffSHA256": "ff43a0d1028f23e662fd5886ddfe45a7fd32325325626fa3616cd6263584c679",
+    "fullDiffEqualsGit": true,
+    "all17InputPagesDeliveredAssessed": true,
+    "utf16End": 128673,
+    "wholeSubmissionEqualsNativeBody": true,
+    "singleInlineEqualsSubmittedFinding": true,
+    "scopeLimit": "Actual reviewer assessed all20 inputs; it found a description-scope defect in the earlier staged event body. Its COMMENTED verdict is preserved and not converted to approval.",
+    "attemptedShellReadDenied": true,
+    "permittedReadsRecovered": true
+  },
+  "nativeRepair": {
+    "descriptionEditOnly": true,
+    "headAndBaseUnchanged": true,
+    "wholeReadback": "PASS",
+    "bodyBytes": 11471,
+    "bodySHA256": "98aad0dfb959a86f9868fa9990fb6fb93aadc42eda19f89c510b62e3c77ca714",
+    "currentManifestPaths": 20,
+    "jsonInputs": 13,
+    "receiptSuffixRecords": 4,
+    "reflectionSuffixLines": 32,
+    "eventSuffixRecords": 5,
+    "replacedStaleOpeningDeclarations": true,
+    "earlierDescriptionAndArtifactsPreserved": true,
+    "itemizedExplanation": 6066172454,
+    "explanationBytes": 2824,
+    "explanationSHA256": "f7d98e438609746e98142d88b0f8bfc59347a924db29906d0829e13bbd202124",
+    "threadSettlementReply": 4222556308,
+    "bothNativeThreadsResolved": true,
+    "settlementKind": "Fixed",
+    "noReceiptRewrite": true
+  },
+  "freshContext": {
+    "reason": "Pinned reusable workflow reads pull_request.body from immutable original GITHUB_EVENT_PATH; a rerun would reuse old staged body. One new ready_for_review event after the description fix supplies actual corrected scope.",
+    "existingAttemptsTerminalBeforeRequest": true,
+    "draftToggleThenReadyExitZero": true,
+    "draftNow": false,
+    "autoMerge": null,
+    "run": 37822612609,
+    "createdAt": "2026-10-08T18:13:29Z",
+    "attempt": 1,
+    "museJob": 113467229181,
+    "museConclusion": "SUCCESS",
+    "deterministicJob": 113467229498,
+    "deterministicConclusion": "SUCCESS",
+    "mimoJob": 113468199177,
+    "mimoStartedAt": "2026-10-08T18:15:43Z",
+    "mimoState": "IN_PROGRESS",
+    "mimoVerdict": null,
+    "requiredArtifact": 11570615504,
+    "zipBytes": 81995,
+    "zipSHA256": "ec57b0c4f46c33a4fbc2e062d685fc7bbbf5cb0a4b6428503580e80aef618bbb",
+    "allTenEntriesSafelyReadNoExecution": true,
+    "fullDiffEqualsGit": true,
+    "correctedWholeNativeBodyCaptured": true,
+    "contextBytes": 11730,
+    "contextSHA256": "76639954a621a4554a1ed4212cafdfe1e8c066d54b52de8a15e0c73791860730",
+    "allTenGatesAttemptedExitZero": true,
+    "exactHeadAndCleanCheckout": true,
+    "tests": {
+      "count": 220,
+      "assertions": 2043,
+      "failures": 0,
+      "errors": 0,
+      "executions": 2
+    },
+    "lintErrors": 0,
+    "lintWarnings": 0,
+    "existingArchitectureInfos": 8,
+    "testAndFourReleaseCompilerWarnings": 0,
+    "releaseOutputsNonempty": true,
+    "logBytes": 28229,
+    "logSHA256": "2b9600fdbbc8380aa79a6c5a362d1f790412c7b261f135a936401704a3b08934",
+    "environmentLimit": "Nonfrozen hosted install is execution evidence, not dependency reproducibility; hosted8GiB floor is not local20GiB waiver. Intentional compose/FSM fixtures and deprecated glob/source-map-support notices remain distinct from errors."
+  },
+  "canonicalStateBeforeNewReviewCompletion": {
+    "codeRabbit": "completed exactfe7 no-actionable/current approval evidence; no new manual request",
+    "availableParticipants": [
+      "coderabbit",
+      "mimo"
+    ],
+    "codexQuotaSource": 6066186313,
+    "codexAutomaticCreatedAt": "2026-10-08T18:13:29Z",
+    "codexReset": "UNKNOWN",
+    "quotaGrantsNoApproval": true,
+    "planningCohorts": 0,
+    "threads": 2,
+    "unresolved": 0,
+    "requiredChecksAtLastCanonicalRead": "2pending1pass; later actual deterministic/Muse completion above",
+    "gate": "BLOCKED pending required execution/convergence; no waiver"
+  },
+  "sourcePriorPrefixChecks": [
+    {
+      "path": ".ημ/receipts.edn",
+      "headPrefixBytes": 113714,
+      "currentBytes": 116673,
+      "headPrefixIdentical": true,
+      "currentSHA256": "75222b22bb845abe53d32f56a97ab0f7c41ed0fb148f55ccdc20807d34136170"
+    },
+    {
+      "path": ".ημ/session-mycology/ledger.md",
+      "headPrefixBytes": 31738,
+      "currentBytes": 32714,
+      "headPrefixIdentical": true,
+      "currentSHA256": "7e9e65b5686ccce2c4ffffc0fa6e6aabfdd0cbb52160a3575cc843f1ffa163f8"
+    },
+    {
+      "path": "docs/agile/.events/ledger.edn",
+      "headPrefixBytes": 13925,
+      "currentBytes": 13925,
+      "headPrefixIdentical": true,
+      "currentSHA256": "7ea2124c2482588f779506e87da7489214e0f2bc9e9f448e097a50a416ef4622"
+    }
+  ],
+  "nativeArchives": [
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/pr8-fe7-mimo-review-5460892594-native.json",
+      "bytes": 5410,
+      "sha256": "d6d69e350c0de4d106909e5ce92ce8260f3bbc908f322b8b47043708c603c9ec",
+      "tier": "actual-native-GitHub-response"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/pr8-fe7-mimo-inline-5460892594-native.json",
+      "bytes": 23841,
+      "sha256": "322849dfe5ecbf834dda677e34916b2aad7f98b6886fbb7f29bde925ebe8f6a9",
+      "tier": "actual-native-GitHub-response"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/pr8-fe7-corrected-scope-readback-20261008T1816-native.json",
+      "bytes": 26705,
+      "sha256": "83b1bb676c537a23d22f8ae5da53c91548dfdbd23f0753013ab39f58a3f071a5",
+      "tier": "actual-native-GitHub-response"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/pr8-fe7-settled-threads-20261008T181519Z-native.json",
+      "bytes": 5495,
+      "sha256": "710e27b73d08932d922a9251c0d82ad5661922e02ec702819c432bf8e30e3990",
+      "tier": "actual-native-GitHub-response"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/pr8-fe7-codex-quota-6066186313-20261008T181519Z-native.json",
+      "bytes": 3911,
+      "sha256": "bd84c8036a92d9ecf58c2d1c38067aaabd58b5b434b75a4384d09fc3d0f9c721",
+      "tier": "actual-native-GitHub-response"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/pr8-fe7-fresh-context-ready-20261008T181322Z-native.json",
+      "bytes": 26705,
+      "sha256": "cf0906d587b0d34d32911e35e30bba04d3b379a5a1b8869595299a2c51f22ddc",
+      "tier": "actual-native-GitHub-response"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/pr8-fe7-fresh-context-jobs-20261008T181645Z-native.json",
+      "bytes": 12393,
+      "sha256": "c45a401aed585a5e34195b104dd75aaa3ac75f470aa10daf2fad6431bf821c39",
+      "tier": "actual-native-GitHub-response"
+    }
+  ],
+  "receiptRiverReadOnlyInvestigation": {
+    "run": 37735171347,
+    "head": "6370ff968841115e681e2b21d80277fd0f0a0289",
+    "artifact": 11531594218,
+    "zipSHA256": "6232419d824870cd9eb053ba77035cd32e41ff21e3b278e664fb7f1b284dc7c1",
+    "exactCleanCheckout": true,
+    "gateTest": 1,
+    "otherFiveGates": 0,
+    "logBytes": 20441,
+    "logSHA256": "5937e134c6354423256e1ffdf078d3e0559c91314d4480f7b24f6d0df51657e3",
+    "actualFailure": "Compiled git_value invocation requires git.exec_at.cljs$core$IFn$_invoke$arity$2, which is absent during discovery-test.",
+    "candidateCause": "The bounded-concurrency fixture replaces multi-arity exec-at with a single-arity delayed-git. This matches the failure surface but remains provisional until selected compiled reproduction.",
+    "noCompiledCacheAtInspectedPath": true,
+    "scopeChoicePending": true,
+    "noRepairRerunOrNewSelection": true
+  },
+  "limits": [
+    "Accepted B1/B2/B3 remain unimplemented/unverified; writer8/parity5/epic16 Incoming; no Ready/RED before qualification",
+    "No source commit/push, observation-only head churn, paid review, identity override, approval transfer or local policy substitute",
+    "Original root/source receipts/reflections/raw proof preserved; new appends held for next concrete owned change",
+    "Current local free17464496128bytes below20GiB; no new full repository or local dependency install",
+    "GoalACTIVE; heartbeatPAUSED; no runtime/owner/maker/PM2/cloud/model/credentials/publication/spore mutation",
+    "Operator attempted receiver workflow read from Rheos checkout and mislocated private append configs; corrected exact owner/path without production mutation. Missing local compiled fixture cache is not a new test failure. Filename clock labels are archive identifiers; native timestamps above control chronology."
+  ]
+}
