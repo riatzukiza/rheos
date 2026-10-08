@@ -1,0 +1,1797 @@
+{
+  "schema": "observed-command-output-transcription/v1",
+  "tier": "derived local integration evidence; not native provider approval or hosted qualification",
+  "observed_at": "2026-10-08T12:16:50.132Z",
+  "repository": "riatzukiza/rheos",
+  "pull_request": 1,
+  "lineage": {
+    "source_head": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+    "main_merge_parent": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+    "native_rest_base_snapshot": "11811264a308d406cb612aefa1dad40818675e5e",
+    "current_native_base_target": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+    "method": "ordinary history-preserving merge; manual resolution only of add/add review workflow"
+  },
+  "source_preservation": {
+    "original_writer_paths": [
+      ".github/workflows/eta-mu-review.yml",
+      "README.md",
+      "docs/cli.md",
+      "package.json",
+      "src/rheos/backend/domain/compose.cljs",
+      "src/rheos/backend/domain/task_edit.cljc",
+      "src/rheos/backend/domain/task_edit.cljs",
+      "src/rheos/backend/extern/content_parser.cljs",
+      "src/rheos/backend/extern/yaml.cljs",
+      "src/rheos/backend/infra/agent_tools.cljs",
+      "src/rheos/backend/infra/content_parser.cljs",
+      "src/rheos/backend/infra/http_server.cljs",
+      "src/rheos/backend/infra/task_create.cljs",
+      "src/rheos/backend/infra/task_edit.cljs",
+      "src/rheos/backend/infra/task_store.cljs",
+      "src/rheos/backend/infra/task_writeback.cljs",
+      "src/rheos/backend/infra/watcher.cljs",
+      "src/rheos/backend/law/frontmatter.cljc",
+      "src/rheos/backend/shape/content_parser.cljc",
+      "src/rheos/backend/shape/content_parser.cljs",
+      "test/rheos/backend/domain/compose_test.cljs",
+      "test/rheos/backend/domain/task_edit_test.cljc",
+      "test/rheos/backend/infra/task_create_test.cljs",
+      "test/rheos/backend/infra/task_edit_test.cljs",
+      "test/rheos/backend/infra/task_store_test.cljs",
+      "test/rheos/backend/infra/task_writeback_test.cljs",
+      "test/rheos/backend/infra/watcher_test.cljs",
+      "test/rheos/backend/shape/content_parser_test.cljs",
+      "test/rheos/backend/shape/frontmatter_serialization_test.cljc"
+    ],
+    "original_product_paths_byte_equal_or_deleted": 28,
+    "imported_main_paths": [
+      ".github/workflows/eta-mu-review.yml",
+      ".gitignore",
+      ".ημ/receipts.edn",
+      ".ημ/review-evidence/rheos4-coderabbit-6022099803-completion-4d.json",
+      ".ημ/review-evidence/rheos4-full-request-6057608580-4d.json",
+      ".ημ/review-evidence/rheos4-hosted-disk-reserve-20261008.json",
+      ".ημ/review-evidence/rheos4-mimo-5454592494-completion-7a.json",
+      ".ημ/review-evidence/rheos4-mimo-5455082429-completion-4d.json",
+      ".ημ/review-evidence/rheos4-planning-qualification-contract-red-20261008.json",
+      ".ημ/review-evidence/rheos4-portable-contract-green-20261008.json",
+      ".ημ/review-evidence/rheos4-portable-contract-handoff-20261008.json",
+      ".ημ/review-evidence/rheos4-published-disk-fix-20261008.json",
+      ".ημ/review-evidence/rheos4-review-route-preparation-20261008.json",
+      ".ημ/review-evidence/rheos4-source-bootstrap-correction-20261008.json",
+      ".ημ/review-evidence/rheos4-tied-diagnostics-green-20261008.json",
+      ".ημ/review-evidence/rheos4-tied-diagnostics-red-20261008.json",
+      ".ημ/session-mycology/ledger.md",
+      ".ημ/verification/rheos-issue3-planning-20261006/README.md",
+      ".ημ/verification/rheos-issue3-planning-20261006/capture-count-correction-proof.json",
+      ".ημ/verification/rheos-issue3-planning-20261006/capture-manifest.json",
+      ".ημ/verification/rheos-issue3-planning-20261006/native-board.stderr.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/native-board.stdout.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/personal-open-prs.stderr.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/personal-open-prs.stdout.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/personal-repository.stderr.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/personal-repository.stdout.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-authoring.stderr.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-authoring.stdout.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-contract.stderr.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-contract.stdout.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-parity.stderr.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-parity.stdout.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-writer.stderr.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-writer.stdout.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/source-proof.json",
+      ".ημ/verification/rheos-issue3-planning-20261006/upstream-issue3.stderr.b64",
+      ".ημ/verification/rheos-issue3-planning-20261006/upstream-issue3.stdout.b64",
+      ".ημ/verification/rheos-relationships-contract-20261008/baseline-frontmatter.stderr",
+      ".ημ/verification/rheos-relationships-contract-20261008/baseline-frontmatter.stdout",
+      ".ημ/verification/rheos-relationships-contract-20261008/baseline-manifest.json",
+      ".ημ/verification/rheos-relationships-contract-20261008/baseline_frontmatter.cljs",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial-compile.json",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial-compile.stderr",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial-compile.stdout",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial-path-corrected.json",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial-path-corrected.stderr",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial-path-corrected.stdout",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial.json",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial.stderr",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial.stdout",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/jvm-initial.json",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/jvm-initial.stderr",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/jvm-initial.stdout",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/cljs-whitespace-red-compile.json",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/cljs-whitespace-red-compile.stderr",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/cljs-whitespace-red-compile.stdout",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/cljs-whitespace-red.json",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/cljs-whitespace-red.stderr",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/cljs-whitespace-red.stdout",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/jvm-schema-green.json",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/jvm-schema-green.stderr",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/jvm-schema-green.stdout",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/jvm-whitespace-red.json",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/jvm-whitespace-red.stderr",
+      ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/jvm-whitespace-red.stdout",
+      ".ημ/verification/rheos4-parity-scope-20261006/README.md",
+      ".ημ/verification/rheos4-parity-scope-20261006/canonical-prospective-receipts.stderr.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/canonical-prospective-receipts.stdout.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/capture-manifest.json",
+      ".ημ/verification/rheos4-parity-scope-20261006/final-verification.json",
+      ".ημ/verification/rheos4-parity-scope-20261006/native-board.stderr.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/native-board.stdout.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/native-fixture-preservation.json",
+      ".ημ/verification/rheos4-parity-scope-20261006/native-version.stderr.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/native-version.stdout.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/planning-preservation-proof.json",
+      ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-authoring.stderr.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-authoring.stdout.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-contract.stderr.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-contract.stdout.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-parity.stderr.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-parity.stdout.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-writer.stderr.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-writer.stdout.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/upstream-issue3.stderr.b64",
+      ".ημ/verification/rheos4-parity-scope-20261006/upstream-issue3.stdout.b64",
+      "docs/agile/.events/ledger.edn",
+      "docs/agile/epics/rheos-issue-3-relationship-authoring.md",
+      "docs/agile/tasks/rheos-issue-3-relationship-contract.md",
+      "docs/agile/tasks/rheos-issue-3-relationship-parity.md",
+      "docs/agile/tasks/rheos-issue-3-relationship-writer.md",
+      "docs/notes/uuid-relationship-authoring-plan.md",
+      "docs/verification/canonical-review-route.md",
+      "docs/verification/portable-relationship-contract.md",
+      "src/rheos/backend/domain/relationships.cljc",
+      "src/rheos/backend/law/frontmatter.cljc",
+      "src/rheos/backend/law/relationships.cljc",
+      "src/rheos/backend/shape/relationships.cljc",
+      "test/rheos/backend/domain/relationships_test.cljc",
+      "test/rheos/backend/shape/relationships_test.cljc",
+      "test/rheos/relationship_contract_runner.cljc"
+    ],
+    "unchanged_exclusive_main_paths": 97,
+    "shared_paths": [
+      ".github/workflows/eta-mu-review.yml",
+      "src/rheos/backend/law/frontmatter.cljc"
+    ],
+    "checks": [
+      {
+        "path": "README.md",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "docs/cli.md",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "package.json",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/domain/compose.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/domain/task_edit.cljc",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/domain/task_edit.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": false,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/extern/content_parser.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/extern/yaml.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/infra/agent_tools.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/infra/content_parser.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/infra/http_server.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/infra/task_create.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/infra/task_edit.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/infra/task_store.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/infra/task_writeback.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/infra/watcher.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/law/frontmatter.cljc",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/shape/content_parser.cljc",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/shape/content_parser.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": false,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "test/rheos/backend/domain/compose_test.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "test/rheos/backend/domain/task_edit_test.cljc",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "test/rheos/backend/infra/task_create_test.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "test/rheos/backend/infra/task_edit_test.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "test/rheos/backend/infra/task_store_test.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "test/rheos/backend/infra/task_writeback_test.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "test/rheos/backend/infra/watcher_test.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "test/rheos/backend/shape/content_parser_test.cljs",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "test/rheos/backend/shape/frontmatter_serialization_test.cljc",
+        "revision": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".gitignore",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/review-evidence/rheos4-coderabbit-6022099803-completion-4d.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/review-evidence/rheos4-full-request-6057608580-4d.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/review-evidence/rheos4-hosted-disk-reserve-20261008.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/review-evidence/rheos4-mimo-5454592494-completion-7a.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/review-evidence/rheos4-mimo-5455082429-completion-4d.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/review-evidence/rheos4-planning-qualification-contract-red-20261008.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/review-evidence/rheos4-portable-contract-green-20261008.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/review-evidence/rheos4-portable-contract-handoff-20261008.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/review-evidence/rheos4-published-disk-fix-20261008.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/review-evidence/rheos4-review-route-preparation-20261008.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/review-evidence/rheos4-source-bootstrap-correction-20261008.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/review-evidence/rheos4-tied-diagnostics-green-20261008.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/review-evidence/rheos4-tied-diagnostics-red-20261008.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/README.md",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/capture-count-correction-proof.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/capture-manifest.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/native-board.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/native-board.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/personal-open-prs.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/personal-open-prs.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/personal-repository.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/personal-repository.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-authoring.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-authoring.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-contract.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-contract.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-parity.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-parity.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-writer.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/rheos-issue-3-relationship-writer.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/source-proof.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/upstream-issue3.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-issue3-planning-20261006/upstream-issue3.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/baseline-frontmatter.stderr",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/baseline-frontmatter.stdout",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/baseline-manifest.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/baseline_frontmatter.cljs",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial-compile.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial-compile.stderr",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial-compile.stdout",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial-path-corrected.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial-path-corrected.stderr",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial-path-corrected.stdout",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial.stderr",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/cljs-initial.stdout",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/jvm-initial.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/jvm-initial.stderr",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-initial-red/jvm-initial.stdout",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/cljs-whitespace-red-compile.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/cljs-whitespace-red-compile.stderr",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/cljs-whitespace-red-compile.stdout",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/cljs-whitespace-red.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/cljs-whitespace-red.stderr",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/cljs-whitespace-red.stdout",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/jvm-schema-green.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/jvm-schema-green.stderr",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/jvm-schema-green.stdout",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/jvm-whitespace-red.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/jvm-whitespace-red.stderr",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos-relationships-contract-20261008/portable-whitespace-red/jvm-whitespace-red.stdout",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/README.md",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/canonical-prospective-receipts.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/canonical-prospective-receipts.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/capture-manifest.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/final-verification.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/native-board.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/native-board.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/native-fixture-preservation.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/native-version.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/native-version.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/planning-preservation-proof.json",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-authoring.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-authoring.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-contract.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-contract.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-parity.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-parity.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-writer.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/rheos-issue-3-relationship-writer.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/upstream-issue3.stderr.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": ".ημ/verification/rheos4-parity-scope-20261006/upstream-issue3.stdout.b64",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "docs/agile/.events/ledger.edn",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "docs/agile/epics/rheos-issue-3-relationship-authoring.md",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "docs/agile/tasks/rheos-issue-3-relationship-contract.md",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "docs/agile/tasks/rheos-issue-3-relationship-parity.md",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "docs/agile/tasks/rheos-issue-3-relationship-writer.md",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "docs/notes/uuid-relationship-authoring-plan.md",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "docs/verification/canonical-review-route.md",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "docs/verification/portable-relationship-contract.md",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/domain/relationships.cljc",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/law/relationships.cljc",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "src/rheos/backend/shape/relationships.cljc",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "test/rheos/backend/domain/relationships_test.cljc",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "test/rheos/backend/shape/relationships_test.cljc",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      },
+      {
+        "path": "test/rheos/relationship_contract_runner.cljc",
+        "revision": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "exists_at_revision": true,
+        "byte_equal_or_deletion_preserved": true
+      }
+    ],
+    "head": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+    "merge_head": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+    "exceptions": [
+      "Workflow composed; held journals append-only. Shared frontmatter source byte-identical to original PR1; original product files/deletions all preserved."
+    ],
+    "operator_check_corrections": [
+      "Initial helper assumed deleted source existed; corrected against Git absence.",
+      "Next helper incorrectly required imported shared frontmatter to equal main despite original writer path ownership. Actual current frontmatter equals original PR1 exactly; main-exclusive paths verified separately. No production failure or source mutation."
+    ]
+  },
+  "held_evidence_carry_forward": [
+    {
+      "path": ".ημ/receipts.edn",
+      "bytes": 56320,
+      "sha256": "a7d9529e1bf6c9b521def74941f0b20e944919ac6fd6165165faf9b80edb1ce0",
+      "previous_prefix_bytes": 44956,
+      "previous_prefix_equal": true,
+      "original_source_unchanged": true
+    },
+    {
+      "path": ".ημ/session-mycology/ledger.md",
+      "bytes": 9917,
+      "sha256": "1ea981c3f087f67363d42acc618a788a02ee42adda9149ce2127fc4a7e8d8331",
+      "previous_prefix_bytes": 7980,
+      "previous_prefix_equal": true,
+      "original_source_unchanged": true
+    },
+    {
+      "path": ".ημ/review-evidence/rheos4-tied-diagnostics-published-20261008.json",
+      "bytes": 3717,
+      "sha256": "ec21a4a870493d6142166d9caad64601723fa6db9e8b61f879f526bab3230816",
+      "previous_prefix_bytes": 0,
+      "previous_prefix_equal": true,
+      "original_source_unchanged": true
+    },
+    {
+      "path": ".ημ/review-evidence/rheos4-mimo-5455463863-completion-d556.json",
+      "bytes": 3672,
+      "sha256": "2a2b4950aed019ea7d5a975d6500bb0f915770271594188486febb58e1b5dd86",
+      "previous_prefix_bytes": 0,
+      "previous_prefix_equal": true,
+      "original_source_unchanged": true
+    },
+    {
+      "path": ".ημ/review-evidence/rheos4-mimo-5455463863-verification-d556.json",
+      "bytes": 2882,
+      "sha256": "dc46e29a3df9f0070a69056f680c3a26b9b861c142d928f19f2503b3f9f69d4b",
+      "previous_prefix_bytes": 0,
+      "previous_prefix_equal": true,
+      "original_source_unchanged": true
+    },
+    {
+      "path": ".ημ/review-evidence/rheos4-merged-contract-and-receiver-corrections-20261008.json",
+      "bytes": 19729,
+      "sha256": "67f771dbcd46da75ce9b3577d4c41eebaf76df90e3d9e7eb9993fed99f1d7258",
+      "previous_prefix_bytes": 0,
+      "previous_prefix_equal": true,
+      "original_source_unchanged": true
+    }
+  ],
+  "commands": {
+    "integration-install": {
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "install",
+        "--no-frozen-lockfile",
+        "--no-lockfile",
+        "--prefer-offline"
+      ],
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/source-preserving",
+      "started_at": "2026-10-08T11:58:07.951871+00:00",
+      "finished_at": "2026-10-08T11:58:10.779738+00:00",
+      "exit": 0,
+      "free_before": 22866321408,
+      "free_after": 22867750912,
+      "source_dependencies": "Only existing generated protocol/chat-ui src trees reused locally; actual hosted install/bootstrap still required.",
+      "logs": {
+        "stdout": {
+          "bytes": 829,
+          "sha256": "b78aa84d1cad9ed0eda6f63758397392cb9e6084f8b94be17a9b8256c30f874a"
+        },
+        "stderr": {
+          "bytes": 97,
+          "sha256": "b1a73e8d61369efcbb995662dafac3cc34fddd603cedc2618c34c048491cf8e2"
+        }
+      }
+    },
+    "lint": {
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "lint:kondo"
+      ],
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/source-preserving",
+      "start": "2026-10-08T11:59:38.688959+00:00",
+      "end": "2026-10-08T11:59:40.368622+00:00",
+      "exit": 0,
+      "logs": {
+        "stdout": {
+          "bytes": 1524,
+          "sha256": "d7ce715ddfa5442224a4744ead219cb3e45cafeda940564170e1feda9b6d44e0"
+        },
+        "stderr": {
+          "bytes": 97,
+          "sha256": "b1a73e8d61369efcbb995662dafac3cc34fddd603cedc2618c34c048491cf8e2"
+        }
+      }
+    },
+    "test": {
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "test"
+      ],
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/source-preserving",
+      "start": "2026-10-08T11:59:40.369233+00:00",
+      "end": "2026-10-08T12:00:09.045573+00:00",
+      "exit": 0,
+      "logs": {
+        "stdout": {
+          "bytes": 3164,
+          "sha256": "6f107276b9e2af778cc3b9847c525347d4d2735fc77d643e26f6faba96b7a63f"
+        },
+        "stderr": {
+          "bytes": 523,
+          "sha256": "693bdb39e312441c7a0b125f8d387d52d8dd1fd282afc3057d2eab97c2708581"
+        }
+      }
+    },
+    "build": {
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "build"
+      ],
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/source-preserving",
+      "started_at": "2026-10-08T12:07:06.876637+00:00",
+      "finished_at": "2026-10-08T12:07:57.759326+00:00",
+      "exit": 0,
+      "outputs": {
+        "dist/server.js": {
+          "bytes": 2047877,
+          "sha256": "021c6898b46add8e24ec2315727fd51ea0f811b0c90d14641f516dc493d1fc29"
+        },
+        "dist/cli.cjs": {
+          "bytes": 2135946,
+          "sha256": "ad1df3ebcea87d7a4db277a2352adfbbd486f33be545cf8fd724514ea74550bd"
+        },
+        "dist/github-sync.cjs": {
+          "bytes": 1621280,
+          "sha256": "8f97603cd18eb9011097a2a4935bbd3a801af87cfd18c8e926264997318fdbec"
+        },
+        "dist/web/js/main.js": {
+          "bytes": 562707,
+          "sha256": "feba63f5882becf858ef32bfb62da89b520f0a96f2a981cffc2d13d4de86d2de"
+        }
+      },
+      "logs": {
+        "stdout": {
+          "bytes": 521,
+          "sha256": "4ce1d781d33510ab26695494bfa6c68543a801451428d2627aa53c05fca518da"
+        },
+        "stderr": {
+          "bytes": 199,
+          "sha256": "446ea5abb1e098a177906c4a91e922e3c9e47b35404157e1189efc3b06cd5184"
+        }
+      }
+    },
+    "portable-jvm": {
+      "argv": [
+        "/usr/local/bin/clojure",
+        "-Srepro",
+        "-Sdeps",
+        "{:paths [\"src\" \"test\"] :deps {org.clojure/clojure {:mvn/version \"1.12.4\"} metosin/malli {:mvn/version \"0.16.4\"} org.clojure/clojurescript {:mvn/version \"1.12.134\"}}}",
+        "-M",
+        "-e",
+        "(require 'clojure.test 'rheos.backend.domain.relationships-test 'rheos.backend.shape.relationships-test 'rheos.backend.domain.task-edit-test 'rheos.backend.shape.frontmatter-serialization-test) (let [r (clojure.test/run-tests 'rheos.backend.domain.relationships-test 'rheos.backend.shape.relationships-test 'rheos.backend.domain.task-edit-test 'rheos.backend.shape.frontmatter-serialization-test)] (System/exit (if (clojure.test/successful? r) 0 1)))"
+      ],
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/source-preserving",
+      "started_at": "2026-10-08T12:12:49.485112+00:00",
+      "finished_at": "2026-10-08T12:12:53.978914+00:00",
+      "exit": 0,
+      "free_before": 22759940096,
+      "logs": {
+        "stdout": {
+          "bytes": 265,
+          "sha256": "c176220ec6b17e866604a53d43d4431db626c8c198059f3fc151a2ea2a4e4089"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  },
+  "results": {
+    "clj_kondo_errors": 0,
+    "clj_kondo_warnings": 0,
+    "retained_clj_kondo_info": 8,
+    "compiled_node": {
+      "tests": 210,
+      "assertions": 1705,
+      "failures": 0,
+      "errors": 0,
+      "actual_runs": 2,
+      "reason": "compile autorun and explicit Node entry"
+    },
+    "portable_jvm": {
+      "tests": 28,
+      "assertions": 550,
+      "failures": 0,
+      "errors": 0
+    },
+    "four_release_outputs": {
+      "dist/server.js": {
+        "bytes": 2047877,
+        "sha256": "021c6898b46add8e24ec2315727fd51ea0f811b0c90d14641f516dc493d1fc29"
+      },
+      "dist/cli.cjs": {
+        "bytes": 2135946,
+        "sha256": "ad1df3ebcea87d7a4db277a2352adfbbd486f33be545cf8fd724514ea74550bd"
+      },
+      "dist/github-sync.cjs": {
+        "bytes": 1621280,
+        "sha256": "8f97603cd18eb9011097a2a4935bbd3a801af87cfd18c8e926264997318fdbec"
+      },
+      "dist/web/js/main.js": {
+        "bytes": 562707,
+        "sha256": "feba63f5882becf858ef32bfb62da89b520f0a96f2a981cffc2d13d4de86d2de"
+      }
+    },
+    "compiler_warnings": 0
+  },
+  "workflow_verification": {
+    "workflow_bytes": 4813,
+    "workflow_sha256": "fd2ddde3c9cc31b6ffa2168be91a4c056f564be1623e0dd5894224ab93ebe9e5",
+    "gate_script_sha256": "f9825d16d5e529cb2a5759e8be5ee7a9bae14f041c6c39d56a2dbc5bb1b981fd",
+    "commands": {
+      "bash_syntax": {
+        "argv": [
+          "bash",
+          "-n",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/workflow-branch-fixture.sh"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "shellcheck": {
+        "argv": [
+          "shellcheck",
+          "-s",
+          "bash",
+          "-e",
+          "SC2016",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/workflow-branch-fixture.sh"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "actionlint": {
+        "argv": [
+          "/home/err/go/bin/actionlint",
+          "/home/err/spaces/cephalon-rheos-relationships/source-preserving/.github/workflows/eta-mu-review.yml"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    },
+    "inner_commands": [
+      {
+        "gate": "tool_versions",
+        "argv": [
+          "bash",
+          "-n",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/actual-tool_versions-command.sh"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "gate": "tool_versions",
+        "argv": [
+          "shellcheck",
+          "-s",
+          "bash",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/actual-tool_versions-command.sh"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "gate": "generated_path_policy",
+        "argv": [
+          "bash",
+          "-n",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/actual-generated_path_policy-command.sh"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "gate": "generated_path_policy",
+        "argv": [
+          "shellcheck",
+          "-s",
+          "bash",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/actual-generated_path_policy-command.sh"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "gate": "bootstrap",
+        "argv": [
+          "bash",
+          "-n",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/actual-bootstrap-command.sh"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "gate": "bootstrap",
+        "argv": [
+          "shellcheck",
+          "-s",
+          "bash",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/actual-bootstrap-command.sh"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "gate": "release_outputs",
+        "argv": [
+          "bash",
+          "-n",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/actual-release_outputs-command.sh"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "gate": "release_outputs",
+        "argv": [
+          "shellcheck",
+          "-s",
+          "bash",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/actual-release_outputs-command.sh"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "shellcheck_scope": "Outer SC2016 info retained separately: single-quoted commands intentionally defer expansion to invoked bash -c. Every actual nested bash -c command separately passes unfiltered ShellCheck.",
+    "branch_cases": [
+      {
+        "failure": null,
+        "exit": 0,
+        "statuses": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 0,
+          "test": 0,
+          "build": 0,
+          "release_outputs": 0
+        },
+        "invoked_once": [
+          "diff_stat",
+          "diff_hygiene",
+          "tool_versions",
+          "generated_path_policy",
+          "install",
+          "bootstrap",
+          "lint",
+          "test",
+          "build",
+          "release_outputs"
+        ],
+        "stub_only": true,
+        "expected": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 0,
+          "test": 0,
+          "build": 0,
+          "release_outputs": 0
+        },
+        "pass": true
+      },
+      {
+        "failure": "diff_stat",
+        "exit": 0,
+        "statuses": {
+          "diff_stat": 7,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 0,
+          "test": 0,
+          "build": 0,
+          "release_outputs": 0
+        },
+        "invoked_once": [
+          "diff_stat",
+          "diff_hygiene",
+          "tool_versions",
+          "generated_path_policy",
+          "install",
+          "bootstrap",
+          "lint",
+          "test",
+          "build",
+          "release_outputs"
+        ],
+        "stub_only": true,
+        "expected": {
+          "diff_stat": 7,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 0,
+          "test": 0,
+          "build": 0,
+          "release_outputs": 0
+        },
+        "pass": true
+      },
+      {
+        "failure": "diff_hygiene",
+        "exit": 0,
+        "statuses": {
+          "diff_stat": 0,
+          "diff_hygiene": 7,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 0,
+          "test": 0,
+          "build": 0,
+          "release_outputs": 0
+        },
+        "invoked_once": [
+          "diff_stat",
+          "diff_hygiene",
+          "tool_versions",
+          "generated_path_policy",
+          "install",
+          "bootstrap",
+          "lint",
+          "test",
+          "build",
+          "release_outputs"
+        ],
+        "stub_only": true,
+        "expected": {
+          "diff_stat": 0,
+          "diff_hygiene": 7,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 0,
+          "test": 0,
+          "build": 0,
+          "release_outputs": 0
+        },
+        "pass": true
+      },
+      {
+        "failure": "tool_versions",
+        "exit": 0,
+        "statuses": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 7,
+          "generated_path_policy": 0,
+          "install": 125,
+          "bootstrap": 125,
+          "lint": 125,
+          "test": 125,
+          "build": 125,
+          "release_outputs": 125
+        },
+        "invoked_once": [
+          "diff_stat",
+          "diff_hygiene",
+          "tool_versions",
+          "generated_path_policy"
+        ],
+        "stub_only": true,
+        "expected": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 7,
+          "generated_path_policy": 0,
+          "install": 125,
+          "bootstrap": 125,
+          "lint": 125,
+          "test": 125,
+          "build": 125,
+          "release_outputs": 125
+        },
+        "pass": true
+      },
+      {
+        "failure": "generated_path_policy",
+        "exit": 0,
+        "statuses": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 7,
+          "install": 125,
+          "bootstrap": 125,
+          "lint": 125,
+          "test": 125,
+          "build": 125,
+          "release_outputs": 125
+        },
+        "invoked_once": [
+          "diff_stat",
+          "diff_hygiene",
+          "tool_versions",
+          "generated_path_policy"
+        ],
+        "stub_only": true,
+        "expected": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 7,
+          "install": 125,
+          "bootstrap": 125,
+          "lint": 125,
+          "test": 125,
+          "build": 125,
+          "release_outputs": 125
+        },
+        "pass": true
+      },
+      {
+        "failure": "install",
+        "exit": 0,
+        "statuses": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 7,
+          "bootstrap": 125,
+          "lint": 125,
+          "test": 125,
+          "build": 125,
+          "release_outputs": 125
+        },
+        "invoked_once": [
+          "diff_stat",
+          "diff_hygiene",
+          "tool_versions",
+          "generated_path_policy",
+          "install"
+        ],
+        "stub_only": true,
+        "expected": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 7,
+          "bootstrap": 125,
+          "lint": 125,
+          "test": 125,
+          "build": 125,
+          "release_outputs": 125
+        },
+        "pass": true
+      },
+      {
+        "failure": "bootstrap",
+        "exit": 0,
+        "statuses": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 7,
+          "lint": 125,
+          "test": 125,
+          "build": 125,
+          "release_outputs": 125
+        },
+        "invoked_once": [
+          "diff_stat",
+          "diff_hygiene",
+          "tool_versions",
+          "generated_path_policy",
+          "install",
+          "bootstrap"
+        ],
+        "stub_only": true,
+        "expected": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 7,
+          "lint": 125,
+          "test": 125,
+          "build": 125,
+          "release_outputs": 125
+        },
+        "pass": true
+      },
+      {
+        "failure": "lint",
+        "exit": 0,
+        "statuses": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 7,
+          "test": 0,
+          "build": 0,
+          "release_outputs": 0
+        },
+        "invoked_once": [
+          "diff_stat",
+          "diff_hygiene",
+          "tool_versions",
+          "generated_path_policy",
+          "install",
+          "bootstrap",
+          "lint",
+          "test",
+          "build",
+          "release_outputs"
+        ],
+        "stub_only": true,
+        "expected": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 7,
+          "test": 0,
+          "build": 0,
+          "release_outputs": 0
+        },
+        "pass": true
+      },
+      {
+        "failure": "test",
+        "exit": 0,
+        "statuses": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 0,
+          "test": 7,
+          "build": 0,
+          "release_outputs": 0
+        },
+        "invoked_once": [
+          "diff_stat",
+          "diff_hygiene",
+          "tool_versions",
+          "generated_path_policy",
+          "install",
+          "bootstrap",
+          "lint",
+          "test",
+          "build",
+          "release_outputs"
+        ],
+        "stub_only": true,
+        "expected": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 0,
+          "test": 7,
+          "build": 0,
+          "release_outputs": 0
+        },
+        "pass": true
+      },
+      {
+        "failure": "build",
+        "exit": 0,
+        "statuses": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 0,
+          "test": 0,
+          "build": 7,
+          "release_outputs": 125
+        },
+        "invoked_once": [
+          "diff_stat",
+          "diff_hygiene",
+          "tool_versions",
+          "generated_path_policy",
+          "install",
+          "bootstrap",
+          "lint",
+          "test",
+          "build"
+        ],
+        "stub_only": true,
+        "expected": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 0,
+          "test": 0,
+          "build": 7,
+          "release_outputs": 125
+        },
+        "pass": true
+      },
+      {
+        "failure": "release_outputs",
+        "exit": 0,
+        "statuses": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 0,
+          "test": 0,
+          "build": 0,
+          "release_outputs": 7
+        },
+        "invoked_once": [
+          "diff_stat",
+          "diff_hygiene",
+          "tool_versions",
+          "generated_path_policy",
+          "install",
+          "bootstrap",
+          "lint",
+          "test",
+          "build",
+          "release_outputs"
+        ],
+        "stub_only": true,
+        "expected": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 0,
+          "test": 0,
+          "build": 0,
+          "release_outputs": 7
+        },
+        "pass": true
+      }
+    ],
+    "bootstrap_cases": [
+      {
+        "case": "valid_nonempty",
+        "exit": 0,
+        "expected_exit": 0,
+        "stdout": "Hosted source bootstrap: 8388608 KiB available; 8 GiB required\n",
+        "stderr": "",
+        "pass": true
+      },
+      {
+        "case": "low_space",
+        "exit": 1,
+        "expected_exit": 1,
+        "stdout": "Hosted source bootstrap: 8388607 KiB available; 8 GiB required\nSource bootstrap refused: less than 8 GiB free on hosted runner\n",
+        "stderr": "",
+        "pass": true
+      },
+      {
+        "case": "invalid_space",
+        "exit": 1,
+        "expected_exit": 1,
+        "stdout": "Source bootstrap refused: invalid free-space observation\n",
+        "stderr": "",
+        "pass": true
+      },
+      {
+        "case": "empty_chat_source",
+        "exit": 1,
+        "expected_exit": 1,
+        "stdout": "Hosted source bootstrap: 8388608 KiB available; 8 GiB required\n",
+        "stderr": "",
+        "pass": true
+      },
+      {
+        "case": "missing_chat_source",
+        "exit": 1,
+        "expected_exit": 1,
+        "stdout": "Hosted source bootstrap: 8388608 KiB available; 8 GiB required\n",
+        "stderr": "",
+        "pass": true
+      },
+      {
+        "case": "bootstrap_failure",
+        "exit": 9,
+        "expected_exit": 9,
+        "stdout": "Hosted source bootstrap: 8388608 KiB available; 8 GiB required\n",
+        "stderr": "",
+        "pass": true
+      }
+    ],
+    "limits": "Branch fixtures stub run_gate commands; bootstrap fixtures replace only df and source bootstrap. They do not prove actual hosted dependencies, current-head review or runtime behavior."
+  },
+  "dependency_execution": {
+    "Node": "22.20.0",
+    "pnpm": "10.15.0",
+    "install": "221 packages reused; zero downloaded; no-frozen-lockfile/no-lockfile/prefer-offline",
+    "observed_yaml": "2.9.1",
+    "observed_shadow_cljs": "3.5.5",
+    "local_source_dependencies": "Existing generated protocol/chat-ui src trees reused by explicit symlinks. Not an independent source bootstrap.",
+    "reproducible_dependencies": false,
+    "hosted_prerequisite": "Fresh exact-head hosted install/bootstrap/lint/test/build/output guard remains required."
+  },
+  "retained_notices": [
+    "Missing NPM_TOKEN placeholder in host npmrc; no credential exposed",
+    "source-map-support absent",
+    "glob11.1 deprecation during install",
+    "preexisting kondo informational architecture notices",
+    "intentional compose snapshotname42 and review-to-in_review negative fixtures"
+  ],
+  "operator_attempts": [
+    "Initial dependency reuse could not resolve declared YAML; removed only owned node_modules symlink and ran actual cache-reused installation.",
+    "First private workflow fixture split multiline argv at newline; second NUL+newline delimiter also collided. Both old helpers/failures retained privately; JSON-framed argv repaired the harness. No product source changed.",
+    "Unfiltered outer ShellCheck reported only SC2016 info on intentional single-quoted bash -c bodies. Raw result retained; actual inner commands separately pass unfiltered ShellCheck.",
+    "Initial helper assumed deleted source existed; corrected against Git absence.",
+    "Next helper incorrectly required imported shared frontmatter to equal main despite original writer path ownership. Actual current frontmatter equals original PR1 exactly; main-exclusive paths verified separately. No production failure or source mutation.",
+    "A read-only cat of nonexistent deps.edn exited1; reused explicit already-tested JVM Sdeps instead."
+  ],
+  "limits": [
+    "Local gates cannot grant current-head review or merge credit.",
+    "Old native approval at e634 is historical after this integration; fresh full scope is required.",
+    "No release, installed writer/parity/loader admission, card status or B1/B2/B3 completion.",
+    "No active-maker/runtime/PM2/cloud/owner/model/credential/publication mutation; heartbeat remains paused.",
+    "Fixed inventory and unanswered human choices remain unchanged. No new spore."
+  ],
+  "free_bytes_after": 22723506176
+}

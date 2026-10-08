@@ -1,0 +1,21 @@
+
+Testing rheos.backend.law.relationships-test
+
+FAIL in (supported-representations-and-removal) (relationships_test.cljc:33)
+input shape must permit removal {:parent ""}
+expected: (shape/valid-input? raw)
+  actual: (not (shape/valid-input? {:parent ""}))
+
+FAIL in (supported-representations-and-removal) (relationships_test.cljc:33)
+input shape must permit removal {:epic ""}
+expected: (shape/valid-input? raw)
+  actual: (not (shape/valid-input? {:epic ""}))
+
+Testing rheos.backend.shape.relationships-test
+
+FAIL in (shape-boundaries-are-closed-and-typed) (relationships_test.cljc:21)
+expected: (shape/valid-input? input)
+  actual: (not (shape/valid-input? {:epic ""}))
+
+Ran 22 tests containing 483 assertions.
+3 failures, 0 errors.

@@ -1,0 +1,19 @@
+
+Testing rheos.backend.domain.relationships-test
+
+FAIL in (unicode-whitespace-has-one-portable-meaning) (/home/err/spaces/cephalon-rheos-relationships/rheos/test/rheos/backend/domain/relationships_test.cljc:79:9)
+expected: (not (relationship-law/reference? blank))
+  actual: (not (not true))
+
+FAIL in (unicode-whitespace-has-one-portable-meaning) (/home/err/spaces/cephalon-rheos-relationships/rheos/test/rheos/backend/domain/relationships_test.cljc:80:9)
+expected: (= {:ok? true, :value {}} (relationships/normalize {:parent blank}))
+  actual: (not (= {:ok? true, :value {}} {:ok? true, :value {:parent ""}}))
+
+FAIL in (unicode-whitespace-has-one-portable-meaning) (/home/err/spaces/cephalon-rheos-relationships/rheos/test/rheos/backend/domain/relationships_test.cljc:81:9)
+expected: (= #{:malformed-uuid} (kinds (relationships/inspect-graph [{:uuid blank}])))
+  actual: (not (= #{:malformed-uuid} #{}))
+
+Testing rheos.backend.shape.relationships-test
+
+Ran 23 tests containing 497 assertions.
+3 failures, 0 errors.

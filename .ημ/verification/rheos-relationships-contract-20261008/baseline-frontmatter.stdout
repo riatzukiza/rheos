@@ -1,0 +1,20 @@
+
+Testing rheos.relationships.baseline-frontmatter
+
+FAIL in (reviewed-relationship-fields-have-an-authoring-path) (/home/err/spaces/cephalon-rheos-relationships/rheos/.ημ/verification/rheos-relationships-contract-20261008/baseline_frontmatter.cljs:12)
+The baseline rejects the reviewed relationship field :dependency
+expected: (empty? (frontmatter/disallowed-keys {field value}))
+  actual: (not (empty? [:dependency]))
+
+FAIL in (reviewed-relationship-fields-have-an-authoring-path) (/home/err/spaces/cephalon-rheos-relationships/rheos/.ημ/verification/rheos-relationships-contract-20261008/baseline_frontmatter.cljs:12)
+The baseline rejects the reviewed relationship field :parent
+expected: (empty? (frontmatter/disallowed-keys {field value}))
+  actual: (not (empty? [:parent]))
+
+FAIL in (reviewed-relationship-fields-have-an-authoring-path) (/home/err/spaces/cephalon-rheos-relationships/rheos/.ημ/verification/rheos-relationships-contract-20261008/baseline_frontmatter.cljs:12)
+The baseline rejects the reviewed relationship field :epic
+expected: (empty? (frontmatter/disallowed-keys {field value}))
+  actual: (not (empty? [:epic]))
+
+Ran 2 tests containing 6 assertions.
+3 failures, 0 errors.

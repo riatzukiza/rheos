@@ -1,0 +1,11 @@
+{
+  "schema": "observed-command-output",
+  "cwd": "/",
+  "argv": [
+    "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+    "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/cljs-initial/runner.cjs"
+  ],
+  "exit_code": 1,
+  "corrects": "cljs-initial.json",
+  "note": "Compiler-generated bootstrap joins absolute output-dir to cwd; original cwd failed before test execution. Same compiled bytes; corrected cwd resolves them."
+}

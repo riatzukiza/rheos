@@ -1,0 +1,216 @@
+{
+  "schema": "observed-command-output-transcription/v1",
+  "phase": "green",
+  "scope": "portable decision diagnostic sorting and dated planning scope; no writer/release/deployment approval",
+  "red_commit": "498971ea9a0fae57a2176d5a00d4818f6009b4ad",
+  "red_proof_sha256": "a700d3337c738168fc2fa337bdacc541af238f0c734bb86d3ab0c7c6a6a45495",
+  "hosts": {
+    "jvm": {
+      "command": {
+        "schema": "observed-command-output",
+        "argv": [
+          "/usr/local/bin/clojure",
+          "-Srepro",
+          "-Sdeps",
+          "{:paths [\"src\" \"test\"] :deps {org.clojure/clojure {:mvn/version \"1.12.4\"} metosin/malli {:mvn/version \"0.16.4\"} org.clojure/clojurescript {:mvn/version \"1.12.134\"}}}",
+          "-M",
+          "-m",
+          "rheos.relationship-contract-runner"
+        ],
+        "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+        "exit_code": 0,
+        "elapsed_seconds": 5.079028844833374
+      },
+      "stdout": "\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 24 tests containing 529 assertions.\n0 failures, 0 errors.\n",
+      "stderr": "",
+      "summary": "24 tests /529 assertions /0 failures /0 errors; exit0"
+    },
+    "cljs": {
+      "command": {
+        "schema": "observed-command-output",
+        "argv": [
+          "/usr/local/bin/clojure",
+          "-Srepro",
+          "-Sdeps",
+          "{:paths [\"src\" \"test\"] :deps {org.clojure/clojure {:mvn/version \"1.12.4\"} metosin/malli {:mvn/version \"0.16.4\"} org.clojure/clojurescript {:mvn/version \"1.12.134\"}}}",
+          "-M",
+          "-m",
+          "cljs.main",
+          "-co",
+          "{:target :nodejs :output-to \"/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/tied-diagnostics-20261008/cljs-green/runner.cjs\" :output-dir \"/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/tied-diagnostics-20261008/cljs-green/out\" :optimizations :none :main rheos.relationship-contract-runner}",
+          "-c",
+          "rheos.relationship-contract-runner"
+        ],
+        "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+        "exit_code": 0,
+        "elapsed_seconds": 12.384114980697632,
+        "node": {
+          "argv": [
+            "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+            "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/tied-diagnostics-20261008/cljs-green/runner.cjs"
+          ],
+          "cwd": "/",
+          "exit_code": 0
+        }
+      },
+      "stdout": "\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 24 tests containing 529 assertions.\n0 failures, 0 errors.\n",
+      "stderr": "",
+      "summary": "24 tests /529 assertions /0 failures /0 errors; exit0"
+    }
+  },
+  "product_gates": {
+    "lint:kondo": {
+      "command": {
+        "schema": "observed-command-output",
+        "argv": [
+          "/home/err/.volta/bin/pnpm",
+          "lint:kondo"
+        ],
+        "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+        "node_path": "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "exit_code": 0,
+        "elapsed_seconds": 1.7153959274291992,
+        "stdout": {
+          "bytes": 1512,
+          "sha256": "67681dcb2c45d388c873902d1116c87bd9520203a37ad7a136f2b5f3eb42cd27"
+        },
+        "stderr": {
+          "bytes": 97,
+          "sha256": "b1a73e8d61369efcbb995662dafac3cc34fddd603cedc2618c34c048491cf8e2"
+        }
+      },
+      "stdout": "\n> @eta-mu/rheos@0.1.0 lint:kondo /home/err/spaces/cephalon-rheos-relationships/rheos\n> clj-kondo --lint src test\n\nsrc/rheos/backend/domain/compose.cljs:6:14: info: a domain namespace must not require rheos.backend.infra.ledger (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/backend/domain/compose.cljs:7:14: info: a domain namespace must not require rheos.backend.infra.task-store (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/backend/law/fsm.cljs:7:14: info: a law namespace must not require the host: \"node:child_process\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nsrc/rheos/ui/domain/layout.cljs:11:14: info: a domain namespace must not require rheos.ui.infra.api (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/layout.cljs:12:14: info: a domain namespace must not require rheos.ui.infra.ledger-stream (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/orchestrator.cljs:17:14: info: a domain namespace must not require rheos.ui.infra.chat-session (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/sidebar.cljs:7:14: info: a domain namespace must not require the host: \"marked\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nsrc/rheos/ui/domain/sidebar.cljs:8:14: info: a domain namespace must not require the host: \"dompurify\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nlinting took 1173ms, errors: 0, warnings: 0\n",
+      "stderr": " WARN  Issue while reading \"/home/err/.npmrc\". Failed to replace env in config: ${NPM_TOKEN}\n"
+    },
+    "test": {
+      "command": {
+        "schema": "observed-command-output",
+        "argv": [
+          "/home/err/.volta/bin/pnpm",
+          "test"
+        ],
+        "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+        "node_path": "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "exit_code": 0,
+        "elapsed_seconds": 19.356696128845215,
+        "stdout": {
+          "bytes": 2868,
+          "sha256": "ec425e8d10f47917f43783e346f96a4149d5358dcb8127b0d1b21faedca48c78"
+        },
+        "stderr": {
+          "bytes": 413,
+          "sha256": "8d360b7189072fc0c1ae169d5c63965192069b903b8f5e68e5b793b1334c7dee"
+        }
+      },
+      "stdout": "\n> @eta-mu/rheos@0.1.0 test /home/err/spaces/cephalon-rheos-relationships/rheos\n> shadow-cljs compile test && node dist/test.cjs\n\n[:test] Compiling ...\n========= Running Tests =======================\n\nTesting rheos.backend.domain.board-test\n\nTesting rheos.backend.domain.compose-test\n\nTesting rheos.backend.domain.events-test\n\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.domain.task-create-test\n\nTesting rheos.backend.domain.transition-test\n\nTesting rheos.backend.infra.agent-tools-test\n{\n  \"ok\": true,\n  \"uuid\": \"t1\",\n  \"from\": \"breakdown\",\n  \"to\": \"ready\"\n}\n\nTesting rheos.backend.infra.cli-test\n\nTesting rheos.backend.infra.config-card-creation-test\n\nTesting rheos.backend.infra.config-test\n\nTesting rheos.backend.infra.github-issue-preflight-test\n\nTesting rheos.backend.infra.github-issues-test\n\nTesting rheos.backend.infra.store-test\n\nTesting rheos.backend.infra.task-create-conflict-test\n\nTesting rheos.backend.infra.task-create-test\n\nTesting rheos.backend.infra.task-edit-test\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 174 tests containing 1301 assertions.\n0 failures, 0 errors.\n===============================================\n[:test] Build completed. (143 files, 4 compiled, 0 warnings, 9.28s)\n\nTesting rheos.backend.domain.board-test\n\nTesting rheos.backend.domain.compose-test\n\nTesting rheos.backend.domain.events-test\n\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.domain.task-create-test\n\nTesting rheos.backend.domain.transition-test\n\nTesting rheos.backend.infra.agent-tools-test\n{\n  \"ok\": true,\n  \"uuid\": \"t1\",\n  \"from\": \"breakdown\",\n  \"to\": \"ready\"\n}\n\nTesting rheos.backend.infra.cli-test\n\nTesting rheos.backend.infra.config-card-creation-test\n\nTesting rheos.backend.infra.config-test\n\nTesting rheos.backend.infra.github-issue-preflight-test\n\nTesting rheos.backend.infra.github-issues-test\n\nTesting rheos.backend.infra.store-test\n\nTesting rheos.backend.infra.task-create-conflict-test\n\nTesting rheos.backend.infra.task-create-test\n\nTesting rheos.backend.infra.task-edit-test\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 174 tests containing 1301 assertions.\n0 failures, 0 errors.\n",
+      "stderr": " WARN  Issue while reading \"/home/err/.npmrc\". Failed to replace env in config: ${NPM_TOKEN}\nshadow-cljs - config: /home/err/spaces/cephalon-rheos-relationships/rheos/shadow-cljs.edn\nrheos: transition rejected: No transition from 'review' to 'in_review'\nno \"source-map-support\" (run \"npm install source-map-support --save-dev\" to get it)\nrheos: transition rejected: No transition from 'review' to 'in_review'\n"
+    },
+    "build": {
+      "command": {
+        "schema": "observed-command-output",
+        "argv": [
+          "/home/err/.volta/bin/pnpm",
+          "build"
+        ],
+        "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+        "node_path": "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "exit_code": 0,
+        "elapsed_seconds": 35.67070913314819,
+        "stdout": {
+          "bytes": 504,
+          "sha256": "5676d63582829ce30d102829985c6238c7bfaa957d391fb0c55b8d3228e6d7c4"
+        },
+        "stderr": {
+          "bytes": 187,
+          "sha256": "d05e15188f65c1060eb6b3b86cf0d52e8e812efb1aa4eb449c037b3281ac11a9"
+        }
+      },
+      "stdout": "\n> @eta-mu/rheos@0.1.0 build /home/err/spaces/cephalon-rheos-relationships/rheos\n> shadow-cljs release server cli github-sync app\n\n[:server] Compiling ...\n[:server] Build completed. (102 files, 0 compiled, 0 warnings, 12.66s)\n[:cli] Compiling ...\n[:cli] Build completed. (106 files, 0 compiled, 0 warnings, 6.09s)\n[:github-sync] Compiling ...\n[:github-sync] Build completed. (61 files, 0 compiled, 0 warnings, 4.29s)\n[:app] Compiling ...\n[:app] Build completed. (95 files, 0 compiled, 0 warnings, 6.38s)\n",
+      "stderr": " WARN  Issue while reading \"/home/err/.npmrc\". Failed to replace env in config: ${NPM_TOKEN}\nshadow-cljs - config: /home/err/spaces/cephalon-rheos-relationships/rheos/shadow-cljs.edn\n"
+    }
+  },
+  "files": {
+    "src/rheos/backend/domain/relationships.cljc": {
+      "bytes": 11657,
+      "sha256": "99da63c6b3bddbbc9190afa9264a0373b95a5bf812ecce657a9d47be02c0dcf3"
+    },
+    "test/rheos/backend/domain/relationships_test.cljc": {
+      "bytes": 16564,
+      "sha256": "81904ef84a12ee6cd92b665f0e7308df591491feae05cfc067f573ce51fcfb7d"
+    },
+    "docs/notes/uuid-relationship-authoring-plan.md": {
+      "bytes": 6013,
+      "sha256": "10c1e38b5fbda9c04f06134d3800b75440e3bb28e86c98e520d84e80e0682489"
+    }
+  },
+  "historical_scope_revision": "03fefb941fc9218d193dedb6f9e4ee07cd5157e8",
+  "native_bindings": {
+    "reviewed_head": "4dcd025ffcd1576fbe8df0d15b7991c83e622d1a",
+    "base": "11811264a308d406cb612aefa1dad40818675e5e",
+    "findings": {
+      "coderabbit": {
+        "review": 5455053543,
+        "root": 4217685754,
+        "thread": "PRRT_kwDOU4Vf-c6qTtuf"
+      },
+      "mimo": {
+        "review": 5455082429,
+        "root": 4217709679,
+        "thread": "PRRT_kwDOU4Vf-c6qTxea"
+      }
+    }
+  },
+  "package_manager": "actual /home/err/.volta/bin/pnpm reports10.15.0; Node22.20.0 PATH",
+  "retained_operator_failures": {
+    "journal_helper": "RED helper appended both strict-valid rows and preserved prefixes, then exit1 from an extra closing delimiter. Corrected helper; red append never replayed.",
+    "product_initial": {
+      "lint": {
+        "schema": "observed-command-output",
+        "argv": [
+          "pnpm",
+          "lint"
+        ],
+        "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+        "node_path": "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "exit_code": 1,
+        "elapsed_seconds": 1.513720989227295,
+        "stdout": {
+          "bytes": 1302,
+          "sha256": "dd4ecf09409de720cd54269847efcdc1aeaf757b241da70a8e7f199a44493ccf"
+        },
+        "stderr": {
+          "bytes": 106,
+          "sha256": "92d099216c684389a7a468723719036b233648a5cadd54f76c844660a5f73b32"
+        }
+      },
+      "test": {
+        "schema": "observed-command-output",
+        "argv": [
+          "pnpm",
+          "test"
+        ],
+        "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+        "node_path": "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "exit_code": 1,
+        "elapsed_seconds": 1.2970166206359863,
+        "stdout": {
+          "bytes": 1302,
+          "sha256": "dd4ecf09409de720cd54269847efcdc1aeaf757b241da70a8e7f199a44493ccf"
+        },
+        "stderr": {
+          "bytes": 106,
+          "sha256": "92d099216c684389a7a468723719036b233648a5cadd54f76c844660a5f73b32"
+        }
+      }
+    },
+    "product_correction": "Unqualified PATH pnpm selected corepack11.8.0, attempted dependency auto-check/install and aborted modules purge without TTY before the gates. Existing successful /home/err/.volta/bin/pnpm10.15.0 selected explicitly; no dependency reinstall performed. Actual lint/test/build then executed and passed.",
+    "existing_notices": "Missing NPM_TOKEN config interpolation, source-map-support advice, expected transition-negative fixture messages and kondo info layer notices are retained; no compiler or kondo warning reported."
+  },
+  "limits": [
+    "Pinned JVM remains out-of-band; pnpm test covers compiled CLJS only.",
+    "Seven private workflow orchestration fixtures remain out-of-band; no new install-failure fixture or CI JVM guarantee.",
+    "Writer/parity/revision reservation/release and the retained read-board relationship projection RED remain unimplemented.",
+    "New head needs native full reviews and canonical gates;4d COMMENTED findings and earlier7a approval do not transfer.",
+    "pr-str diagnostic tie key is a presentation ordering key, not a canonical storage encoding, event hash or identity merge."
+  ]
+}

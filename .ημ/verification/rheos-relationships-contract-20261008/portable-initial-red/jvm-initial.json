@@ -1,0 +1,24 @@
+{
+  "schema": "observed-command-output",
+  "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+  "argv": [
+    "/usr/local/bin/clojure",
+    "-Srepro",
+    "-Sdeps",
+    "{:paths [\"src\" \"test\"] :deps {org.clojure/clojure {:mvn/version \"1.12.4\"} metosin/malli {:mvn/version \"0.16.4\"} org.clojure/clojurescript {:mvn/version \"1.12.134\"}}}",
+    "-M",
+    "-m",
+    "rheos.relationship-contract-runner"
+  ],
+  "start": "2026-10-08T08:41:22.469441+00:00",
+  "exit_code": 1,
+  "free_bytes_before": 24112861184,
+  "source_sha256": {
+    "src/rheos/backend/law/frontmatter.cljc": "af08622f7b673f123dbb9d263cc18e6842f85a6a616b3ad839c7bc81768d6b0a",
+    "src/rheos/backend/law/relationships.cljc": "a8efe1be14eb04a242ca8d7f1163573bc2eaec91b9d29ba90b2208e2efa064bc",
+    "src/rheos/backend/shape/relationships.cljc": "00cf8af47bc54e958d6375f5cea35e1b9f7de86ace0cce1607eae7d15d410827",
+    "test/rheos/backend/law/relationships_test.cljc": "235e39b6f7890a2e00676289d5a736ebf5370151780518d644c36f72b9f24211",
+    "test/rheos/backend/shape/relationships_test.cljc": "21a8a4b6127ce64e2a9a503ae9a1c03248295054a4ef1cc2368c762670f7de49",
+    "test/rheos/relationship_contract_runner.cljc": "031e042929ea8442d9365561f5b5e852e8e705e9a8ef983f3e334321f7aa8b5a"
+  }
+}
