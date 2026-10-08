@@ -11,11 +11,16 @@
   (:require ["node:fs/promises" :as fsp]
             [rheos.backend.domain.events :as events]
             [rheos.backend.domain.task-edit :as task-edit]
+            [rheos.backend.domain.relationships :as relationships]
+            [rheos.backend.law.relationships :as relationship-law]
+            [rheos.backend.shape.content-parser :as content-shape]
             [rheos.backend.infra.content-parser :as content-parser]
             [rheos.backend.infra.ledger :as ledger]
+            [rheos.backend.infra.task-store :as tasks]
+            [rheos.backend.infra.publication :as publication]
             [rheos.backend.infra.watcher :as watcher]))
 
-(defn ^:async update-frontmatter!
+(defn- ^:async update-reserved!
   "Apply `updates` (a map of key -> value) to a task's YAML frontmatter, write the
    file back, and emit one ledger event per changed key. Returns a result map with
    `:ok true`, the updated task, and the new frontmatter map.
@@ -29,15 +34,35 @@
     ;; ledger never saw. The HTTP handler already rejects this; CLI and MCP
     ;; callers reach here directly.
     {:ok true :task task :frontmatter (:frontmatter task) :noop true}
-    (let [task-path (:source-path task)
+    (let [updates (into {} (map (fn [[k v]] [(keyword k) v])) (content-shape/checked-updates updates))
+          loaded (await (tasks/load-tasks project))
+          current (filterv #(and (= (:uuid task) (:uuid %))
+                                (= (:source-path task) (:source-path %))) loaded)
+          _ (when-not (= 1 (count current))
+              (publication/conflict! "Task identity or selected source changed before edit"
+                                     {:uuid (:uuid task) :source-path (:source-path task)}))
+          decision (relationships/admit-update (tasks/relationship-snapshot loaded) (:uuid task) updates)
+          _ (when-not (:ok? decision)
+              (throw (ex-info "Relationship/frontmatter admission refused"
+                              {:kind :refused :errors (:errors decision) :uuid (:uuid task)})))
+          relationship-batch? (:relationship-change? decision)
+          updates (if relationship-batch? (:updates decision) updates)
+          task-path (:source-path task)
           raw (await (.readFile fsp task-path "utf8"))
           write-id (events/generate-write-id)
           plan (try (let [old-frontmatter (:frontmatter (content-parser/parse-task-content raw))
+                          removals (set (keep (fn [[k v]] (when (and (relationship-law/fields k) (nil? v)) k)) updates))
+                          rendered-updates (apply dissoc updates removals)
                           new-raw (-> raw
-                                      (content-parser/update-frontmatter-keys updates)
+                                      (content-parser/remove-frontmatter-keys removals)
+                                      (content-parser/update-frontmatter-keys rendered-updates)
                                       (content-parser/inject-write-id write-id))
                           new-frontmatter (:frontmatter (content-parser/parse-task-content new-raw))]
-                      (task-edit/plan-frontmatter-update old-frontmatter new-frontmatter new-raw updates))
+                      (cond-> (task-edit/plan-frontmatter-update old-frontmatter new-frontmatter new-raw updates)
+                        relationship-batch?
+                        (assoc :changes (mapv (fn [{:keys [field old-value new-value]}]
+                                                {:key (name field) :old-value old-value :new-value new-value})
+                                              (:changes decision)))))
                     (catch :default err
                       (if (and (= :refused (:kind (ex-data err)))
                                (contains? #{:uuid :slug :title :priority :status} (:field (ex-data err))))
@@ -48,15 +73,32 @@
                         (throw err))))
           ledger (ledger/get-ledger (:tasks-dir project))
           src (or source "cli")]
-      (watcher/register-cli-event! write-id (:uuid task))
-      (await (.writeFile fsp task-path (:raw plan) "utf8"))
-      (loop [changes (seq (:changes plan))]
-        (when changes
-          (let [{:keys [key old-value new-value]} (first changes)]
-            (await (events/emit-frontmatter-change! ledger (:id project) (:uuid task)
-                                                    key old-value new-value write-id src))
-            (recur (next changes)))))
-      {:ok true :task task :frontmatter (:frontmatter plan)})))
+      (if (and relationship-batch? (:noop? decision))
+        {:ok true :task (first current) :frontmatter (:frontmatter (first current)) :noop true}
+        (do
+          (when-not (= (tasks/source-revisions loaded)
+                       (tasks/source-revisions (await (tasks/load-tasks project))))
+            (publication/conflict! "Complete selected source changed before relationship edit"
+                                   {:uuid (:uuid task) :source-path task-path}))
+          (await (publication/file-and-event!
+                  {:source-path task-path :write-id write-id}
+                  (fn []
+                    (watcher/register-cli-event! write-id (:uuid task))
+                    (.writeFile fsp task-path (:raw plan) "utf8"))
+                  (^:async fn []
+                    (doseq [{:keys [key old-value new-value]} (:changes plan)]
+                      (await (events/emit-frontmatter-change! ledger (:id project) (:uuid task)
+                                                              key old-value new-value write-id src))))))
+          {:ok true :task task :frontmatter (:frontmatter plan)})))))
+
+(defn ^:async update-frontmatter!
+  "The canonical edit boundary, including lower-level callers. Identity/status/
+   provenance keys are refused; relationship batches use the complete graph.
+   Empty requests and semantic relationship no-ops have no file/event effect."
+  [{:keys [project updates] :as request}]
+  (if (empty? updates)
+    (await (update-reserved! request))
+    (await (publication/with-reservation! project #(update-reserved! request)))))
 
 (defn ^:async append-comment!
   "Append `text` to a qualified task source and emit a comment event.

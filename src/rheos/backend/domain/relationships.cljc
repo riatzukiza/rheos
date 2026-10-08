@@ -192,6 +192,11 @@
                :protected-field :unknown-field)
        :field field})))
 
+(defn disallowed-update-keys
+  "The same closed authority used by the writer, exposed for public diagnostics."
+  [updates]
+  (mapv :field (key-errors updates)))
+
 (defn admit-update
   "Admit one complete mixed batch against a complete post-update graph.
 

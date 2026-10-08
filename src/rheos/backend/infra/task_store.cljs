@@ -63,7 +63,7 @@
     (catch :default err
       (let [diagnostic (or (.-message err) (str err))]
         (throw (ex-info (str "Refused card source " file-path ": " diagnostic)
-                        {:kind :refused :source-path file-path :diagnostic diagnostic}
+                        (merge (ex-data err) {:kind :refused :source-path file-path :diagnostic diagnostic})
                         err))))))
 
 (defn- ^:async entry-kind

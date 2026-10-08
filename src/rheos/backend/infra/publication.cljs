@@ -14,7 +14,11 @@
    exact owned token in finally. This coordinates CLI and service processes;
    nonparticipating manual editors still require source-revision checks."
   [project f]
-  (let [root (await (.realpath fsp (:tasks-dir project)))
+  (let [root (try (await (.realpath fsp (:tasks-dir project)))
+                  (catch :default error
+                    (throw (ex-info "Unavailable selected project root"
+                                    {:kind :refused :cause :incomplete-projection
+                                     :source-path (:tasks-dir project) :diagnostic (.-message error)} error))))
         dir (path/join root ".rheos-writer-reservation")
         owner-path (path/join dir "owner.json")
         token (.randomUUID crypto)
@@ -53,7 +57,10 @@
         (await (emit!))
         result)
       (catch :default error
-        (if (= :conflict (:kind (ex-data error)))
+        (if (or (= :conflict (:kind (ex-data error)))
+                (and (= :file-write @phase)
+                     (= :refused (:kind (ex-data error)))
+                     (= :create-conflict (:cause (ex-data error)))))
           (throw error)
           (let [readback (try
                            (let [bytes (await (.readFile fsp source-path))]

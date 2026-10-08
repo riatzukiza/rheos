@@ -16,6 +16,7 @@
             ["node:fs/promises" :as fsp]
             ["node:path" :as path]
             [rheos.backend.domain.compose :as compose]
+            [rheos.backend.domain.relationships :as relationships]
             [rheos.backend.infra.projects :as projects]
             [rheos.backend.infra.task-create :as task-create]
             [rheos.backend.infra.task-edit :as task-edit]
@@ -170,7 +171,7 @@
         (if (:ok result)
           {:ok true :uuid uuid :from (:from result) :to (:to result)}
           (throw (ex-info (str "transition rejected: " (:reason result))
-                          {:kind :refused :uuid uuid :from (:from result) :to status})))))))
+                          (merge result {:uuid uuid :from (:from result) :to status}))))))))
 
 (defn- ^:async tool-kanban-add-comment [{:keys [uuid text project source]}]
   (when (empty? text) (throw (ex-info "missing comment text" {:kind :usage})))
@@ -194,7 +195,7 @@
     (when (law-frontmatter/status-update? keyworded)
       (throw (ex-info "status is FSM-governed — use `rheos move <uuid> --to <status>`"
                       {:kind :usage :key "status"})))
-    (when-let [bad (seq (law-frontmatter/disallowed-keys keyworded))]
+    (when-let [bad (seq (relationships/disallowed-update-keys keyworded))]
       (throw (ex-info (law-frontmatter/disallowed-keys-message bad)
                       {:kind :usage :keys (vec (map name bad))})))
     (let [proj (projects/find-project project)]
@@ -207,13 +208,13 @@
                              {:project proj :task task
                               :updates (into {} (map (fn [[k v]] [(name k) v])) keyworded)
                               :source (or source "agent")}))]
-          {:ok true :uuid uuid :frontmatter (:frontmatter result)})))))
+          {:ok true :uuid uuid :frontmatter (:frontmatter result) :noop (:noop result)})))))
 
 (defn- ^:async tool-kanban-create-task
   "Create a card. Both this and `kanban_create_subtask` delegate to the one
    creation chokepoint, so a root card and a child card are the same operation
    and both land in the ledger."
-  [{:keys [title project parent parent-uuid type card-type status priority points
+  [{:keys [title project parent parent-uuid epic dependency type card-type status priority points
            labels body dir uuid force-status source]}]
   (let [proj (projects/find-project project)]
     (when-not proj (throw (ex-info (str "unknown project: " project)
@@ -223,6 +224,7 @@
              :title title
              :card-type (or card-type type "task")
              :parent (or parent parent-uuid)
+             :epic epic :dependency dependency
              :status status
              :priority priority
              :points points
@@ -309,7 +311,7 @@
                    :required ["uuid" "text"]}
     :handler tool-kanban-add-comment}
    {:name "kanban_update_frontmatter"
-    :description "Update a card's descriptive frontmatter (title, priority, labels, points, category, description, estimate, assignee). Ledger-recorded, one event per changed key. `status` is refused — it is FSM-governed, use kanban_update_status."
+    :description "Update descriptive fields or parent/epic/dependency through the canonical graph writer. Relationships use exact stored UUIDs; dependency accepts a UUID, CSV or a distinct UUID array. Null/blank singular values and null/blank/empty dependency remove the field. A semantic relationship no-op writes nothing. Status, identity and provenance are refused."
     :input-schema {:type "object"
                    :properties {:uuid {:type "string"} :project {:type "string"}
                                 :updates {:type "object" :description "key -> value map of frontmatter fields to set"}}
@@ -321,6 +323,9 @@
                    :properties {:title {:type "string"}
                                 :type {:type "string" :enum ["task" "epic"] :description "card type; default \"task\""}
                                 :parent {:type "string" :description "parent card uuid — omit for a root card"}
+                                :epic {:type "string" :description "exact existing epic UUID"}
+                                :dependency {:anyOf [{:type "string"} {:type "array" :items {:type "string"}}]
+                                             :description "exact UUID, CSV or distinct UUID array"}
                                 :project {:type "string"}
                                 :status {:type "string" :description "refused unless it is the FSM initial state; pass force-status to override"}
                                 :force-status {:type "boolean"}

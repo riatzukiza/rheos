@@ -32,6 +32,16 @@
 (defn update-frontmatter [raw key value]
   (update-frontmatter-keys raw {key value}))
 
+(defn remove-frontmatter-keys
+  "Render an already admitted removal; YAML decoding remains at this boundary."
+  [raw keys-to-remove]
+  (let [frame (content/frontmatter-source raw)
+        pairs (if frame (yaml/block-map-entries (:source frame)) [])
+        updated (content/remove-frontmatter-source raw (set (map name keys-to-remove)) pairs)]
+    (when-let [after (content/frontmatter-source updated)]
+      (yaml/block-map-entries (:source after)))
+    updated))
+
 (defn inject-write-id [raw write-id]
   (update-frontmatter raw "write-id" write-id))
 

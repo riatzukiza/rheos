@@ -11,6 +11,9 @@
             [rheos.backend.infra.task-create :as create]
             [rheos.backend.infra.task-edit :as edit]
             [rheos.backend.infra.content-parser :as parser]
+            [rheos.backend.infra.agent-tools :as agent-tools]
+            [rheos.backend.infra.projects :as projects]
+            [rheos.backend.infra.publication :as publication]
             [rheos.backend.infra.task-store :as tasks]
             [rheos.backend.law.fsm :as fsm]
             [rheos.backend.infra.transition :as transition]))
@@ -163,6 +166,33 @@
              (is (= before (await (.readFile fsp (:source-path task) "utf8"))))
              (is (= history (await (.readFile fsp ledger-path "utf8")))))))))))
 
+(deftest ^:async native-tool-creation-and-edit-use-the-same-reviewed-writer
+  (await
+   (with-cards [{:uuid "subject" :type "task" :status "incoming"}
+                {:uuid "epic" :type "epic" :status "done"}
+                {:uuid "parent" :type "task" :status "done" :epic "epic"}]
+     (^:async fn [{:keys [project]}]
+       (let [saved {:projects (projects/all) :default-project-id (projects/default-id)}]
+         (projects/set-projects! {:projects [project] :default-project-id (:id project)})
+         (try
+           (let [created (await (agent-tools/dispatch "kanban_create_task"
+                                  {:title "Public child" :uuid "public-child" :parent "parent"
+                                   :epic "epic" :dependency "parent" :project (:id project)}))
+                 child (first (filter #(= "public-child" (:uuid %)) (await (tasks/load-tasks project))))]
+             (is (:ok created))
+             (is (= "epic" (:epic child)))
+             (is (= ["parent"] (:dependency child))))
+           (let [result (try
+                          (await (agent-tools/dispatch "kanban_update_frontmatter"
+                                   {:uuid "subject" :project (:id project)
+                                    :updates {:dependency "parent" :epic "epic"}}))
+                          (catch :default error {:error error}))
+                 task (first (filter #(= "subject" (:uuid %)) (await (tasks/load-tasks project))))]
+             (is (:ok result))
+             (is (= ["parent"] (:dependency task)))
+             (is (= "epic" (:epic task))))
+           (finally (projects/set-projects! saved))))))))
+
 (deftest ^:async relationship-create-edit-remove-and-replay-retain-accepted-facts
   (await
    (with-cards [{:uuid "subject" :type "task" :status "incoming"}
@@ -225,3 +255,91 @@
              (is (= :refused (:kind (ex-data error))) (pr-str updates))
              (is (= before (await (.readFile fsp (:source-path task) "utf8"))))
              (is (= history (await (.readFile fsp ledger-path "utf8")))))))))))
+
+(deftest ^:async native-comment-cannot-overwrite-a-reserved-relationship-publication
+  (await
+   (with-cards [{:uuid "subject" :type "task" :status "incoming"}]
+     (^:async fn [{:keys [project dir ledger-path]}]
+       (let [task {:uuid "subject" :source-path (path/join dir "subject.md")}
+             before (await (.readFile fsp (:source-path task) "utf8"))
+             history (await (.readFile fsp ledger-path "utf8"))
+             failure (await
+                      (publication/with-reservation! project
+                        (^:async fn []
+                          (try
+                            (await (edit/append-comment! {:project project :task task :text "Concurrent comment"}))
+                            nil
+                            (catch :default error error)))))]
+         (is (= :conflict (:kind (ex-data failure))))
+         (is (= before (await (.readFile fsp (:source-path task) "utf8"))))
+         (is (= history (await (.readFile fsp ledger-path "utf8")))))))))
+
+(deftest ^:async event-append-failure-retains-file-readback-and-history
+  (await
+   (with-cards [{:uuid "subject" :type "task" :status "incoming"}
+                {:uuid "predecessor" :type "task" :status "done"}]
+     (^:async fn [{:keys [project dir ledger-path]}]
+       (let [task {:uuid "subject" :source-path (path/join dir "subject.md")}
+             history (await (.readFile fsp ledger-path "utf8"))
+             failure (with-redefs [events/emit-frontmatter-change!
+                                  (fn [& _] (js/Promise.reject (js/Error. "Controlled event append failure")))]
+                       (try
+                         (await (edit/update-frontmatter! {:project project :task task
+                                                          :updates {:dependency "predecessor"}}))
+                         nil
+                         (catch :default error error)))
+             after (await (.readFile fsp (:source-path task) "utf8"))
+             data (ex-data failure)]
+         (is (= :partial-effect (:kind data)))
+         (is (= :event-append (:phase data)))
+         (is (string? (:write-id data)))
+         (is (= (.-byteLength (.from js/Buffer after "utf8")) (get-in data [:file-readback :bytes])))
+         (is (= ["predecessor"] (:dependency (first (filter #(= "subject" (:uuid %))
+                                                                    (await (tasks/load-tasks project)))))))
+         (is (= history (await (.readFile fsp ledger-path "utf8")))))))))
+
+(deftest ^:async cleanup-failure-cannot-hide-an-earlier-partial-effect
+  (await
+   (with-cards [{:uuid "subject" :status "incoming"}]
+     (^:async fn [{:keys [project dir]}]
+       (let [source-path (path/join dir "subject.md")
+             owner-path (path/join dir ".rheos-writer-reservation" "owner.json")
+             failure (try
+                       (await
+                        (publication/with-reservation! project
+                          (^:async fn []
+                            (await (publication/file-and-event!
+                                    {:source-path source-path :write-id "controlled-partial"}
+                                    (^:async fn []
+                                      (await (.writeFile fsp source-path "Actual changed bytes" "utf8"))
+                                      (await (.writeFile fsp owner-path "Changed ownership" "utf8")))
+                                    (fn [] (js/Promise.reject (js/Error. "Controlled event failure"))))))))
+                       nil
+                       (catch :default error error))
+             data (ex-data failure)]
+         (is (= :partial-effect (:kind data)))
+         (is (= :event-append (:phase data)))
+         (is (= "controlled-partial" (:write-id data)))
+         (is (= 20 (get-in data [:file-readback :bytes])))
+         (is (= :conflict (get-in data [:reservation-release :kind])))
+         (is (= "Changed ownership" (await (.readFile fsp owner-path "utf8")))
+             "Never remove a changed or unknown owner's reservation"))))))
+
+(deftest ^:async cleanup-failure-after-effects-cannot-report-an-unqualified-success
+  (await
+   (with-cards [{:uuid "subject" :status "incoming"}]
+     (^:async fn [{:keys [project dir]}]
+       (let [owner-path (path/join dir ".rheos-writer-reservation" "owner.json")
+             failure (try
+                       (await (publication/with-reservation! project
+                                (^:async fn []
+                                  (await (.writeFile fsp owner-path "Changed ownership" "utf8"))
+                                  {:ok true :uuid "subject"})))
+                       nil
+                       (catch :default error error))
+             data (ex-data failure)]
+         (is (= :partial-effect (:kind data)))
+         (is (= :reservation-release (:phase data)))
+         (is (= {:ok true :uuid "subject"} (:operation-result data)))
+         (is (= :conflict (get-in data [:reservation-release :kind])))
+         (is (= "Changed ownership" (await (.readFile fsp owner-path "utf8")))))))))

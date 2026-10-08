@@ -337,3 +337,10 @@
 - Separate passing transition fixtures from remaining writer story acceptance. Real creation/edit paths showed26 failures/zeroerrors after the initial231-test transition subset passed.
 - Evidence: .ημ/review-evidence/rheos-writer-reservation-red-20261008.log.json, .ημ/review-evidence/rheos-writer-transition-green-attempt-20261008.log.json, .ημ/review-evidence/rheos-writer-create-edit-red-corrected-20261008.log.json.
 - Keep process-race/public-surface qualification outstanding. No spore created/promoted and no runtime mutation.
+
+## 2026-10-08T19:20:24.098074Z — cephalon-rheos-writer-tools-green-publication-red-source-20261008
+
+- p-efficiency: 0.91; p-friction: 0.09; p-skill-candidate: 0.02.
+- Actual create/edit GREEN233tests2180assertions0fail/error twice followed its5failure attempt; actual tool RED234/2186/5/0 then GREEN234/2186/0/0 twice. New publication fixtures now238tests2206assertions12failures0errors twice: unreserved comment writes and cleanup masking prior partial effects. compiler0/bundle1. The first publication compile had one extra closing delimiter; compiler1/stale bundle234/2186/0/0 earns no RED/GREEN credit. Corrected log distinguishes Node24.14.1 compiler autorun and Node22.20.0 direct bundle. Raw logs and lossless JSON strings remain exact. No new dependency install, writer completion, code review, runtime change or B1-B3 proof. Existing original rows/prefixes preserved; repo attribution remains required by owning receipt law.
+- Evidence: .ημ/review-evidence/rheos-writer-create-edit-green-attempt-20261008.log.json, .ημ/review-evidence/rheos-writer-create-edit-green-fixed-20261008.log.json, .ημ/review-evidence/rheos-writer-tools-red-20261008.log.json, .ημ/review-evidence/rheos-writer-tools-green-20261008.log.json, .ημ/review-evidence/rheos-writer-publication-red-20261008.log.json, .ημ/review-evidence/rheos-writer-publication-red-corrected-20261008.log.json.
+- No spore created or promoted.

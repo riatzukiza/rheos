@@ -24,7 +24,8 @@
       (let [r (await (tools/dispatch name args))]
         #js {:content #js [#js {:type "text" :text (js/JSON.stringify (clj->js r) nil 2)}]})
       (catch :default e
-        #js {:content #js [#js {:type "text" :text (str "Error: " (.-message e))}]
+        #js {:content #js [#js {:type "text" :text (js/JSON.stringify
+                                                   (clj->js (assoc (ex-data e) :error (.-message e))) nil 2)}]
              :isError true}))))
 
 (defn- build-server []

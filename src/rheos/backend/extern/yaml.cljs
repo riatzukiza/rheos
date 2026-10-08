@@ -10,6 +10,8 @@
         range (when node (.-range node))
         ^js token (when node (.-srcToken node))]
     {:key (.-value key)
+     :key-start (aget (.-range key) 0)
+     :pair-end (if range (aget range 2) (inc key-end))
      :key-end key-end
      ;; Empty values normally have a zero-width Scalar range. Keep a safe
      ;; insertion point after the colon when the parser supplies no value node.
