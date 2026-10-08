@@ -40,7 +40,7 @@
                       (task-edit/plan-frontmatter-update old-frontmatter new-frontmatter new-raw updates))
                     (catch :default err
                       (if (and (= :refused (:kind (ex-data err)))
-                               (contains? #{:title :priority :status} (:field (ex-data err))))
+                               (contains? #{:uuid :slug :title :priority :status} (:field (ex-data err))))
                         (throw (ex-info (str "Refused card source " task-path ": " (.-message err))
                                         (assoc (ex-data err) :source-path task-path
                                                :diagnostic (.-message err))

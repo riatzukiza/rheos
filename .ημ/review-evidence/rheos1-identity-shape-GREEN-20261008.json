@@ -1,0 +1,174 @@
+{
+  "epistemic_tier": "observed-command-output transcription, derived archive; not raw REST or a provider approval",
+  "observed_at": "2026-10-08T15:34:14.270968+00:00",
+  "red_commit": "eeab41146129dc75ca242da51f6de247fec56f13",
+  "published_prior_head": "bc3ed4978e9b1c1e2c2a88c65de9c631b51ca309",
+  "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+  "confirmed_finding": {
+    "review": 5458824219,
+    "comment": 4220740165,
+    "thread": "PRRT_kwDOU4Vf-c6qbM-K",
+    "url": "https://github.com/riatzukiza/rheos/pull/1#discussion_r4220740165"
+  },
+  "repair": [
+    "Extend existing portable task string-shape assertion to present uuid and slug; existing title/priority/status, missing/default behavior and open extensions preserved.",
+    "Use existing source-path/diagnostic wrapper for uuid/slug law refusals in non-status mutation adapter.",
+    "Actual loader and status writer already consume the same law; no second validator or client-mutable UUID."
+  ],
+  "source": [
+    {
+      "path": "src/rheos/backend/law/frontmatter.cljc",
+      "bytes": 3147,
+      "sha256": "f46949065cde51382947584caa13450d12dc1f633872f5db2c4e5d59ddac0e2a"
+    },
+    {
+      "path": "src/rheos/backend/infra/task_edit.cljs",
+      "bytes": 4828,
+      "sha256": "fc6299b201b40f34e778c9aa42be6e984c337ae11132bd7a3170bf9b67f58274"
+    }
+  ],
+  "unchanged_red_tests": [
+    {
+      "path": "test/rheos/backend/domain/task_edit_test.cljc",
+      "sha256": "9810de512d3864657c1b1fec48e58e57597c15df8ea9f427176a193292f0d97a"
+    },
+    {
+      "path": "test/rheos/backend/infra/task_store_test.cljs",
+      "sha256": "344fdf2813ae8f516001b2c1acbab0bcb7e789e66bfaa3cf69c7e27650f71b0b"
+    },
+    {
+      "path": "test/rheos/backend/infra/task_writeback_test.cljs",
+      "sha256": "0f889fa05d30d8d117c30c4c2d8493daff9c027e87edf31752a55f4685f4fae3"
+    },
+    {
+      "path": "test/rheos/backend/infra/task_edit_test.cljs",
+      "sha256": "71b5eeecb69fae0c9a4b64ab823c77d2f96dfaca520acf7ff17dbb3346b9c013"
+    }
+  ],
+  "executed": [
+    {
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/node_modules/shadow-cljs/cli/runner.js",
+        "compile",
+        "test"
+      ],
+      "exit": 0,
+      "start": "2026-10-08T15:27:02.950500+00:00",
+      "end": "2026-10-08T15:27:18.944726+00:00",
+      "direct_node": "v22.20.0",
+      "stdout_bytes": 1661,
+      "stdout_sha256": "61ae5b71924c9f7438eb5669530c751b575b55e43176c3ffabe99bbc5e8bcb44",
+      "stderr_bytes": 306,
+      "stderr_sha256": "95096be514892f9d11a4683c4b4c02bc2ce9b8789e9f84de2f7ff89d00403c9f",
+      "stdout": "[:test] Compiling ...\n========= Running Tests =======================\n\nTesting rheos.backend.domain.board-test\n\nTesting rheos.backend.domain.compose-test\n\nTesting rheos.backend.domain.events-test\n\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.domain.task-create-test\n\nTesting rheos.backend.domain.task-edit-test\n\nTesting rheos.backend.domain.transition-test\n\nTesting rheos.backend.infra.agent-tools-test\n{\n  \"ok\": true,\n  \"uuid\": \"t1\",\n  \"from\": \"breakdown\",\n  \"to\": \"ready\"\n}\n\nTesting rheos.backend.infra.cli-test\n\nTesting rheos.backend.infra.config-card-creation-test\n\nTesting rheos.backend.infra.config-test\n\nTesting rheos.backend.infra.github-issue-preflight-test\n\nTesting rheos.backend.infra.github-issues-test\n\nTesting rheos.backend.infra.store-test\n\nTesting rheos.backend.infra.task-create-conflict-test\n\nTesting rheos.backend.infra.task-create-test\n\nTesting rheos.backend.infra.task-edit-test\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\nstatus-writeback fixture runtime: v22.20.0\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.comment-source-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.frontmatter-serialization-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 220 tests containing 2043 assertions.\n0 failures, 0 errors.\n===============================================\n[:test] Build completed. (150 files, 26 compiled, 0 warnings, 10.06s)\n",
+      "stderr": "shadow-cljs - config: /home/err/spaces/cephalon-rheos-relationships/source-preserving/shadow-cljs.edn\nno \"source-map-support\" (run \"npm install source-map-support --save-dev\" to get it)\ncompose-snapshot error: Doesn't support name: 42\nrheos: transition rejected: No transition from 'review' to 'in_review'\n"
+    },
+    {
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/test.cjs"
+      ],
+      "exit": 0,
+      "start": "2026-10-08T15:27:18.945022+00:00",
+      "end": "2026-10-08T15:27:22.918521+00:00",
+      "direct_node": "v22.20.0",
+      "stdout_bytes": 1473,
+      "stdout_sha256": "7c9ce1f2af677393915497ceedae14bd4197252a0d09c3dbb2cf68604f1b361e",
+      "stderr_bytes": 204,
+      "stderr_sha256": "3586d99d7be6ec8393dbe75b76ce779221b2201dc134ebcb6583359df2e76ade",
+      "stdout": "\nTesting rheos.backend.domain.board-test\n\nTesting rheos.backend.domain.compose-test\n\nTesting rheos.backend.domain.events-test\n\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.domain.task-create-test\n\nTesting rheos.backend.domain.task-edit-test\n\nTesting rheos.backend.domain.transition-test\n\nTesting rheos.backend.infra.agent-tools-test\n{\n  \"ok\": true,\n  \"uuid\": \"t1\",\n  \"from\": \"breakdown\",\n  \"to\": \"ready\"\n}\n\nTesting rheos.backend.infra.cli-test\n\nTesting rheos.backend.infra.config-card-creation-test\n\nTesting rheos.backend.infra.config-test\n\nTesting rheos.backend.infra.github-issue-preflight-test\n\nTesting rheos.backend.infra.github-issues-test\n\nTesting rheos.backend.infra.store-test\n\nTesting rheos.backend.infra.task-create-conflict-test\n\nTesting rheos.backend.infra.task-create-test\n\nTesting rheos.backend.infra.task-edit-test\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\nstatus-writeback fixture runtime: v22.20.0\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.comment-source-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.frontmatter-serialization-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 220 tests containing 2043 assertions.\n0 failures, 0 errors.\n",
+      "stderr": "no \"source-map-support\" (run \"npm install source-map-support --save-dev\" to get it)\ncompose-snapshot error: Doesn't support name: 42\nrheos: transition rejected: No transition from 'review' to 'in_review'\n"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/clojure",
+        "-Srepro",
+        "-Sdeps",
+        "{:paths [\"src\" \"test\"] :deps {org.clojure/clojure {:mvn/version \"1.12.4\"} metosin/malli {:mvn/version \"0.16.4\"} org.clojure/clojurescript {:mvn/version \"1.12.134\"}}}",
+        "-M",
+        "-e",
+        "(require 'clojure.test 'rheos.backend.domain.task-edit-test) (println \"portable identity JVM runtime:\" (clojure-version)) (let [r (clojure.test/run-tests 'rheos.backend.domain.task-edit-test)] (System/exit (if (clojure.test/successful? r) 0 1)))"
+      ],
+      "exit": 0,
+      "start": "2026-10-08T15:27:02.928720+00:00",
+      "end": "2026-10-08T15:27:04.630059+00:00",
+      "stdout_bytes": 144,
+      "stdout_sha256": "f0174fc880446503f949649cf04d69f83c2239db0bc1e232c14cac5b5f279d01",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "portable identity JVM runtime: 1.12.4\n\nTesting rheos.backend.domain.task-edit-test\n\nRan 5 tests containing 80 assertions.\n0 failures, 0 errors.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "clj-kondo",
+        "--lint",
+        "src",
+        "test"
+      ],
+      "exit": 0,
+      "start": "2026-10-08T15:31:21.079364+00:00",
+      "end": "2026-10-08T15:31:23.039603+00:00",
+      "direct_node": "v22.20.0",
+      "stdout_bytes": 1397,
+      "stdout_sha256": "20bf54c31886fff1ba0999f330d9c9a30db32bde8284a2e9462480d6753a3d08",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "src/rheos/backend/domain/compose.cljs:6:14: info: a domain namespace must not require rheos.backend.infra.ledger (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/backend/domain/compose.cljs:7:14: info: a domain namespace must not require rheos.backend.infra.task-store (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/backend/law/fsm.cljs:7:14: info: a law namespace must not require the host: \"node:child_process\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nsrc/rheos/ui/domain/layout.cljs:11:14: info: a domain namespace must not require rheos.ui.infra.api (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/layout.cljs:12:14: info: a domain namespace must not require rheos.ui.infra.ledger-stream (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/orchestrator.cljs:17:14: info: a domain namespace must not require rheos.ui.infra.chat-session (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/sidebar.cljs:7:14: info: a domain namespace must not require the host: \"marked\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nsrc/rheos/ui/domain/sidebar.cljs:8:14: info: a domain namespace must not require the host: \"dompurify\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nlinting took 1892ms, errors: 0, warnings: 0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/node_modules/shadow-cljs/cli/runner.js",
+        "release",
+        "server",
+        "cli",
+        "github-sync",
+        "app"
+      ],
+      "exit": 0,
+      "start": "2026-10-08T15:32:00.666430+00:00",
+      "end": "2026-10-08T15:32:42.154108+00:00",
+      "direct_node": "v22.20.0",
+      "stdout_bytes": 375,
+      "stdout_sha256": "d4f77002b85f275ccecb2f3cf06ffa6201860bc2fe7e3499f684f3bb45ad3e21",
+      "stderr_bytes": 102,
+      "stderr_sha256": "a4e08bd854b1a6639f05bacd901f404ee66adda14bdf74b756fa79d28a7c98db",
+      "stdout": "[:server] Compiling ...\n[:server] Build completed. (106 files, 11 compiled, 0 warnings, 14.69s)\n[:cli] Compiling ...\n[:cli] Build completed. (110 files, 12 compiled, 0 warnings, 8.06s)\n[:github-sync] Compiling ...\n[:github-sync] Build completed. (67 files, 3 compiled, 0 warnings, 5.29s)\n[:app] Compiling ...\n[:app] Build completed. (95 files, 0 compiled, 0 warnings, 6.54s)\n",
+      "stderr": "shadow-cljs - config: /home/err/spaces/cephalon-rheos-relationships/source-preserving/shadow-cljs.edn\n"
+    }
+  ],
+  "red_proof": {
+    "path": ".ημ/review-evidence/rheos1-identity-shape-RED-20261008.json",
+    "bytes": 61627,
+    "sha256": "b728ee0857aa270261847d459224c85b7a7a1c2646896e2fa0ccfc0afeb4bb6e",
+    "Node": "220 tests/2031 assertions/81 failures/0 errors twice, explicit exit 1",
+    "JVM": "5 tests/80 assertions/28 failures/0 errors, exit 1"
+  },
+  "conditional_assertion_count": "Status-source refusal branch performs 12 further diagnostic assertions only after refusal; RED2031 vs GREEN2043 is unchanged conditional test logic.",
+  "prior_head_native_mimo": {
+    "review": 5459085043,
+    "state": "APPROVED",
+    "commit": "bc3ed4978e9b1c1e2c2a88c65de9c631b51ca309",
+    "submitted_at": "2026-10-08T15:30:13Z",
+    "run": 37798017359,
+    "run_conclusion": "success",
+    "run_updated_at": "2026-10-08T15:30:53Z",
+    "raw_file": ".ημ/review-evidence/rheos1-mimo-5459085043-native-bc3.json",
+    "raw_bytes": 4223,
+    "raw_sha256": "36ddeb9e5bef92136c84bd0ebb80ffaac6e82e2ad97457cbacf6307970e4edd3",
+    "scope": "Native body claims full73-page diff and no confirmed findings; deterministic artifact previously verified full501144 bytes matches base→bc3. Approval is historical after next push.",
+    "execution_limit": "Native claim CLI exit3 confirmed end-to-end exceeds archived suite evidence: cli_test checks mapping; no dedicated process-level refused CLI/HTTP lookup run was independently collected."
+  },
+  "limits": [
+    "No complete HTTP/CLI/agent lookup negative, watcher-registration spy, post-read atomicity/fencing or installed/live release proof.",
+    "Identity refusal is tested on decoded domain values, actual YAML loader, non-status writes/events, stale-source status writes; scalar decoder convention is retained.",
+    "Eight kondo info notices and source-map-support/intentional compose42/transition fixture stderr are distinct from compiler warnings and test errors.",
+    "Cached shadow-cljs3.5.5 was used; no dependency lock/reproducibility proof or new install.",
+    "Resource floor had been below20GiB; existing checkout/caches reused, current free bytes recorded without invoking cleanup.",
+    "B1/B2/B3 encounter graph/mood/automatic recall remain unimplemented/unverified; no runtime/board/publication/owner/spore mutation."
+  ],
+  "free_bytes": 21484138496
+}

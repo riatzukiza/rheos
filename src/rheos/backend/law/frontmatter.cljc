@@ -69,7 +69,7 @@
   (assert-string-fields frontmatter [:title]))
 
 (defn assert-task-frontmatter-shape
-  "Present decoded title, priority and status satisfy Task's string shape before
+  "Present decoded uuid, slug, title, priority and status satisfy Task's string shape before
    normalization or mutation. Missing fields retain defaults; extension data is open."
   [frontmatter]
-  (assert-string-fields frontmatter [:title :priority :status]))
+  (assert-string-fields frontmatter [:uuid :slug :title :priority :status]))

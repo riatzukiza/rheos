@@ -232,3 +232,11 @@
 - Genuine directNodeRED220/2031/81fail0errors twice and JVM5/80/28fail0errors. Actual loader, mutation event/fileeffects and stale-source writer prove missinglaw consumption; no complete HTTP/CLI lookup or fencing claim.
 - Partial test-preparation literal mismatch stopped before execution; corrected from actual source line. Below20GiB floor, reuse existing caches only.
 - Evidence: .ημ/review-evidence/rheos1-identity-shape-RED-20261008.json SHA256b728ee0857aa270261847d459224c85b7a7a1c2646896e2fa0ccfc0afeb4bb6e.
+
+## 2026-10-08T15:34:14.274Z — cephalon-rheos1-identity-shape-GREEN-source-20261008T1533
+
+- p-efficiency: 0.93; p-friction: 0.07; p-skill-candidate: 0.02.
+- Existing portable task law now refuses present nonstring uuid/slug. The existing mutation wrapper carries source-path and diagnostic; loader/status writer consume the same law.
+- Unchanged RED tests GREEN: directNode220/2043/0/0 twice, JVM5/80/0/0, kondo0/0 and fourrelease0compilerwarnings. Conditional status diagnostics explain12 assertion difference.
+- Historical MiMo5459085043 approval and hosted37798017359SUCCESS bindbc3 only. CLIexit3 end-to-end claim exceeds independently retained mapping test evidence. No complete lookup/fencing/live/B1-B3 proof.
+- Evidence: .ημ/review-evidence/rheos1-identity-shape-GREEN-20261008.json SHA256a22b95b0fda80fe7c4b31916acdb3b3ffe0a54fa0cbc1140ef0e3a1d19bfb1f0. All previous receipt/reflection/proof bytes preserved; no spore or new installation.
