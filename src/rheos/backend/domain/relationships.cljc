@@ -72,8 +72,9 @@
         {:ok? true :value value}))))
 
 (defn- error-order [error]
+  ;; Keep distinct diagnostic payloads ordered when the leading keys tie.
   [(str (:uuid error)) (str (:kind error)) (str (:field error))
-   (str (:target error)) (str (:graph error))])
+   (str (:target error)) (str (:graph error)) (pr-str error)])
 
 (defn- ordered-failure [errors]
   (failure (sort-by error-order errors)))

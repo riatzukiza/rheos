@@ -58,7 +58,17 @@ This documents the absence of two neighbours rather than inventing them.
 
 ## Verification limits
 
-This PR adds only incoming planning Markdown and owned execution evidence.
-No engine law, existing card, event or workflow changes. Source inspection and
-native readback show what is present and parseable; they do not demonstrate the
-proposed relationship admission, runtime parity, race safety or readiness.
+The initial planning revision `03fefb941fc9218d193dedb6f9e4ee07cd5157e8`
+added incoming planning Markdown and owned execution evidence, without changing
+engine laws, existing cards, events or workflows. That statement describes the
+initial revision only.
+
+The current PR also adds the portable relationship law, shape and domain
+contract, shared tests and a pinned-host runner, plus the review workflow and
+subsequent native Rheos ledger records. The pure contract's executed tests
+verify complete-snapshot decisions, normalization and diagnostic ordering.
+Source inspection and native card readback establish what is present and
+parseable. Neither those reads nor the portable tests establish writer
+integration, public-surface parity, revision reservation, race safety, release
+qualification or consumer readiness; those obligations remain with the writer
+and parity stories and the qualified delivery boundary.
