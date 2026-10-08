@@ -1,0 +1,78 @@
+{
+  "schema": "cephalon.observed-command-output/v1",
+  "tier": "derived",
+  "basis": "Actual local command output transcription; not provider approval",
+  "production_head": "f797115e9a0b44fe2415f1d81fe2f6b6afc47195",
+  "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+  "finding": {
+    "review_id": 5457449351,
+    "comment_id": 4219624338,
+    "thread": "PRRT_kwDOU4Vf-c6qYeiH",
+    "url": "https://github.com/riatzukiza/rheos/pull/1#discussion_r4219624338"
+  },
+  "contract": "Comments on invalid decoded title/priority/status must refuse before source rewrite, write-id/watch correlation and event emission, carrying path and diagnostic. Open extension fields and missing core fields remain admitted.",
+  "commands": [
+    {
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "test"
+      ],
+      "exit": 1,
+      "start": "2026-10-08T13:45:02.156187+00:00",
+      "end": "2026-10-08T13:45:21.853344+00:00",
+      "counts": {
+        "tests": 217,
+        "assertions": 1897,
+        "failures": 135,
+        "errors": 0
+      },
+      "stdout": {
+        "bytes": 90484,
+        "sha256": "08d1ac848a869293789acbf2e13a5aeb1887b4699ca8f1e920382a241ea06a2d",
+        "tail": "e-write-or-event) (rheos/backend/infra/task_edit_test.cljs:233:17)\nexpected: (= :refused (:kind (ex-data error)))\n  actual: (not (= :refused nil))\n\nFAIL in (invalid-frontmatter-comment-is-refused-before-write-or-event) (rheos/backend/infra/task_edit_test.cljs:234:17)\nexpected: (= field (:field (ex-data error)))\n  actual: (not (= :status nil))\n\nFAIL in (invalid-frontmatter-comment-is-refused-before-write-or-event) (rheos/backend/infra/task_edit_test.cljs:235:17)\nexpected: (= task-path (:source-path (ex-data error)))\n  actual: (not (= \"/tmp/rheos-refused-comment-PHN7xr/invalid.md\" nil))\n\nFAIL in (invalid-frontmatter-comment-is-refused-before-write-or-event) (rheos/backend/infra/task_edit_test.cljs:236:17)\nexpected: (= diagnostic (:diagnostic (ex-data error)))\n  actual: (not (= \"Task status must be a string\" nil))\n\nFAIL in (invalid-frontmatter-comment-is-refused-before-write-or-event) (rheos/backend/infra/task_edit_test.cljs:237:17)\nexpected: (= (str \"Refused card source \" task-path \": \" diagnostic) (when error (ex-message error)))\n  actual: (not (= \"Refused card source /tmp/rheos-refused-comment-PHN7xr/invalid.md: Task status must be a string\" nil))\n\nFAIL in (invalid-frontmatter-comment-is-refused-before-write-or-event) (rheos/backend/infra/task_edit_test.cljs:239:17)\na refused comment retains every original source byte\nexpected: (= raw (await (.readFile fsp task-path \"utf8\")))\n  actual: (not (= \"---\\r\\nuuid: invalid\\r\\nstatus: null\\r\\nmetadata: {values: [7, false, null]}\\r\\n---\\r\\n    code  \\r\\nBody\\t \\r\\n\" \"---\\r\\nuuid: invalid\\r\\nstatus: null\\r\\nmetadata: {values: [7, false, null]}\\r\\nwrite-id: \\\"1791467121223-0.v9wzuoy66cb4xp8v28o\\\"\\r\\n---\\r\\n    code  \\r\\nBody\\t \\r\\n\\r\\n\\r\\n---\\r\\nReviewed\\r\\n\\r\\n---\"))\n\nFAIL in (invalid-frontmatter-comment-is-refused-before-write-or-event) (rheos/backend/infra/task_edit_test.cljs:241:17)\na refused comment emits no event\nexpected: (empty? (clojure.core/deref captured))\n  actual: (not (empty? [{:new-value nil, :task-id \"invalid\", :key nil, :parent nil, :protocol nil, :card-type nil, :old-value nil, :type \"comment\", :write-id \"1791467121223-0.v9wzuoy66cb4xp8v28o\", :source \"test\", :agent \"eta-mu\", :title nil, :source-path nil, :details nil, :status nil, :result nil, :from nil, :correlation/status nil, :timestamp \"2026-10-08T13:45:21.225Z\", :body nil, :board \"test\", :text \"Reviewed\", :to nil}]))\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.comment-source-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.frontmatter-serialization-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 217 tests containing 1897 assertions.\n135 failures, 0 errors.\n ELIFECYCLE  Test failed. See above for more details.\n"
+      },
+      "stderr": {
+        "bytes": 523,
+        "sha256": "693bdb39e312441c7a0b125f8d387d52d8dd1fd282afc3057d2eab97c2708581",
+        "text": " WARN  Issue while reading \"/home/err/.npmrc\". Failed to replace env in config: ${NPM_TOKEN}\nshadow-cljs - config: /home/err/spaces/cephalon-rheos-relationships/source-preserving/shadow-cljs.edn\ncompose-snapshot error: Doesn't support name: 42\nrheos: transition rejected: No transition from 'review' to 'in_review'\nno \"source-map-support\" (run \"npm install source-map-support --save-dev\" to get it)\ncompose-snapshot error: Doesn't support name: 42\nrheos: transition rejected: No transition from 'review' to 'in_review'\n"
+      }
+    },
+    {
+      "argv": [
+        "/usr/local/bin/clojure",
+        "-Srepro",
+        "-Sdeps",
+        "{:paths [\"src\" \"test\"] :deps {org.clojure/clojure {:mvn/version \"1.12.4\"} metosin/malli {:mvn/version \"0.16.4\"} org.clojure/clojurescript {:mvn/version \"1.12.134\"}}}",
+        "-M",
+        "-e",
+        "(require 'clojure.test 'rheos.backend.domain.task-edit-test) (let [r (clojure.test/run-tests 'rheos.backend.domain.task-edit-test)] (System/exit (if (clojure.test/successful? r) 0 1)))"
+      ],
+      "exit": 1,
+      "start": "2026-10-08T13:45:19.587286+00:00",
+      "end": "2026-10-08T13:45:21.150583+00:00",
+      "counts": {
+        "tests": 5,
+        "assertions": 51,
+        "failures": 30,
+        "errors": 0
+      },
+      "stdout": {
+        "bytes": 6567,
+        "sha256": "f12c22bdd0cdb29d62a22dc0434392bfa551bd248d8c7ac4a7e4acb8aa1c12c6",
+        "tail": ")\nexpected: (= {:kind :refused, :field field} (ex-data error))\n  actual: (not (= {:kind :refused, :field :priority} nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:55)\nexpected: (= (str \"Task \" (name field) \" must be a string\") (when error (ex-message error)))\n  actual: (not (= \"Task priority must be a string\" nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:54)\nexpected: (= {:kind :refused, :field field} (ex-data error))\n  actual: (not (= {:kind :refused, :field :priority} nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:55)\nexpected: (= (str \"Task \" (name field) \" must be a string\") (when error (ex-message error)))\n  actual: (not (= \"Task priority must be a string\" nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:54)\nexpected: (= {:kind :refused, :field field} (ex-data error))\n  actual: (not (= {:kind :refused, :field :status} nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:55)\nexpected: (= (str \"Task \" (name field) \" must be a string\") (when error (ex-message error)))\n  actual: (not (= \"Task status must be a string\" nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:54)\nexpected: (= {:kind :refused, :field field} (ex-data error))\n  actual: (not (= {:kind :refused, :field :status} nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:55)\nexpected: (= (str \"Task \" (name field) \" must be a string\") (when error (ex-message error)))\n  actual: (not (= \"Task status must be a string\" nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:54)\nexpected: (= {:kind :refused, :field field} (ex-data error))\n  actual: (not (= {:kind :refused, :field :status} nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:55)\nexpected: (= (str \"Task \" (name field) \" must be a string\") (when error (ex-message error)))\n  actual: (not (= \"Task status must be a string\" nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:54)\nexpected: (= {:kind :refused, :field field} (ex-data error))\n  actual: (not (= {:kind :refused, :field :status} nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:55)\nexpected: (= (str \"Task \" (name field) \" must be a string\") (when error (ex-message error)))\n  actual: (not (= \"Task status must be a string\" nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:54)\nexpected: (= {:kind :refused, :field field} (ex-data error))\n  actual: (not (= {:kind :refused, :field :status} nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:55)\nexpected: (= (str \"Task \" (name field) \" must be a string\") (when error (ex-message error)))\n  actual: (not (= \"Task status must be a string\" nil))\n\nRan 5 tests containing 51 assertions.\n30 failures, 0 errors.\n"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      }
+    }
+  ],
+  "operator_correction": "Initial added positive expectation used HTML comment delimiters, which differ from the existing Rheos --- delimiter grammar. Actual unchanged f797 plan output was inspected and positive expectation corrected before the definitive RED run. Initial217/1897/137fail0error remains private; two fixture failures are not production defects.",
+  "runtime_effects": "Only unique temporary test files; no native board/runtime/PM2/cloud/provider/model/publication mutations",
+  "limits": [
+    "Reused existing source/compiler caches, no independent fresh bootstrap claim",
+    "MissingNPM_TOKEN notice and existing negative-fixture logs retained, compiler warnings separately checked"
+  ],
+  "test_diff": "diff --git a/test/rheos/backend/domain/task_edit_test.cljc b/test/rheos/backend/domain/task_edit_test.cljc\nindex 9ba0145..9336c12 100644\n--- a/test/rheos/backend/domain/task_edit_test.cljc\n+++ b/test/rheos/backend/domain/task_edit_test.cljc\n@@ -42,3 +42,21 @@\n       (is (= {:kind :refused :field field} (ex-data error)))\n       (is (= (str \"Task \" (name field) \" must be a string\")\n              (when error (ex-message error)))))))\n+\n+(deftest comment-plan-refuses-invalid-core-frontmatter\n+  (doseq [field [:title :priority :status]\n+          value [[\"one\" \"two\"] {:name \"one\"} 7 false nil]]\n+    (let [error (try\n+                  (task-edit/plan-comment\n+                    \"Body  \\n\" {:frontmatter {field value}} \"Reviewed\")\n+                  nil\n+                  (catch #?(:clj clojure.lang.ExceptionInfo :cljs :default) error error))]\n+      (is (= {:kind :refused :field field} (ex-data error)))\n+      (is (= (str \"Task \" (name field) \" must be a string\")\n+             (when error (ex-message error)))))))\n+\n+(deftest comment-plan-retains-valid-and-defaulted-frontmatter\n+  (doseq [frontmatter [{} {:title \"Task\" :priority \"P1\" :status \"incoming\"\n+                          :metadata {:values [7 false nil]}}]]\n+    (is (= \"Body  \\n\\n\\n---\\nReviewed\\n\\n---\"\n+           (task-edit/plan-comment \"Body  \\n\" {:frontmatter frontmatter} \"Reviewed\")))))\ndiff --git a/test/rheos/backend/infra/task_edit_test.cljs b/test/rheos/backend/infra/task_edit_test.cljs\nindex 42d4dc7..8591cee 100644\n--- a/test/rheos/backend/infra/task_edit_test.cljs\n+++ b/test/rheos/backend/infra/task_edit_test.cljs\n@@ -211,6 +211,38 @@\n         (unsub)\n         (await (.rm fsp dir #js {:recursive true :force true}))))))\n \n+(deftest ^:async invalid-frontmatter-comment-is-refused-before-write-or-event\n+  (let [dir (await (.mkdtemp fsp (path/join (os/tmpdir) \"rheos-refused-comment-\")))\n+        task-path (path/join dir \"invalid.md\")\n+        project {:id \"test\" :tasks-dir dir :meta {}}\n+        task {:uuid \"invalid\" :source-path task-path}\n+        captured (atom [])\n+        unsub (events/subscribe! #(swap! captured conj %))]\n+    (try\n+      (doseq [field [:title :priority :status]\n+              value [\"[one, two]\" \"{name: one}\" \"7\" \"false\" \"null\"]]\n+        (let [raw (str \"---\\r\\nuuid: invalid\\r\\n\" (name field) \": \" value\n+                       \"\\r\\nmetadata: {values: [7, false, null]}\\r\\n---\\r\\n\"\n+                       \"    code  \\r\\nBody\\t \\r\\n\")]\n+          (await (.writeFile fsp task-path raw \"utf8\"))\n+          (reset! captured [])\n+          (let [error (try (await (task-edit/append-comment!\n+                                   {:project project :task task :text \"Reviewed\" :source \"test\"}))\n+                           nil (catch :default error error))\n+                diagnostic (str \"Task \" (name field) \" must be a string\")]\n+            (is (= :refused (:kind (ex-data error))))\n+            (is (= field (:field (ex-data error))))\n+            (is (= task-path (:source-path (ex-data error))))\n+            (is (= diagnostic (:diagnostic (ex-data error))))\n+            (is (= (str \"Refused card source \" task-path \": \" diagnostic)\n+                   (when error (ex-message error))))\n+            (is (= raw (await (.readFile fsp task-path \"utf8\")))\n+                \"a refused comment retains every original source byte\")\n+            (is (empty? @captured) \"a refused comment emits no event\"))))\n+      (finally\n+        (unsub)\n+        (await (.rm fsp dir #js {:recursive true :force true}))))))\n+\n (deftest ^:async append-comment-emits-event\n   (testing \"Appending a comment writes the file and records a comment event\"\n     (let [dir (tmp-dir)\n"
+}

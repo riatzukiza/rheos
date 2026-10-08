@@ -42,3 +42,21 @@
       (is (= {:kind :refused :field field} (ex-data error)))
       (is (= (str "Task " (name field) " must be a string")
              (when error (ex-message error)))))))
+
+(deftest comment-plan-refuses-invalid-core-frontmatter
+  (doseq [field [:title :priority :status]
+          value [["one" "two"] {:name "one"} 7 false nil]]
+    (let [error (try
+                  (task-edit/plan-comment
+                    "Body  \n" {:frontmatter {field value}} "Reviewed")
+                  nil
+                  (catch #?(:clj clojure.lang.ExceptionInfo :cljs :default) error error))]
+      (is (= {:kind :refused :field field} (ex-data error)))
+      (is (= (str "Task " (name field) " must be a string")
+             (when error (ex-message error)))))))
+
+(deftest comment-plan-retains-valid-and-defaulted-frontmatter
+  (doseq [frontmatter [{} {:title "Task" :priority "P1" :status "incoming"
+                          :metadata {:values [7 false nil]}}]]
+    (is (= "Body  \n\n\n---\nReviewed\n\n---"
+           (task-edit/plan-comment "Body  \n" {:frontmatter frontmatter} "Reviewed")))))

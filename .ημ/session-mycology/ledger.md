@@ -140,3 +140,20 @@
 - Evidence: `.ημ/review-evidence/rheos1-comment-source-preservation-GREEN-20261008.json` SHA256 `efff7a40781fd60443e6afd9c219e4a3beca0216119f7780f34154cbfbb38853`. Prior7d native MiMo5456765945APPROVED remains historical after the coming push; source scope/notes are retained, no synthetic new-head approval.
 - Efficiency p=0.84; friction p=0.30; skill-candidate p=0.20. No spore incubated or promoted.
 - Receipts stay append-only; milestoneB1/B2/B3, native readiness/deployment remain unproved.
+
+## 2026-10-08T13:21:00.744Z — cephalon-rheos1-f797-hosted-and-receiver-consumer-obligation-source-20261008
+
+- p-efficiency: 0.77; p-friction: 0.55; p-skill-candidate: 0.08.
+- Concrete owning source fix is committed/pushed with actual RED/GREEN and current hosted execution. Review completion remains separate.
+- Preserve the human append-only instruction when a reviewer recommends editing history. Existing containing-repository reader plan is the selected repair; do not invent folding or claim it is installed.
+- Correct changed-base qualification by appending a dated native description while retaining the historical body. Endpoint differences are not PR diff paths.
+- Actual artifacts and new negative native verdict retained; keep the finding open until consumer proof. No policy waiver, source-head observation churn, spore, runtime mutation or B1/B2/B3 completion.
+- Evidence: .ημ/review-evidence/rheos1-f797-hosted-receiver-consumer-and-kernel-binding-20261008.json SHA25660be7b0f408f1bf052464453312fbd4593418021ab336378c2b5085eb8883aaa.
+
+## 2026-10-08T13:47:10.624Z — cephalon-rheos1-comment-refusal-RED-source-20261008
+
+- p-efficiency: 0.78; p-friction: 0.33; p-skill-candidate: 0.05.
+- Actual current-head native approval and complete-input verification remain separate from later CodeRabbit finding. Preserve the finding; reproduce its effect boundary before repair.
+- Portable law and real file/event tests demonstrate the same missing assertion. Correct initial fixture delimiter expectation using existing source grammar, retaining the original observer failure.
+- Historical receipt/reflection prefixes and original provider states stay intact. No paid credits, policy override, spore, deployment or B1/B2/B3 completion.
+- Evidence: .ημ/review-evidence/rheos1-comment-refusal-RED-20261008.json SHA256a8b3db50795d30868150fc82b99cd091e2643da82a95161b366f55b790f15a21.

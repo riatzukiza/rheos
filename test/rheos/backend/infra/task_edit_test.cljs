@@ -211,6 +211,38 @@
         (unsub)
         (await (.rm fsp dir #js {:recursive true :force true}))))))
 
+(deftest ^:async invalid-frontmatter-comment-is-refused-before-write-or-event
+  (let [dir (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-refused-comment-")))
+        task-path (path/join dir "invalid.md")
+        project {:id "test" :tasks-dir dir :meta {}}
+        task {:uuid "invalid" :source-path task-path}
+        captured (atom [])
+        unsub (events/subscribe! #(swap! captured conj %))]
+    (try
+      (doseq [field [:title :priority :status]
+              value ["[one, two]" "{name: one}" "7" "false" "null"]]
+        (let [raw (str "---\r\nuuid: invalid\r\n" (name field) ": " value
+                       "\r\nmetadata: {values: [7, false, null]}\r\n---\r\n"
+                       "    code  \r\nBody\t \r\n")]
+          (await (.writeFile fsp task-path raw "utf8"))
+          (reset! captured [])
+          (let [error (try (await (task-edit/append-comment!
+                                   {:project project :task task :text "Reviewed" :source "test"}))
+                           nil (catch :default error error))
+                diagnostic (str "Task " (name field) " must be a string")]
+            (is (= :refused (:kind (ex-data error))))
+            (is (= field (:field (ex-data error))))
+            (is (= task-path (:source-path (ex-data error))))
+            (is (= diagnostic (:diagnostic (ex-data error))))
+            (is (= (str "Refused card source " task-path ": " diagnostic)
+                   (when error (ex-message error))))
+            (is (= raw (await (.readFile fsp task-path "utf8")))
+                "a refused comment retains every original source byte")
+            (is (empty? @captured) "a refused comment emits no event"))))
+      (finally
+        (unsub)
+        (await (.rm fsp dir #js {:recursive true :force true}))))))
+
 (deftest ^:async append-comment-emits-event
   (testing "Appending a comment writes the file and records a comment event"
     (let [dir (tmp-dir)
