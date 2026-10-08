@@ -692,4 +692,6 @@
           (let [data (ex-data err)
                 kind (or (:kind data) :internal)
                 hint (:hint data)]
+            (when (flag-true? (:flags parsed) "json")
+              (print-json (assoc data :ok false :kind kind :error (.-message err))))
             (fail! kind (str (.-message err) (when hint (str " — try `" hint "`"))) err)))))))

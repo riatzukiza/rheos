@@ -36,15 +36,33 @@
       (catch :default error
         (try (await (.rmdir fsp dir)) (catch :default _ nil))
         (throw error)))
-    (try
-      (await (f))
-      (finally
-        (let [current (await (.readFile fsp owner-path "utf8"))]
-          (when-not (= owner current)
-            (conflict! "Reservation ownership changed; refusing cleanup"
-                       {:reservation-path dir :token token}))
-          (await (.unlink fsp owner-path))
-          (await (.rmdir fsp dir)))))))
+    (let [outcome (try {:result (await (f))}
+                       (catch :default error {:error error}))
+          release-error (try
+                          (let [current (await (.readFile fsp owner-path "utf8"))]
+                            (when-not (= owner current)
+                              (conflict! "Reservation ownership changed; refusing cleanup"
+                                         {:reservation-path dir :token token}))
+                            (await (.unlink fsp owner-path))
+                            (await (.rmdir fsp dir))
+                            nil)
+                          (catch :default error error))]
+      (cond
+        release-error
+        (let [original (:error outcome)
+              data (if original
+                     (merge {:kind :internal} (ex-data original))
+                     {:kind :partial-effect :phase :reservation-release
+                      :operation-result (:result outcome)})]
+          (throw (ex-info (if original (.-message original)
+                            "Writer completed effects but reservation release failed; native repair required")
+                          (assoc data :reservation-release
+                                 (merge {:kind :internal :reservation-path dir}
+                                        (ex-data release-error)
+                                        {:diagnostic (.-message release-error)}))
+                          (or original release-error))))
+        (:error outcome) (throw (:error outcome))
+        :else (:result outcome)))))
 
 (defn ^:async file-and-event!
   "File plus ledger is not atomic. A failed file or event effect reports the

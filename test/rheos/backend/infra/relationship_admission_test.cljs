@@ -109,6 +109,8 @@
                                                   :new-status "ready" :source "test"}))
              after (await (.readFile fsp ledger-path "utf8"))]
          (is (true? (:ok result)))
+         (is (= "ready" (get-in result [:task :frontmatter :status]))
+             "The returned retained frontmatter must describe the accepted write")
          (is (.startsWith after history) "Successful admission retains the native event prefix")
          (is (> (count after) (count history)) "Success appends its native event"))))))
 

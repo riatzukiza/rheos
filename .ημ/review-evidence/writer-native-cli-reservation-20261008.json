@@ -1,0 +1,173 @@
+{
+  "evidence_type": "observed-native-cli-command-results",
+  "observedAt": "2026-10-08T19:25:12.418Z",
+  "cli": {
+    "path": "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+    "bytes": 2235130,
+    "sha256": "9dc10d590fd9d2077edae3a0323da3450baf5cac722ae2e8e7bbb3b2b3a31979"
+  },
+  "fixture": {
+    "root": "/tmp/rheos-writer-native-OZI0Y3",
+    "config": "{:tasks-dir \"/tmp/rheos-writer-native-OZI0Y3/board\" :fsm {:extends :promethean :build-gate-commands [\"\\\"/home/err/.volta/tools/image/node/22.20.0/bin/node\\\" \\\"/tmp/rheos-writer-native-OZI0Y3/gate.cjs\\\"\"]}}\n",
+    "config_sha256": "a9f3bcba1a5dc639784ede1ea554a19998da038ea370591182123c52cc1378bf",
+    "source_cards": {
+      "subject": "---\nuuid: subject\ntitle: Subject\ntype: task\nstatus: in_progress\ndependency: predecessor\n---\n\nRetained body.\n",
+      "predecessor": "---\nuuid: predecessor\ntitle: Predecessor\ntype: task\nstatus: done\n---\n\nPredecessor body.\n"
+    },
+    "gate_script": "const fs=require('node:fs');fs.writeFileSync(\"/tmp/rheos-writer-native-OZI0Y3/entered\",'entered');const start=Date.now();const timer=setInterval(()=>{if(fs.existsSync(\"/tmp/rheos-writer-native-OZI0Y3/release\")){clearInterval(timer);process.exit(0);}if(Date.now()-start>25000){clearInterval(timer);process.exit(2);}},25);\n"
+  },
+  "commands": [
+    {
+      "argv": [
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "add-comment",
+        "subject",
+        "--text",
+        "Native prefix seed",
+        "--config",
+        "/tmp/rheos-writer-native-OZI0Y3/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T19:25:08.784Z",
+      "finishedAt": "2026-10-08T19:25:09.269Z",
+      "code": 0,
+      "signal": null,
+      "stdout": "{\n  \"ok\": true,\n  \"uuid\": \"subject\",\n  \"comment\": \"Native prefix seed\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "frontmatter",
+        "subject",
+        "--set",
+        "dependency=predecessor",
+        "--json",
+        "--config",
+        "/tmp/rheos-writer-native-OZI0Y3/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T19:25:09.762Z",
+      "finishedAt": "2026-10-08T19:25:10.316Z",
+      "code": 4,
+      "signal": null,
+      "stdout": "{\n  \"reservation-path\": \"/tmp/rheos-writer-native-OZI0Y3/board/.rheos-writer-reservation\",\n  \"kind\": \"conflict\",\n  \"ok\": false,\n  \"error\": \"Another or unresolved canonical writer owns the project reservation\"\n}\n",
+      "stderr": "rheos: Another or unresolved canonical writer owns the project reservation\n"
+    },
+    {
+      "argv": [
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "create",
+        "--title",
+        "Contender",
+        "--uuid",
+        "contender",
+        "--dependency",
+        "predecessor",
+        "--json",
+        "--config",
+        "/tmp/rheos-writer-native-OZI0Y3/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T19:25:10.323Z",
+      "finishedAt": "2026-10-08T19:25:10.856Z",
+      "code": 4,
+      "signal": null,
+      "stdout": "{\n  \"reservation-path\": \"/tmp/rheos-writer-native-OZI0Y3/board/.rheos-writer-reservation\",\n  \"kind\": \"conflict\",\n  \"ok\": false,\n  \"error\": \"Another or unresolved canonical writer owns the project reservation\"\n}\n",
+      "stderr": "rheos: Another or unresolved canonical writer owns the project reservation\n"
+    },
+    {
+      "argv": [
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "add-comment",
+        "subject",
+        "--text",
+        "Concurrent comment",
+        "--json",
+        "--config",
+        "/tmp/rheos-writer-native-OZI0Y3/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T19:25:10.859Z",
+      "finishedAt": "2026-10-08T19:25:11.373Z",
+      "code": 4,
+      "signal": null,
+      "stdout": "{\n  \"reservation-path\": \"/tmp/rheos-writer-native-OZI0Y3/board/.rheos-writer-reservation\",\n  \"kind\": \"conflict\",\n  \"ok\": false,\n  \"error\": \"Another or unresolved canonical writer owns the project reservation\"\n}\n",
+      "stderr": "rheos: Another or unresolved canonical writer owns the project reservation\n"
+    },
+    {
+      "argv": [
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "move",
+        "subject",
+        "--to",
+        "testing",
+        "--json",
+        "--config",
+        "/tmp/rheos-writer-native-OZI0Y3/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T19:25:11.376Z",
+      "finishedAt": "2026-10-08T19:25:11.901Z",
+      "code": 4,
+      "signal": null,
+      "stdout": "{\n  \"reservation-path\": \"/tmp/rheos-writer-native-OZI0Y3/board/.rheos-writer-reservation\",\n  \"kind\": \"conflict\",\n  \"ok\": false,\n  \"reason\": \"Another or unresolved canonical writer owns the project reservation\",\n  \"from\": \"in_progress\",\n  \"to\": \"testing\",\n  \"uuid\": \"subject\",\n  \"error\": \"transition refused: Another or unresolved canonical writer owns the project reservation\"\n}\n",
+      "stderr": "rheos: transition refused: Another or unresolved canonical writer owns the project reservation\n"
+    },
+    {
+      "argv": [
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "move",
+        "subject",
+        "--to",
+        "review",
+        "--json",
+        "--config",
+        "/tmp/rheos-writer-native-OZI0Y3/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T19:25:09.274Z",
+      "finishedAt": "2026-10-08T19:25:11.967Z",
+      "code": 0,
+      "signal": null,
+      "stdout": "{\n  \"ok\": true,\n  \"task\": {\n    \"labels\": [],\n    \"slug\": \"subject\",\n    \"dependency\": [\n      \"predecessor\"\n    ],\n    \"content\": \"\\nRetained body.\\n\\n\\n---\\nNative prefix seed\\n\\n---\",\n    \"type\": \"task\",\n    \"title\": \"Subject\",\n    \"source-path\": \"/tmp/rheos-writer-native-OZI0Y3/board/subject.md\",\n    \"source-revision\": \"20cb3cd8465d9bb2621096b519b5dc5c3170e45fb9eb2de9e3f06aa2e6ca7306\",\n    \"priority\": \"P3\",\n    \"status\": \"review\",\n    \"uuid\": \"subject\",\n    \"created-at\": \"2026-10-08T19:25:11.941Z\",\n    \"frontmatter\": {\n      \"uuid\": \"subject\",\n      \"title\": \"Subject\",\n      \"type\": \"task\",\n      \"status\": \"in_progress\",\n      \"dependency\": \"predecessor\",\n      \"write-id\": \"1791487509249-0.oj9s0h0mnnsayfml6yu\"\n    }\n  },\n  \"from\": \"in_progress\",\n  \"to\": \"review\"\n}\n",
+      "stderr": "▶ build-gate: \"/home/err/.volta/tools/image/node/22.20.0/bin/node\" \"/tmp/rheos-writer-native-OZI0Y3/gate.cjs\"\n"
+    },
+    {
+      "argv": [
+        "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/cli.cjs",
+        "read-task",
+        "subject",
+        "--config",
+        "/tmp/rheos-writer-native-OZI0Y3/kanban.edn"
+      ],
+      "startedAt": "2026-10-08T19:25:11.970Z",
+      "finishedAt": "2026-10-08T19:25:12.417Z",
+      "code": 0,
+      "signal": null,
+      "stdout": "{\n  \"uuid\": \"subject\",\n  \"frontmatter\": {\n    \"uuid\": \"subject\",\n    \"title\": \"Subject\",\n    \"type\": \"task\",\n    \"status\": \"review\",\n    \"dependency\": \"predecessor\",\n    \"write-id\": \"1791487511944-0.tz9eflp4378x5udjki\"\n  },\n  \"sections\": [\n    {\n      \"type\": \"body\",\n      \"content\": \"Retained body.\"\n    },\n    {\n      \"type\": \"comment\",\n      \"content\": \"Native prefix seed\"\n    }\n  ],\n  \"source-path\": \"/tmp/rheos-writer-native-OZI0Y3/board/subject.md\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "checks": {
+    "four_independent_contenders_refused": "conflict/nonzero4",
+    "each_refusal_card_and_ledger_byte_identical": true,
+    "owner_token_unchanged": true,
+    "owner_effect_passed": true,
+    "old_event_prefix_equal": true,
+    "canonical_read_retains_dependency": true,
+    "owned_reservation_released": true
+  },
+  "before": {
+    "card_bytes": 185,
+    "card_sha256": "20cb3cd8465d9bb2621096b519b5dc5c3170e45fb9eb2de9e3f06aa2e6ca7306",
+    "ledger_bytes": 366,
+    "ledger_sha256": "083c2a08749d02a92c3bbb77f0de42efef3bdef0551b93f7f0fd9a0c9d272c88"
+  },
+  "after": {
+    "card_bytes": 181,
+    "card_sha256": "2cfb3bb123b6d0802e6774a32b425bedd911e59b86e46ac3ed4860f33c67f6ca",
+    "ledger_bytes": 750,
+    "ledger_sha256": "2856b591fe0ecf7766396fbf7f36d08aa8b0bd97bfda78cccbd5bfd27a25a575"
+  },
+  "limits": [
+    "Private candidate CLI proof, not installed consumer enforcement",
+    "One held command gate; not reciprocal-cycle race matrix or HTTP/MCP parity",
+    "No live board, watcher, maker, publication, dependency install or runtime change"
+  ],
+  "owned_fixture_removed": true
+}

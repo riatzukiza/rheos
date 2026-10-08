@@ -185,8 +185,8 @@
       {:ok true :uuid uuid :comment text})))
 
 (defn- ^:async tool-kanban-update-frontmatter
-  "Update descriptive frontmatter, enforcing the same closed key set the HTTP
-   PATCH handler enforces ([[rheos.backend.law.frontmatter/mutable-keys]]).
+  "Update descriptive fields and accepted relationships through the same
+   closed domain authority used by the HTTP handler and lower-level writer.
    `:status` is refused here and routed to the FSM, so there stays exactly one
    way to change a card's status."
   [{:keys [uuid project updates source]}]
@@ -241,6 +241,18 @@
 ;; ---------------------------------------------------------------------------
 ;; Tool registry — name, description, JSON-Schema input, handler
 ;; ---------------------------------------------------------------------------
+
+(def ^:private relationship-input-properties
+  {:parent {:type ["string" "null"] :description "exact stored parent UUID; null/blank removes"}
+   :epic {:type ["string" "null"] :description "exact stored epic UUID; null/blank removes"}
+   :dependency {:anyOf [{:type "string"} {:type "null"}
+                       {:type "array" :items {:type "string"} :uniqueItems true}]
+                :description "exact UUID, CSV or distinct UUID array; null/blank/empty removes"}})
+
+(def ^:private frontmatter-update-schema
+  {:type "object" :minProperties 1 :additionalProperties false
+   :properties (merge (zipmap (map name law-frontmatter/mutable-keys) (repeat {}))
+                      (into {} (map (fn [[k v]] [(name k) v])) relationship-input-properties))})
 
 (def tools
   [{:name "project_glob"
@@ -314,18 +326,15 @@
     :description "Update descriptive fields or parent/epic/dependency through the canonical graph writer. Relationships use exact stored UUIDs; dependency accepts a UUID, CSV or a distinct UUID array. Null/blank singular values and null/blank/empty dependency remove the field. A semantic relationship no-op writes nothing. Status, identity and provenance are refused."
     :input-schema {:type "object"
                    :properties {:uuid {:type "string"} :project {:type "string"}
-                                :updates {:type "object" :description "key -> value map of frontmatter fields to set"}}
+                                :updates frontmatter-update-schema}
                    :required ["uuid" "updates"]}
     :handler tool-kanban-update-frontmatter}
    {:name "kanban_create_task"
     :description "Create a card and record a task-created ledger event. Works for root cards and children alike — pass `parent` only for a child. The card enters at the project FSM's initial state; use kanban_update_status to advance it. Pass `body` to author the card's markdown, otherwise a skeleton (Outcome / Scope / Acceptance criteria) is written so the card can pass its first gate."
     :input-schema {:type "object"
-                   :properties {:title {:type "string"}
+                   :properties (merge relationship-input-properties
+                               {:title {:type "string"}
                                 :type {:type "string" :enum ["task" "epic"] :description "card type; default \"task\""}
-                                :parent {:type "string" :description "parent card uuid — omit for a root card"}
-                                :epic {:type "string" :description "exact existing epic UUID"}
-                                :dependency {:anyOf [{:type "string"} {:type "array" :items {:type "string"}}]
-                                             :description "exact UUID, CSV or distinct UUID array"}
                                 :project {:type "string"}
                                 :status {:type "string" :description "refused unless it is the FSM initial state; pass force-status to override"}
                                 :force-status {:type "boolean"}
@@ -333,16 +342,17 @@
                                 :labels {:type "array" :items {:type "string"}}
                                 :body {:type "string" :description "card markdown below the frontmatter"}
                                 :dir {:type "string" :description "target directory relative to the project task root"}
-                                :uuid {:type "string" :description "explicit uuid; refused if already taken"}}
+                                :uuid {:type "string" :description "explicit uuid; refused if already taken"}})
                    :required ["title"]}
     :handler tool-kanban-create-task}
    {:name "kanban_create_subtask"
     :description "Create a card linked to a parent task. Thin alias of kanban_create_task with a required parent; prefer kanban_create_task."
     :input-schema {:type "object"
-                   :properties {:parent-uuid {:type "string"} :title {:type "string"}
+                   :properties (merge relationship-input-properties
+                               {:parent-uuid {:type "string"} :title {:type "string"}
                                 :project {:type "string"} :status {:type "string"}
                                 :priority {:type "string"} :body {:type "string"}
-                                :labels {:type "array" :items {:type "string"}}}
+                                :labels {:type "array" :items {:type "string"}}})
                    :required ["parent-uuid" "title"]}
     :handler tool-kanban-create-subtask}])
 

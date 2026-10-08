@@ -152,7 +152,7 @@
                       ;; 409 Conflict: the FSM refused this transition.
                       (send-error reply (if (= :partial-effect (:kind result)) 500 409)
                                   (:reason result) (dissoc result :task))))))
-              (catch :default err (send-error reply 500 (.-message err)))))))
+              (catch :default err (send-writer-error reply err))))))
 
 (defn ^:async handle-update-frontmatter [^js req reply]
   (let [project-id (.. req -query -project)
@@ -215,7 +215,7 @@
                                           :frontmatter (clj->js (:frontmatter new-parsed))
                                           :sections (clj->js (mapv (fn [s] #js {:type (:type s) :content (:content s)}) (:sections new-parsed)))
                                           :sourcePath (:source-path task)}))))
-              (catch :default err (send-error reply 500 (.-message err)))))))
+              (catch :default err (send-writer-error reply err))))))
 
 
 (defn ^:async handle-open-editor [^js req reply]

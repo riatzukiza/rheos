@@ -100,7 +100,7 @@
     (await (update-reserved! request))
     (await (publication/with-reservation! project #(update-reserved! request)))))
 
-(defn ^:async append-comment!
+(defn- ^:async append-comment-reserved!
   "Append `text` to a qualified task source and emit a comment event.
    Invalid decoded frontmatter is refused with source diagnostics before any
    write-id registration, file write or ledger event."
@@ -119,7 +119,20 @@
         write-id (events/generate-write-id)
         new-raw (content-parser/inject-write-id comment-raw write-id)
         ledger (ledger/get-ledger (:tasks-dir project))]
-    (watcher/register-cli-event! write-id (:uuid task))
-    (await (.writeFile fsp task-path new-raw "utf8"))
-    (await (events/emit-comment! ledger (:id project) (:uuid task) text write-id (or source "cli")))
+    (when-not (= raw (await (.readFile fsp task-path "utf8")))
+      (publication/conflict! "Card source changed before comment publication"
+                             {:uuid (:uuid task) :source-path task-path}))
+    (await (publication/file-and-event!
+            {:source-path task-path :write-id write-id}
+            (fn []
+              (watcher/register-cli-event! write-id (:uuid task))
+              (.writeFile fsp task-path new-raw "utf8"))
+            (fn [] (events/emit-comment! ledger (:id project) (:uuid task) text write-id (or source "cli")))))
     {:ok true :task task :text text}))
+
+(defn ^:async append-comment!
+  "Comments share the canonical reservation so they cannot overwrite a
+   concurrent relationship/status write. Legacy source validation is retained;
+   partial file/event effects use the same truthful publication diagnostics."
+  [{:keys [project] :as request}]
+  (await (publication/with-reservation! project #(append-comment-reserved! request))))
