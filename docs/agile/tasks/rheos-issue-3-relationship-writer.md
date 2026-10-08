@@ -35,6 +35,14 @@ reviewed CLI flags and HTTP/MCP schemas, with boundary conversion to Clojure dat
 Admit the existing `--set dependency=<existing-uuid>` syntax through the reviewed
 relationship contract; the current engine refuses that dependency edit.
 
+Also consume retained dependencies at the existing FSM transition chokepoint.
+The selected consumer requires missing/unfinished/cyclic predecessor refusal
+and completed-predecessor admission before character implementation. A graph
+reference being well-formed does not establish that its predecessor finished.
+The portable relationship contract's non-goal of status admission is retained;
+the additional pure lifecycle decision belongs to the owning transition law,
+with host facts and effects supplied by its existing infra path.
+
 ## Non-goals
 
 No replacement parser, alternate command engine, status/frontmatter bypass,
@@ -58,12 +66,36 @@ fields. No credential, signing or deployment change.
 - [ ] Validation and publication obey the accepted concurrency contract. A stale
   snapshot cannot silently publish a relationship rejected by the current graph;
   partial file/event failure remains visible and is not reported as success.
+- [ ] The owning FSM/configuration explicitly names the successful predecessor
+  states and guarded implementation-admission transitions. For the selected
+  Promethean workflow, the proposal is `done` as success and admission into
+  `ready`, `todo` and `in_progress` as guarded boundaries. Fresh review must
+  settle this policy before RED; no consumer-side status list is introduced.
+- [ ] Each guarded transition validates the complete selected-project snapshot
+  and all reachable dependency predecessors. Missing/ambiguous references,
+  malformed relationships, dependency cycles, unavailable complete reads and
+  unfinished predecessors produce a classified refusal naming the actual
+  blockers. A predecessor's rejected/archived status is not assumed successful.
+  Parent/epic edges retain their distinct reviewed graph meaning.
+- [ ] Completed-predecessor admission still requires the original FSM edge,
+  WIP limit and executable gates. No-dependency cards retain those obligations.
+  CLI, HTTP and MCP cannot bypass the same canonical transition decision.
+- [ ] Relationship edits, creation and guarded transitions share the reviewed
+  inter-process publication/reservation boundary. Revalidate after executable
+  gates and before effects; a changed predecessor or relationship cannot be
+  published from an earlier accepted snapshot. Refusal preserves card/history
+  bytes; partial file/event failure stays visible. Timeout alone grants no
+  authority to steal a live writer's reservation.
 
 ## Verification
 
 Future red/green adapter fixtures use private task roots, seeded event history
 and explicit configuration. Record canonical events and readbacks via Rheos,
 without consumer-side parsing or a test-only replacement writer.
+
+This amended incoming story requires fresh planning qualification. Its existing
+5-point estimate is provisional; review must assess the enlarged writer/FSM
+boundary and recommend a split or re-estimate when necessary. It is not Ready.
 
 ## Risks
 

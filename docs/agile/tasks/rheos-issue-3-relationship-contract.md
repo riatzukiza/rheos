@@ -2,11 +2,11 @@
 labels: "relationships, shapes, graph-laws, planning"
 parent: "rheos-issue-3-relationship-authoring"
 type: "task"
-write-id: "1791449847854-0.hq94ugnvtuckmviznfb"
+write-id: "1791477370223-0.znyz4vh2k0rf311zu0u"
 points: "3"
 title: "Specify portable UUID relationship shapes and graph admission"
 priority: "P1"
-status: "review"
+status: "done"
 epic: "rheos-issue-3-relationship-authoring"
 uuid: "rheos-issue-3-relationship-contract"
 created_at: "2026-10-06"
@@ -71,4 +71,8 @@ Planning qualification: canonical pr-flow gate PASS at 2026-10-08T08:07:24Z on e
 --text
 
 Correction to the preceding literal --text comment: installed native help names add-comment UUID --text TEXT; comment is an older positional surface and the initial invocation preserved only its flag. Preserve that event unchanged. Portable contract checkpoint: JVM Clojure1.12.4 and compiled ClojureScript1.12.134/Node22.20/Malli0.16.4 each23tests497assertions0failures0errors; existing full lint0errors0warnings,173tests1269assertions0failures0errors,4releasebuilds0compilerwarnings. Input-removal mismatch RED146a43d and host-whitespace RED19bf20b are retained before the shared lexical law repair. New actual built public CLI raw task retains parent/epic/dependency/type but read-board drops all four:2tests8assertions4failures0errors/exit1 after correcting the NBB exit reporter; initial printed-failure/exit0 proof attempt is retained. Full documentation and command/source-hash evidence are in docs/verification/portable-relationship-contract.md and the existing .ημ paths. Native InProgress→Review additionally executed the configured full test gate successfully. No current implementation approval, projection repair, writer/parity readiness, release, persistent encounter, consumed mood, automatic recall, B1/B2/B3 completion or runtime mutation is claimed.
+
+
+Portable contract source qualified and merged in riatzukiza/rheos PR4, reviewed head d556ead443290c11fa958fa8f7512a7a31366877 / merge c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f. Its retained JVM1.12.4 and compiled CLJS1.12.134/Node22.20 fixtures each passed23tests497assertions; RED146a43d and19bf20b and the actual projection RED2tests8assertions4failures remain preserved. This closes only the3-point portable relationship contract after exact-head code qualification. Source-preserving PR1 subsequently passed canonical gate with CodeRabbit/MiMo,3checks and17settled threads and merged exact b858 source as e29551fefe5aac3c69568412724d4810bf64a5a9. Existing writer/parity stories remain Incoming; a fresh planning amendment now explicitly covers required unfinished-predecessor lifecycle admission. No adapter/projection repair, inter-process reservation, installed dependency enforcement, released bundle, B1/B2/B3, runtime or publication proof is claimed.
+
 ---

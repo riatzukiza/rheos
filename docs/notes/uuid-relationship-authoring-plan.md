@@ -72,3 +72,49 @@ parseable. Neither those reads nor the portable tests establish writer
 integration, public-surface parity, revision reservation, race safety, release
 qualification or consumer readiness; those obligations remain with the writer
 and parity stories and the qualified delivery boundary.
+
+## Selected consumer admission gap — 2026-10-08
+
+The [accepted Cephalon milestone](https://github.com/riatzukiza/foresight/blob/b3e24c329974a8f9d2452b644647c0a432aa89ec/docs/notes/2026-10-08-cephalon-loop-slice-milestone.md)
+retains the dependency-admission prerequisite from the
+[character epic](https://github.com/riatzukiza/foresight/blob/b3e24c329974a8f9d2452b644647c0a432aa89ec/docs/agile/kanban/cephalon-character-epic.md):
+preserve dependencies in the installed loader,
+refuse missing/unfinished/cyclic predecessors natively, and admit completed
+predecessors before character implementation. The original authoring table
+settled references and cycles while explicitly leaving status with the FSM.
+It did not specify an unfinished-predecessor admission predicate. Rheos PR4's
+merged portable contract therefore cannot supply this consumer proof by itself.
+
+Inspected personal source `b85854514c613b13a3a9930795f5ae595ab30ac7`, now merged
+as `e29551fefe5aac3c69568412724d4810bf64a5a9`, retains that gap:
+
+- `infra/task_store.cljs` drops dependency/parent/epic/type in loaded tasks.
+- `domain/transition.cljs` decides an FSM edge and WIP counts without a task's
+  dependencies or predecessor status.
+- `infra/transition.cljs` loads, gates and writes without revalidation under
+  an inter-process graph publication reservation.
+- The Promethean `law/fsm.cljs` Ready/Todo admission edges are `:always-allow`.
+
+The amended existing writer/parity stories propose to close those boundaries
+inside Rheos. Portable graph decisions remain shared; a separate portable
+lifecycle decision consumes the owning FSM/configuration's admission policy.
+The proposed selected policy is Done predecessors at Ready/Todo/InProgress
+admission, checking all reachable dependency predecessors in a complete scoped
+snapshot and retaining the ordinary FSM/WIP/executable gates. Review must settle
+the policy, exact diagnostics, reservation/revalidation and failure behavior.
+No status setting through generic frontmatter, local Foresight validator or
+alternative ledger can stand in for this path.
+
+This is a fresh planning amendment of the already selected prerequisite, not
+implementation or admission. Original frontmatter identities, relationships,
+estimates and Incoming statuses remain intact. The remaining 5/5 estimates and
+13-point aggregate are provisional until the amended scope is reviewed. If
+review requires another story or additional selected capacity, report that
+requirement against the fixed milestone before expanding its inventory.
+
+Source-preserving Rheos PR1 is now qualified and merged. Its merged tree and
+612713-byte base-to-head diff are exact to the reviewed source, SHA256
+`ee51824ced67f67f93ae2ae9d091e7f997d8ca870335df86619f26c1043ec93d`.
+That repair supplies safe source handling; it does not implement relationship
+writers, dependency-aware lifecycle admission, persisted encounters, consumed
+mood or automatic maker recall.

@@ -1,0 +1,71 @@
+{
+  "schema": "cephalon.review-observed-command-output-transcription.v1",
+  "observed_at": "2026-10-08T16:07:07.131Z",
+  "head": "b85854514c613b13a3a9930795f5ae595ab30ac7",
+  "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+  "pr": "https://github.com/riatzukiza/rheos/pull/1",
+  "coderabbit": {
+    "request": 6063654053,
+    "completion": 6063656846,
+    "summary": 5966686355,
+    "native_records": [
+      {
+        "file": "coderabbit-b858-completed-5966686355-native.json",
+        "bytes": 17068,
+        "sha256": "dff2164708dae965e9ec717cb5973dd792c9221279bf84123cbac6a88f78da02",
+        "id": 5966686355,
+        "updated_at": "2026-10-08T15:50:56Z"
+      },
+      {
+        "file": "coderabbit-b858-completed-6063656846-native.json",
+        "bytes": 4526,
+        "sha256": "f1fd843180837e1d5a0e0a82a504c77d319f41f5400c7c4f0b3a1c3f5e269c14",
+        "id": 6063656846,
+        "updated_at": "2026-10-08T15:51:02Z"
+      }
+    ],
+    "all_changed_inputs": 55,
+    "verdict": "completed no actionable comments; exact-head final_review_risk_coverage; no declared omitted changed input",
+    "canonical_eligible": true,
+    "formal_github_approved": false
+  },
+  "canonical_status": {
+    "passing_checks": 2,
+    "threads": 17,
+    "unresolved": 0,
+    "approvals": [
+      "coderabbit"
+    ],
+    "completed_code_rounds": 0,
+    "available_participants": [
+      "coderabbit",
+      "mimo"
+    ],
+    "gate": "BLOCKED convergence while existing MiMo job is pending"
+  },
+  "mimo": {
+    "run": 37802050234,
+    "job": 113397556241,
+    "status": "in_progress",
+    "last_native_read": "2026-10-08T16:05Z",
+    "no_restart_or_duplicate": true
+  },
+  "authorization": {
+    "native_thread": "01a0fa39-15d0-7ab3-93a4-b4f4ce3c51e3",
+    "native_message": "item-120",
+    "source": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos1-source-preserving-integration-20261008/comment-source-preservation/identity-shape/native-human-standing-git-authorization-20261008.json",
+    "interpretation": "Standing human permission for ordinary Git/GitHub merges recovered; no canonical gate waived"
+  },
+  "next_stack": {
+    "pr": 2,
+    "head": "4a38902520b5e34ef66aa9d440f15ab9d97e3efe",
+    "native_cached_base": "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+    "actual_remote_parent": "b85854514c613b13a3a9930795f5ae595ab30ac7",
+    "qualification": "none; cached REST base is not fresh branch binding"
+  },
+  "limits": [
+    "B1/B2/B3 still unimplemented and unverified",
+    "No runtime, maker, board, deployment, paid usage, synthetic approval, new review request or observation-only commit/push",
+    "Earlier pending snapshot and all receipt/reflection prefixes preserved"
+  ]
+}

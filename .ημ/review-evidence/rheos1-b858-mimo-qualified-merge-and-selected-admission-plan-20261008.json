@@ -1,0 +1,105 @@
+{
+  "epistemic_tier": "observed-command-output-transcription",
+  "observed_at": "2026-10-08T16:39:10.711Z",
+  "repository": "riatzukiza/rheos",
+  "reviewed_head": "b85854514c613b13a3a9930795f5ae595ab30ac7",
+  "reviewed_base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+  "mimo": {
+    "review_id": 5459643811,
+    "native_state": "APPROVED",
+    "actor": "eta-mu-ai[bot]",
+    "submitted_at": "2026-10-08T16:14:13Z",
+    "raw_bytes": 4585,
+    "raw_sha256": "ced5a73b19459fb828f95c2776954b82776c2cd32cc270c82032547aa032cd25",
+    "hosted_run": 37802050234,
+    "hosted_conclusion": "SUCCESS",
+    "artifact_id": 11563102874,
+    "zip_bytes": 32327,
+    "zip_sha256": "a326dee8a7951100c646e5d9d205ec4fbf87747e7ceab1a007befcd4fb8a5f70",
+    "full_diff_bytes": 612713,
+    "full_diff_sha256": "ee51824ced67f67f93ae2ae9d091e7f997d8ca870335df86619f26c1043ec93d",
+    "delivered_pages": 87,
+    "assessed_pages": 87,
+    "assessment_ranges_contiguous_utf16_units": 611550,
+    "unicode_offset_count_is_not_byte_omission": true,
+    "native_body_equals_validated_submission": true,
+    "confirmed_findings": 0,
+    "inline_comments": 0,
+    "scope_count_correction": "Native introduction says53files; actualGit55paths includes53nondeleted and2deleted replacement paths. This is author inference/count correction, not a rewritten reviewer record."
+  },
+  "native_explanation": {
+    "id": 6064288802,
+    "url": "https://github.com/riatzukiza/rheos/pull/1#issuecomment-6064288802",
+    "body_bytes": 3687,
+    "body_sha256": "d7fd96e59b4a15313a1d221cd48b59ed212ee28c4404b73f0e1a30498a675674",
+    "whole_body_readback_equal": true,
+    "notes": "All five notes itemized. Reviewer-disproved candidates remain reviewer judgments; no fabricated author fix/rejection/deferral/test."
+  },
+  "native_description": {
+    "body_bytes": 45165,
+    "body_sha256": "b2f86ff80a0ec370dbdca5da8b4b33d8a81b588e87d545527812be785f6bfa92",
+    "prior_body_byte_prefix_retained": true,
+    "whole_body_readback_equal": true
+  },
+  "canonical_gate": {
+    "command": "nbb -cp /home/err/.agents/skills/pr-flow/scripts /home/err/.agents/skills/pr-flow/scripts/pr.cljs gate riatzukiza/rheos 1 --apply --method merge",
+    "exit": 0,
+    "verdict": "PASS",
+    "checks_pass": 3,
+    "threads": 17,
+    "unresolved": 0,
+    "unsettled": 0,
+    "completed_code_cohorts": 1,
+    "soft_minimum": 5,
+    "available_participants": [
+      "coderabbit",
+      "mimo"
+    ],
+    "codex_native_account_quota_source": 6063443452,
+    "codex_reset": "UNKNOWN",
+    "standing_human_git_merge_authority_source": "selected actual native human item-120/external-import-turn-4; retained private selected-message transcription",
+    "no_paid_usage_or_waiver": true
+  },
+  "merge": {
+    "merged": true,
+    "merged_at": "2026-10-08T16:29:00Z",
+    "sha": "e29551fefe5aac3c69568412724d4810bf64a5a9",
+    "parents": [
+      "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+      "b85854514c613b13a3a9930795f5ae595ab30ac7"
+    ],
+    "tree": "4219ce794b2b06d49053e4c0b9cef717b8c00036",
+    "tree_exact_reviewed": true,
+    "full_diff_exact_reviewed": true,
+    "postgate_native_bytes": 61649,
+    "postgate_native_sha256": "7323e12b82913282475c7edd2bfcb570c1e81178bd26ea89bc2e27c336d91488"
+  },
+  "next_owned_change": {
+    "branch": "codex/rheos-dependency-admission-plan",
+    "base": "e29551fefe5aac3c69568412724d4810bf64a5a9",
+    "kind": "fresh planning amendment of already selected dependency-admission prerequisite",
+    "paths": [
+      "docs/agile/epics/rheos-issue-3-relationship-authoring.md",
+      "docs/agile/tasks/rheos-issue-3-relationship-writer.md",
+      "docs/agile/tasks/rheos-issue-3-relationship-parity.md",
+      "docs/notes/uuid-relationship-authoring-plan.md"
+    ],
+    "pure_contract_native_status": "done",
+    "contract_closure_proof_sha256": "116384dae017dc4b9a730e8be2d9abeef01ababd20b579eecb57ae52a7da9a2d",
+    "writer_parity_status": "incoming",
+    "no_accepted_new_estimate_or_inventory_expansion": true,
+    "source_behavior_changed": false
+  },
+  "resource": {
+    "available_bytes_observed": 17728794624,
+    "threshold_bytes": 21474836480,
+    "additional_full_copy_or_install": false
+  },
+  "limits": [
+    "Not a synthetic CodeRabbit formal APPROVED. NativeMiMoAPPROVED remains actual separate record.",
+    "No dedicated watcher-malformed or YAMLparse-mid-writeback race execution; HTTP500 unchanged; no actual completeCLI/HTTP negative guarantee added.",
+    "Reviewer source-analysis prose not independently promoted to executed evidence.",
+    "Merged portable/source-integrity prerequisites do not implement or deploy relationship admission, B1/B2/B3, or full character/social guarantees.",
+    "No runtime, maker, owner, PM2, cloud, credentials, publication or spore changes."
+  ]
+}
