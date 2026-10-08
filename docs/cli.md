@@ -142,6 +142,10 @@ retry; the refusal never changes its bytes or invents replacement frontmatter.
 Run `rheos help <verb>` for flags and a worked example. Verbs marked ✎ mutate a
 card and record a ledger event.
 
+Creation accepts `--parent <uuid>` and `--epic <uuid>` for existing cards and
+`--dependency <uuid[,uuid]>` for one existing dependency or CSV. These
+relationships use the same selected-graph admission as relationship edits.
+
 ### Lifecycle
 
 | Verb | Purpose |
@@ -152,13 +156,17 @@ card and record a ledger event.
 | ✎ `status-update <uuid> --to <status>` | The same enforced move via agent-tool dispatch; prints JSON |
 | ✎ `comment <uuid> --text <t>` | Append a comment — the way to update a card after breakdown |
 | ✎ `add-comment <uuid> --text <t>` | Alias of `comment` |
-| ✎ `frontmatter <uuid> --set k=v` | Update descriptive frontmatter; `--set` repeats |
+| ✎ `frontmatter <uuid> --set k=v` | Update descriptive fields or UUID relationships; `--set` repeats |
 
-`frontmatter` writes only the closed mutable set: `title`, `priority`, `labels`,
-`points`, `category`, `description`, `estimate`, `assignee`. `status` is refused
-and redirected to `move`, so the FSM stays the only status authority. Identity
-and provenance keys (`uuid`, `created_at`, `write-id`, `source-path`) are never
-writable.
+`frontmatter` accepts the descriptive keys `title`, `priority`, `labels`,
+`points`, `category`, `description`, `estimate`, `assignee`, and the relationship
+keys `parent`, `epic`, `dependency`. Parent and epic take an exact UUID;
+dependency takes one UUID or CSV. Use `--set parent=`, `--set epic=` or
+`--set dependency=` to remove that field. Relationship edits are validated
+against the complete selected graph through the canonical writer; semantic
+relationship no-ops write nothing. `status` is refused and redirected to
+`move`, so the FSM stays the only status authority. Identity and provenance
+keys (`uuid`, `created_at`, `write-id`, `source-path`) are never writable.
 
 There is no delete verb. Terminal states are reached with
 `move <uuid> --to rejected` or `--to archived`.

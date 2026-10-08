@@ -45,8 +45,8 @@ approval does not qualify this implementation or authorize consumer delivery.
   earlier operation's outcome. Changed ownership is left intact for explicit
   repair; there is no historical event rewrite, rollback or success assertion.
 - CLI flags/help, HTTP projections/errors and tool/MCP schemas use the owning
-  writer. CLI `--json` errors retain classification with a nonzero exit; new
-  conflict/partial kinds retain the existing internal exit-code fallback of4.
+  writer. CLI `--json` errors retain classification with a nonzero exit:
+  writer conflicts exit3; partial effects exit4.
   Public schemas describe accepted relationship cardinalities and removals.
   Source changes alone do not establish full HTTP/MCP execution parity.
 
@@ -221,3 +221,17 @@ rewritten. Current-head hosted review, settlement and merge remain required;
 the independent canonical withdrawal/head-binding gap is tracked in
 riatzukiza/.agents issue25. No runtime or board state changed. The accepted
 encounter/mood/automatic-recall slice remains unfinished.
+
+## PR9 documentation contract correction — 2026-10-08
+
+MiMo review5462898304 on5c44cd7b22e492af7f8ccae3f0c4f4a89e795a83 read all86
+changed files and raised documentation findings4224176906 and4224176913.
+The current implementation summary now states conflict exit3 and partial-effect
+exit4. The CLI reference now includes parent/epic/dependency creation flags,
+relationship edit keys, exact UUID/CSV forms, removals and semantic no-ops.
+These descriptions match the existing CLI help registry, exit map and canonical
+relationship writer; this correction changes no application or test code.
+The original exit4 process proof, raw reviews, receipts and reflections remain
+intact. Hosted run37843069392 completed successfully at21:11:55UTC on5c; its
+finding-bearing COMMENTED review is not approval of this documentation repair.
+Current-head review and required checks remain prerequisites for delivery.

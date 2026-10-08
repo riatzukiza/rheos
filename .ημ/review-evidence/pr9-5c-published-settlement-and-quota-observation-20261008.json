@@ -1,0 +1,46 @@
+{
+  "evidence_type": "selected-observed-native-metadata",
+  "observedAt": "2026-10-08T21:00:06.167985Z",
+  "head": "5c44cd7b22e492af7f8ccae3f0c4f4a89e795a83",
+  "base": "660a6f880769edcf9e52cc5e21e477a5545133f8",
+  "settlements": [
+    {
+      "root": 4223884206,
+      "thread": "PRRT_kwDOU4Vf-c6qizMR",
+      "reply": 4224061673,
+      "url": "https://github.com/riatzukiza/rheos/pull/9#discussion_r4224061673",
+      "resolved": true,
+      "writer": "riatzukiza"
+    },
+    {
+      "root": 4223884217,
+      "thread": "PRRT_kwDOU4Vf-c6qizMY",
+      "reply": 4224062350,
+      "url": "https://github.com/riatzukiza/rheos/pull/9#discussion_r4224062350",
+      "resolved": true,
+      "writer": "riatzukiza"
+    },
+    {
+      "root": 4223884239,
+      "thread": "PRRT_kwDOU4Vf-c6qizMm",
+      "reply": 4224062969,
+      "url": "https://github.com/riatzukiza/rheos/pull/9#discussion_r4224062969",
+      "resolved": true,
+      "writer": "riatzukiza"
+    }
+  ],
+  "raw_thread_bytes": 36384,
+  "raw_thread_sha256": "02cb4807c8f84dd51ad6279189cb4cf2a0aef695788534e9e97b3dbfb1011ae7",
+  "coderabbit_summary_id": 6067518120,
+  "coderabbit_summary_updatedAt": "2026-10-08T20:57:02Z",
+  "actual_footer_lines": [
+    "**Estimated code review effort:** 4 (Complex) | ~60 minutes",
+    "The change adds dependency-admission validation and relationship-aware task creation, editing, and status transitions. Writers use project reservations and source-revision checks when publishing files and events. CLI, HTTP, and tool interfaces expose relationship fields and structured errors. Tests and records document execution results and remaining qualification requirements."
+  ],
+  "raw_summary_bytes": 11713,
+  "raw_summary_sha256": "47e38ebb7ada5d9afe2fe6b387177536e7da94220a0bdb7c78f79e0328bf73d0",
+  "limits": [
+    "Selected metadata derivative, not raw REST or new approval",
+    "Private raw summary retains generated capability URL; not copied into public derivative"
+  ]
+}
