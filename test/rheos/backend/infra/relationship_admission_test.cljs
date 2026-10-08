@@ -12,6 +12,8 @@
             [rheos.backend.infra.task-edit :as edit]
             [rheos.backend.infra.content-parser :as parser]
             [rheos.backend.infra.agent-tools :as agent-tools]
+            [rheos.backend.infra.cli :as cli]
+            [rheos.backend.infra.http-server :as http-server]
             [rheos.backend.infra.projects :as projects]
             [rheos.backend.infra.publication :as publication]
             [rheos.backend.infra.task-store :as tasks]
@@ -51,6 +53,120 @@
     (is (false? (:ok result)) (str "Refuse guarded admission: " (:reason result)))
     (is (= before (await (.readFile fsp source-path "utf8"))) "Refusal preserves body, comments and frontmatter")
     (is (= history (await (.readFile fsp ledger-path "utf8"))) "Refusal appends no success event")))
+
+(deftest ^:async creation-consumes-accepted-blank-parent-removal
+  (await
+   (with-cards [{:uuid "subject" :status "incoming"}]
+     (^:async fn [{:keys [project ledger-path]}]
+       (doseq [[uuid parent] [["empty-parent" ""] ["space-parent" " \t\n"]
+                             ["null-parent" nil]]]
+         (let [history (await (.readFile fsp ledger-path "utf8"))
+               outcome (try
+                         {:result (await (create/create-task!
+                                          {:project project :title uuid :uuid uuid
+                                           :parent parent :body "Accepted root card." :source "test"}))}
+                         (catch :default error {:error error}))
+               task (first (filter #(= uuid (:uuid %)) (await (tasks/load-tasks project))))
+               payloads (map :payload (await (events/query-events (ledger/get-ledger (:tasks-dir project)) {})))
+               created (filter #(and (= "task-created" (:type %)) (= uuid (:task-id %))) payloads)]
+           (is (nil? (:error outcome)) (str "Accepted absent parent: " (pr-str parent)))
+           (is (:ok (:result outcome)))
+           (is (= uuid (:uuid task)))
+           (is (not (contains? (:frontmatter task) :parent)))
+           (is (= 1 (count created)))
+           (is (nil? (:parent (first created))))
+           (is (.startsWith (await (.readFile fsp ledger-path "utf8")) history)
+               "Creation appends to the exact existing history")))))))
+
+(deftest ^:async board-response-retains-malformed-relationship-values-as-readable-json
+  (await
+   (with-cards [{:uuid "subject" :status "incoming" :type ["task"]
+                 :parent ["a" "b"] :epic {:x 1}}]
+     (^:async fn [{:keys [project dir ledger-path]}]
+       (let [saved {:projects (projects/all) :default-project-id (projects/default-id)}
+             source-path (path/join dir "subject.md")
+             before (await (.readFile fsp source-path "utf8"))
+             history (await (.readFile fsp ledger-path "utf8"))
+             response (atom nil)
+             status (atom 200)
+             reply (js-obj)]
+         (aset reply "code" (fn [code] (reset! status code) reply))
+         (aset reply "send" (fn [payload]
+                              (reset! response (js/JSON.parse (js/JSON.stringify payload)))))
+         (projects/set-projects! {:projects [project] :default-project-id (:id project)})
+         (try
+           (await (http-server/handle-get-board #js {:query #js {:project (:id project)}} reply))
+           (let [task (first (mapcat #(array-seq (aget % "tasks")) (array-seq (aget @response "columns"))))]
+             (is (= 200 @status) (js/JSON.stringify @response))
+             (is (= 1 (aget @response "totalTasks")))
+             (is (= "[\"task\"]" (js/JSON.stringify (aget task "type"))))
+             (is (= "[\"a\",\"b\"]" (js/JSON.stringify (aget task "parent"))))
+             (is (= "{\"x\":1}" (js/JSON.stringify (aget task "epic"))))
+             (is (pos? (alength (aget task "relationshipErrors"))))
+             (is (= before (await (.readFile fsp source-path "utf8"))))
+             (is (= history (await (.readFile fsp ledger-path "utf8")))))
+           (finally (projects/set-projects! saved))))))))
+
+(defn- ^:async fixture-cli-outcome!
+  "Use the real CLI dispatcher and capture caller-visible JSON and exit status."
+  [dir argv-tail]
+  (let [config-path (path/join dir "board.edn")
+        saved-argv js/process.argv
+        saved-exit (.-exitCode js/process)
+        saved-print *print-fn*
+        saved-projects {:projects (projects/all) :default-project-id (projects/default-id)}
+        output (atom [])]
+    (await (.writeFile fsp config-path (str "{:tasks-dir " (pr-str dir) " :fsm :promethean}") "utf8"))
+    (set! (.-argv js/process) (clj->js (concat ["node" "rheos"] argv-tail ["--json" "--config" config-path])))
+    (set! (.-exitCode js/process) 0)
+    (set! *print-fn* (fn [& args] (swap! output into args)))
+    (try
+      (await (cli/main))
+      {:exit-code (.-exitCode js/process)
+       :response (js->clj (js/JSON.parse (apply str @output)) :keywordize-keys true)}
+      (finally
+        (set! (.-argv js/process) saved-argv)
+        (set! (.-exitCode js/process) saved-exit)
+        (set! *print-fn* saved-print)
+        (projects/set-projects! saved-projects)))))
+
+(deftest ^:async cli-writer-conflict-is-a-refusal-without-effects
+  (await
+   (with-cards [{:uuid "subject" :status "incoming"}]
+     (^:async fn [{:keys [project dir ledger-path]}]
+       (let [source-path (path/join dir "subject.md")
+             before (await (.readFile fsp source-path "utf8"))
+             history (await (.readFile fsp ledger-path "utf8"))]
+         (await
+          (publication/with-reservation! project
+            (^:async fn []
+              (let [owner-path (path/join dir publication/reservation-dir-name "owner.json")
+                    owner (await (.readFile fsp owner-path "utf8"))
+                    {:keys [exit-code response]} (await (fixture-cli-outcome! dir ["add-comment" "subject" "--text" "Contender"]))]
+                (is (= 3 exit-code))
+                (is (= "conflict" (:kind response)))
+                (is (false? (:ok response)))
+                (is (= before (await (.readFile fsp source-path "utf8"))))
+                (is (= history (await (.readFile fsp ledger-path "utf8"))))
+                (is (= owner (await (.readFile fsp owner-path "utf8")))))))))))))
+
+(deftest ^:async cli-partial-effect-retains-error-exit-and-actual-readback
+  (await
+   (with-cards [{:uuid "subject" :status "incoming"}]
+     (^:async fn [{:keys [dir ledger-path]}]
+       (let [source-path (path/join dir "subject.md")
+             before (await (.readFile fsp source-path "utf8"))
+             history (await (.readFile fsp ledger-path "utf8"))
+             {:keys [exit-code response]}
+             (with-redefs [events/emit-comment! (fn [& _] (js/Promise.reject (js/Error. "Controlled CLI event append failure")))]
+               (await (fixture-cli-outcome! dir ["add-comment" "subject" "--text" "Published before event failure"])))]
+         (is (= 4 exit-code))
+         (is (= "partial-effect" (:kind response)))
+         (is (= "event-append" (:phase response)))
+         (is (false? (:ok response)))
+         (is (not= before (await (.readFile fsp source-path "utf8"))))
+         (is (pos? (get-in response [:file-readback :bytes])))
+         (is (= history (await (.readFile fsp ledger-path "utf8")))))))))
 
 (deftest ^:async canonical-loader-retains-accepted-relationship-facts
   (await

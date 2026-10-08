@@ -1,0 +1,24 @@
+{
+  "schema": "open-hax.review-input/v1",
+  "base_sha": "660a6f880769edcf9e52cc5e21e477a5545133f8",
+  "head_sha": "28b2a9bf11e98b86628f3f5cf75ebbb0adbfab72",
+  "diff_base_sha": "660a6f880769edcf9e52cc5e21e477a5545133f8",
+  "full_diff": {
+    "path": "basehead.diff",
+    "bytes": 779178,
+    "sha256": "a572bfd2a9b7f6991788e1904393701f10fc918113c8063101e686f7068dd34a"
+  },
+  "preview": {
+    "path": "pr.diff",
+    "limit_bytes": 300000,
+    "truncated": true
+  },
+  "provenance": {
+    "repository": "riatzukiza/rheos",
+    "pull_request": "9",
+    "run_id": "37836132228",
+    "run_attempt": "1",
+    "workflow_sha": "ae87938af29d7366ab6ccce9a3b627cc190fd0c2",
+    "workflow_ref": "riatzukiza/rheos/.github/workflows/eta-mu-review.yml@refs/pull/9/merge"
+  }
+}

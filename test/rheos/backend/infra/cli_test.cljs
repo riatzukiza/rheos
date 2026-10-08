@@ -108,7 +108,8 @@
 
 (deftest exit-codes-are-stable
   (testing "The published mapping — changes here are breaking for every caller"
-    (is (= {:ok 0 :usage 1 :not-found 2 :refused 3 :internal 4} cli/exit-codes))))
+    (is (= {:ok 0 :usage 1 :not-found 2 :refused 3 :conflict 3 :internal 4 :partial-effect 4}
+           cli/exit-codes))))
 
 ;; ---------------------------------------------------------------------------
 ;; Argument parsing
