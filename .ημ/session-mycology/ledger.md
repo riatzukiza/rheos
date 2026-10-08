@@ -41,3 +41,10 @@
 - Receipt `cephalon-rheos4-existing-bootstrap-caller-correction-20261008`; efficiency0.66, friction0.38, skill-candidate0.19.
 - Real hosted gates exposed own omitted declared materializer. Inspect all existing build inputs before classifying a failure as new feature or baseline source repair.
 - Append the causal correction; preserve failed artifact and old journal bytes. Generated source dependencies are narrow reproducible outputs, while tracked mutations remain visible. No spore.
+
+## 2026-10-08T08:24:41.492Z — qualified planning and real contract RED
+
+- Receipt `cephalon-rheos4-planning-qualification-contract-red-20261008T0812`; efficiency0.76, friction0.21, skill-candidate0.12.
+- Actual current-head full native reviews qualify the planning gate after complete input and successful publication. Historical quota, omitted input and failed publication remain distinct evidence.
+- Native comment writers may change bookkeeping and concatenate comment sections. Persist pre-state before assertions; compare native body/comment content and immutable ledger prefixes without assuming a section layout.
+- Ready admission and a behavioral baseline are prerequisite progress; graph laws, writer/parity, release and the accepted character slice remain unfinished. No spore.

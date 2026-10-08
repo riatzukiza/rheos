@@ -1,0 +1,21 @@
+{
+  "source_head": "e8105ee22f3c71be7871fa77173d23554be69d8b",
+  "source_path": "src/rheos/backend/law/frontmatter.cljs",
+  "source_sha256": "af08622f7b673f123dbb9d263cc18e6842f85a6a616b3ad839c7bc81768d6b0a",
+  "command": [
+    "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+    "/home/err/.npm/_npx/0856042db19db713/node_modules/nbb/cli.js",
+    "-cp",
+    "src",
+    "/home/err/spaces/cephalon-rheos-relationships/rheos/.\u03b7\u03bc/verification/rheos-relationships-contract-20261008/baseline_frontmatter.cljs"
+  ],
+  "exit": 1,
+  "tests": 2,
+  "assertions": 6,
+  "failures": 3,
+  "errors": 0,
+  "stdout_sha256": "c78f35caf5087b0234e55182d1aff5003659cc72601841379a9205332227a323",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "proof": "Actual original field admission fails behavioral assertions; no unresolved namespace or missing dependency supplied RED.",
+  "limits": "The original guard refuses relationships. This does not execute graph validation, persistence, projection retention, inter-process serialization or live board behavior. Dedicated portable graph and public writer fixtures remain required."
+}

@@ -1,0 +1,258 @@
+{
+  "evidence_tier": "observed-command-output transcription with actual native source identities; not raw GitHub response or synthetic approval",
+  "head": "e8105ee22f3c71be7871fa77173d23554be69d8b",
+  "base": "11811264a308d406cb612aefa1dad40818675e5e",
+  "personal_head_and_base": "riatzukiza/rheos",
+  "actual_mimo_approval": {
+    "native_review_id": 5453342097,
+    "author": "eta-mu-ai[bot]",
+    "state": "APPROVED",
+    "submitted_at": "2026-10-08T07:41:39Z",
+    "raw_native_bytes": 3801,
+    "raw_native_sha256": "9e82e4427dccadcebbbdb8031980ce758b1f42c9651cc527a1889514858f6706",
+    "run": 37740390218,
+    "attempt": 2,
+    "review_job": 113199909248,
+    "final_gate": 113204330054,
+    "artifact": 11535715724,
+    "artifact_zip_bytes": 18185,
+    "artifact_zip_sha256": "e602451b38882d53afaa812a684789db463180e140e76a8af4bd8c42badec3d4",
+    "coverage": {
+      "files": 53,
+      "pages_delivered": 24,
+      "pages_assessed": 24,
+      "missing": []
+    }
+  },
+  "actual_coderabbit_completion": {
+    "request_id": 6055459294,
+    "completion_reply_id": 6055461197,
+    "completion_reply_updated_at": "2026-10-08T08:04:35Z",
+    "summary_id": 6022099803,
+    "summary_updated_at": "2026-10-08T08:04:31Z",
+    "run_id": "48b5a76d-caa6-4170-84ba-89a346f4340a",
+    "selected_files": 53,
+    "declared_omitted_scope": false,
+    "verdict": "No actionable comments were generated in the recent review.",
+    "sourceCommitId": "e8105ee22f3c71be7871fa77173d23554be69d8b",
+    "coveredCommitId": "e8105ee22f3c71be7871fa77173d23554be69d8b",
+    "coverage_kind": "reviewed",
+    "raw_summary_bytes": 16762,
+    "raw_summary_sha256": "dc6d59105fae5ab109a33b4ebe798b1adb3d9649f1bf6729941a412a752b85cd",
+    "raw_reply_bytes": 4526,
+    "raw_reply_sha256": "30e4da96fc146a1e6e4629c271c9dc29ef513a9dea4d59d357f0151ac4cb5b32",
+    "synthetic_formal_approval": false
+  },
+  "canonical_planning_gate": {
+    "observed_at": "2026-10-08T08:07:24.141166+00:00",
+    "native_local_head": "e8105ee22f3c71be7871fa77173d23554be69d8b",
+    "native_local_base": "11811264a308d406cb612aefa1dad40818675e5e",
+    "personal_binding": true,
+    "auto_merge": null,
+    "base_ancestor": true,
+    "cli_exit": 0,
+    "stdout": "riatzukiza/rheos#4  head e8105ee\n  coderabbit: completed   checks: {:pass 3}\n  threads: 2 total, 0 unresolved; by severity {}; informational 0\n  exact-head approvals: #{\"mimo\" \"coderabbit\"}  observed commit binding: {\"mimo\" #{\"e8105ee22f3c71be7871fa77173d23554be69d8b\"}, \"coderabbit\" #{\"e8105ee22f3c71be7871fa77173d23554be69d8b\"}}\n  completed planning rounds: 1 / soft minimum 5  participants: #{\"coderabbit\" \"mimo\"}\n  codex quota-unavailable: native source 6022096337 request  scope account observed 2026-10-06T17:48:16Z retry-at-ms UNKNOWN\n  gate: PASS\n",
+    "stderr": "",
+    "native_pr_sha256": "ce5e3dd9e957f05e5a57892073b2f6c79ed31b33d36472f84d17dd78c71b5057"
+  },
+  "native_readiness": {
+    "observed_at": "2026-10-08T08:12:00.507997+00:00",
+    "source_head": "e8105ee22f3c71be7871fa77173d23554be69d8b",
+    "story_uuid": "rheos-issue-3-relationship-contract",
+    "final_status": "in_progress",
+    "native_only": true,
+    "unrelated_cards_and_held_journals_byte_identical": true,
+    "operations": [
+      {
+        "command": [
+          "/home/err/.volta/bin/eta-mu",
+          "kanban",
+          "move",
+          "rheos-issue-3-relationship-contract",
+          "--to",
+          "accepted",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/owned-rheos-board-config.json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "8635d851992e12ee21ba03bd9fcbecf7137c9812370b3b28218d2383ca8642a3",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/home/err/.volta/bin/eta-mu",
+          "kanban",
+          "read-task",
+          "rheos-issue-3-relationship-contract",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/owned-rheos-board-config.json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "e13f254339df8d60f798dd650fbb8ba3a913c9574ef8fabe2dbf4e4a91a9cecf",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/home/err/.volta/bin/eta-mu",
+          "kanban",
+          "move",
+          "rheos-issue-3-relationship-contract",
+          "--to",
+          "breakdown",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/owned-rheos-board-config.json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "2d00b25f86ea087c62409b0660f71259e65f043182e3279ef11beb1fd875ccc3",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/home/err/.volta/bin/eta-mu",
+          "kanban",
+          "read-task",
+          "rheos-issue-3-relationship-contract",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/owned-rheos-board-config.json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "57fa41d65688623fc6f35b830d938b2a6a7f4a10882637d600d4baa430d406bc",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/home/err/.volta/bin/eta-mu",
+          "kanban",
+          "comment",
+          "rheos-issue-3-relationship-contract",
+          "Planning qualification: canonical pr-flow gate PASS at 2026-10-08T08:07:24Z on e8105ee22f3c71be7871fa77173d23554be69d8b/base11811264a308d406cb612aefa1dad40818675e5e. Native MiMo APPROVED5453342097 and CodeRabbit completed request6055459294/reply6055461197/current summary6022099803; all53 selected inputs, no declared omissions,1 completed available-agent planning round,3 passing deterministic checks,2 settled findings. Starting only this3-point pure contract story. Writer and parity prerequisites stay Incoming. Implementation choices within the reviewed scope: identity means exact existing nonblank UUID-field string including supported legacy opaque IDs, not a new hexadecimal-only restriction; parent/epic are optional singular references; dependency admits a single string, comma-separated strings or a vector of strings, with nil/blank/empty vector as explicit removal and malformed/duplicate members refused. Parent hierarchy and dependency graphs are independently acyclic; epic membership agrees with the nearest epic ancestor. Relationship mutations validate the whole proposed selected-project graph, with classified atomic refusal; descriptive-only legacy edits keep their existing authority. Deterministic normalized dependencies are sorted. Reading malformed legacy data reports it without silent repair. No-op relationship replacement/removal changes neither card bytes nor successful mutation history. Actual portable RED fixtures precede implementation and subsequent code review; these choices are author decisions, not a claim that either reviewer explicitly enumerated every spelling. This is prerequisite implementation, not B1/B2/B3 delivery or deployment.",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/owned-rheos-board-config.json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "dc4adde0b7b74dde5d22d6c5b875761e2dae3c2b0cf49fd62f29fca8f3ecce41",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/home/err/.volta/bin/eta-mu",
+          "kanban",
+          "move",
+          "rheos-issue-3-relationship-contract",
+          "--to",
+          "ready",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/owned-rheos-board-config.json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "b603b1aa729ca48cef4562b65d8ff8c4dd5387b1459973edba23fba5246451b7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/home/err/.volta/bin/eta-mu",
+          "kanban",
+          "read-task",
+          "rheos-issue-3-relationship-contract",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/owned-rheos-board-config.json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "3518d92e723ab434137e84f6343711dc3c6ff7bc9108c5bd2c543974ce845f66",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/home/err/.volta/bin/eta-mu",
+          "kanban",
+          "move",
+          "rheos-issue-3-relationship-contract",
+          "--to",
+          "todo",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/owned-rheos-board-config.json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "13267e5cafcdedcaae89fd410f4321012a636f4f5d87303945e5fcff5f119ab0",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/home/err/.volta/bin/eta-mu",
+          "kanban",
+          "read-task",
+          "rheos-issue-3-relationship-contract",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/owned-rheos-board-config.json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "e0f2963eaf90787ff083f59f601147fc0a8fe5c910eb5c746dd433c4d408516e",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/home/err/.volta/bin/eta-mu",
+          "kanban",
+          "move",
+          "rheos-issue-3-relationship-contract",
+          "--to",
+          "in_progress",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/owned-rheos-board-config.json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "cbdce2f34e8aac81c4b733c8bd1e9b2803d07f56e83f976d894def65f379aa73",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/home/err/.volta/bin/eta-mu",
+          "kanban",
+          "read-task",
+          "rheos-issue-3-relationship-contract",
+          "--config",
+          "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/owned-rheos-board-config.json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "0a921b7636623badb9136b77a48bd5e7b091218f7b462c2b9a3b127023e5afe4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "card_sha256": "47318ea4870995ae789e17ff56e560fc6c14246f91bddebc33df3783c0068a5d",
+    "note": "Ready admission precedes in_progress through canonical installed Rheos; no dependent story admitted, no status hand edit, no implementation or deployment credit."
+  },
+  "baseline_red": {
+    "source_head": "e8105ee22f3c71be7871fa77173d23554be69d8b",
+    "source_path": "src/rheos/backend/law/frontmatter.cljs",
+    "source_sha256": "af08622f7b673f123dbb9d263cc18e6842f85a6a616b3ad839c7bc81768d6b0a",
+    "command": [
+      "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+      "/home/err/.npm/_npx/0856042db19db713/node_modules/nbb/cli.js",
+      "-cp",
+      "src",
+      "/home/err/spaces/cephalon-rheos-relationships/rheos/.\u03b7\u03bc/verification/rheos-relationships-contract-20261008/baseline_frontmatter.cljs"
+    ],
+    "exit": 1,
+    "tests": 2,
+    "assertions": 6,
+    "failures": 3,
+    "errors": 0,
+    "stdout_sha256": "c78f35caf5087b0234e55182d1aff5003659cc72601841379a9205332227a323",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proof": "Actual original field admission fails behavioral assertions; no unresolved namespace or missing dependency supplied RED.",
+    "limits": "The original guard refuses relationships. This does not execute graph validation, persistence, projection retention, inter-process serialization or live board behavior. Dedicated portable graph and public writer fixtures remain required."
+  },
+  "current_native_description": {
+    "updated_at": "2026-10-08T08:20:02Z",
+    "bytes": 30597,
+    "sha256": "dfa7aca9bb9fb0d4fe8c2ad49a6fb5d74d30c34d5142441a9f23328eca330dbd",
+    "whole_body_readback": "PASS"
+  },
+  "limits": [
+    "Original b9dd receipt-omitting review and first HTTP502 publication failure remain historical evidence.",
+    "This planning qualification and behavioral baseline do not implement graph laws, relationship retention, persistence, replay, concurrency or dependency-aware admission.",
+    "Only the contract story entered Ready and In Progress through installed native Rheos. Writer and parity remain Incoming.",
+    "Subsequent implementation head needs actual code-stage review and all gates. No deployment or character B1/B2/B3 completion.",
+    "Historical receipt timestamps are retained unchanged; no cumulative whole-journal strict-validation pass is claimed."
+  ]
+}
