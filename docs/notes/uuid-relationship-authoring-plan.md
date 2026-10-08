@@ -36,12 +36,14 @@ failure/concurrency behavior to be specified before green implementation.
 | Repetition | Accepted replacement/removal and true no-op behavior have explicit bytes/event contracts. Repeating an identical relationship must not fabricate another successful graph change. |
 | Concurrency | Define a canonical revision/serialization boundary shared across actual CLI processes and service writers. Revalidate or visibly refuse stale proposals. Specify file/event failure recovery without rewriting immutable history. |
 | Authority | Pure shapes/normalization/graph decisions are `.cljc` Clojure data. Existing creation/edit infra supplies host facts and effects; status stays with the FSM. Public callers cannot bypass the accepted relationship contract through generic frontmatter. |
-| Public surfaces | Canonical CLI, HTTP/API and MCP authoring/read parity. HTTP acceptance ends at server reads and projections preserving accepted references. Browser-client code, a new UI editor and end-to-end browser tests are outside this issue's 3/5/5 story scope. |
+| Public surfaces | Canonical CLI, HTTP/API and MCP authoring/read parity. HTTP acceptance ends at server reads and projections preserving accepted references. Browser-client code, a new UI editor and end-to-end browser tests are outside the writer/parity story scope. |
 
 ## Review and implementation checkpoints
 
-The epic proposes 13 points split 3/5/5. Native planning review must explicitly
-assess those estimates and settle the table, not merely acknowledge the prose.
+The original epic proposed 13 points split 3/5/5. The current proposal is
+3/8/5, totaling 16, as detailed in **Explicit readiness proposal** below.
+Native planning review must explicitly assess those estimates and settle the
+table, not merely acknowledge the prose.
 Reviewed incoming cards then transition through Rheos to ready. Red laws and
 real adapter fixtures precede green; hosted exact-head gates and required review
 convergence precede merge. Source-preserving writes, standalone CI/dependencies
@@ -105,12 +107,14 @@ the policy, exact diagnostics, reservation/revalidation and failure behavior.
 No status setting through generic frontmatter, local Foresight validator or
 alternative ledger can stand in for this path.
 
-This is a fresh planning amendment of the already selected prerequisite, not
-implementation or admission. Original frontmatter identities, relationships,
-estimates and Incoming statuses remain intact. The remaining 5/5 estimates and
-13-point aggregate are provisional until the amended scope is reviewed. If
-review requires another story or additional selected capacity, report that
-requirement against the fixed milestone before expanding its inventory.
+PR7 recorded this planning amendment of the already selected prerequisite,
+without implementation or admission. At that revision, original frontmatter
+identities, relationships, 5/5 estimates, 13-point aggregate and Incoming
+statuses remained intact. The later native estimate update below supersedes
+those provisional estimates; identities, relationships and Incoming statuses
+remain unchanged. If review requires another story or additional selected
+capacity, report that requirement against the fixed milestone before expanding
+its inventory.
 
 Source-preserving Rheos PR1 is now qualified and merged. Its merged tree and
 612713-byte base-to-head diff are exact to the reviewed source, SHA256
@@ -121,8 +125,8 @@ mood or automatic maker recall.
 
 ## Explicit readiness proposal — 2026-10-08
 
-The preceding paragraph describes PR7's retained frontmatter, not the following
-native estimate update. PR7 merged as
+Earlier paragraphs describe the PR7-era retained frontmatter and the prior
+13-point proposal, superseded by the following native estimate update. PR7 merged as
 `54ae39a598fe813ddea7f19b19cb4122a907d060`; its CodeRabbit and MiMo verdicts
 qualified the scope amendment but did not explicitly answer the estimate and
 breakdown question. The author now proposes writer 8, parity 5 and aggregate

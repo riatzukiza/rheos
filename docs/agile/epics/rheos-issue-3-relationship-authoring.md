@@ -111,11 +111,15 @@ their own scopes.
 
 ## Verification
 
-This documentation change adds manually authored incoming cards, a supported
-Rheos input. It changes no engine source, existing card, configuration or tracked
-event. Current verification is source inspection, exact changed-path/prefix
-checks and native readback when available. Future executable acceptance belongs
-to the stories; no implementation or hosted pass is claimed here.
+The initial planning revision added manually authored incoming cards, a
+supported Rheos input, without changing engine source, existing cards,
+configuration or tracked events. Later revisions added the qualified portable
+contract and amended these existing cards through native Rheos comments and
+estimate writes, with their tracked event appends. Those executed operations
+are historical evidence; they do not establish writer integration or lifecycle
+admission. Current planning verification uses source inspection, exact
+changed-path/prefix checks and native readback. Future writer/parity acceptance
+belongs to the remaining stories; no implemented admission is claimed here.
 
 ## Risks
 

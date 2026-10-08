@@ -284,3 +284,19 @@
 - Explicitreadinessproposal3/8/5=16 reports+3capacity for alreadyselected prerequisite. NativeRheoscomments/points/Incomingreadback and fiveappendedevents preserved; no newstory/Ready/RED/Bproof.
 - Postprocessing sectiontext/content assumption failed aftersuccessfulnativeops; corrected usingactualreadback withoutreplayingwrites. Use returnedshape beforeassertions. Sourcepathreaderrors were corrected as operator diagnostics.
 - Evidence: rheos7-qualified-planning-merge-20261008.json SHA036b2ead84ccfb526595f107dc52b295e17a1de09f5a0b02f7537f2435da3095; readinessproof SHA4af75c9f9f52db02cc4e5bd7d7a08e90d7412ed5a29d0e3c69a9a527047e3cd7. Existingbyteprefixesretained, no spore/runtime/paidusage.
+
+## 2026-10-08T17:22:25.773Z — cephalon-rheos8-readiness-publication-source-20261008T1723
+
+- p-efficiency: 0.88; p-friction: 0.10; p-skill-candidate: 0.02.
+- Published PR8 exact fcee/base54 with verified body and stage. Its required hosted artifact was fully read, source-bound and checked; MiMo remains pending and CodeRabbit has a native included cooldown. No approval or planning-round credit was inferred.
+- Preserve old rows; use a new correction only when useful. The containing repository supplies attribution when permitted by the owning reader contract. No retrospective rewrite or observation-only push.
+- Evidence: .ημ/review-evidence/rheos8-readiness-publication-and-current-hosted-proof-20261008.json SHA94059d82d24185366499f50fd0d5f71724c15e3e4e33ab4f96a03417edf03bdd. Initial evidence-path assumptions were corrected by locating the existing files; no production failure or artifact recreation.
+- Current B1/B2/B3 are not implemented. Continue fresh review; retain storage floor and active-maker protection. No spore.
+
+## 2026-10-08T17:39:11.063Z — cephalon-rheos8-mimo-finding-fixed-source-20261008T1739
+
+- p-efficiency: 0.91; p-friction: 0.08; p-skill-candidate: 0.02.
+- Native MiMo completed exact fcee with COMMENTED and one verified paragraph-reference finding; no approval credit. Full six-file attempt, all twelve contiguous pages and actual native body verified.
+- Corrected mutable planning prose and labeled original estimates/verification historically. Card frontmatter, native comments and all existing journal bytes are retained. New commit must receive fresh full review and hosted gates.
+- Evidence: .ημ/review-evidence/rheos8-mimo-completed-planning-finding-20261008.json SHAff8faa9a207ce70f1260a512df73721aaee626168a26b53c4e8ece37284d8791; native review5460549405/root4222178580. Whole suffix arithmetic remains distinct from an earlier observation checkpoint.
+- Containing repository supplies attribution when permitted; never repair historical rows in place. No spore or runtime mutation.
