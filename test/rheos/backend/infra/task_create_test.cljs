@@ -6,7 +6,8 @@
             [rheos.backend.domain.events :as events]
             [rheos.backend.domain.task-create :as card]
             [rheos.backend.infra.task-create :as task-create]
-            [rheos.backend.shape.content-parser :as content-parser]))
+            [rheos.backend.infra.task-store :as task-store]
+            [rheos.backend.infra.content-parser :as content-parser]))
 
 (defn- tmp-dir []
   (path/join (.tmpdir os) (str "rheos-create-test-" (.now js/Date) "-" (rand-int 100000))))
@@ -220,3 +221,53 @@
           (is (= :refused (:kind (ex-data err))))
           (is (:ok ok) "tasks/ is inside the projection"))
         (finally (await (cleanup! project)))))))
+
+(deftest ^:async created-titles-survive-load-and-the-next-create
+  (doseq [title ["Fix \"quoted\" work" "Fix C:\\work" "Literal C:\\new\\temp"
+                 "Line one\nLine two\r\n\tTabbed"
+                 (str "Controls " (apply str (map char (range 32))))
+                 "Unicode\u0085next\u2028line\u2029paragraph"
+                 (str "Lone high " (char 55296) " end")
+                 (str "Lone low " (char 56320) " end")
+                 (str "Supplementary " (char 55357) (char 56832))]]
+    (let [project (await (scratch-project))
+          captured (atom [])
+          unsub (events/subscribe! #(swap! captured conj %))]
+      (try
+        (let [result (await (task-create/create-task!
+                             {:project project :title title :uuid "escaped-title" :source "test"}))
+              tasks-or-error (try (await (task-store/load-tasks (:tasks-dir project)))
+                                  (catch :default error error))
+              loaded (when (vector? tasks-or-error) (first tasks-or-error))
+              next-or-error (try (await (task-create/create-task!
+                                         {:project project :title "Next plain card" :source "test"}))
+                                 (catch :default error error))
+              created (first (filter #(= "task-created" (:type %)) @captured))]
+          (is (:ok result))
+          (is (vector? tasks-or-error) "a successful create must remain readable")
+          (is (= title (:title loaded)) "escaped source retains the requested title")
+          (is (:ok next-or-error) "one created card must not poison subsequent creation")
+          (is (= title (:title created)) "the event and reloaded card describe the same title")
+          (is (= (:uuid result) (:task-id created))))
+        (finally
+          (unsub)
+          (await (cleanup! project)))))))
+
+(deftest ^:async creation-refuses-unloadable-core-fields-before-effects
+  (let [project (await (scratch-project))
+        target-dir (path/join (:tasks-dir project) "new-dir")
+        captured (atom [])
+        unsub (events/subscribe! #(swap! captured conj %))]
+    (try
+      (let [error (try (await (task-create/create-task!
+                               {:project project :title "Invalid priority" :priority ["P0" "P1"]
+                                :dir "new-dir" :source "test"}))
+                       nil (catch :default error error))
+            exists? (try (await (.stat fsp target-dir)) true (catch :default _ false))]
+        (is (= :refused (:kind (ex-data error))))
+        (is (= :priority (:field (ex-data error))))
+        (is (false? exists?) "a refused candidate creates no target directory or file")
+        (is (empty? @captured) "a refused candidate publishes no creation event"))
+      (finally
+        (unsub)
+        (await (cleanup! project))))))

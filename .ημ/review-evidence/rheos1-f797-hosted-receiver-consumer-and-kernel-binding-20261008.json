@@ -1,0 +1,173 @@
+{
+  "tier": "derived actual command/native readback/immutable artifact verification transcription; not native provider approval",
+  "observed_at": "2026-10-08T13:21:00.744Z",
+  "source": {
+    "schema": "observed-artifact-verification/v1",
+    "head": "f797115e9a0b44fe2415f1d81fe2f6b6afc47195",
+    "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+    "zip_artifact_id": 11552970061,
+    "zip_sha256": "993b8de0ae92b89b2bd236037922006f2e8ca8b8e9e333669f27f86d975b453e",
+    "full_git_diff_bytes": 332175,
+    "full_git_diff_sha256": "2e3f1246e78ba6fe09a752751116739e5a572e571b509c04214c459afe49ec55",
+    "git_diff_exact": true,
+    "actual_paths": 40,
+    "executed_gates": {
+      "diff_stat": 0,
+      "diff_hygiene": 0,
+      "tool_versions": 0,
+      "generated_path_policy": 0,
+      "install": 0,
+      "bootstrap": 0,
+      "lint": 0,
+      "test": 0,
+      "build": 0,
+      "release_outputs": 0
+    },
+    "clean_at_start_and_completion": true,
+    "captured_current_body_exact": true,
+    "body_sha256": "e27fa35d1e54d2e69d73c38eb83d0ed4f0d2754023ff7b9adf5b23387e87e638",
+    "node_test_runs": 2,
+    "tests": 214,
+    "assertions": 1760,
+    "failure_error_counts": [
+      0,
+      0
+    ],
+    "preview_truncated": true,
+    "full_input_retained": true,
+    "limits": [
+      "Deterministic artifact is execution evidence, not a provider verdict or deployed B1/B2/B3 proof.",
+      "Hosted unlocked dependencies differ from local cache; no reproducible dependency claim."
+    ]
+  },
+  "source_local_and_committed": {
+    "red_commit": "3c92255ea2fc6c708364f0d808bdd1ad93ee6103",
+    "green_commit": "f797115e9a0b44fe2415f1d81fe2f6b6afc47195",
+    "red_node": [
+      214,
+      1760,
+      18,
+      0
+    ],
+    "red_jvm": [
+      4,
+      54,
+      17,
+      0
+    ],
+    "green_node": [
+      214,
+      1760,
+      0,
+      0
+    ],
+    "green_jvm": [
+      4,
+      54,
+      0,
+      0
+    ],
+    "green_lint_errors_warnings": [
+      0,
+      0
+    ],
+    "green_build_compiler_warnings": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "retained_first_green_roundtrip_failures": 3,
+    "native_fixed_root": 4218934107,
+    "thread": "PRRT_kwDOU4Vf-c6qWyBw",
+    "native_body_response": 6060390342,
+    "source_native_body_bytes": 21225,
+    "source_native_body_sha256": "e27fa35d1e54d2e69d73c38eb83d0ed4f0d2754023ff7b9adf5b23387e87e638",
+    "old_7d_mimo5456765945": "APPROVED historical; no f797 transfer"
+  },
+  "receiver": {
+    "tier": "derived verification of actual immutable artifacts and native review",
+    "head": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+    "base": "084cd150b8d5b9848d026e9ef8717747964dcd6d",
+    "run": 37770627707,
+    "attempt": 2,
+    "deterministic_artifact": 11550493872,
+    "review_artifact": 11552366110,
+    "review_id": 5456970025,
+    "native_state": "CHANGES_REQUESTED",
+    "native_body_equals_submission": true,
+    "whole_full_git_diff_exact": true,
+    "full_git_diff_bytes": 125836,
+    "full_diff_utf16_units": 125712,
+    "full_diff_sha256": "09603bae90d1689b6dfc982e1da72fe20c25beb9daf5d0f25b45318b7a7b8642",
+    "all_17_contiguous_assessments": true,
+    "input_coverage": {
+      "chunks": 17,
+      "delivered": 17,
+      "assessed": 17,
+      "missing": []
+    },
+    "all_seven_attempted_pass": true,
+    "gate_statuses": {
+      "install": 0,
+      "bootstrap_extensions": 0,
+      "lint": 0,
+      "test": 0,
+      "generated_outputs_baseline": 0,
+      "build": 0,
+      "generated_outputs_restore": 0
+    },
+    "clean_before_after": true,
+    "captured_owner_exception": true,
+    "limitations": [
+      "Job success does not grant approval; required receipt finding and whole-body request remain open.",
+      "Original missing-repo rows are unchanged and strict reader failure persists; context compatibility is only planned.",
+      "Legacy terminal-ui inference warning remains; no silent zero-warning claim.",
+      "Generated-output baseline/restore exits are recorded in summary, but direct log capture is incomplete.",
+      "This evidence is not B1/B2/B3 deployment proof."
+    ]
+  },
+  "receiver_native_unresolved_path_reply": {
+    "native_reply_id": 4219413758,
+    "url": "https://github.com/riatzukiza/eta-mu/pull/8#discussion_r4219413758",
+    "body_bytes": 2708,
+    "body_sha256": "fa9d1a7206c0cf913f4b240b3baaa56e33f158dfd39cb04fca69a490eeadeaac",
+    "wholebody_readback_pass": true,
+    "settlement_claimed": false,
+    "no_thread_resolution": true,
+    "head": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+    "base": "084cd150b8d5b9848d026e9ef8717747964dcd6d"
+  },
+  "kernel_description_correction": {
+    "head": "6a4438982fdf1eca98f856748bb23b19ab017c0a",
+    "base": "e7ce01804633e0c3ddbb82cd444ac9e796b8cf65",
+    "stamp": "2026-10-08T13:16:37Z",
+    "old_body_bytes": 18339,
+    "old_body_sha256": "1a22985583a3c637a13a306690af882eaa1ebda1599ec68032d397bc0cc25d15",
+    "new_body_bytes": 20623,
+    "new_body_sha256": "8a5067e637e7943f10092d22a83636592c0339261d337e33f152ddd17528891d",
+    "historical_suffix_exact": true,
+    "native_wholebody_readback_pass": true,
+    "no_head_advance": true,
+    "auto_merge": null
+  },
+  "canonical_skill": {
+    "remote_head": "4b4f48dae1b804b2581974e604cca618ecedadf1",
+    "installed_selected_files": 38,
+    "mismatches": [],
+    "canonical_checkout_head_preserved": "0e1101c8d76cca92d6a4321f0e880624bf5e0d14",
+    "note": "Actual remote HEAD and selected immutable Git blobs compared this continuation; unrelated dirty index preserved."
+  },
+  "operator_corrections": [
+    "A read-only receiver JSON inspector initially assumed paginated native reviews were flat; actual list-of-pages was flattened before review inspection. No source write or provider failure resulted.",
+    "The kernel direct endpoint comparison73paths is distinct from the55path nativePR/common-ancestor diff; current native description states that distinction."
+  ],
+  "current_limits": [
+    "Source hosted MiMo job113322981756 remains in progress at latest read; no current f797 approval or convergence claim.",
+    "Source CodeRabbit risk coverage remains7d, auto-paused; fresh f797 full request must respect native cooldown/pending dedup, not repeat old completed request.",
+    "Receiver actual CHANGES_REQUESTED5456970025/thread4219242289 remains open. Original receipt256-258 bytes and strict reader failure remain unchanged. Existing context-compatibility plan is unimplemented, baseline discovery test scope choice pending.",
+    "Kernel6a/currentbasee7unqualified. Old PASS description preserved exactly as historical suffix, no head/source integration or new review.",
+    "Accepted B1/B2/B3 remains unimplemented/unverified; goalACTIVE, heartbeatPAUSED.",
+    "No historical rewrite, local board/receipt semantic implementation, runtime/maker/PM2/cloud/owner/model/publication/credential mutation, credits, waiver, synthetic approval, spore or observation-only push."
+  ]
+}

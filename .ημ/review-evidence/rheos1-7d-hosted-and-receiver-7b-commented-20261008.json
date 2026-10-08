@@ -1,0 +1,533 @@
+{
+  "schema": "observed-native-and-command-verification-transcription/v1",
+  "tier": "derived; raw native artifacts retained privately; no synthetic approval",
+  "observed_at": "2026-10-08T12:32:43.625Z",
+  "source": {
+    "repository": "riatzukiza/rheos",
+    "pr": 1,
+    "publication": {
+      "at": "2026-10-08T12:18:07.303429+00:00",
+      "head": "7d10409191493f7359fdee14a5c0265672ee1b61",
+      "parents": [
+        "e634b40da8e5da7e1364138e703e052ca4f5b47b",
+        "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f"
+      ],
+      "tree": "a0c12dbed9074406344dfd15936be6b116717cb6",
+      "actual_base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+      "changed_paths": [
+        ".github/workflows/eta-mu-review.yml",
+        ".ημ/receipts.edn",
+        ".ημ/review-evidence/rheos1-source-preserving-main-integration-20261008.json",
+        ".ημ/review-evidence/rheos4-merged-contract-and-receiver-corrections-20261008.json",
+        ".ημ/review-evidence/rheos4-mimo-5455463863-completion-d556.json",
+        ".ημ/review-evidence/rheos4-mimo-5455463863-verification-d556.json",
+        ".ημ/review-evidence/rheos4-tied-diagnostics-published-20261008.json",
+        ".ημ/session-mycology/ledger.md",
+        "README.md",
+        "docs/cli.md",
+        "package.json",
+        "src/rheos/backend/domain/compose.cljs",
+        "src/rheos/backend/domain/task_edit.cljc",
+        "src/rheos/backend/domain/task_edit.cljs",
+        "src/rheos/backend/extern/content_parser.cljs",
+        "src/rheos/backend/extern/yaml.cljs",
+        "src/rheos/backend/infra/agent_tools.cljs",
+        "src/rheos/backend/infra/content_parser.cljs",
+        "src/rheos/backend/infra/http_server.cljs",
+        "src/rheos/backend/infra/task_create.cljs",
+        "src/rheos/backend/infra/task_edit.cljs",
+        "src/rheos/backend/infra/task_store.cljs",
+        "src/rheos/backend/infra/task_writeback.cljs",
+        "src/rheos/backend/infra/watcher.cljs",
+        "src/rheos/backend/law/frontmatter.cljc",
+        "src/rheos/backend/shape/content_parser.cljc",
+        "src/rheos/backend/shape/content_parser.cljs",
+        "test/rheos/backend/domain/compose_test.cljs",
+        "test/rheos/backend/domain/task_edit_test.cljc",
+        "test/rheos/backend/infra/task_create_test.cljs",
+        "test/rheos/backend/infra/task_edit_test.cljs",
+        "test/rheos/backend/infra/task_store_test.cljs",
+        "test/rheos/backend/infra/task_writeback_test.cljs",
+        "test/rheos/backend/infra/watcher_test.cljs",
+        "test/rheos/backend/shape/content_parser_test.cljs",
+        "test/rheos/backend/shape/frontmatter_serialization_test.cljc"
+      ],
+      "diff_stat": " .github/workflows/eta-mu-review.yml                |   89 +-\n \".\\316\\267\\316\\274/receipts.edn\"                   |    4 +\n ...urce-preserving-main-integration-20261008.json\" | 1797 ++++++++++++++++++++\n ...ontract-and-receiver-corrections-20261008.json\" |  188 ++\n .../rheos4-mimo-5455463863-completion-d556.json\"   |    1 +\n .../rheos4-mimo-5455463863-verification-d556.json\" |   55 +\n ...heos4-tied-diagnostics-published-20261008.json\" |   95 ++\n \".\\316\\267\\316\\274/session-mycology/ledger.md\"     |   27 +\n README.md                                          |   82 +-\n docs/cli.md                                        |    6 +-\n package.json                                       |    3 +-\n src/rheos/backend/domain/compose.cljs              |    9 +-\n src/rheos/backend/domain/task_edit.cljc            |   24 +\n src/rheos/backend/domain/task_edit.cljs            |   37 -\n src/rheos/backend/extern/content_parser.cljs       |    7 +\n src/rheos/backend/extern/yaml.cljs                 |  137 ++\n src/rheos/backend/infra/agent_tools.cljs           |    2 +-\n src/rheos/backend/infra/content_parser.cljs        |   39 +\n src/rheos/backend/infra/http_server.cljs           |    2 +-\n src/rheos/backend/infra/task_create.cljs           |   12 +-\n src/rheos/backend/infra/task_edit.cljs             |   19 +-\n src/rheos/backend/infra/task_store.cljs            |   54 +-\n src/rheos/backend/infra/task_writeback.cljs        |   22 +-\n src/rheos/backend/infra/watcher.cljs               |    2 +-\n src/rheos/backend/law/frontmatter.cljc             |   20 +\n src/rheos/backend/shape/content_parser.cljc        |  173 ++\n src/rheos/backend/shape/content_parser.cljs        |  115 --\n test/rheos/backend/domain/compose_test.cljs        |   83 +\n test/rheos/backend/domain/task_edit_test.cljc      |   44 +\n test/rheos/backend/infra/task_create_test.cljs     |   53 +-\n test/rheos/backend/infra/task_edit_test.cljs       |  111 +-\n test/rheos/backend/infra/task_store_test.cljs      |  109 ++\n test/rheos/backend/infra/task_writeback_test.cljs  |  152 +-\n test/rheos/backend/infra/watcher_test.cljs         |    2 +-\n test/rheos/backend/shape/content_parser_test.cljs  |  349 +++-\n .../shape/frontmatter_serialization_test.cljc      |   13 +\n 36 files changed, 3669 insertions(+), 268 deletions(-)\n",
+      "method": "ordinary merge commit, no rewrite",
+      "owned_held_prior_source_unchanged": true
+    },
+    "push": {
+      "head": "7d10409191493f7359fdee14a5c0265672ee1b61",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To github.com:riatzukiza/rheos.git\n   e634b40..7d10409  HEAD -> codex/preserve-markdown-source\n"
+    },
+    "whole_native_description_readback": {
+      "bytes": 12409,
+      "sha256": "a144262c6acfef013c8e615458c66acd39b1351545ceffaca29be9a34d58dbc0",
+      "head": "7d10409191493f7359fdee14a5c0265672ee1b61",
+      "auto_merge": null
+    },
+    "hosted": {
+      "tier": "derived independently verified native hosted artifact; not provider approval",
+      "head": "7d10409191493f7359fdee14a5c0265672ee1b61",
+      "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+      "run_id": 37775912056,
+      "job_id": 113306568758,
+      "artifact_id": 11550166584,
+      "artifact_zip": {
+        "bytes": 111526,
+        "sha256": "a1b02b525750a8c0a1f31e2865b51478a1f86f57aa125f97e23925bc69a4a907"
+      },
+      "summary": {
+        "schema": "open-hax.review-evidence/v2",
+        "repository": "riatzukiza/rheos",
+        "pull_request": 1,
+        "base_sha": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "expected_head_sha": "7d10409191493f7359fdee14a5c0265672ee1b61",
+        "executed_sha": "7d10409191493f7359fdee14a5c0265672ee1b61",
+        "completion_sha": "7d10409191493f7359fdee14a5c0265672ee1b61",
+        "head_sha": "7d10409191493f7359fdee14a5c0265672ee1b61",
+        "exact_head": true,
+        "clean_checkout": true,
+        "generated_at": "2026-10-08T12:20:25.111Z",
+        "result": "success",
+        "statuses": {
+          "diff_stat": 0,
+          "diff_hygiene": 0,
+          "tool_versions": 0,
+          "generated_path_policy": 0,
+          "install": 0,
+          "bootstrap": 0,
+          "lint": 0,
+          "test": 0,
+          "build": 0,
+          "release_outputs": 0
+        },
+        "attempted": {
+          "diff_stat": true,
+          "diff_hygiene": true,
+          "tool_versions": true,
+          "generated_path_policy": true,
+          "install": true,
+          "bootstrap": true,
+          "lint": true,
+          "test": true,
+          "build": true,
+          "release_outputs": true
+        },
+        "errors": [],
+        "interpretation": "Exit 125 means the gate was skipped because a required prerequisite failed."
+      },
+      "input_manifest": {
+        "schema": "open-hax.review-input/v1",
+        "base_sha": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "head_sha": "7d10409191493f7359fdee14a5c0265672ee1b61",
+        "diff_base_sha": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+        "full_diff": {
+          "path": "basehead.diff",
+          "bytes": 251103,
+          "sha256": "847ef12f27802ec8063423a8f284745c1c58051d725b1913c59f3bbf27084f77"
+        },
+        "preview": {
+          "path": "pr.diff",
+          "limit_bytes": 300000,
+          "truncated": false
+        },
+        "provenance": {
+          "repository": "riatzukiza/rheos",
+          "pull_request": "1",
+          "run_id": "37775912056",
+          "run_attempt": "1",
+          "workflow_sha": "b23da018d2eb17de0d291bcf77b100cf744950d5",
+          "workflow_ref": "riatzukiza/rheos/.github/workflows/eta-mu-review.yml@refs/pull/1/merge"
+        }
+      },
+      "checkout": {
+        "event_head_sha": "7d10409191493f7359fdee14a5c0265672ee1b61",
+        "expected_sha": "7d10409191493f7359fdee14a5c0265672ee1b61",
+        "executed_sha": "7d10409191493f7359fdee14a5c0265672ee1b61",
+        "expected_commit": true,
+        "event_head_matches": true,
+        "exact_head": true,
+        "clean": true
+      },
+      "actual_full_diff_equal": true,
+      "full_diff_bytes": 251103,
+      "full_diff_sha256": "847ef12f27802ec8063423a8f284745c1c58051d725b1913c59f3bbf27084f77",
+      "all10_attempted_and_passed": true,
+      "actual_tests": {
+        "tests": 210,
+        "assertions": 1705,
+        "runs": 2,
+        "failures": 0,
+        "errors": 0
+      },
+      "actual_lint_errors_warnings": [
+        0,
+        0
+      ],
+      "actual_four_releases": [
+        "server",
+        "cli",
+        "github-sync",
+        "app"
+      ],
+      "compiler_warnings": 0,
+      "tool_log": "===== tool_versions =====\ncommand: bash -euo pipefail -c $'\\n  node --version\\n  pnpm --version\\n  java -version\\n  clj-kondo --version\\n'\nv22.20.0\n10.14.0\nopenjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS, mixed mode, sharing)\nclj-kondo v2025.10.23\ntool_versions: exit 0\n\n",
+      "bootstrap_log": "===== bootstrap =====\ncommand: env -u NODE_PATH bash -euo pipefail -c $'\\n      # The 8 GiB reserve applies to this ephemeral hosted runner.\\n      # The accepted 20 GiB floor still governs local goal allocations.\\n      available_kib=$(df -Pk . | awk \"NR==2 {print \\\\$4}\")\\n      if ! [[ \"$available_kib\" =~ ^[0-9]+$ ]]; then\\n        echo \"Source bootstrap refused: invalid free-space observation\"\\n        exit 1\\n      fi\\n      echo \"Hosted source bootstrap: ${available_kib} KiB available; 8 GiB required\"\\n      if [[ \"$available_kib\" -lt 8388608 ]]; then\\n        echo \"Source bootstrap refused: less than 8 GiB free on hosted runner\"\\n        exit 1\\n      fi\\n      bash scripts/bootstrap-source-deps.sh\\n      for source_dir in deps/protocols/src deps/chat-ui/src; do\\n        test -d \"$source_dir\"\\n        test -n \"$(find \"$source_dir\" -type f -print -quit)\"\\n      done\\n    '\nHosted source bootstrap: 89105392 KiB available; 8 GiB required\nFetching Protocols source from eta-mu@0ed56aa74a53a1d1e9c2e55ce95451817a7f3a90...\n  protocols/src: 21 files\nFetching Chat UI source from open-hax/chat-ui@86385532b4f8606946555d0ada8e3fb22f35b4c3...\n  chat-ui/src: 10 files\nSource deps ready at /home/runner/work/rheos/rheos/deps\nbootstrap: exit 0\n\n",
+      "deterministic_log": {
+        "bytes": 28995,
+        "sha256": "fdb6f63bd9b3fdbf61a590acfeafc626c1c89fbf5e7e77ce4326074eb016f6bb"
+      },
+      "pr_context": {
+        "bytes": 5937,
+        "sha256": "6eaab9a0057af8757296b7eaed0b7ab0a0e3d9348732b7babf65f3fcab9b450b",
+        "captured_body_head": "e634b40da8e5da7e1364138e703e052ca4f5b47b; metadata captured before updated current description",
+        "current_native_body_readback": "head7d/36inputs/12409bytes/SHAa144262c6acfef013c8e615458c66acd39b1351545ceffaca29be9a34d58dbc0 verified separately"
+      },
+      "limits": [
+        "Unlocked dependency execution, not frozen/reproducibility proof",
+        "JVM28/550 executed locally; hosted compiledNode210/1705",
+        "No provider approval from deterministic result",
+        "No installed writer/parity/board/runtime/B1/B2/B3 proof"
+      ]
+    },
+    "full_review_request": {
+      "id": 6059825896,
+      "url": "https://github.com/riatzukiza/rheos/pull/1#issuecomment-6059825896",
+      "created_at": "2026-10-08T12:26:18Z",
+      "head": "7d10409191493f7359fdee14a5c0265672ee1b61",
+      "scope_paths": 36,
+      "required_receipt_suffix": 4,
+      "acknowledgement": 6059827924,
+      "state": "triggered; no completion recorded in this proof"
+    },
+    "current_mimo_handle": {
+      "run_id": 37775912056,
+      "job_id": 113307464895,
+      "last_observed_state": "in_progress",
+      "started_at": "2026-10-08T12:20:33Z"
+    },
+    "actual_newhead_codex_quota": {
+      "id": 6059687216,
+      "observed_at": "2026-10-08T12:18:28Z",
+      "scope": "account",
+      "retry_at": "UNKNOWN",
+      "credit": 0
+    }
+  },
+  "receiver": {
+    "repository": "riatzukiza/eta-mu",
+    "pr": 8,
+    "head": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+    "base": "084cd150b8d5b9848d026e9ef8717747964dcd6d",
+    "deterministic": {
+      "tier": "derived actual immutable artifact verification; not provider approval",
+      "repository": "riatzukiza/eta-mu",
+      "pull_request": 8,
+      "run_id": 37770627707,
+      "job_id": 113289041499,
+      "artifact_id": 11547778507,
+      "artifact_zip": {
+        "bytes": 1442864,
+        "sha256": "78dfb92f36d11625015edec5db81c00db6b8dcb34aad0e923701c0777d005982"
+      },
+      "summary": {
+        "schema": "open-hax.review-evidence/v2",
+        "repository": "riatzukiza/eta-mu",
+        "pull_request": 8,
+        "base_sha": "084cd150b8d5b9848d026e9ef8717747964dcd6d",
+        "expected_head_sha": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+        "executed_sha": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+        "completion_sha": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+        "head_sha": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+        "exact_head": true,
+        "clean_checkout": true,
+        "generated_at": "2026-10-08T11:49:03.330Z",
+        "result": "success",
+        "statuses": {
+          "install": 0,
+          "bootstrap_extensions": 0,
+          "lint": 0,
+          "test": 0,
+          "generated_outputs_baseline": 0,
+          "build": 0,
+          "generated_outputs_restore": 0
+        },
+        "attempted": {
+          "install": true,
+          "bootstrap_extensions": true,
+          "lint": true,
+          "test": true,
+          "generated_outputs_baseline": true,
+          "build": true,
+          "generated_outputs_restore": true
+        },
+        "errors": [],
+        "interpretation": "Exit 125 means the gate was skipped because a required prerequisite failed."
+      },
+      "input_manifest": {
+        "schema": "open-hax.review-input/v1",
+        "base_sha": "084cd150b8d5b9848d026e9ef8717747964dcd6d",
+        "head_sha": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+        "diff_base_sha": "084cd150b8d5b9848d026e9ef8717747964dcd6d",
+        "full_diff": {
+          "path": "basehead.diff",
+          "bytes": 125836,
+          "sha256": "09603bae90d1689b6dfc982e1da72fe20c25beb9daf5d0f25b45318b7a7b8642"
+        },
+        "preview": {
+          "path": "pr.diff",
+          "limit_bytes": 300000,
+          "truncated": false
+        },
+        "provenance": {
+          "repository": "riatzukiza/eta-mu",
+          "pull_request": "8",
+          "run_id": "37770627707",
+          "run_attempt": "1",
+          "workflow_sha": "0e2c0ae9c9dde3338347df4b2b45f396f2930b9f",
+          "workflow_ref": "riatzukiza/eta-mu/.github/workflows/opencode-code-review.yml@refs/pull/8/merge"
+        }
+      },
+      "checkout": {
+        "event_head_sha": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+        "expected_sha": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+        "executed_sha": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+        "expected_commit": true,
+        "event_head_matches": true,
+        "exact_head": true,
+        "clean": true
+      },
+      "actual_diff_bytes_equal": true,
+      "full_diff_sha256": "09603bae90d1689b6dfc982e1da72fe20c25beb9daf5d0f25b45318b7a7b8642",
+      "initial_completion_status": {
+        "bytes": [
+          1,
+          1
+        ],
+        "whitespace_only": true
+      },
+      "all_seven_attempted_and_passed": true,
+      "eta_mu_unit_and_workflow_resource_tests": [
+        [
+          "194",
+          "587",
+          "0",
+          "0"
+        ],
+        [
+          "6",
+          "78",
+          "0",
+          "0"
+        ]
+      ],
+      "native_log": {
+        "bytes": 173121,
+        "sha256": "260f5c57eb8b8c8d3b5fe4b18ed9cf7aad77b8d169f297b597baec72da0a16cb"
+      },
+      "retained_compiler_warning": {
+        "package": "terminal-ui",
+        "file": "packages/terminal-ui/test/cljs/eta_mu/terminal_ui/infra/session_selector_test.cljs:57:29",
+        "kind": "infer-warning",
+        "message": "Cannot infer target type in expression (. term -buf)",
+        "unchanged_source": true
+      },
+      "retained_other_notices": [
+        "Clojure external :paths deprecation for protocols/chat-ui",
+        "source-map-support absent notices"
+      ],
+      "operator_correction": "Initial helper assumed empty status files were zero bytes. Actual producer wrote newline-only; fixed read-only assertion against whitespace. No artifact rewrite/provider failure.",
+      "limits": [
+        "Actual seven deterministic gates not provider approval",
+        "Root pnpm test includes eta-mu194/587 plus six workflow-resource tests78assertions; changed JavaScript review workflow suite is not inferred from this log",
+        "Fresh receiver MiMo must be read separately",
+        "CodeRabbit explicit omitted reflection remains ineligible",
+        "No new RheosPR1 source integration or live runtime proof"
+      ]
+    },
+    "review": {
+      "tier": "derived immutable native artifact verification; finding-bearing COMMENTED, no approval",
+      "review_id": 5456317699,
+      "head": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+      "reviewer": "eta-mu-ai[bot]",
+      "native_body_bytes": 2114,
+      "native_body_sha256": "f416841f9d35afc5df81c3147b7ae37289b61bc5d7f41cf7084891dd10e1d644",
+      "submission_summary_equals_native_body": true,
+      "submission_event": "COMMENT",
+      "coverage": {
+        "chunks": 17,
+        "delivered": 17,
+        "assessed": 17,
+        "missing": []
+      },
+      "all_17_contiguous_utf16_pages_verified": true,
+      "full_diff_bytes": 125836,
+      "full_diff_utf16_units": 125712,
+      "input_source_matches_deterministic_manifest": true,
+      "zip": {
+        "id": 11548997757,
+        "bytes": 20408,
+        "sha256": "bea2d8fd384c3470daccf3e1a3631cf9a5d9c842a407dd58ba63af543a7031e8"
+      },
+      "finding": "Original three missing-repo receipts remain invalid; author metadata body captured earlier head/scope. Current native description already has owner exception and current9pathscope. Must answer every actual native item; do not rewrite history or claim whole-journal validity.",
+      "limits": [
+        "No APPROVED state or passing no-findings verdict",
+        "No cohort credit or fabricated identity",
+        "Current CodeRabbit omitted reflection remains incomplete"
+      ],
+      "producer_verification": {
+        "input-verification.json": {
+          "schema": "open-hax.review-input-verification/v1",
+          "input_verified": true,
+          "verification_stage": "fresh-review-job-before-model",
+          "base_sha": "084cd150b8d5b9848d026e9ef8717747964dcd6d",
+          "head_sha": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+          "diff_base_sha": "084cd150b8d5b9848d026e9ef8717747964dcd6d",
+          "full_diff": {
+            "path": "basehead.diff",
+            "bytes": 125836,
+            "sha256": "09603bae90d1689b6dfc982e1da72fe20c25beb9daf5d0f25b45318b7a7b8642"
+          },
+          "manifest_sha256": "93f1137dc9fac1d452b9dc17c6436d62d8edf072c16e5e9a66ef0fe4a07a2660",
+          "provenance": {
+            "repository": "riatzukiza/eta-mu",
+            "pull_request": "8",
+            "run_id": "37770627707",
+            "run_attempt": "1",
+            "workflow_sha": "0e2c0ae9c9dde3338347df4b2b45f396f2930b9f",
+            "workflow_ref": "riatzukiza/eta-mu/.github/workflows/opencode-code-review.yml@refs/pull/8/merge"
+          },
+          "evidence_artifact_name": "review-evidence-8-37770627707-1",
+          "verification_provenance": {
+            "repository": "riatzukiza/eta-mu",
+            "pull_request": "8",
+            "run_id": "37770627707",
+            "run_attempt": "1",
+            "workflow_sha": "0e2c0ae9c9dde3338347df4b2b45f396f2930b9f",
+            "workflow_ref": "riatzukiza/eta-mu/.github/workflows/opencode-code-review.yml@refs/pull/8/merge"
+          }
+        },
+        "submission-verification.json": {
+          "schema": "open-hax.review-submission-verification/v1",
+          "input_verified": true,
+          "verification_stage": "after-review-and-recovery-before-publication",
+          "base_sha": "084cd150b8d5b9848d026e9ef8717747964dcd6d",
+          "head_sha": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+          "diff_base_sha": "084cd150b8d5b9848d026e9ef8717747964dcd6d",
+          "full_diff": {
+            "path": "basehead.diff",
+            "bytes": 125836,
+            "sha256": "09603bae90d1689b6dfc982e1da72fe20c25beb9daf5d0f25b45318b7a7b8642"
+          },
+          "manifest_sha256": "93f1137dc9fac1d452b9dc17c6436d62d8edf072c16e5e9a66ef0fe4a07a2660",
+          "provenance": {
+            "repository": "riatzukiza/eta-mu",
+            "pull_request": "8",
+            "run_id": "37770627707",
+            "run_attempt": "1",
+            "workflow_sha": "0e2c0ae9c9dde3338347df4b2b45f396f2930b9f",
+            "workflow_ref": "riatzukiza/eta-mu/.github/workflows/opencode-code-review.yml@refs/pull/8/merge"
+          },
+          "evidence_artifact_name": "review-evidence-8-37770627707-1",
+          "verification_provenance": {
+            "repository": "riatzukiza/eta-mu",
+            "pull_request": "8",
+            "run_id": "37770627707",
+            "run_attempt": "1",
+            "workflow_sha": "0e2c0ae9c9dde3338347df4b2b45f396f2930b9f",
+            "workflow_ref": "riatzukiza/eta-mu/.github/workflows/opencode-code-review.yml@refs/pull/8/merge"
+          },
+          "input_verification_sha256": "0e0723f605cd62f0e849fccb987f873292909f48127db6d78f49cd350c7a1f50",
+          "context_sha256": "89a5814f7394a40ab97551117e2c96a3dc490885d88e272af42cbc5f7c676c7a",
+          "submission_sha256": "66926b2f09d286900449c49f30e385ca2671335a32011619a760ab147fbd7288",
+          "input_coverage": {
+            "chunks": 17,
+            "delivered": 17,
+            "assessed": 17,
+            "missing": []
+          }
+        },
+        "recovery.json": {
+          "schema": "open-hax.review-recovery/v1",
+          "max_attempts": 2,
+          "recovery_reason": null,
+          "attempts": [
+            {
+              "attempt": 1,
+              "exit_code": 0,
+              "invocation_state": "completed",
+              "response_file": "model-response-attempt-1.txt",
+              "stderr_file": "opencode-stderr-attempt-1.log",
+              "submission_state": "present"
+            }
+          ]
+        }
+      }
+    },
+    "finding": {
+      "review_id": 5456317699,
+      "root_comment_id": 4218712674,
+      "thread": "PRRT_kwDOU4VdxM6qWPYl",
+      "disposition": "Handled: explicit description-exception alternative already present; originals remain invalid and immutable",
+      "canonical_settle_exit": 0
+    },
+    "itemized_body_readback": {
+      "id": 6059783785,
+      "url": "https://github.com/riatzukiza/eta-mu/pull/8#issuecomment-6059783785",
+      "bytes": 2879,
+      "sha256": "7bf6a6af883400b5c6a32bbf2a908913a5e9faf69728c918ce27b545911764e4"
+    },
+    "current_body": {
+      "bytes": 13723,
+      "owner_exception": true,
+      "all9paths": true,
+      "originals_invalid": true,
+      "copies260_262_valid": true
+    },
+    "fresh_context_retry": {
+      "at": "2026-10-08T12:27:35.611660+00:00",
+      "request_comment_id": 6059847136,
+      "request_url": "https://github.com/riatzukiza/eta-mu/pull/8#issuecomment-6059847136",
+      "run_id": 37770627707,
+      "original_job": 113289041499,
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "reason": "Fresh actual deterministic pr-context capture of current owner exception; existing completed samehead review finding, not counters/quota churn",
+      "prior_attempt": 1
+    },
+    "attempt2": {
+      "run_id": 37770627707,
+      "run_attempt": 2,
+      "producer_job": 113310272722,
+      "state": "in_progress",
+      "reused_compile_job": 113310274607,
+      "reused_compile_result": "success"
+    },
+    "coderabbit_incomplete_scope": {
+      "summary": 6045982441,
+      "head": "7b935b514ffd3ba0605c4df0121fdcccf012b9b5",
+      "omitted_input": ".ημ/session-mycology/ledger.md",
+      "eligible": false,
+      "next_conservative_time": "after2026-10-08T12:35:00Z with fresh actual native evidence"
+    }
+  },
+  "policy": {
+    "native_remote_head": "4b4f48dae1b804b2581974e604cca618ecedadf1",
+    "selected_installed_files_byte_equal": 38,
+    "canonical_checkout_head": "0e1101c8d76cca92d6a4321f0e880624bf5e0d14",
+    "unrelated_index_and_branch_preserved": true,
+    "rule": "Current canonical optional quota, exact-head scope, settlement and convergence rules control; no local override or policy copy"
+  },
+  "limits": [
+    "No new source or receiver provider approval recorded by this proof. Completed deterministic jobs and COMMENTED full scope are distinct.",
+    "No whole-journal pass, historical rewrite, old-head approval transfer, paid credits or synthetic identity.",
+    "Current source description was updated after hosted context capture; old e634 metadata remains in immutable artifact and is explicitly disclosed.",
+    "No source deployment, installed writer/loader/parity/board readiness or B1/B2/B3 completion.",
+    "GoalACTIVE/heartbeatPAUSED; no maker/runtime/owner/PM2/cloud/model/credential/publication mutation or spore.",
+    "Fixed inventory/pending human choices retained; no new prerequisite."
+  ]
+}

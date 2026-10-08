@@ -2,6 +2,7 @@
   (:require ["node:fs/promises" :as fsp]
             ["node:os" :as os]
             ["node:path" :as path]
+            [clojure.string :as str]
             [cljs.test :refer [deftest testing is]]
             [rheos.backend.infra.task-store :as task-store]))
 
@@ -134,3 +135,115 @@
         (is (= #{"only"} uuids) "a cyclic directory symlink must not hang or duplicate cards"))
       (finally
         (await (.rm fsp base #js {:recursive true :force true}))))))
+
+(deftest ^:async refused-card-source-is-visible-without-a-partial-board
+  (let [dir (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-refused-source-")))
+        bad-path (path/join dir "broken.md")]
+    (try
+      (await (write-card! dir "valid" "Valid"))
+      (doseq [[source reason]
+              [["uuid: broken\nlabels: [unfinished\n" "invalid YAML"]
+               ["uuid: first\nuuid: second\n" "invalid YAML"]
+               ["{uuid: broken, status: incoming}\n" "block mapping"]
+               ["uuid: broken\nextension: &cycle [*cycle]\n" "Cyclic YAML aliases"]
+               ["uuid: broken\nextension: !!int [one]\n" "standard YAML tag"]
+               ["uuid: broken\ntitle: [one, two]\n" "Task title must be a string"]
+               ["uuid: broken\ntitle: {display: Broken}\n" "Task title must be a string"]
+               ["uuid: broken\npriority: [P0, P1]\n" "Task priority must be a string"]
+               ["uuid: broken\npriority: {name: P0}\n" "Task priority must be a string"]
+               ["uuid: broken\nstatus: [todo, done]\n" "Task status must be a string"]
+               ["uuid: broken\nstatus: {name: todo}\n" "Task status must be a string"]
+               ["uuid: [broken]\n" "Task uuid must be a string"]
+               ["uuid: {name: broken}\n" "Task uuid must be a string"]
+               ["slug: [broken]\n" "Task slug must be a string"]
+               ["slug: {name: broken}\n" "Task slug must be a string"]]]
+        (let [raw (str "---\n" source "---\n\n# Keep this body\n")]
+          (await (.writeFile fsp bad-path raw "utf8"))
+          (let [error (try (await (task-store/load-tasks dir))
+                           nil (catch :default err err))
+                data (ex-data error)]
+            (is (some? error) "a refused source must not become a successful partial board")
+            (is (= :refused (:kind data)))
+            (is (= bad-path (:source-path data)))
+            (is (and (string? (:diagnostic data))
+                     (str/includes? (:diagnostic data) reason)))
+            (is (and error (str/includes? (.-message error) bad-path)))
+            (is (= raw (await (.readFile fsp bad-path "utf8")))
+                "diagnosing a refused source never changes its bytes"))))
+      (await (.writeFile fsp bad-path card-markdown "utf8"))
+      (let [tasks (await (task-store/load-tasks dir))]
+        (is (vector? tasks) "repair restores the existing successful return shape")
+        (is (= #{"valid" "real-card"} (set (map :uuid tasks)))))
+      (finally
+        (await (.rm fsp dir #js {:recursive true :force true}))))))
+
+(deftest ^:async unclosed-frontmatter-refuses-the-load-and-recovers
+  (let [dir (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-unclosed-source-")))
+        bad-path (path/join dir "broken.md")
+        prose-path (path/join dir "ordinary.md")
+        prose "# Ordinary Markdown\n\n```yaml\n---\nuuid: example\n---\n```\n\nBody  \n"]
+    (try
+      (await (write-card! dir "valid" "Valid"))
+      (await (.writeFile fsp prose-path prose "utf8"))
+      (doseq [raw ["---\nuuid: broken\n# Unclosed body\n"
+                   "--- \t\nuuid: broken\ntext ---\n"
+                   "\uFEFF---\r\nuuid: broken\r\n# Unclosed body\r\n"]]
+        (await (.writeFile fsp bad-path raw "utf8"))
+        (let [error (try (await (task-store/load-tasks dir))
+                         nil (catch :default err err))
+              data (ex-data error)]
+          (is (some? error) "a valid neighbor cannot turn a refused candidate into a partial board")
+          (is (= :refused (:kind data)))
+          (is (= bad-path (:source-path data)))
+          (is (= "Unterminated YAML frontmatter" (:diagnostic data)))
+          (is (and error (str/includes? (.-message error) bad-path)))
+          (is (= raw (await (.readFile fsp bad-path "utf8"))))))
+      (await (.writeFile fsp bad-path card-markdown "utf8"))
+      (let [tasks (await (task-store/load-tasks dir))
+            ordinary (first (filter #(= "ordinary" (:uuid %)) tasks))]
+        (is (vector? tasks))
+        (is (= #{"valid" "real-card" "ordinary"} (set (map :uuid tasks))))
+        (is (= prose (:content ordinary)) "truly frontmatter-free cards keep the existing read behavior")
+        (is (= prose (await (.readFile fsp prose-path "utf8")))))
+      (finally
+        (await (.rm fsp dir #js {:recursive true :force true}))))))
+
+(deftest ^:async refused-source-diagnostics-respect-card-discovery
+  (let [root (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-refusal-projection-")))
+        cards (path/join root "cards")
+        invalid "---\nlabels: [unfinished\n---\n"]
+    (try
+      (await (.mkdir fsp cards))
+      (await (write-card! cards "valid" "Valid"))
+      (await (.writeFile fsp (path/join root "unprojected.md") invalid "utf8"))
+      (await (.writeFile fsp (path/join cards "notes.txt") invalid "utf8"))
+      (is (= ["valid"]
+             (mapv :uuid (await (task-store/load-tasks
+                                {:tasks-dir root :card-projection {:paths [cards]}}))))
+          "only projected Markdown candidates are parsed; unrelated files stay skipped")
+      (finally
+        (await (.rm fsp root #js {:recursive true :force true}))))))
+
+(deftest ^:async yaml-label-items-normalize-without-refusing-valid-cards
+  (let [dir (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-label-values-")))
+        card-path (path/join dir "mixed.md")]
+    (try
+      (doseq [[fields expected]
+              [["labels: [7, ' ui ', 7, '7', null, false, ' ', ops]\ntags: [ignored]\n"
+                ["7" "ui" "false" "ops"]]
+               ["tags: [13, ' ops ', 13, null, '']\n" ["13" "ops"]]
+               ["labels: ' ops, 7, ops, , ui '\ntags: [ignored]\n" ["ops" "7" "ui"]]
+               ["labels: []\ntags: [13]\n" []]]]
+        (let [raw (str "---\nuuid: mixed\ntitle: Mixed labels\nstatus: incoming\n"
+                       fields "---\n\n# Preserve this body\n")]
+          (await (.writeFile fsp card-path raw "utf8"))
+          (let [result (try (await (task-store/load-tasks dir))
+                            (catch :default err err))
+                task (when (vector? result) (first result))]
+            (is (vector? result) "valid YAML label values must not refuse the card load")
+            (is (= "mixed" (:uuid task)))
+            (is (= expected (:labels task))
+                "stringify, trim, remove blanks, and deduplicate in first-seen order")
+            (is (= raw (await (.readFile fsp card-path "utf8")))))))
+      (finally
+        (await (.rm fsp dir #js {:recursive true :force true}))))))

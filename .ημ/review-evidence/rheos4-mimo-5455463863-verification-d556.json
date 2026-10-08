@@ -1,0 +1,55 @@
+{
+  "repo": "riatzukiza/rheos",
+  "pr": 4,
+  "native_review": 5455463863,
+  "native_head": "d556ead443290c11fa958fa8f7512a7a31366877",
+  "native_state": "APPROVED",
+  "artifact_id": 11544781361,
+  "artifact_sha256": "c4ad135b3fcf40b7bc34b67db641c2f7c9d0de7a623e7e02a39facfac70086ad",
+  "submission_sha256": "5f998c97fd954e0bd6a77f460f10ab8db0e07efd2dccc1f723ce2f4373552e65",
+  "native_body_matches_submission": true,
+  "immutable_full_diff_sha256": "944a28d8991d2f9b524f828efb55ff44d18c85cb50cf0a4a89948216b5dc9daa",
+  "full_diff_bytes": 465078,
+  "full_diff_unicode_codepoints": 464479,
+  "full_diff_utf16_units": 464484,
+  "pages_contiguous": 63,
+  "offset_unit": "UTF-16 units; pinned Muse 0b9 domain diff-chunks lines78-96",
+  "page_boundaries_split_surrogates": false,
+  "final_offset": 464484,
+  "missing_pages": [],
+  "git_binary_diff_equal": true,
+  "inline_findings": 0,
+  "operator_correction": "Initial verification asserted final offset equals Python Unicode codepoints and exited1 before writing proof. Pinned native producer explicitly uses UTF-16 units. Corrected read-only verification passes; original failed tool output remains conversation evidence. No provider or product failure inferred.",
+  "execution_limits": [
+    "JVM run is retained local evidence, not hosted pnpm test",
+    "125-skip fixtures are retained private fixtures, not in-repository tests",
+    "read-board projection remains a retained RED for the incoming writer story"
+  ],
+  "epistemic_tier": "derived-verification of actual native raw response and independently fetched artifact; not synthesized provider approval",
+  "observed_at": "2026-10-08T11:02:44.155176Z",
+  "raw_native_review": {
+    "path": "/home/err/spaces/cephalon-rheos-relationships/rheos/.ημ/review-evidence/rheos4-mimo-5455463863-completion-d556.json",
+    "bytes": 3672,
+    "sha256": "2a2b4950aed019ea7d5a975d6500bb0f915770271594188486febb58e1b5dd86"
+  },
+  "native_body_response": {
+    "id": 6058415361,
+    "url": "https://github.com/riatzukiza/rheos/pull/4#issuecomment-6058415361",
+    "whole_body_readback": true,
+    "bytes": 3516
+  },
+  "native_description": {
+    "whole_body_readback": true,
+    "bytes": 45481,
+    "sha256": "81e62afe5e8e474449aa094afba93901f4213954ca205aad1907b5e13bdf2726",
+    "all_earlier_body_retained": true,
+    "auto_merge": null
+  },
+  "gate_limits": [
+    "CodeRabbit current-head completion still absent; no approval/round transfer",
+    "Canonical 3PASS and MiMo exact-head approval, 5threads/0unresolved, 0of5 completed code cohorts; convergence still required",
+    "Heartbeat remains PAUSED and active goal remains ACTIVE",
+    "No B1/B2/B3, native readiness, writer/parity, release or runtime completion"
+  ],
+  "preservation": "Historical owning repo implied where old receipt omitted attribution; prior receipts and reflections untouched; new completion appends only."
+}

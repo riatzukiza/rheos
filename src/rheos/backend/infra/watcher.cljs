@@ -7,7 +7,7 @@
             [rheos.backend.domain.events :as events]
             [rheos.backend.infra.ledger :as ledger]
             [rheos.backend.law.fsm :as fsm]
-            [rheos.backend.shape.content-parser :as content-parser]))
+            [rheos.backend.infra.content-parser :as content-parser]))
 
 (defn- md? [^js p] (.endsWith p ".md"))
 

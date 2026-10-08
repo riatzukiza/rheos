@@ -33,6 +33,82 @@ below) and emits to `dist/web/js`, which the server then serves statically. A
 > The `test` package script runs `node dist/test.cjs`; the `:test` shadow build
 > writes its bundle to `dist/test.cjs` with `:autorun true`.
 
+### Frontmatter source-preservation checks
+
+Frontmatter updates and `write-id` injection patch only requested top-level
+values. Unrelated YAML, comments, delimiters, line endings, body fences and
+spacing remain in their original source form. Reads share one YAML decoder,
+including the card loader. Top-level scalar fields retain their decoded source
+strings and empty fields retain `""`; nested mappings and vectors keep YAML
+number, boolean and null types. Within structured data, native tagged maps/sets
+become Clojure maps/sets, timestamps become ISO strings and binary values become
+byte vectors.
+Cyclic aliases are refused before recursive read conversion or a write, while
+shared acyclic aliases remain supported. Invalid/duplicate-key YAML, incompatible
+or unresolved standard YAML tags and invalid updates are refused before status
+writeback writes the file. Valid standard tagged collections such as `!!set`,
+`!!omap`, and `!!pairs` survive unrelated edits. A replacement must satisfy its
+retained standard tag, using the YAML library's resolution. Unrelated
+application-specific tags remain preserved.
+
+A projected Markdown candidate that cannot be read or parsed rejects the whole
+load with `:kind :refused`, its `:source-path`, and the original diagnostic. Board
+composition propagates that refusal rather than reporting a partial board. One
+refused card therefore makes that load unavailable until its source is repaired;
+no empty-frontmatter fallback creates a substitute identity or status. The CLI
+reports the path and reason on stderr with exit code 3, and existing HTTP error
+responses report that same message. Valid-load shapes, source bytes, configured
+projection exclusions, and non-Markdown discovery exclusions stay unchanged.
+Present decoded card titles, priorities and statuses must be strings;
+collection-valued core fields are refused with a named diagnostic on load and
+before a frontmatter edit writes or emits events. Missing fields keep their
+fallbacks, scalar spelling stays compatible, and structured extension metadata
+remains supported. New cards escape double-quoted strings, including control
+characters and YAML line separators, and their rendered frontmatter must pass
+the same decoder and core-field law before creating a directory, writing a file,
+registering a watcher correlation or emitting an event.
+This qualifies decoded frontmatter strings, including lone UTF-16 units;
+generated or authored Markdown body bytes have no lossless-persistence guarantee.
+
+The update contract accepts a block mapping, simple string/keyword field names,
+and strings, finite numbers, booleans, nil, or vectors of those values. A missing
+frontmatter block is added after any file-leading BOM without reformatting the
+body. Comment append also retains the original YAML header before targeted
+`write-id` injection. Its body and section rendering, and the general task
+serializer, still reconstruct content and do not promise lossless editing.
+The status writeback adapter uses a native Promise; the standalone compiler
+does not transform the other existing `^:async`/`await` adapters.
+
+The focused tests can run from a clean checkout without installing the missing
+sibling source trees. Node, Java (for shadow-cljs), and clj-kondo are required:
+
+```bash
+rheos_test_deps="$(mktemp -d)"
+npm install --prefix "$rheos_test_deps" --ignore-scripts --no-package-lock \
+  nbb@1.3.204 yaml@2.9.1 shadow-cljs@3.4.10
+NODE_PATH="$rheos_test_deps/node_modules" "$rheos_test_deps/node_modules/.bin/nbb" \
+  -cp src:test -e '(require (quote [cljs.test :as t]) (quote [rheos.backend.shape.content-parser-test]) (quote [rheos.backend.infra.task-writeback-test])) (t/run-tests (quote rheos.backend.shape.content-parser-test) (quote rheos.backend.infra.task-writeback-test))'
+NODE_PATH="$rheos_test_deps/node_modules" "$rheos_test_deps/node_modules/.bin/shadow-cljs" \
+  compile test --config-merge '{:ns-regexp "rheos.backend.(shape.content-parser|infra.task-writeback)-test$"}'
+clj-kondo --lint src test
+```
+
+The selected shadow build runs its tests with `:autorun true`. A green focused
+run does not establish a full-suite pass. The full suite also needs the pinned
+source dependencies in `deps/protocols/src` and `deps/chat-ui/src`; the existing
+`bash scripts/bootstrap-source-deps.sh` supplies them. Install the declared npm
+runtime/tool dependencies before running `pnpm test` from this package root.
+Without that source setup, the first missing namespace is
+`open-hax.openplanner-protocols`.
+
+An independent checkout of implementation commit
+`6e2a6b5ff52f635a67b123595f38d2e347e3642b` ran that bootstrap and the actual
+`pnpm test` command with shadow-cljs 3.4.10 and YAML 2.9.1: 159 tests,
+827 assertions, zero failures/errors and zero compiler warnings. This qualifies
+the full test suite at that revision, not every build target, installed
+transport, browser or deployment. The initial missing-source failure is setup
+evidence rather than an unavoidable suite blocker.
+
 ## shadow-cljs targets
 
 Defined in `shadow-cljs.edn`. Source paths pull in sibling workspace packages:
@@ -103,10 +179,12 @@ UI, each using a domain / law / shape / infra layering:
   `task-edit`, `transition` (the last three are the write chokepoints: creation,
   frontmatter/comments, status)
 - `rheos.backend.law` — `frontmatter`, `fsm` (legal-transition rules)
-- `rheos.backend.shape` — `content-parser`, `kanban` (markdown card parsing)
+- `rheos.backend.shape` — portable `content-parser` source frames, sections and
+  range-based patches; `kanban` (markdown card parsing)
+- `rheos.backend.extern` — native YAML decoding/encoding and task-content JS conversion
 - `rheos.backend.infra` — `http-server`, `cli`, `mcp`, `config`, `projects`,
   `store` / `task-store` / `view-store`, `ledger`, `watcher`, `task-writeback`,
-  `agent-tools`, `chat-proxy`
+  `agent-tools`, `chat-proxy`, `content-parser` (validated YAML composition)
 - `rheos.ui.domain` — `board`, `filter-bar`, `layout`, `orchestrator`, `sidebar`
 - `rheos.ui.law` — `url`
 - `rheos.ui.infra` — `mount`, `api`, `chat-session`, `ledger-stream`

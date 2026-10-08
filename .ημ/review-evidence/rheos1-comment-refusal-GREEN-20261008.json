@@ -1,0 +1,133 @@
+{
+  "schema": "cephalon.observed-command-output/v1",
+  "tier": "derived",
+  "basis": "Actual local command-output transcription and immutable prior bindings, not hosted CI or provider approval",
+  "RED_commits": [
+    "349fc6ab745b8b696100a22e924b49fe28af57a6",
+    "d4f85402850e713bbcc4d13cce19123f490f4ad4"
+  ],
+  "verified_RED": {
+    "compiled": {
+      "tests": 218,
+      "assertions": 1915,
+      "failures": 72,
+      "errors": 0
+    },
+    "JVM": {
+      "tests": 5,
+      "assertions": 51,
+      "failures": 30,
+      "errors": 0
+    }
+  },
+  "implementation": "Existing frontmatter law asserted in portable plan-comment; outer append-comment! adds source-path/diagnostic for refusal and propagates unrelated errors before write-id generation, watcher registration, file write or event",
+  "green_commands": [
+    {
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "test"
+      ],
+      "exit": 0,
+      "start": "2026-10-08T13:52:55.422842+00:00",
+      "end": "2026-10-08T13:53:14.590581+00:00",
+      "stdout_bytes": 3189,
+      "stdout_sha256": "73d6de3ee897edb8175b69a7043255f88d88e8777a8d74bb212ac3552a8a00a4",
+      "stdout_tail": "g rheos.backend.infra.config-card-creation-test\n\nTesting rheos.backend.infra.config-test\n\nTesting rheos.backend.infra.github-issue-preflight-test\n\nTesting rheos.backend.infra.github-issues-test\n\nTesting rheos.backend.infra.store-test\n\nTesting rheos.backend.infra.task-create-conflict-test\n\nTesting rheos.backend.infra.task-create-test\n\nTesting rheos.backend.infra.task-edit-test\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.comment-source-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.frontmatter-serialization-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 218 tests containing 1915 assertions.\n0 failures, 0 errors.\n===============================================\n[:test] Build completed. (150 files, 11 compiled, 0 warnings, 8.98s)\n\nTesting rheos.backend.domain.board-test\n\nTesting rheos.backend.domain.compose-test\n\nTesting rheos.backend.domain.events-test\n\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.domain.task-create-test\n\nTesting rheos.backend.domain.task-edit-test\n\nTesting rheos.backend.domain.transition-test\n\nTesting rheos.backend.infra.agent-tools-test\n{\n  \"ok\": true,\n  \"uuid\": \"t1\",\n  \"from\": \"breakdown\",\n  \"to\": \"ready\"\n}\n\nTesting rheos.backend.infra.cli-test\n\nTesting rheos.backend.infra.config-card-creation-test\n\nTesting rheos.backend.infra.config-test\n\nTesting rheos.backend.infra.github-issue-preflight-test\n\nTesting rheos.backend.infra.github-issues-test\n\nTesting rheos.backend.infra.store-test\n\nTesting rheos.backend.infra.task-create-conflict-test\n\nTesting rheos.backend.infra.task-create-test\n\nTesting rheos.backend.infra.task-edit-test\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.comment-source-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.frontmatter-serialization-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 218 tests containing 1915 assertions.\n0 failures, 0 errors.\n",
+      "stderr": " WARN  Issue while reading \"/home/err/.npmrc\". Failed to replace env in config: ${NPM_TOKEN}\nshadow-cljs - config: /home/err/spaces/cephalon-rheos-relationships/source-preserving/shadow-cljs.edn\ncompose-snapshot error: Doesn't support name: 42\nrheos: transition rejected: No transition from 'review' to 'in_review'\nno \"source-map-support\" (run \"npm install source-map-support --save-dev\" to get it)\ncompose-snapshot error: Doesn't support name: 42\nrheos: transition rejected: No transition from 'review' to 'in_review'\n",
+      "counts_per_actual_invocation": [
+        [
+          "218",
+          "1915",
+          "0",
+          "0"
+        ],
+        [
+          "218",
+          "1915",
+          "0",
+          "0"
+        ]
+      ]
+    },
+    {
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "lint"
+      ],
+      "exit": 0,
+      "start": "2026-10-08T13:52:55.420445+00:00",
+      "end": "2026-10-08T13:52:57.215285+00:00",
+      "stdout_bytes": 1518,
+      "stdout_sha256": "0245339d143a45edb292a9cec3881b3acfe6dd639a8343ad64586e17bc3d2718",
+      "stdout_tail": "\n> @eta-mu/rheos@0.1.0 lint /home/err/spaces/cephalon-rheos-relationships/source-preserving\n> clj-kondo --lint src test\n\nsrc/rheos/backend/domain/compose.cljs:6:14: info: a domain namespace must not require rheos.backend.infra.ledger (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/backend/domain/compose.cljs:7:14: info: a domain namespace must not require rheos.backend.infra.task-store (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/backend/law/fsm.cljs:7:14: info: a law namespace must not require the host: \"node:child_process\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nsrc/rheos/ui/domain/layout.cljs:11:14: info: a domain namespace must not require rheos.ui.infra.api (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/layout.cljs:12:14: info: a domain namespace must not require rheos.ui.infra.ledger-stream (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/orchestrator.cljs:17:14: info: a domain namespace must not require rheos.ui.infra.chat-session (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/sidebar.cljs:7:14: info: a domain namespace must not require the host: \"marked\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nsrc/rheos/ui/domain/sidebar.cljs:8:14: info: a domain namespace must not require the host: \"dompurify\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nlinting took 1459ms, errors: 0, warnings: 0\n",
+      "stderr": " WARN  Issue while reading \"/home/err/.npmrc\". Failed to replace env in config: ${NPM_TOKEN}\n"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/clojure",
+        "-Srepro",
+        "-Sdeps",
+        "{:paths [\"src\" \"test\"] :deps {org.clojure/clojure {:mvn/version \"1.12.4\"} metosin/malli {:mvn/version \"0.16.4\"} org.clojure/clojurescript {:mvn/version \"1.12.134\"}}}",
+        "-M",
+        "-e",
+        "(require 'clojure.test 'rheos.backend.domain.task-edit-test) (let [r (clojure.test/run-tests 'rheos.backend.domain.task-edit-test)] (System/exit (if (clojure.test/successful? r) 0 1)))"
+      ],
+      "exit": 0,
+      "start": "2026-10-08T13:48:40.264884+00:00",
+      "end": "2026-10-08T13:48:42.092327+00:00",
+      "stdout_bytes": 106,
+      "stdout_sha256": "ca3e5a6998200e23bb1508488d7e473cf67b5fce65457a833edfee22c1b32bfa",
+      "stdout_tail": "\nTesting rheos.backend.domain.task-edit-test\n\nRan 5 tests containing 51 assertions.\n0 failures, 0 errors.\n",
+      "stderr": "",
+      "reuse_boundary": "Actual13:48:40 execution with same byte-identical portable guard and domain test, before scalar-only infra test correction; no claim of another JVM execution"
+    },
+    {
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "build"
+      ],
+      "exit": 0,
+      "start": "2026-10-08T13:53:32.454766+00:00",
+      "end": "2026-10-08T13:54:08.637195+00:00",
+      "stdout_bytes": 516,
+      "stdout_sha256": "375bd3c5f670579487740da6f2271e02322aa136e27917637076d0d1cc6deef0",
+      "stdout_tail": "\n> @eta-mu/rheos@0.1.0 build /home/err/spaces/cephalon-rheos-relationships/source-preserving\n> shadow-cljs release server cli github-sync app\n\n[:server] Compiling ...\n[:server] Build completed. (106 files, 5 compiled, 0 warnings, 12.27s)\n[:cli] Compiling ...\n[:cli] Build completed. (110 files, 6 compiled, 0 warnings, 6.35s)\n[:github-sync] Compiling ...\n[:github-sync] Build completed. (67 files, 0 compiled, 0 warnings, 4.64s)\n[:app] Compiling ...\n[:app] Build completed. (95 files, 0 compiled, 0 warnings, 6.80s)\n",
+      "stderr": " WARN  Issue while reading \"/home/err/.npmrc\". Failed to replace env in config: ${NPM_TOKEN}\nshadow-cljs - config: /home/err/spaces/cephalon-rheos-relationships/source-preserving/shadow-cljs.edn\n"
+    }
+  ],
+  "source_sha256": {
+    "src/rheos/backend/domain/task_edit.cljc": "a0abc4f208aae69a52ac3947e195e4e5e809f9638fabc3027166a9d6cd3c6372",
+    "src/rheos/backend/infra/task_edit.cljs": "ca7261590015c8c544550103889309267281954c294363d8f5f5858a8b7fd5a7",
+    "test/rheos/backend/domain/task_edit_test.cljc": "99b4c6ac970d3f39ef73030449c9b4deba1c4f4904c291923d1d3efe00f96d89",
+    "test/rheos/backend/infra/task_edit_test.cljs": "4e9050d3aba8be2ac8cd6c41a5658226e664482ca25f72d24de478aa625edd68"
+  },
+  "release_outputs": {
+    "dist/server.js": {
+      "bytes": 2050196,
+      "sha256": "f34139dac1c8ba4626f4c8208c4943f5250bdbf9aaf6b510d7175d6b0fd7dff5"
+    },
+    "dist/cli.cjs": {
+      "bytes": 2138264,
+      "sha256": "c92d25b020094f742cc007c193f9f82dfb2d9bc26d81dac48da4c0966067ea6a"
+    },
+    "dist/github-sync.cjs": {
+      "bytes": 1622976,
+      "sha256": "38e2d19753f4889de456074447cee5f2c859a8080bf5298f84ab57dd369c9b87"
+    },
+    "dist/web/js/main.js": {
+      "bytes": 562707,
+      "sha256": "feba63f5882becf858ef32bfb62da89b520f0a96f2a981cffc2d13d4de86d2de"
+    }
+  },
+  "limits": [
+    "Existing compiler/dependency caches reused; no independent fresh install/bootstrap claim",
+    "Unrelated eight kondo informational architecture notices retained; missingNPM_TOKEN notice separate from compiler/kondo warnings",
+    "No malformed-YAML/path/transport integration negatives added at this seam; existing parser tests remain unchanged",
+    "No direct watcher-registration spy; pure guard precedes token generation/registration by source order and realFS refuses bytes/event writes",
+    "Native reviews on f797 are historical after this future repair head; fresh hosted review still required",
+    "No runtime/maker/owner/PM2/cloud/board mutation, deployment or publication; B1-B3 remain open"
+  ],
+  "prior_fixture_correction": ".ημ/review-evidence/rheos1-comment-refusal-corrected-RED-20261008.json SHA256932f1b4f409cd8b9ae779f4facce616996720b0abd98bc26759b9fb2943ea5ba",
+  "operator_staging_correction": "Initial staged-name guard compared default Git quoted Unicode output with literal paths and failed after explicit staging. NUL-delimited exact names verified same7 owned paths; no unstaging/reset/history change.",
+  "source_diff": "diff --git a/src/rheos/backend/domain/task_edit.cljc b/src/rheos/backend/domain/task_edit.cljc\nindex 69a2f16..28c4550 100644\n--- a/src/rheos/backend/domain/task_edit.cljc\n+++ b/src/rheos/backend/domain/task_edit.cljc\n@@ -19,6 +19,7 @@\n                   (content-parser/checked-updates updates))})\n \n (defn plan-comment\n-  \"Render the proposed comment from already decoded task data; infra stamps it.\"\n+  \"Admit decoded core frontmatter before rendering a comment; infra stamps it.\"\n   [raw parsed text]\n+  (law-frontmatter/assert-task-frontmatter-shape (:frontmatter parsed))\n   (content-parser/append-comment raw parsed text))\ndiff --git a/src/rheos/backend/infra/task_edit.cljs b/src/rheos/backend/infra/task_edit.cljs\nindex 262f57b..172305b 100644\n--- a/src/rheos/backend/infra/task_edit.cljs\n+++ b/src/rheos/backend/infra/task_edit.cljs\n@@ -59,13 +59,23 @@\n       {:ok true :task task :frontmatter (:frontmatter plan)})))\n \n (defn ^:async append-comment!\n-  \"Append `text` to a task file as a comment block and emit a comment event.\"\n+  \"Append `text` to a qualified task source and emit a comment event.\n+   Invalid decoded frontmatter is refused with source diagnostics before any\n+   write-id registration, file write or ledger event.\"\n   [{:keys [project task text source]}]\n   (let [task-path (:source-path task)\n         raw (await (.readFile fsp task-path \"utf8\"))\n+        comment-raw (try\n+                      (task-edit/plan-comment raw (content-parser/parse-task-content raw) text)\n+                      (catch :default err\n+                        (if (= :refused (:kind (ex-data err)))\n+                          (throw (ex-info (str \"Refused card source \" task-path \": \" (.-message err))\n+                                          (assoc (ex-data err) :source-path task-path\n+                                                 :diagnostic (.-message err))\n+                                          err))\n+                          (throw err))))\n         write-id (events/generate-write-id)\n-        new-raw (-> (task-edit/plan-comment raw (content-parser/parse-task-content raw) text)\n-                    (content-parser/inject-write-id write-id))\n+        new-raw (content-parser/inject-write-id comment-raw write-id)\n         ledger (ledger/get-ledger (:tasks-dir project))]\n     (watcher/register-cli-event! write-id (:uuid task))\n     (await (.writeFile fsp task-path new-raw \"utf8\"))\n"
+}

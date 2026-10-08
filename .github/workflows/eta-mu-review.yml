@@ -5,12 +5,14 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
 
+# Reusable workflow calls receive only the read scopes requested below.
 permissions:
   contents: read
   pull-requests: read
 
 jobs:
   review:
+    if: ${{ github.event.pull_request.draft == false && github.event.pull_request.head.repo.full_name == github.repository }}
     name: Evidence-first review (eta-mu)
     uses: open-hax/eta-mu/.github/workflows/opencode-code-review.yml@45ec644c2d15ed511e9bc1e797d1b4073b63dbfc
     with:
@@ -22,28 +24,81 @@ jobs:
       node_version: "22.20.0"
       setup_eta_mu_toolchain: true
       evidence_gates_script: |
+        gate_succeeded() {
+          [[ "$(awk -F= -v gate="$1" '$1 == gate {print $2}' "$statuses")" == "0" ]]
+        }
+        skip_gates() {
+          local gate
+          for gate in "$@"; do
+            printf '%s=125\n' "$gate" >> "$statuses"
+          done
+        }
+
         run_gate diff_stat git diff --stat "${PR_BASE_SHA}...HEAD"
         run_gate diff_hygiene git diff --check "${PR_BASE_SHA}...HEAD"
-        run_gate install pnpm install --no-frozen-lockfile --lockfile=false
-        install_status="$(awk -F= '$1 == "install" {print $2}' "$statuses")"
-        if [[ "$install_status" == "0" ]]; then
-          # Reserve for this ephemeral hosted runner, whose documented disk is 14 GB.
-          # The accepted 20 GiB floor still applies to local goal allocations.
-          run_gate source_dependencies bash -euo pipefail -c 'available_kib=$(df -Pk . | awk "NR==2 {print \$4}"); if ! [[ "$available_kib" =~ ^[0-9]+$ ]]; then echo "Source bootstrap refused: invalid free-space observation"; exit 1; fi; echo "Hosted source bootstrap: ${available_kib} KiB available; 8 GiB required"; if [[ "$available_kib" -lt 8388608 ]]; then echo "Source bootstrap refused: less than 8 GiB free on hosted runner"; exit 1; fi; bash scripts/bootstrap-source-deps.sh'
-          run_gate lint pnpm lint:kondo
-          source_status="$(awk -F= '$1 == "source_dependencies" {print $2}' "$statuses")"
-          if [[ "$source_status" == "0" ]]; then
-            run_gate test pnpm test
-            run_gate build pnpm build
+        run_gate tool_versions bash -euo pipefail -c '
+          node --version
+          pnpm --version
+          java -version
+          clj-kondo --version
+        '
+        run_gate generated_path_policy bash -euo pipefail -c '
+          # Only untracked generated inputs/outputs are excluded; tracked
+          # mutations still fail the reusable workflow completion guard.
+          exclude_path="$(git rev-parse --git-path info/exclude)"
+          mkdir -p "$(dirname "$exclude_path")"
+          printf "%s\n" /node_modules/ /deps/protocols/src/ /deps/chat-ui/src/ \
+            /.shadow-cljs/ /.clj-kondo/.cache/ /dist/ >> "$exclude_path"
+        '
+        if gate_succeeded tool_versions && gate_succeeded generated_path_policy; then
+          # Retain the source writer's non-frozen install: no reviewed lockfile
+          # exists, so execution does not prove dependency reproducibility.
+          run_gate install env -u NODE_PATH pnpm install --no-frozen-lockfile --no-lockfile
+          if gate_succeeded install; then
+            run_gate bootstrap env -u NODE_PATH bash -euo pipefail -c '
+              # The 8 GiB reserve applies to this ephemeral hosted runner.
+              # The accepted 20 GiB floor still governs local goal allocations.
+              available_kib=$(df -Pk . | awk "NR==2 {print \$4}")
+              if ! [[ "$available_kib" =~ ^[0-9]+$ ]]; then
+                echo "Source bootstrap refused: invalid free-space observation"
+                exit 1
+              fi
+              echo "Hosted source bootstrap: ${available_kib} KiB available; 8 GiB required"
+              if [[ "$available_kib" -lt 8388608 ]]; then
+                echo "Source bootstrap refused: less than 8 GiB free on hosted runner"
+                exit 1
+              fi
+              bash scripts/bootstrap-source-deps.sh
+              for source_dir in deps/protocols/src deps/chat-ui/src; do
+                test -d "$source_dir"
+                test -n "$(find "$source_dir" -type f -print -quit)"
+              done
+            '
+            if gate_succeeded bootstrap; then
+              run_gate lint env -u NODE_PATH pnpm lint:kondo
+              run_gate test env -u NODE_PATH pnpm test
+              run_gate build env -u NODE_PATH pnpm build
+              if gate_succeeded build; then
+                run_gate release_outputs bash -euo pipefail -c '
+                  for output in dist/server.js dist/cli.cjs dist/github-sync.cjs dist/web/js/main.js; do
+                    test -s "$output"
+                  done
+                '
+              else
+                skip_gates release_outputs
+                echo "Release output checks skipped because build failed." >> "$log"
+              fi
+            else
+              skip_gates lint test build release_outputs
+              echo "Lint, test, build and output checks skipped because source bootstrap failed." >> "$log"
+            fi
           else
-            echo "test=125" >> "$statuses"
-            echo "build=125" >> "$statuses"
+            skip_gates bootstrap lint test build release_outputs
+            echo "Source bootstrap and validation skipped because dependency installation failed." >> "$log"
           fi
         else
-          echo "source_dependencies=125" >> "$statuses"
-          echo "lint=125" >> "$statuses"
-          echo "test=125" >> "$statuses"
-          echo "build=125" >> "$statuses"
+          skip_gates install bootstrap lint test build release_outputs
+          echo "Installation and validation skipped because tool or generated-path setup failed." >> "$log"
         fi
     secrets:
       ETA_MU_APP_ID: ${{ secrets.ETA_MU_APP_ID }}

@@ -1,0 +1,95 @@
+{
+  "schema": "observed-command-output-transcription/v1",
+  "scope": "postpublication and native readback; not a raw provider verdict or approval",
+  "published_head": "d556ead443290c11fa958fa8f7512a7a31366877",
+  "personal_base": "11811264a308d406cb612aefa1dad40818675e5e",
+  "both_repositories": "riatzukiza/rheos",
+  "red_commit": "498971ea9a0fae57a2176d5a00d4818f6009b4ad",
+  "native_body": {
+    "bytes": 43684,
+    "sha256": "7cc093a5ce44b95db78e99c492e039d24632245023b9e0430523d8d02a177d70",
+    "whole_readback": "exact",
+    "auto_merge": null
+  },
+  "native_settlements": [
+    {
+      "thread": "PRRT_kwDOU4Vf-c6qTtuf",
+      "root": 4217685754,
+      "writer_reply": 4217872678,
+      "bot_verification": 4217877985,
+      "resolved": true
+    },
+    {
+      "thread": "PRRT_kwDOU4Vf-c6qTxea",
+      "root": 4217709679,
+      "writer_reply": 4217873322,
+      "resolved": true
+    }
+  ],
+  "native_body_replies": [
+    6058029126,
+    6058029483
+  ],
+  "native_current_state": "canonicald5562PASS/5threads0unresolved0unsettled/no approvals0of5codecohorts;BLOCKEDquorumconvergence. CodeRabbit completed display is not current-head binding.",
+  "hosted_deterministic": {
+    "run": 37764387853,
+    "job": 113268324916,
+    "artifact": 11544250524,
+    "zip_bytes": 206642,
+    "zip_sha256": "bdff12d1624ba66d353cd6e0b4517429aed30c064f7390542bd4412afe35b86e",
+    "native_digest_verified": true,
+    "summary": {
+      "schema": "open-hax.review-evidence/v2",
+      "repository": "riatzukiza/rheos",
+      "pull_request": 4,
+      "base_sha": "11811264a308d406cb612aefa1dad40818675e5e",
+      "expected_head_sha": "d556ead443290c11fa958fa8f7512a7a31366877",
+      "executed_sha": "d556ead443290c11fa958fa8f7512a7a31366877",
+      "completion_sha": "d556ead443290c11fa958fa8f7512a7a31366877",
+      "head_sha": "d556ead443290c11fa958fa8f7512a7a31366877",
+      "exact_head": true,
+      "clean_checkout": true,
+      "generated_at": "2026-10-08T10:36:16.892Z",
+      "result": "success",
+      "statuses": {
+        "diff_stat": 0,
+        "diff_hygiene": 0,
+        "install": 0,
+        "source_dependencies": 0,
+        "lint": 0,
+        "test": 0,
+        "build": 0
+      },
+      "attempted": {
+        "diff_stat": true,
+        "diff_hygiene": true,
+        "install": true,
+        "source_dependencies": true,
+        "lint": true,
+        "test": true,
+        "build": true
+      },
+      "errors": [],
+      "interpretation": "Exit 125 means the gate was skipped because a required prerequisite failed."
+    },
+    "actual_log": {
+      "bytes": 31124,
+      "sha256": "00128f7da837abe08082c38d68e4bc74d099a85bd83ec8d27356351cc2b0c7cf",
+      "observed": "lint0/0,174tests1301assertions0fail/error,all4releasebuilds0compilerwarnings"
+    },
+    "full_diff": {
+      "bytes": 465078,
+      "sha256": "944a28d8991d2f9b524f828efb55ff44d18c85cb50cf0a4a89948216b5dc9daa",
+      "sections": 101
+    },
+    "preview": "truncated300000; not fullinput"
+  },
+  "current_provider": "MiMojob113268929802in_progress since10:36:24UTC; no duplicate/cancellation/relabeling",
+  "next_full_review": "prepared101-input note only, not sent; conservatively after11:17UTC with fresh native allowance/cooldown/pending evidence; no paidcredits",
+  "retained_limits": [
+    "No currentheadapproval or ready/release/deployment proof.",
+    "PinnedJVM and workflowfixtures remain out-of-band; current fullhosted gates actualobserved.",
+    "Whole old receipts/reflections/rawreviewbytes immutable; postpublication appends stay uncommitted fornextconcretechange.",
+    "No B1/B2/B3, new prerequisites, board/runtime/maker/PM2/cloud/owner/principal/credentials/social mutation or spore. GoalACTIVE/heartbeatPAUSED."
+  ]
+}

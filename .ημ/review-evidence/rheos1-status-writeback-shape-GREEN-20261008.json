@@ -1,0 +1,167 @@
+{
+  "schema": "cephalon.observed-command-output-transcription/v1",
+  "tier": "derived",
+  "basis": "actual direct Node22.20 tests/lint/release after existing portable law consumption; not rawREST or provider approval",
+  "observed_at": "2026-10-08T15:04:31.819094+00:00",
+  "red_commit": "8aae9cd5e98c991bdd9788a8eb1b3dab429a3a69",
+  "prior_reviewed_head": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+  "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+  "native_finding": {
+    "comment_id": 4220417833,
+    "thread_id": "PRRT_kwDOU4Vf-c6qaaqX",
+    "review_id": 5458415583,
+    "url": "https://github.com/riatzukiza/rheos/pull/1#discussion_r4220417833"
+  },
+  "RED_reference": {
+    "path": ".ημ/review-evidence/rheos1-status-writeback-shape-RED-20261008.json",
+    "sha256": "20191d8efadb22319edc736cab755d6d2c83f9b328ea71d21d716d302d9a1cec",
+    "counts": [
+      219,
+      1928,
+      13,
+      0
+    ]
+  },
+  "GREEN": {
+    "counts_per_invocation": {
+      "tests": 219,
+      "assertions": 1946,
+      "failures": 0,
+      "errors": 0
+    },
+    "commands": [
+      {
+        "argv": [
+          "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+          "/home/err/spaces/cephalon-rheos-relationships/source-preserving/node_modules/shadow-cljs/cli/runner.js",
+          "compile",
+          "test"
+        ],
+        "exit": 0,
+        "start": "2026-10-08T14:56:54.891057+00:00",
+        "end": "2026-10-08T14:57:10.228200+00:00",
+        "direct_node": "v22.20.0",
+        "stdout_bytes": 1660,
+        "stdout_sha256": "57e7f764bbf94be8ad379cb7306ac07fbe6053943a0753393aaa1d9c6c2d9557",
+        "stderr_bytes": 306,
+        "stderr_sha256": "95096be514892f9d11a4683c4b4c02bc2ce9b8789e9f84de2f7ff89d00403c9f",
+        "phase": "green-direct22",
+        "stdout": "[:test] Compiling ...\n========= Running Tests =======================\n\nTesting rheos.backend.domain.board-test\n\nTesting rheos.backend.domain.compose-test\n\nTesting rheos.backend.domain.events-test\n\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.domain.task-create-test\n\nTesting rheos.backend.domain.task-edit-test\n\nTesting rheos.backend.domain.transition-test\n\nTesting rheos.backend.infra.agent-tools-test\n{\n  \"ok\": true,\n  \"uuid\": \"t1\",\n  \"from\": \"breakdown\",\n  \"to\": \"ready\"\n}\n\nTesting rheos.backend.infra.cli-test\n\nTesting rheos.backend.infra.config-card-creation-test\n\nTesting rheos.backend.infra.config-test\n\nTesting rheos.backend.infra.github-issue-preflight-test\n\nTesting rheos.backend.infra.github-issues-test\n\nTesting rheos.backend.infra.store-test\n\nTesting rheos.backend.infra.task-create-conflict-test\n\nTesting rheos.backend.infra.task-create-test\n\nTesting rheos.backend.infra.task-edit-test\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\nstatus-writeback fixture runtime: v22.20.0\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.comment-source-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.frontmatter-serialization-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 219 tests containing 1946 assertions.\n0 failures, 0 errors.\n===============================================\n[:test] Build completed. (150 files, 11 compiled, 0 warnings, 9.16s)\n",
+        "stderr": "shadow-cljs - config: /home/err/spaces/cephalon-rheos-relationships/source-preserving/shadow-cljs.edn\nno \"source-map-support\" (run \"npm install source-map-support --save-dev\" to get it)\ncompose-snapshot error: Doesn't support name: 42\nrheos: transition rejected: No transition from 'review' to 'in_review'\n"
+      },
+      {
+        "argv": [
+          "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+          "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/test.cjs"
+        ],
+        "exit": 0,
+        "start": "2026-10-08T14:57:10.228641+00:00",
+        "end": "2026-10-08T14:57:13.968028+00:00",
+        "direct_node": "v22.20.0",
+        "stdout_bytes": 1473,
+        "stdout_sha256": "4e5a5bcfc2f12b9edd66a1041b4d181a8d91e0710a594da6cd90192dc851e1ae",
+        "stderr_bytes": 204,
+        "stderr_sha256": "3586d99d7be6ec8393dbe75b76ce779221b2201dc134ebcb6583359df2e76ade",
+        "phase": "green-direct22",
+        "stdout": "\nTesting rheos.backend.domain.board-test\n\nTesting rheos.backend.domain.compose-test\n\nTesting rheos.backend.domain.events-test\n\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.domain.task-create-test\n\nTesting rheos.backend.domain.task-edit-test\n\nTesting rheos.backend.domain.transition-test\n\nTesting rheos.backend.infra.agent-tools-test\n{\n  \"ok\": true,\n  \"uuid\": \"t1\",\n  \"from\": \"breakdown\",\n  \"to\": \"ready\"\n}\n\nTesting rheos.backend.infra.cli-test\n\nTesting rheos.backend.infra.config-card-creation-test\n\nTesting rheos.backend.infra.config-test\n\nTesting rheos.backend.infra.github-issue-preflight-test\n\nTesting rheos.backend.infra.github-issues-test\n\nTesting rheos.backend.infra.store-test\n\nTesting rheos.backend.infra.task-create-conflict-test\n\nTesting rheos.backend.infra.task-create-test\n\nTesting rheos.backend.infra.task-edit-test\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\nstatus-writeback fixture runtime: v22.20.0\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.comment-source-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.frontmatter-serialization-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 219 tests containing 1946 assertions.\n0 failures, 0 errors.\n",
+        "stderr": "no \"source-map-support\" (run \"npm install source-map-support --save-dev\" to get it)\ncompose-snapshot error: Doesn't support name: 42\nrheos: transition rejected: No transition from 'review' to 'in_review'\n"
+      },
+      {
+        "argv": [
+          "clj-kondo",
+          "--lint",
+          "src",
+          "test"
+        ],
+        "exit": 0,
+        "start": "2026-10-08T14:56:54.897749+00:00",
+        "end": "2026-10-08T14:56:56.432695+00:00",
+        "direct_node": "v22.20.0",
+        "stdout_bytes": 1397,
+        "stdout_sha256": "32f823df46ac48ee190544b7a8ecfd8045ea98e85c06845cb5d6083cc6522310",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "phase": "green-kondo",
+        "stdout": "src/rheos/backend/domain/compose.cljs:6:14: info: a domain namespace must not require rheos.backend.infra.ledger (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/backend/domain/compose.cljs:7:14: info: a domain namespace must not require rheos.backend.infra.task-store (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/backend/law/fsm.cljs:7:14: info: a law namespace must not require the host: \"node:child_process\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nsrc/rheos/ui/domain/layout.cljs:11:14: info: a domain namespace must not require rheos.ui.infra.api (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/layout.cljs:12:14: info: a domain namespace must not require rheos.ui.infra.ledger-stream (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/orchestrator.cljs:17:14: info: a domain namespace must not require rheos.ui.infra.chat-session (infra): domain depends on law, shape, and its own layer.\nsrc/rheos/ui/domain/sidebar.cljs:7:14: info: a domain namespace must not require the host: \"marked\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nsrc/rheos/ui/domain/sidebar.cljs:8:14: info: a domain namespace must not require the host: \"dompurify\". Decode foreign data in extern.*, orchestrate effects in infra.*.\nlinting took 1480ms, errors: 0, warnings: 0\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+          "/home/err/spaces/cephalon-rheos-relationships/source-preserving/node_modules/shadow-cljs/cli/runner.js",
+          "release",
+          "server",
+          "cli",
+          "github-sync",
+          "app"
+        ],
+        "exit": 0,
+        "start": "2026-10-08T15:02:37.457821+00:00",
+        "end": "2026-10-08T15:03:15.095237+00:00",
+        "direct_node": "v22.20.0",
+        "stdout_bytes": 373,
+        "stdout_sha256": "cf9f02fa4c68dced3283058cf73d09da508f8a26025faaaf62e716b82f3046d9",
+        "stderr_bytes": 102,
+        "stderr_sha256": "a4e08bd854b1a6639f05bacd901f404ee66adda14bdf74b756fa79d28a7c98db",
+        "phase": "green-build-direct22",
+        "stdout": "[:server] Compiling ...\n[:server] Build completed. (106 files, 5 compiled, 0 warnings, 13.48s)\n[:cli] Compiling ...\n[:cli] Build completed. (110 files, 6 compiled, 0 warnings, 6.93s)\n[:github-sync] Compiling ...\n[:github-sync] Build completed. (67 files, 0 compiled, 0 warnings, 4.75s)\n[:app] Compiling ...\n[:app] Build completed. (95 files, 0 compiled, 0 warnings, 6.13s)\n",
+        "stderr": "shadow-cljs - config: /home/err/spaces/cephalon-rheos-relationships/source-preserving/shadow-cljs.edn\n"
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "dist/test.cjs",
+        "bytes": 55096,
+        "sha256": "2695c144a8fe276d1ea9582eb0a7a93e014c3e5143706f16c271a64b0a697c80",
+        "committed": false,
+        "execution": "explicit Node22.20 tests"
+      },
+      {
+        "path": "dist/server.js",
+        "bytes": 2050793,
+        "sha256": "a2d432103c83df7b65b248610ddc96be0c2f245ae39e87d07bb59d71027cc761",
+        "committed": false,
+        "execution": "compiled only"
+      },
+      {
+        "path": "dist/cli.cjs",
+        "bytes": 2138860,
+        "sha256": "b3abbbbc17630b8f4424cd118699e135662cbb9b8da9d17c6320c682fc0b788c",
+        "committed": false,
+        "execution": "compiled only"
+      },
+      {
+        "path": "dist/github-sync.cjs",
+        "bytes": 1622976,
+        "sha256": "38e2d19753f4889de456074447cee5f2c859a8080bf5298f84ab57dd369c9b87",
+        "committed": false,
+        "execution": "compiled only"
+      },
+      {
+        "path": "dist/web/js/main.js",
+        "bytes": 562707,
+        "sha256": "feba63f5882becf858ef32bfb62da89b520f0a96f2a981cffc2d13d4de86d2de",
+        "committed": false,
+        "execution": "compiled only"
+      }
+    ],
+    "fixture_unchanged_from_RED": true,
+    "assertion_count_difference": "Six RED success branches each assert2 and the final aggregate1 (13 new assertions); GREEN refusal branches each assert5 and the same aggregate1 (31); baseline1915 therefore RED1928/GREEN1946. Tests were not weakened.",
+    "fix": "On the actual reread disk source, call existing portable assert-task-frontmatter-shape before update-frontmatter, inject-write-id or writeFile. Refusals retain cause and add source-path/diagnostic; unrelated errors are rethrown. Existing successful source-preserving chain remains.",
+    "source_sha256": "eb982cf2636af58f841d0a495be42144c8221174c527416fb788760abb457c8e",
+    "test_sha256": "e03032ec4e7bfbbd795b8358fdd0267ef2944549fd2165e37a90464c3cae7324"
+  },
+  "runtime_correction": "Direct compiler/test runner selected explicit Node22.20 binary and fixture reportsv22.20.0. Earlier PATH-target claims stay historical/unverified; fresh pnpm child22.18 calibration is not retrospective proof. See immutable RED correction.",
+  "existing_notices": {
+    "kondo": "8 information-level architecture notices, zero errors/warnings",
+    "test_stderr": "source-map-support notice and intentional compose42/transition-rejection fixture logs; no test errors",
+    "dependency_lock": "Existing cached shadow3.5.5 vs declared^3.4.10; no reproducible dependency claim"
+  },
+  "limits": [
+    "Controlled stale snapshot fixture exercises actual filesystem writer, not complete CLI/HTTP/FSM race or post-read atomic fencing.",
+    "No new JVM run: portable law bytes unchanged; prior JVM execution stays historical.",
+    "Compiled release artifacts are not installation, release, runtime ownership or deployed guarantees.",
+    "New commit invalidates prior04fb approvals; fresh current-head complete review/gates required.",
+    "No board/runtime/maker/cloud/publication/model/credential mutation, paidusage or spore. B1/B2/B3 remain unimplemented."
+  ]
+}

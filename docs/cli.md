@@ -126,12 +126,16 @@ is refused rather than writing a card the board will never scan.
 | `0` | success | |
 | `1` | usage — unknown verb, missing flag, malformed argument | `rheos create` with no `--title` |
 | `2` | not found — unknown project, card, or preset | `rheos read-task no-such-card` |
-| `3` | refused by policy — FSM rejection, WIP limit, build gate, duplicate uuid | `rheos move c --to done` from `todo` |
+| `3` | refused by policy — FSM rejection, WIP limit, build gate, duplicate uuid, unreadable or unparseable projected card source | `rheos move c --to done` from `todo` |
 | `4` | internal error | |
 
 Diagnostics go to **stderr** as a single `rheos: <message>` line. Stack traces
 appear only with `RHEOS_DEBUG=1`. Verbs that emit JSON put it on **stdout**
 alone, so `rheos read-board | jq .` is always safe.
+
+If a projected Markdown card source is refused, reads fail with its path and
+reason instead of returning a successful partial board. Repair that source and
+retry; the refusal never changes its bytes or invents replacement frontmatter.
 
 ## Verb reference
 

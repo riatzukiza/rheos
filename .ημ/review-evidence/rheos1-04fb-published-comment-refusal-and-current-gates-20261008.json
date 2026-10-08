@@ -1,0 +1,254 @@
+{
+  "schema": "cephalon.observed-command-output/v1",
+  "tier": "derived",
+  "basis": "Actual command-output/native metadata/readback/artifact verification transcribed; never a synthetic provider approval",
+  "source_head": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+  "source_base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+  "history": [
+    {
+      "head": "349fc6ab745b8b696100a22e924b49fe28af57a6",
+      "parent": "f797115e9a0b44fe2415f1d81fe2f6b6afc47195",
+      "paths": [
+        "test/rheos/backend/domain/task_edit_test.cljc",
+        "test/rheos/backend/infra/task_edit_test.cljs",
+        ".ημ/receipts.edn",
+        ".ημ/session-mycology/ledger.md",
+        ".ημ/review-evidence/rheos1-f797-hosted-receiver-consumer-and-kernel-binding-20261008.json",
+        ".ημ/review-evidence/rheos1-f797-completed-review-and-comment-refusal-20261008.json",
+        ".ημ/review-evidence/rheos1-comment-refusal-RED-20261008.json"
+      ],
+      "operator_correction": "Initial staged-name guard compared default Git quoted Unicode output with literal paths and failed after explicit staging. NUL-delimited exact names verified same7 owned paths; no unstaging/reset/history change."
+    },
+    {
+      "head": "d4f85402850e713bbcc4d13cce19123f490f4ad4",
+      "parent": "349fc6ab745b8b696100a22e924b49fe28af57a6",
+      "paths": [
+        "test/rheos/backend/infra/task_edit_test.cljs",
+        ".ημ/receipts.edn",
+        ".ημ/session-mycology/ledger.md",
+        ".ημ/review-evidence/rheos1-comment-refusal-corrected-RED-20261008.json"
+      ]
+    },
+    {
+      "head": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+      "parent": "d4f85402850e713bbcc4d13cce19123f490f4ad4",
+      "paths": [
+        "src/rheos/backend/domain/task_edit.cljc",
+        "src/rheos/backend/infra/task_edit.cljs",
+        ".ημ/receipts.edn",
+        ".ημ/session-mycology/ledger.md",
+        ".ημ/review-evidence/rheos1-comment-refusal-GREEN-20261008.json"
+      ],
+      "full_pr_paths": 45
+    }
+  ],
+  "push": {
+    "head": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+    "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+    "state": "open",
+    "auto_merge": null,
+    "prefixes": {
+      ".ημ/receipts.edn": {
+        "base_bytes": 44956,
+        "head_bytes": 75484,
+        "base_sha256": "fdb338c39a8a944885bc07421d6b24c039ed7f7fad3c8f705234ae6ea89f4339",
+        "head_sha256": "8b57a493c312ac5e88af171b6997a160ac33fad75fca7e01caf72d29a895ff6d",
+        "exact_base_and_prior_uncommitted_prefixes": true,
+        "base_rows": 16,
+        "head_rows": 27,
+        "suffix_rows": 11
+      },
+      ".ημ/session-mycology/ledger.md": {
+        "base_bytes": 7980,
+        "head_bytes": 16681,
+        "base_sha256": "f88c414d35cdac3501e3ac73bf820c5598d4eea9a0678547622a48e8faddabd4",
+        "head_sha256": "ac5c6747ece13cbdbd67e015fdb53741a0076d105fb71dedc0af6719f4f9ca59",
+        "exact_base_and_prior_uncommitted_prefixes": true
+      }
+    },
+    "method": "Single ordinary push f797->RED349->correctedREDd4f->GREEN04fb",
+    "observer_correction": "Immediate REST after successful push still returned old f797head; first assertion failed. Later fresh actual REST readback verifies04fb with samec5base/auto_merge:null; no duplicate push or synthetic readback",
+    "unrelated_generated_deps": "Retained untracked, notstaged"
+  },
+  "description": {
+    "head": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+    "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+    "whole_body_exact": true,
+    "historical_suffix_exact": true,
+    "body_bytes": 28599,
+    "body_sha256": "d175cb0d333b31f3559ccb8866d7411439106b1432a1d08819da3b045f954c8d",
+    "updated_at": "2026-10-08T13:58:19Z",
+    "auto_merge": null
+  },
+  "native_finding_settlement": {
+    "thread": "PRRT_kwDOU4Vf-c6qYeiH",
+    "resolved": true,
+    "outdated": true,
+    "head": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+    "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+    "reply_id": 4219867461,
+    "reply_url": "https://github.com/riatzukiza/rheos/pull/1#discussion_r4219867461",
+    "reply_whole_body_exact": true,
+    "reply_body_bytes": 1622,
+    "reply_body_sha256": "5485e9818c43034f33e5865e768cb5eade32091eb58b2e154520dec1ac1837b9",
+    "writer": "riatzukiza"
+  },
+  "native_historical_MiMo_observations_response": {
+    "id": 6061539090,
+    "url": "https://github.com/riatzukiza/rheos/pull/1#issuecomment-6061539090",
+    "body_bytes": 2159,
+    "body_sha256": "94d8c9ef61df217317558e838a94d5cd364f65bb9ae7b65fc6e0d612230cc99f",
+    "whole_body_exact": true
+  },
+  "native_current_execution_addendum": {
+    "id": 6061635022,
+    "url": "https://github.com/riatzukiza/rheos/pull/1#issuecomment-6061635022",
+    "body_bytes": 1805,
+    "body_sha256": "77e1ab65f09bb3d1553e05da797019be57299888bd824a88157beec9c59289fa",
+    "whole_body_exact": true
+  },
+  "current_hosted_execution": {
+    "head": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+    "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+    "run_id": 37788394030,
+    "deterministic_job_id": 113348990373,
+    "collector_result": "success",
+    "exact_head": true,
+    "clean_checkout": true,
+    "summary": {
+      "schema": "open-hax.review-evidence/v2",
+      "repository": "riatzukiza/rheos",
+      "pull_request": 1,
+      "base_sha": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+      "expected_head_sha": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+      "executed_sha": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+      "completion_sha": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+      "head_sha": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+      "exact_head": true,
+      "clean_checkout": true,
+      "generated_at": "2026-10-08T13:58:41.385Z",
+      "result": "success",
+      "statuses": {
+        "diff_stat": 0,
+        "diff_hygiene": 0,
+        "tool_versions": 0,
+        "generated_path_policy": 0,
+        "install": 0,
+        "bootstrap": 0,
+        "lint": 0,
+        "test": 0,
+        "build": 0,
+        "release_outputs": 0
+      },
+      "attempted": {
+        "diff_stat": true,
+        "diff_hygiene": true,
+        "tool_versions": true,
+        "generated_path_policy": true,
+        "install": true,
+        "bootstrap": true,
+        "lint": true,
+        "test": true,
+        "build": true,
+        "release_outputs": true
+      },
+      "errors": [],
+      "interpretation": "Exit 125 means the gate was skipped because a required prerequisite failed."
+    },
+    "artifact": {
+      "artifact_id": 11555088037,
+      "bytes": 159922,
+      "sha256": "2921f148a064649a4d5d1c0718943b81af3fee147f536ddd965293ba3deb6361",
+      "safe_entries": [
+        "basehead.diff",
+        "checkout-status.txt",
+        "checkout.json",
+        "completion-status.txt",
+        "deterministic.log",
+        "input-manifest.json",
+        "pr-context.md",
+        "pr.diff",
+        "statuses.env",
+        "summary.json"
+      ]
+    },
+    "full_diff": {
+      "path": "basehead.diff",
+      "bytes": 422703,
+      "sha256": "caba19659b4c018a4f7b4b3604638d7fcd76c64207a62f5876cab3bd64003fc4"
+    },
+    "immutable_local_Git_diff_exact": true,
+    "actual_changed_paths": 45,
+    "test_invocations": [
+      [
+        "218",
+        "1915",
+        "0",
+        "0"
+      ],
+      [
+        "218",
+        "1915",
+        "0",
+        "0"
+      ]
+    ],
+    "compiler_builds": [
+      "Build completed. (150 files, 149 compiled, 0 warnings, 17.77s)",
+      "Build completed. (106 files, 47 compiled, 0 warnings, 19.96s)",
+      "Build completed. (110 files, 50 compiled, 0 warnings, 11.45s)",
+      "Build completed. (67 files, 19 compiled, 0 warnings, 7.73s)",
+      "Build completed. (95 files, 49 compiled, 0 warnings, 12.26s)"
+    ],
+    "context": {
+      "path": "pr-context.md",
+      "bytes": 21481,
+      "sha256": "b16123ed657b1341e2a8d8b0f6358e9a8891963cca33e840ca83aad51c72aad1",
+      "head_marker_current": true,
+      "captured_body_is_exact_prior_native_description": true,
+      "captured_body_bytes": 21228,
+      "captured_body_sha256": "e44566f5b720004dbd66d57422e190b1f3439ca226030d0b41def380f0c2c6c8",
+      "body_header_historical": "f797115e9a0b44fe2415f1d81fe2f6b6afc47195",
+      "not_new_1358_body": true,
+      "interpretation": "Source exacthead04fb/full422703-byte45-path input is current; captured narrative is earlierf79740-path body.13:58 actual native description/readback nowcorrects this. No old narrative approval transfers and no claim newbodycaptured."
+    },
+    "observer_correction": "Initial archive observer wrongly assumedpr-context.json; actual verified archive containspr-context.md. Download/extract/digest succeeded, file-reader failure notproductionfailure; actualMarkdown nowinspected withoutredownload",
+    "limits": [
+      "MiMo job113349967319 stillinprogress; hosted deterministic success is not providerapproval or completedreview",
+      "CodeRabbit freshreview notrequested during included1/hourcooldown; nextconservative14:38UTC withfresh nativepending/cooldowncheck",
+      "No package lockfile; fresh hosted install/bootstrap distinct from cached local results",
+      "Finaldependent reviewgate notyetstarted; no mandatorygate waiver",
+      "No native board/runtime/PM2/cloud/owner/deployment/publication effects"
+    ]
+  },
+  "current_MiMo_job": {
+    "id": 113349967319,
+    "name": "Evidence-first review (eta-mu) / Review pull request with OpenCode MiMo",
+    "status": "in_progress",
+    "conclusion": null,
+    "started_at": "2026-10-08T13:58:48Z",
+    "completed_at": null
+  },
+  "canonical_status": "riatzukiza/rheos#1  head 04fb606\n  coderabbit: completed   checks: {:pass 2}\n  threads: 15 total, 0 unresolved; by severity {}; informational 0\n  exact-head approvals: #{}  observed commit binding: {}\n  completed code rounds: 0 / soft minimum 5  participants: #{\"coderabbit\" \"mimo\"}\n  codex quota-unavailable: native source 6061462739 request  scope account observed 2026-10-08T13:56:36Z retry-at-ms UNKNOWN\n  gate: BLOCKED\n    - No trusted exact-head APPROVED review meets the quorum\n    - Review loop requires 5 completed rounds or unanimous current-head approval, with every finding settled\n",
+  "current_Codex_quota": {
+    "id": 6061462739,
+    "created_at": "2026-10-08T13:56:36Z",
+    "updated_at": "2026-10-08T13:56:36Z",
+    "body": "You have reached your Codex usage limits for code reviews. You can see your limits in the [Codex usage dashboard](https://chatgpt.com/codex/cloud/settings/usage).\nTo continue using code reviews, you can upgrade your account or add credits to your account and enable them for code reviews in your [settings](https://chatgpt.com/codex/cloud/settings/code-review)."
+  },
+  "canonical_skill_remote_latest_verified": "riatzukiza/.agents HEAD4b4f48dae1b804b2581974e604cca618ecedadf1, actual ls-remote this continuation; selected installed38 policy files already byteequal",
+  "resource_observation": {
+    "available_bytes": 22067515392,
+    "install_or_full_snapshot": false,
+    "expensive_jobs_remaining": "One hosted currentMiMo; all local test/JVM/lint/release jobs completed"
+  },
+  "limits": [
+    "Native source15threads settled/0unresolved; current04fbexact-head approvalsnone and0completed configuredcohort code rounds, no borrowing oldf797 MiMoapproval",
+    "Current CodeRabbit is oldf797 completion and current source needs new fullreview after actual1/hour allowance with fresh native pending/cooldown evidence; conservative next14:38UTC",
+    "Current hosted all10deterministicgates/passcompile are verified, MiMoinprogress and finaldependentgate notstarted. These remain separate approval/check obligations",
+    "No owned UNCOMMITTED observation proof/receipt/reflection is pushed solely to churn review head. Hold this post-publication packet until next concrete owned change",
+    "User append-only receipt instruction is authoritative; fulljournalcompatibility for receiver/RR consumer remains outstanding, no originalrowrewrite or invented folding",
+    "Pending human baseline choices not resolved; no scope expansion, spore, localRheos/ReceiptRiver implementation, paidusage, board/runtime/maker/PM2/cloud/owner/deployment/publication effect",
+    "Accepted B1/B2/B3 remain unimplemented/unverified; goalACTIVE and heartbeatPAUSED"
+  ]
+}

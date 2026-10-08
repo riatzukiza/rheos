@@ -1,0 +1,101 @@
+{
+  "schema": "cephalon.observed-command-output-transcription/v1",
+  "tier": "derived",
+  "basis": "actual native full review and direct Node22.20 controlled stale-source fixture; not provider approval",
+  "observed_at": "2026-10-08T14:55:57.579Z",
+  "source_head": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+  "source_base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+  "native_full_review": {
+    "request_id": 6062297642,
+    "reply_id": 6062300218,
+    "reply_updated_at": "2026-10-08T14:45:10Z",
+    "review_id": 5458415583,
+    "review_state": "COMMENTED",
+    "commit_id": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+    "submitted_at": "2026-10-08T14:45:01Z",
+    "body_bytes": 4651,
+    "body_sha256": "640f072d2c513d1b6b84b9dfc80cd7d750bbfa47001e4e6149f6205e2c13a290",
+    "selected_inputs": 45,
+    "declared_deleted_replacement_paths_with_no_reviewable_changes": 2,
+    "finding_count": 1,
+    "approval": false
+  },
+  "native_finding": {
+    "id": 4220417833,
+    "thread_id": "PRRT_kwDOU4Vf-c6qaaqX",
+    "url": "https://github.com/riatzukiza/rheos/pull/1#discussion_r4220417833",
+    "path": "src/rheos/backend/infra/task_writeback.cljs",
+    "body_bytes": 6067,
+    "body_sha256": "ab85db91ae9c85acac587c79ac5db87cb5597af62d6d73e55311bdf7856ed6de",
+    "confirmed_issue": "A valid in-memory task snapshot authorizes writing disk source made invalid before the writer read; absent full task shape validation permits success and persistence of invalid core fields"
+  },
+  "RED": {
+    "commands": [
+      {
+        "argv": [
+          "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+          "/home/err/spaces/cephalon-rheos-relationships/source-preserving/node_modules/shadow-cljs/cli/runner.js",
+          "compile",
+          "test"
+        ],
+        "exit": 0,
+        "start": "2026-10-08T14:52:33.057760+00:00",
+        "end": "2026-10-08T14:52:47.798726+00:00",
+        "direct_node": "v22.20.0",
+        "stdout_bytes": 5365,
+        "stdout_sha256": "87991a2cf85f2e2fb67457b5032817fc254cccf11bfd0c5d2e4072e4253ee42a",
+        "stderr_bytes": 306,
+        "stderr_sha256": "95096be514892f9d11a4683c4b4c02bc2ce9b8789e9f84de2f7ff89d00403c9f",
+        "stdout": "[:test] Compiling ...\n========= Running Tests =======================\n\nTesting rheos.backend.domain.board-test\n\nTesting rheos.backend.domain.compose-test\n\nTesting rheos.backend.domain.events-test\n\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.domain.task-create-test\n\nTesting rheos.backend.domain.task-edit-test\n\nTesting rheos.backend.domain.transition-test\n\nTesting rheos.backend.infra.agent-tools-test\n{\n  \"ok\": true,\n  \"uuid\": \"t1\",\n  \"from\": \"breakdown\",\n  \"to\": \"ready\"\n}\n\nTesting rheos.backend.infra.cli-test\n\nTesting rheos.backend.infra.config-card-creation-test\n\nTesting rheos.backend.infra.config-test\n\nTesting rheos.backend.infra.github-issue-preflight-test\n\nTesting rheos.backend.infra.github-issues-test\n\nTesting rheos.backend.infra.store-test\n\nTesting rheos.backend.infra.task-create-conflict-test\n\nTesting rheos.backend.infra.task-create-test\n\nTesting rheos.backend.infra.task-edit-test\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\nstatus-writeback fixture runtime: v22.20.0\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (:)\nnewly invalid title must refuse\nexpected: false\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:114:51)\nrefusal leaves the changed source byte-identical\nexpected: (.equals invalid-bytes (.readFileSync fs file-path))\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (:)\nnewly invalid title must refuse\nexpected: false\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:114:51)\nrefusal leaves the changed source byte-identical\nexpected: (.equals invalid-bytes (.readFileSync fs file-path))\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (:)\nnewly invalid priority must refuse\nexpected: false\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:114:51)\nrefusal leaves the changed source byte-identical\nexpected: (.equals invalid-bytes (.readFileSync fs file-path))\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (:)\nnewly invalid priority must refuse\nexpected: false\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:114:51)\nrefusal leaves the changed source byte-identical\nexpected: (.equals invalid-bytes (.readFileSync fs file-path))\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (:)\nnewly invalid status must refuse\nexpected: false\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:114:51)\nrefusal leaves the changed source byte-identical\nexpected: (.equals invalid-bytes (.readFileSync fs file-path))\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (:)\nnewly invalid status must refuse\nexpected: false\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:114:51)\nrefusal leaves the changed source byte-identical\nexpected: (.equals invalid-bytes (.readFileSync fs file-path))\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:125:31)\nno invalid source reports a successful status write\nexpected: (empty? (clojure.core/deref successes))\n  actual: (not (empty? [{:uuid \"stale\", :title \"Task One\", :status \"done\", :priority \"P3\", :metadata {:owner \"Someone\", :links [\"docs/a.md\"]}, :summary \"Line one\\nLine two\\n\", :source-path \"/tmp/rheos-writeback-test-VkGLQM/stale.md\"} {:uuid \"stale\", :title \"Task One\", :status \"done\", :priority \"P3\", :metadata {:owner \"Someone\", :links [\"docs/a.md\"]}, :summary \"Line one\\nLine two\\n\", :source-path \"/tmp/rheos-writeback-test-VkGLQM/stale.md\"} {:uuid \"stale\", :title \"Task One\", :status \"done\", :priority \"P3\", :metadata {:owner \"Someone\", :links [\"docs/a.md\"]}, :summary \"Line one\\nLine two\\n\", :source-path \"/tmp/rheos-writeback-test-VkGLQM/stale.md\"} {:uuid \"stale\", :title \"Task One\", :status \"done\", :priority \"P3\", :metadata {:owner \"Someone\", :links [\"docs/a.md\"]}, :summary \"Line one\\nLine two\\n\", :source-path \"/tmp/rheos-writeback-test-VkGLQM/stale.md\"} {:uuid \"stale\", :title \"Task One\", :status \"done\", :priority \"P3\", :metadata {:owner \"Someone\", :links [\"docs/a.md\"]}, :summary \"Line one\\nLine two\\n\", :source-path \"/tmp/rheos-writeback-test-VkGLQM/stale.md\"} {:uuid \"stale\", :title \"Task One\", :status \"done\", :priority \"P3\", :metadata {:owner \"Someone\", :links [\"docs/a.md\"]}, :summary \"Line one\\nLine two\\n\", :source-path \"/tmp/rheos-writeback-test-VkGLQM/stale.md\"}]))\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.comment-source-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.frontmatter-serialization-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 219 tests containing 1928 assertions.\n13 failures, 0 errors.\n===============================================\n[:test] Build completed. (150 files, 2 compiled, 0 warnings, 8.59s)\n",
+        "stderr": "shadow-cljs - config: /home/err/spaces/cephalon-rheos-relationships/source-preserving/shadow-cljs.edn\nno \"source-map-support\" (run \"npm install source-map-support --save-dev\" to get it)\ncompose-snapshot error: Doesn't support name: 42\nrheos: transition rejected: No transition from 'review' to 'in_review'\n"
+      },
+      {
+        "argv": [
+          "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+          "/home/err/spaces/cephalon-rheos-relationships/source-preserving/dist/test.cjs"
+        ],
+        "exit": 1,
+        "start": "2026-10-08T14:52:47.799270+00:00",
+        "end": "2026-10-08T14:52:51.679570+00:00",
+        "direct_node": "v22.20.0",
+        "stdout_bytes": 5179,
+        "stdout_sha256": "f5fd8db034100321b79396603108f1a79a0caa274770b401b19d531b75877aac",
+        "stderr_bytes": 204,
+        "stderr_sha256": "3586d99d7be6ec8393dbe75b76ce779221b2201dc134ebcb6583359df2e76ade",
+        "stdout": "\nTesting rheos.backend.domain.board-test\n\nTesting rheos.backend.domain.compose-test\n\nTesting rheos.backend.domain.events-test\n\nTesting rheos.backend.domain.relationships-test\n\nTesting rheos.backend.domain.task-create-test\n\nTesting rheos.backend.domain.task-edit-test\n\nTesting rheos.backend.domain.transition-test\n\nTesting rheos.backend.infra.agent-tools-test\n{\n  \"ok\": true,\n  \"uuid\": \"t1\",\n  \"from\": \"breakdown\",\n  \"to\": \"ready\"\n}\n\nTesting rheos.backend.infra.cli-test\n\nTesting rheos.backend.infra.config-card-creation-test\n\nTesting rheos.backend.infra.config-test\n\nTesting rheos.backend.infra.github-issue-preflight-test\n\nTesting rheos.backend.infra.github-issues-test\n\nTesting rheos.backend.infra.store-test\n\nTesting rheos.backend.infra.task-create-conflict-test\n\nTesting rheos.backend.infra.task-create-test\n\nTesting rheos.backend.infra.task-edit-test\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\nstatus-writeback fixture runtime: v22.20.0\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (:)\nnewly invalid title must refuse\nexpected: false\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:114:51)\nrefusal leaves the changed source byte-identical\nexpected: (.equals invalid-bytes (.readFileSync fs file-path))\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (:)\nnewly invalid title must refuse\nexpected: false\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:114:51)\nrefusal leaves the changed source byte-identical\nexpected: (.equals invalid-bytes (.readFileSync fs file-path))\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (:)\nnewly invalid priority must refuse\nexpected: false\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:114:51)\nrefusal leaves the changed source byte-identical\nexpected: (.equals invalid-bytes (.readFileSync fs file-path))\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (:)\nnewly invalid priority must refuse\nexpected: false\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:114:51)\nrefusal leaves the changed source byte-identical\nexpected: (.equals invalid-bytes (.readFileSync fs file-path))\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (:)\nnewly invalid status must refuse\nexpected: false\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:114:51)\nrefusal leaves the changed source byte-identical\nexpected: (.equals invalid-bytes (.readFileSync fs file-path))\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (:)\nnewly invalid status must refuse\nexpected: false\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:114:51)\nrefusal leaves the changed source byte-identical\nexpected: (.equals invalid-bytes (.readFileSync fs file-path))\n  actual: false\n\nFAIL in (write-task-status-refuses-newly-invalid-source) (rheos/backend/infra/task_writeback_test.cljs:125:31)\nno invalid source reports a successful status write\nexpected: (empty? (clojure.core/deref successes))\n  actual: (not (empty? [{:uuid \"stale\", :title \"Task One\", :status \"done\", :priority \"P3\", :metadata {:owner \"Someone\", :links [\"docs/a.md\"]}, :summary \"Line one\\nLine two\\n\", :source-path \"/tmp/rheos-writeback-test-X7PmJW/stale.md\"} {:uuid \"stale\", :title \"Task One\", :status \"done\", :priority \"P3\", :metadata {:owner \"Someone\", :links [\"docs/a.md\"]}, :summary \"Line one\\nLine two\\n\", :source-path \"/tmp/rheos-writeback-test-X7PmJW/stale.md\"} {:uuid \"stale\", :title \"Task One\", :status \"done\", :priority \"P3\", :metadata {:owner \"Someone\", :links [\"docs/a.md\"]}, :summary \"Line one\\nLine two\\n\", :source-path \"/tmp/rheos-writeback-test-X7PmJW/stale.md\"} {:uuid \"stale\", :title \"Task One\", :status \"done\", :priority \"P3\", :metadata {:owner \"Someone\", :links [\"docs/a.md\"]}, :summary \"Line one\\nLine two\\n\", :source-path \"/tmp/rheos-writeback-test-X7PmJW/stale.md\"} {:uuid \"stale\", :title \"Task One\", :status \"done\", :priority \"P3\", :metadata {:owner \"Someone\", :links [\"docs/a.md\"]}, :summary \"Line one\\nLine two\\n\", :source-path \"/tmp/rheos-writeback-test-X7PmJW/stale.md\"} {:uuid \"stale\", :title \"Task One\", :status \"done\", :priority \"P3\", :metadata {:owner \"Someone\", :links [\"docs/a.md\"]}, :summary \"Line one\\nLine two\\n\", :source-path \"/tmp/rheos-writeback-test-X7PmJW/stale.md\"}]))\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.comment-source-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.frontmatter-serialization-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 219 tests containing 1928 assertions.\n13 failures, 0 errors.\n",
+        "stderr": "no \"source-map-support\" (run \"npm install source-map-support --save-dev\" to get it)\ncompose-snapshot error: Doesn't support name: 42\nrheos: transition rejected: No transition from 'review' to 'in_review'\n"
+      }
+    ],
+    "counts_per_invocation": {
+      "tests": 219,
+      "assertions": 1928,
+      "failures": 13,
+      "errors": 0
+    },
+    "six_cases": [
+      "title sequence",
+      "title mapping",
+      "priority sequence",
+      "priority mapping",
+      "status sequence",
+      "status mapping"
+    ],
+    "reproduction": "Decode actual valid on-disk snapshot, alter source into each malformed core-field case, then call the actual existing writer; all6 resolvedsuccess and changed bytes. Each success-path refusal/byteidentity assertion plus aggregate empty-success assertion fails. Existing full suite otherwise unchanged.",
+    "production_writer_unchanged_from_04fb": true,
+    "test_sha256": "e03032ec4e7bfbbd795b8358fdd0267ef2944549fd2165e37a90464c3cae7324"
+  },
+  "runtime_correction": {
+    "initial_pnpm_RED": "219/1928/13fail0errors; actual14:49:51–14:50:11 output retained, no test restarted solely for observing a handle",
+    "current_calibration": "Direct pinned binary reportsv22.20.0; pnpm exec node reportsv22.18.0 despite PATH target22.20. pnpm tool path alone cannot bind the child runtime.",
+    "earlier_local_Node22_20_claims": "Earlier PATH-targeted receipts and proofs remain unchanged; those prior child execution versions were not independently probed and remain unverified. This fresh probe does not retrospectively prove earlier versions.",
+    "new_actual_bound_runtime": "Both direct compiler autorun and explicit test process print actualv22.20.0; explicit test exit1 is recorded separately from compile exit0",
+    "hosted_evidence": "Existing current-head hosted deterministic execution retains its actual Node22.20 setup/tool evidence; no host version transfer"
+  },
+  "operator_correction": "Native inline comment response omits line/original_line. Initial formatter KeyError after save corrected with optional field reads; native issue identified by immutable comment/thread/path instead. No production failure.",
+  "limits": [
+    "Controlled stalesnapshot boundary does not execute complete CLI/HTTP/native FSM transition or a concurrency interleaving after writer read",
+    "No atomic read/write reservation, watcher pre-registration denial, event sink or maker ownership guarantee claimed",
+    "No new law created: existing portable assert-task-frontmatter-shape is the missing source-writeback consumer",
+    "No runtime/board mutation, deployment, approval/round transfer, paidusage or spore; B1/B2/B3 remain unimplemented"
+  ]
+}

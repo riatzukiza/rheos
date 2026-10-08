@@ -4,39 +4,12 @@
             ["node:path" :as path]
             [clojure.string :as str]
             [rheos.backend.infra.projects :as projects]
+            [rheos.backend.law.frontmatter :as law-frontmatter]
+            [rheos.backend.infra.content-parser :as content-parser]
             [rheos.backend.shape.kanban :as shape]))
 
 (def status-index
   (into {} (map-indexed (fn [i s] [s i]) shape/StatusOrder)))
-
-(defn- parse-yaml-simple [yaml-str]
-  (let [lines (str/split-lines yaml-str)]
-    (reduce (fn [acc line]
-              (cond
-                (re-matches #"^(\w[\w_-]*):\s*\"(.*)\"\s*" line)
-                (let [[_ k v] (re-matches #"^(\w[\w_-]*):\s*\"(.*)\"\s*" line)]
-                  (assoc acc (keyword k) v))
-
-                (re-matches #"^(\w[\w_-]*):\s*(.+)\s*" line)
-                (let [[_ k v] (re-matches #"^(\w[\w_-]*):\s*(.+)\s*" line)]
-                  (assoc acc (keyword k) (str/trim v)))
-
-                (re-matches #"^(\w[\w_-]*):\s*$" line)
-                (let [[_ k] (re-matches #"^(\w[\w_-]*):\s*$" line)]
-                  (assoc acc (keyword k) ""))
-
-                :else acc))
-            {}
-            lines)))
-
-(defn- parse-frontmatter [raw]
-  (let [match (re-matches #"---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)" raw)]
-    (if match
-      (let [yaml-str (nth match 1)
-            content (nth match 2)
-            parsed (parse-yaml-simple yaml-str)]
-        {:frontmatter parsed :content content})
-      {:frontmatter {} :content raw})))
 
 (defn- normalize-labels [labels tags]
   (let [raw (or labels tags [])
@@ -44,7 +17,7 @@
                 (string? raw) (str/split raw #",")
                 (vector? raw) raw
                 :else [])]
-    (vec (distinct (filter seq (mapv str/trim items))))))
+    (vec (distinct (filter seq (mapv #(str/trim (str %)) items))))))
 
 (defn- normalize-status [status]
   (case (-> (or status "incoming") str/lower-case str/trim)
@@ -55,7 +28,8 @@
 (defn- ^:async parse-task-file [file-path _tasks-dir]
   (try
     (let [raw (await (.readFile fsp file-path "utf8"))
-          {:keys [frontmatter content]} (parse-frontmatter raw)
+          {:keys [frontmatter content]} (content-parser/parse-frontmatter raw)
+          _ (law-frontmatter/assert-task-frontmatter-shape frontmatter)
           title (or (:title frontmatter) (path/basename file-path ".md"))
           priority (-> (or (:priority frontmatter) "P3") str/upper-case str/trim)
           labels (normalize-labels (:labels frontmatter) (:tags frontmatter))
@@ -76,8 +50,10 @@
        :content content
        :source-path file-path})
     (catch :default err
-      (js/console.error "Parse error:" file-path (.-message err))
-      nil)))
+      (let [diagnostic (or (.-message err) (str err))]
+        (throw (ex-info (str "Refused card source " file-path ": " diagnostic)
+                        {:kind :refused :source-path file-path :diagnostic diagnostic}
+                        err))))))
 
 (defn- ^:async is-directory? [full-path]
   (try
@@ -181,6 +157,11 @@
    `:card-projection {:paths [...]}` scans only those resolved paths; a bare
    tasks-dir preserves recursive legacy discovery.
 
+   A refused candidate rejects the load with its source path and diagnostic.
+   Never report a successful partial board or invent frontmatter for that file;
+   the caller can repair the source and retry. Files outside the configured
+   projection and non-Markdown entries retain their discovery exclusions.
+
    The resolved tasks-dir is checked because getting it wrong used to be
    invisible: `readdir` throws on a bad argument, [[collect-markdown-files]]
    catches everything and returns `[]`, and the caller reads that as \"the board
@@ -204,8 +185,7 @@
         nested (await (js/Promise.all
                        (clj->js (mapv collect-markdown-files roots))))
         files (vec (distinct (apply concat nested)))
-        tasks-raw (await (js/Promise.all
-                          (clj->js
-                           (mapv #(parse-task-file % tasks-dir) files))))
-        tasks (filterv some? (vec tasks-raw))]
+        tasks (vec (await (js/Promise.all
+                           (clj->js
+                            (mapv #(parse-task-file % tasks-dir) files)))))]
     (vec (sort-by task-sort-key tasks))))
