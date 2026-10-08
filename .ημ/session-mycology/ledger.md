@@ -27,3 +27,11 @@
   spore: none
   receipt-refs: rheos-issue3-parity-scope-clarification
   note: Name the server read contract explicitly when HTTP parity could imply browser implementation. Native discovery and independent byte preservation support planning only; existing skills cover this boundary.
+
+## 2026-10-08T06:46:30.689Z — canonical relationship-plan review preparation
+
+- Receipt `cephalon-rheos4-canonical-review-route-preparation-20261008`; efficiency0.78, friction0.27, skill-candidate0.14.
+- Missing hosted route is a real cohort obligation. Reuse pinned shared machinery and existing encrypted publisher metadata; retain original provenance and actual per-gate execution truth.
+- Remote immutable Git tree is this operation's source boundary; local placeholder is not ownership. Existing package/config commands control over old workspace README.
+- Model is currently advertised free, while direct catalog403 does not establish availability. Local caller and Git hygiene preparation are not product, board, hosted review or character proof. No spore.
+- Actual current owning strict law rejects timestamps in four original rows; fifth and new row valid. Retain the original bytes and record later work through Rheos. Neither history repair nor a cumulative pass is implied.
