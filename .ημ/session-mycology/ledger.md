@@ -207,3 +207,12 @@
 - Node219/1928/13fail0errors twice; both directly invoked22.20 processes report actualruntime. Wrapper PATH target alone is insufficient: fresh pnpm exec uses22.18, while earlier child versions remain unverified. Append correction without altering old proofs.
 - No atomic post-read fencing or full FSM/CLI execution claimed by this writer fixture; no scope expansion, spore, deployment or B1/B2/B3 proof.
 - Evidence: .ημ/review-evidence/rheos1-status-writeback-shape-RED-20261008.json SHA25620191d8efadb22319edc736cab755d6d2c83f9b328ea71d21d716d302d9a1cec.
+
+## 2026-10-08T15:05:39.159Z — cephalon-rheos1-status-writeback-shape-GREEN-source-20261008T1503
+
+- p-efficiency: 0.92; p-friction: 0.08; p-skill-candidate: 0.03.
+- Existing portable law now guards the actual reread source before any status/write-ID persistence. Six unchanged RED cases refuse with source-path/diagnostic and byte-identical source.
+- Actual direct Node22.20 GREEN219/1946/0/0 twice; kondo0/0, four release targets0compilerwarnings. Conditional branch assertion count explains RED1928 vs GREEN1946.
+- Preserve historical receipts/proofs and append corrections. No fresh JVM, post-read fencing, installation or B1/B2/B3 proof inferred.
+- Evidence: .ημ/review-evidence/rheos1-status-writeback-shape-GREEN-20261008.json SHA25617d73243340b0221ddda7a5701bd8c5e41e9e3813667861279a8970788a072e1.
+- Operator correction: initial proposed receipt timestamp rejected before append; corrected candidate only. No product failure or historical row edit.
