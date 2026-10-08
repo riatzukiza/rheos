@@ -3,10 +3,11 @@
    References are existing opaque UUID-field strings, not title matches or a
    new RFC-UUID restriction. Graph semantics belong to law.relationships."
   (:require [malli.core :as m]
-            [malli.registry :as mr]))
+            [malli.registry :as mr]
+            [rheos.backend.law.relationships :as law]))
 
 (def registry
-  {::reference [:string {:min 1}]
+  {::reference [:and :string [:re law/reference-pattern]]
    ::singular-input [:maybe :string]
    ::dependency-input [:maybe [:or :string [:vector [:ref ::reference]]]]
    ::input [:map {:closed true}

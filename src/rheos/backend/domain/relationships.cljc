@@ -20,13 +20,13 @@
 
 (defn- singular [field value]
   (cond
-    (or (nil? value) (and (string? value) (str/blank? value))) {:ok? true}
+    (law/blank? value) {:ok? true}
     (law/reference? value) {:ok? true :value value}
     :else (failure [(malformed field value)])))
 
 (defn- dependencies [value]
   (cond
-    (or (nil? value) (and (string? value) (str/blank? value))) {:ok? true}
+    (law/blank? value) {:ok? true}
     (not (or (string? value) (vector? value)))
     (failure [(malformed :dependency value)])
     :else
@@ -34,7 +34,7 @@
                   (if (str/includes? value ",")
                     ;; Whitespace around CSV separators is representation syntax.
                     ;; A singular string or vector member is an exact identity.
-                    (mapv str/trim (str/split value #"," -1))
+                    (mapv law/trim-csv-member (str/split value #"," -1))
                     [value])
                   value)
           duplicates (->> (frequencies items)
@@ -203,7 +203,7 @@
   (cond
     (not (shape/valid-mutation? {:uuid uuid :updates updates}))
     (failure [{:kind :malformed-mutation}])
-    (str/blank? uuid) (failure [{:kind :malformed-uuid :uuid uuid}])
+    (law/blank? uuid) (failure [{:kind :malformed-uuid :uuid uuid}])
     (empty? updates) (failure [{:kind :empty-update}])
     (not (and (vector? snapshot) (every? map? snapshot)))
     (failure [{:kind :malformed-snapshot}])

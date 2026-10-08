@@ -48,3 +48,10 @@
 - Actual current-head full native reviews qualify the planning gate after complete input and successful publication. Historical quota, omitted input and failed publication remain distinct evidence.
 - Native comment writers may change bookkeeping and concatenate comment sections. Persist pre-state before assertions; compare native body/comment content and immutable ledger prefixes without assuming a section layout.
 - Ready admission and a behavioral baseline are prerequisite progress; graph laws, writer/parity, release and the accepted character slice remain unfinished. No spore.
+
+## 2026-10-08T08:59:33.342Z — portable relationship contract GREEN
+
+- Receipt `cephalon-rheos4-portable-contract-green-20261008`; efficiency0.79, friction0.35, skill-candidate0.15.
+- Shared code does not guarantee shared lexical behavior: pinned JVM and JS blank/trim functions disagree. Retain behavioral RED and declare one character contract.
+- Read native comment help and use the installed surface. Preserve a malformed historical comment; append an explicit correction and compare actual readback rather than assuming success output implies intended content.
+- Full product gates and portable admission GREEN do not repair the observed reader projection. Keep that required adapter RED visible and keep consumer deployment closed. No spore.
