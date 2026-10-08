@@ -1,0 +1,138 @@
+{
+  "schema": "cephalon.observed-command-output-transcription/v1",
+  "source": "actual native compiled Rheos command outputs retained privately; transcription, not rawREST or providerapproval",
+  "observed_at": "2026-10-08T17:09:28.062609+00:00",
+  "base": "54ae39a598fe813ddea7f19b19cb4122a907d060",
+  "compiled_cli_sha256": "2493ad986309c431355c09e022306b07ef3dbbd7c83bc8f074f7e757d0bdfafe",
+  "node": "22.20.0",
+  "successful_native_operations": [
+    {
+      "label": "rheos-issue-3-relationship-writer-comment",
+      "native_stdout_ok": true,
+      "native_exit_observed": 0,
+      "stdout_bytes": 1222,
+      "stdout_sha256": "5d01153120e88ea6febb6aec155ce41c69ee954a20ceb9c372ba06732a4bb588",
+      "stderr_bytes": 261,
+      "stderr_sha256": "872851017e443041bc79487b55cdf21ec4336e0141709d21637f81daa375907a"
+    },
+    {
+      "label": "rheos-issue-3-relationship-parity-comment",
+      "native_stdout_ok": true,
+      "native_exit_observed": 0,
+      "stdout_bytes": 967,
+      "stdout_sha256": "bcf15f299c32ce7d48f7d8aa5e76b7040c8f7ddd6aa07113f2fe26458cc45f29",
+      "stderr_bytes": 261,
+      "stderr_sha256": "872851017e443041bc79487b55cdf21ec4336e0141709d21637f81daa375907a"
+    },
+    {
+      "label": "rheos-issue-3-relationship-authoring-comment",
+      "native_stdout_ok": true,
+      "native_exit_observed": 0,
+      "stdout_bytes": 837,
+      "stdout_sha256": "07009e0c5f1faad7969f0303292d88f6088fdb96f29c4022cc438e3bd2ebffd8",
+      "stderr_bytes": 261,
+      "stderr_sha256": "872851017e443041bc79487b55cdf21ec4336e0141709d21637f81daa375907a"
+    },
+    {
+      "label": "writer-points",
+      "native_stdout_ok": true,
+      "native_exit_observed": 0,
+      "stdout_bytes": 616,
+      "stdout_sha256": "4d27a4213168aeccb9cf11f8332bb48037bfa2682fe37da88dcc2c74e72e8466",
+      "stderr_bytes": 261,
+      "stderr_sha256": "872851017e443041bc79487b55cdf21ec4336e0141709d21637f81daa375907a"
+    },
+    {
+      "label": "epic-points",
+      "native_stdout_ok": true,
+      "native_exit_observed": 0,
+      "stdout_bytes": 445,
+      "stdout_sha256": "b7270d9bdd66a9be6eb6c0441c6ce56383d5b7ac05adb3e87a5f94425ae93208",
+      "stderr_bytes": 261,
+      "stderr_sha256": "872851017e443041bc79487b55cdf21ec4336e0141709d21637f81daa375907a"
+    }
+  ],
+  "readbacks": [
+    {
+      "uuid": "rheos-issue-3-relationship-writer",
+      "points": "8",
+      "status": "incoming",
+      "exact_comment_retained": true,
+      "native_readback_exit": 0,
+      "bytes": 7834,
+      "sha256": "30d71a3e776c3e614562658bedc885d75b32b082107fdc2c102f2df0bb14e5f3"
+    },
+    {
+      "uuid": "rheos-issue-3-relationship-parity",
+      "points": "5",
+      "status": "incoming",
+      "exact_comment_retained": true,
+      "native_readback_exit": 0,
+      "bytes": 6974,
+      "sha256": "6279fc1d7c0f54645803df8f281febccf9b537670c8f39b38d90b23eb945c515"
+    },
+    {
+      "uuid": "rheos-issue-3-relationship-authoring",
+      "points": "16",
+      "status": "incoming",
+      "exact_comment_retained": true,
+      "native_readback_exit": 0,
+      "bytes": 7835,
+      "sha256": "4fa30276c1bb5b62e3f5d97aa542dcd3964caa7cea8789848586770729c94697"
+    }
+  ],
+  "canonical_event_prefix_equal": true,
+  "canonical_new_events": 5,
+  "receipt_reflection_before_bytes_unchanged": true,
+  "files": [
+    {
+      "path": "docs/agile/.events/ledger.edn",
+      "before_bytes": 9043,
+      "before_sha256": "9aff6c927ff01bf462a13f995842697e301a4723388b71224165ef4bf5dd880c",
+      "after_bytes": 13925,
+      "after_sha256": "7ea2124c2482588f779506e87da7489214e0f2bc9e9f448e097a50a416ef4622"
+    },
+    {
+      "path": "docs/agile/tasks/rheos-issue-3-relationship-writer.md",
+      "before_bytes": 5692,
+      "before_sha256": "de71f3941dc4f60be14592835f89f5dff35fe23ab3f0f5e1bc1b391c88320e09",
+      "after_bytes": 7332,
+      "after_sha256": "02f324bd23a1e6f98f9b45139b70f421ebdad063e7468e3fea11b6d55f1c8288"
+    },
+    {
+      "path": "docs/agile/tasks/rheos-issue-3-relationship-parity.md",
+      "before_bytes": 5078,
+      "before_sha256": "cc267d97b2a28cb2bfdb65b99a7d51bf3c3b4b05bed0e84585ccad5434131dcb",
+      "after_bytes": 6480,
+      "after_sha256": "cfa1b7ed452e3feaf7a4e58ba37fd55170009a2874e59edca3718b0d04467309"
+    },
+    {
+      "path": "docs/agile/epics/rheos-issue-3-relationship-authoring.md",
+      "before_bytes": 5771,
+      "before_sha256": "cae99e1fbe9a3eb4178c5319f8b110e16ef77e08de8417302a8973196fd26152",
+      "after_bytes": 7332,
+      "after_sha256": "f805893d5e30acef7442e50f872c79067c9d16845134eaaa0558d9389107486a"
+    },
+    {
+      "path": ".ημ/receipts.edn",
+      "before_bytes": 103876,
+      "before_sha256": "3fef82df9c4b960c79e23c0ab26188de000590102f5c9e59aa5121f6c1e8f521",
+      "after_bytes": 103876,
+      "after_sha256": "3fef82df9c4b960c79e23c0ab26188de000590102f5c9e59aa5121f6c1e8f521"
+    },
+    {
+      "path": ".ημ/session-mycology/ledger.md",
+      "before_bytes": 28590,
+      "before_sha256": "e829ed0d6f4648a244ae192e6da033c726883ee8d890ba0c8435924919db0e71",
+      "after_bytes": 28590,
+      "after_sha256": "e829ed0d6f4648a244ae192e6da033c726883ee8d890ba0c8435924919db0e71"
+    }
+  ],
+  "operator_correction": "All5 nativewrites and initialwriterread exited0; postprocessing incorrectly assumed section text rather than content and raisedKeyError. Actualsections inspected; only remaining/current reads performed, none of the writes replayed. Prose amendments are supported Incoming Markdown body inputs, not boardstate hand edits.",
+  "limits": [
+    "native estimate8/5/16 andpolicy remain freshplanning proposals beforeReady/RED",
+    "no newselectedstory/B1-B3 inventory",
+    "no implementation/installed/admission/runtime proof",
+    "deprecatedJSONconfig warning retained separately"
+  ]
+}

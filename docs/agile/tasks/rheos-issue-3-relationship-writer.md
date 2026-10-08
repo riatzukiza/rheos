@@ -4,12 +4,13 @@ title: "Route relationship creation and edits through the canonical writer"
 type: "task"
 status: "incoming"
 priority: "P1"
-points: "5"
+points: "8"
 labels: "relationships, adapters, ledger, planning"
 epic: "rheos-issue-3-relationship-authoring"
 parent: "rheos-issue-3-relationship-authoring"
 dependency: "rheos-issue-3-relationship-contract"
 created_at: "2026-10-06"
+write-id: "1791479228946-0.12675rt8h88mx8ar0fl9"
 ---
 
 # Route relationship creation and edits through the canonical writer
@@ -93,9 +94,15 @@ Future red/green adapter fixtures use private task roots, seeded event history
 and explicit configuration. Record canonical events and readbacks via Rheos,
 without consumer-side parsing or a test-only replacement writer.
 
-This amended incoming story requires fresh planning qualification. Its existing
-5-point estimate is provisional; review must assess the enlarged writer/FSM
-boundary and recommend a split or re-estimate when necessary. It is not Ready.
+This amended incoming story requires fresh planning qualification. Rheos
+recorded the proposed estimate of 8, replacing the historical provisional 5:
+three for complete scoped reads and creation/edit/read integration, three for
+FSM admission and the shared writer reservation, and two for boundary/error
+handling and refusal/no-op evidence. These components describe this existing
+story, not new cards. The three additional estimated points were reported
+against the fixed consumer milestone. Review must assess this breakdown and
+the explicit policy in the plan, recommending a split if necessary. It is not
+Ready; the estimate is a proposal until that review settles it.
 
 ## Risks
 
@@ -103,3 +110,9 @@ Creation currently emits parent metadata but not other relationships, and loaded
 tasks lose those fields. A read-only or event-only partial port would preserve a
 different final state. Source-preserving writes are owned by their existing lane;
 consume its qualified revision if implementation needs it.
+
+
+---
+Fresh planning proposal after qualified PR7 merge54ae39a598fe813ddea7f19b19cb4122a907d060: estimate8 for this existing writer story, replacing provisional5, pending current-head native planning review. Breakdown within this card:3 for retained complete scoped source/loader and create/edit/read wiring to the accepted portable graph contract;3 for FSM-owned predecessor policy and shared inter-process reservation/revalidation across existing mutation paths;2 for boundary conversion, classified partial effects and adapter refusal/no-op evidence. These are estimate components, not new cards or silently selected work. Policy proposal: owning Promethean FSM names done as predecessor success and ready/todo/in_progress as guarded target admission; graph edges keep their distinct semantics, all reachable dependency predecessors are checked, and existing FSM/WIP/command gates remain required. Timeout alone cannot transfer a live writer's reservation. Exact diagnostic/recovery behavior is stated in the amended plan. Incoming remains truthful until fresh planning settles these decisions; no RED, installed enforcement or B1-B3 proof yet.
+
+---

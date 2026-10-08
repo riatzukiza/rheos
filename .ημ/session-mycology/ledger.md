@@ -268,3 +268,19 @@
 - Purecontract closes throughnativeRheosReview→Document→Done only. ExistingIncomingwriter/parity amendment names required predecessor-status admission and revalidation; no new accepted estimate/inventory or installed/B1-B3 proof.
 - Actualnativecommentreadback is exact inside a combinedcommentsection, not a separatesection. Preserve failedoperator assertions and originalproof; no replay.
 - Disk16.5GiB below20GiB threshold: reuseexistingcheckout/cache, no newcopy/install. Evidence: rheos1-b858-mimo-qualified-merge-and-selected-admission-plan-20261008.json SHA256207f81c64216cf102ed20c69d276c76d1f1f10f21e8293ce74b6d9106c7a05b7. All priorjournalprefixes preserved; no spore or runtime/publication change.
+
+## 2026-10-08T16:53:55.771Z — cephalon-rheos7-selected-plan-publication-source-20261008T1652
+
+- p-efficiency: 0.91; p-friction: 0.09; p-skill-candidate: 0.02.
+- Concrete16path selected prerequisite amendment published as personalRheosPR7/5d0348c/basee29551fe. Stage6064677404 has no request/reviewcredit; canonicalfullrequest6064720260 followed expired native3minute includedcooldown; trigger6064722247 pending only.
+- Actualhostedartifact11565640370 all10gates0/exactcleanhead/fullGitdiff103239bytes;220tests2043assertions0/0 twice,lint0/0+8infos,fourrelease0compilerwarnings. MiMo113428342727 pending; no current approvals/cohorts.
+- Required native predecessor policy and complete-read/revalidation proof are explicit; writer/parity Incoming, estimatesprovisional, no selectedinventoryexpansion or Ready/B1-B3 claim.
+- Evidence: rheos7-planning-publication-and-current-hosted-proof-20261008.json SHA256f6edfe3ce60ffa524706726e321c07d05d8564496f908fb59fdb737e1369a38d. All priorprefixes preserved. No observation-onlypush/spore/runtime/publication/paidusage. Initial gitHEAD readerfailure preserved and corrected beforestagepost.
+
+## 2026-10-08T17:10:38.954Z — cephalon-rheos7-qualified-merge-and-explicit-readiness-source-20261008T1710
+
+- p-efficiency: 0.87; p-friction: 0.16; p-skill-candidate: 0.03.
+- ActualPR7 merged54ae39a/exact5d basee295 aftercanonicalCodeRabbit+MiMo/3PASS/1availableplanningcohort. Nativecurrentbodyreadback and authenticatedfull14pages confirmed; allnonfindinglimits retained. Originalpendingobservations stayhistorical.
+- Explicitreadinessproposal3/8/5=16 reports+3capacity for alreadyselected prerequisite. NativeRheoscomments/points/Incomingreadback and fiveappendedevents preserved; no newstory/Ready/RED/Bproof.
+- Postprocessing sectiontext/content assumption failed aftersuccessfulnativeops; corrected usingactualreadback withoutreplayingwrites. Use returnedshape beforeassertions. Sourcepathreaderrors were corrected as operator diagnostics.
+- Evidence: rheos7-qualified-planning-merge-20261008.json SHA036b2ead84ccfb526595f107dc52b295e17a1de09f5a0b02f7537f2435da3095; readinessproof SHA4af75c9f9f52db02cc4e5bd7d7a08e90d7412ed5a29d0e3c69a9a527047e3cd7. Existingbyteprefixesretained, no spore/runtime/paidusage.

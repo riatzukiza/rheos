@@ -118,3 +118,84 @@ Source-preserving Rheos PR1 is now qualified and merged. Its merged tree and
 That repair supplies safe source handling; it does not implement relationship
 writers, dependency-aware lifecycle admission, persisted encounters, consumed
 mood or automatic maker recall.
+
+## Explicit readiness proposal — 2026-10-08
+
+The preceding paragraph describes PR7's retained frontmatter, not the following
+native estimate update. PR7 merged as
+`54ae39a598fe813ddea7f19b19cb4122a907d060`; its CodeRabbit and MiMo verdicts
+qualified the scope amendment but did not explicitly answer the estimate and
+breakdown question. The author now proposes writer 8, parity 5 and aggregate
+3+8+5=16. Rheos recorded these values and comments while retaining Incoming;
+no hand-edited status or estimate masquerades as native state. The additional
+three estimated points were reported against the already selected consumer
+prerequisite. No new story or B1/B2/B3 acceptance subset is selected.
+
+### Estimate and breakdown
+
+| Existing story | Proposal | Within-card work |
+| --- | --- | --- |
+| Portable contract | 3, qualified and Done | Existing pure graph/reference contract and host-parity proof. |
+| Canonical writer | 8, Incoming | 3: complete scoped reads and creation/edit/read wiring; 3: lifecycle admission and shared reservation; 2: boundary conversion, classified failures and refusal/no-op evidence. |
+| Public-surface parity | 5, Incoming | 2: actual compiled CLI/isolated HTTP/MCP matrix; 2: independent-process races and partial effects; 1: consumed immutable bundle and native admission readback. |
+
+The writer crosses distinct existing mutation paths and needs process-level
+coordination after potentially long command gates, so its former five-point
+estimate understated integration risk. The parity scope reuses current fixture,
+CLI and server seams and excludes browser-client work; five remains the proposal.
+These are relative engineering estimates requiring native planning assessment,
+not measured execution times or a claim of reviewer agreement. A required
+split or extra selected work is reported before selection.
+
+### Proposed lifecycle and publication decisions
+
+1. The owning Promethean FSM names `done` as predecessor success and target
+   states `ready`, `todo` and `in_progress` as guarded admission boundaries.
+   This is a predecessor predicate, not a Done-to-Ready predecessor transition.
+   Other FSMs retain their own explicit policy; callers supply no shadow list.
+2. Before each guarded move, use the complete selected-project projection and
+   the accepted relationship contract. Refuse missing or ambiguous identities,
+   malformed relationships, dependency cycles and an unavailable/incomplete
+   read with structured diagnostics naming the affected identity/source/edge.
+   On a valid graph, inspect all reachable dependency predecessors; any status
+   outside the named success set is an unfinished blocker. Rejected, archived
+   and unknown statuses do not imply success. Parent/epic edges retain their
+   distinct graph meaning. No dependency does not waive other admission gates.
+3. Validate the ordinary FSM edge and WIP decision and run the declared command
+   gate. Reacquire or retain the same canonical publication reservation and
+   reread/revalidate the complete source revision after the command gate and
+   before mutation effects. A command failure or changed predecessor/relationship
+   yields a classified refusal or conflict, preserving that attempt's card and
+   event bytes. A stale verdict cannot authorize the later write.
+4. Creation, relationship editing and guarded transitions share one reservation
+   in the owning writer across actual CLI/service processes. Exclusive ownership
+   is established by the writer, not a timestamp. A conflicting live owner
+   yields a visible conflict; expiry alone does not allow reservation theft.
+   Release belongs to the owning attempt's finalization. An unresolved owner
+   remains refused until verified termination or an explicit native recovery
+   operation establishes authority. Do not fabricate effect cancellation.
+5. Public handlers propagate the shared structured refusal/conflict and actual
+   effect outcome. A file change followed by failed event append is a visible
+   partial-effect failure, never successful admission. Record its attempt and
+   actual changed/readback evidence through the existing event/receipt seams;
+   retain historical bytes and require native repair instead of rewriting facts
+   or automatically replaying an uncertain mutation. A true no-op performs no
+   file/event effect. Atomic file-plus-ledger commit is not claimed.
+6. Reservation proof covers participating canonical writers. First-class manual
+   Markdown remains input; a nonparticipating external editor is not magically
+   serialized by a CLI lock. Fixture proof must state its actual writers and
+   source-revision observations, and must not generalize cooperative serialization
+   into an unverified universal filesystem guarantee. Complete-read failures
+   still refuse rather than silently excluding a candidate card.
+7. Keep the writer Incoming until this proposal is natively reviewed and it
+   lawfully reaches Ready. Its portable-contract predecessor is actually Done.
+   Keep parity Incoming until the writer actually satisfies its predecessor
+   obligation; simultaneous Ready transitions would not prove that completion.
+   The consumer remains blocked until qualified delivered Rheos code proves the
+   installed missing/unfinished/cyclic/completed admission matrix.
+
+These decisions require fresh planning review. They add no engine source,
+test implementation, installed package or native predecessor-admission proof.
+RED must encode their relevant positive/negative laws before domain/adapters
+GREEN, including command-gate failures and actual process races. No observation
+or successful planning merge completes the accepted character-loop milestone.
