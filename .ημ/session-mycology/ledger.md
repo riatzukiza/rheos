@@ -67,3 +67,21 @@
 - Receipt `cephalon-rheos4-hosted-disk-reserve-source-20261008`; efficiency0.86, friction0.18, skill-candidate0.10.
 - A successful observed CI job and a documented-capacity portability risk can both be true. Record each explicitly; preserve old outputs and append corrections.
 - Hosted ephemeral reserve differs from the accepted local allocation floor. Invalid resource observations refuse effects. Let an alive review reach its native terminal state before a synchronize event that would cancel it. No spore.
+
+## 2026-10-08T09:55:58.008Z — published correction and verified fresh hosted gates
+
+- Receipt `cephalon-rheos4-published-disk-fix-source-20261008T0954`; efficiency0.84, friction0.22, skill-candidate0.11.
+- Retain native full-input evidence and tally discrepancies separately. A parent approval cannot qualify a new commit; a native finding verification does not become a full review.
+- Actual hosted capacity observation, gate results and source binding distinguish publication from readiness or deployment. Preserve original rows and append completion evidence with the owning repo. No spore.
+
+## 2026-10-08T10:15:21.668Z — full current-head review after native cooldown
+
+- Receipt `cephalon-rheos4-full-review-after-cooldown-source-20261008T1012`; efficiency0.83, friction0.16, skill-candidate0.10.
+- Fresh native head, committed input and quota observations control the request. A real pending status replaces a stale paused-success context but supplies no completed review.
+- Preserve active provider jobs and exact body readback; continue through canonical native qualification. Owned uncommitted append-only evidence stays for the next concrete change. No spore.
+
+## 2026-10-08T10:29:54.538Z — tied diagnostic red
+
+- Receipt `cephalon-rheos4-tied-diagnostics-red-source-20261008`; efficiency0.80, friction0.26, skill-candidate0.16.
+- Verify full-result permutation behavior across pinned hosts; native findings supply work, not approval. Preserve independent execution and old journal bytes.
+- GoalACTIVE/heartbeatPAUSED; no B1/B2/B3 completion, runtime/board change or spore.

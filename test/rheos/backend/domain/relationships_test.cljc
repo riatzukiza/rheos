@@ -241,6 +241,31 @@
         expected (relationships/inspect-graph cards)]
     (is (= expected (relationships/inspect-graph (vec (reverse cards)))))))
 
+(deftest tied-diagnostics-do-not-follow-snapshot-order
+  (doseq [field [:parent :epic :dependency]
+          :let [cards (mapv #(hash-map :uuid "dup" field %) [false 0 :invalid])
+                expected (relationships/inspect-graph cards)]]
+    (is (refusal? expected))
+    (is (= #{:ambiguous-uuid :malformed-relationship} (kinds expected)))
+    (is (= #{false 0 :invalid}
+           (set (map :value (filter #(= :malformed-relationship (:kind %))
+                                   (:errors expected))))))
+    (doseq [ordered (permutations cards)]
+      (is (= expected (relationships/inspect-graph ordered)) (str field ordered))))
+  (testing "duplicate-dependency diagnostics retain their differing targets"
+    (let [cards [{:uuid "dup" :dependency ["a" "a"]}
+                 {:uuid "dup" :dependency ["b" "b"]}]
+          expected (relationships/inspect-graph cards)]
+      (is (refusal? expected))
+      (is (= #{["a"] ["b"]}
+             (set (keep :targets (:errors expected)))))
+      (is (= expected (relationships/inspect-graph (vec (reverse cards)))))))
+  (testing "nil and empty UUIDs must remain distinct diagnostics despite equal str keys"
+    (let [cards [{:uuid nil} {:uuid ""}]
+          expected (relationships/inspect-graph cards)]
+      (is (= #{nil ""} (set (map :uuid (:errors expected)))))
+      (is (= expected (relationships/inspect-graph (vec (reverse cards))))))))
+
 (defn cycle-by-reachability?
   "Independent oracle: a vertex reaches itself along a nonempty path of at most N edges."
   [adjacency]
