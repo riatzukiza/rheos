@@ -76,6 +76,69 @@
                        (catch :default error {:error error}))]
          (is (some? (:error outcome)) "A missing selected root must not produce an apparently complete board"))))))
 
+(defn- ^:async with-disappearing-discovered-entry
+  "Remove one real fixture entry after its parent enumeration, before traversal.
+   The owning loader still performs every classification and graph decision."
+  [dir entry f]
+  (let [original (.-readdir fsp)
+        removed? (atom false)]
+    (try
+      (set! (.-readdir fsp)
+            (^:async fn [target]
+              (let [names (await (original target))]
+                (when (and (= dir target) (compare-and-set! removed? false true))
+                  (await (.rm fsp entry #js {:recursive true})))
+                names)))
+      (await (f))
+      (finally (set! (.-readdir fsp) original)))))
+
+(deftest ^:async released-writer-metadata-is-not-part-of-the-card-projection
+  (await
+   (with-cards [{:uuid "subject" :status "breakdown"}]
+     (^:async fn [{:keys [project dir ledger-path]}]
+       (let [reservation (path/join dir ".rheos-writer-reservation")
+             history (await (.readFile fsp ledger-path "utf8"))]
+         (await (.mkdir fsp reservation))
+         (await
+          (with-disappearing-discovered-entry dir reservation
+            (^:async fn []
+              (let [outcome (try {:tasks (await (tasks/load-tasks project))}
+                                 (catch :default error {:error error}))]
+                (is (= ["subject"] (mapv :uuid (:tasks outcome)))
+                    "A writer releasing its non-card metadata cannot interrupt a complete card read")
+                (is (nil? (:error outcome)))
+                (is (= history (await (.readFile fsp ledger-path "utf8")))))))))))))
+
+(deftest ^:async disappearing-selected-card-remains-an-incomplete-read
+  (await
+   (with-cards [{:uuid "subject" :status "breakdown" :dependency "predecessor"}
+                {:uuid "predecessor" :status "done"}]
+     (^:async fn [{:keys [project dir ledger-path]}]
+       (let [history (await (.readFile fsp ledger-path "utf8"))]
+         (await
+          (with-disappearing-discovered-entry dir (path/join dir "predecessor.md")
+            (^:async fn []
+              (let [outcome (try {:tasks (await (tasks/load-tasks project))}
+                                 (catch :default error {:error error}))]
+                (is (some? (:error outcome)))
+                (is (= :incomplete-projection (:cause (ex-data (:error outcome)))))
+                (is (nil? (:tasks outcome)) "Never return a successful graph missing a discovered card")
+                (is (= history (await (.readFile fsp ledger-path "utf8")))))))))))))
+
+(deftest ^:async display-fallback-never-repairs-missing-stored-graph-identity
+  (await
+   (with-cards [{:uuid "subject" :status "breakdown"}]
+     (^:async fn [{:keys [project dir] :as fixture}]
+       (await (.writeFile fsp (path/join dir "legacy.md")
+                          "---\ntitle: Legacy display\nslug: legacy-display\nstatus: done\n---\n\nLegacy body.\n" "utf8"))
+       (let [loaded (await (tasks/load-tasks project))
+             legacy (first (filter #(= "legacy-display" (:uuid %)) loaded))
+             snapshot (first (filter #(= (:source-path legacy) (:source-path %))
+                                     (tasks/relationship-snapshot loaded)))]
+         (is (= "legacy-display" (:uuid legacy)) "Read-only display compatibility remains available")
+         (is (nil? (:uuid snapshot)) "An inferred display label is not stored UUID identity")
+         (await (assert-refused-move! fixture "breakdown" "ready")))))))
+
 (deftest ^:async each-reviewed-implementation-boundary-refuses-unfinished-predecessors
   (doseq [[from to] [["breakdown" "ready"] ["ready" "todo"] ["todo" "in_progress"]]
           status ["incoming" "ready" "in_progress" "rejected" "archived" "unknown"]]

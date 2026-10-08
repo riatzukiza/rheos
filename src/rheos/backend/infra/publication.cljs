@@ -6,6 +6,10 @@
             ["node:path" :as path]
             ["node:crypto" :as crypto]))
 
+(def reservation-dir-name
+  "Transient canonical writer metadata, outside recursive card discovery."
+  ".rheos-writer-reservation")
+
 (defn conflict! [message data]
   (throw (ex-info message (assoc data :kind :conflict))))
 
@@ -19,7 +23,7 @@
                     (throw (ex-info "Unavailable selected project root"
                                     {:kind :refused :cause :incomplete-projection
                                      :source-path (:tasks-dir project) :diagnostic (.-message error)} error))))
-        dir (path/join root ".rheos-writer-reservation")
+        dir (path/join root reservation-dir-name)
         owner-path (path/join dir "owner.json")
         token (.randomUUID crypto)
         owner (js/JSON.stringify #js {:token token :pid js/process.pid

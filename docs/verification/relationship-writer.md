@@ -122,3 +122,46 @@ reflections remain append-only; corrections are new rows, never rewritten
 historical claims. No spore was created or promoted.
 
 Process documentation: GPL-3.0-or-later.
+
+## PR9 review and reservation-discovery repair — 2026-10-08
+
+CodeRabbit review5461949384 on head9b753377a6e7edcd858942d9aecc04c44b8cb108
+raised traversal race4223364075 and identity fallback4223364089. Native
+reply4223418686 explicitly withdrew the latter after inspecting the accepted
+stored-UUID law and planning sources. Canonical settlement recorded Handled
+on that exact head. This is a finding withdrawal, not independent rejection,
+formal approval or full-review credit. Raw review, inline findings and
+withdrawal remain retained under `.ημ/review-evidence/pr9-9b-coderabbit-*`.
+
+A real private fixture entry is removed immediately after actual directory
+enumeration. Before repair, disappearance of `.rheos-writer-reservation` refuses
+an otherwise complete card load:241tests2219assertions2failures0errors, twice.
+The native writer now owns the shared metadata directory name; recursive card
+discovery excludes that exact project's metadata path before lstat. Lexical and
+real task-root spellings are considered. Other directories, discovered cards
+and configured projection roots retain visible incomplete-read refusal. The
+regression also verifies actual discovered-card disappearance and missing stored
+UUID identity; display compatibility remains read-only. No blanket ENOENT
+suppression or graph identity repair was added.
+
+After repair,241tests2219assertions0failures0errors ran twice under Node22.20.0.
+Lint has0errors0warnings and the same8existing information diagnostics. Test
+compile157files/22compiled/0warnings/9.90s; release server115/10/13.48s,
+CLI119/11/7.33s, GitHub sync73/3/4.04s and app95/0/6.42s, all0warnings and
+actual exit0. Exact raw RED6787bytes/SHA256
+92438f1bcdcbdb9c49b4551a3092c0b1795657c99a7c392d90a0017af9ed15e4;
+GREEN6033bytes/SHA256
+dddb23b171d4e1621bf5ae2432606aa65cffd4dffd351f9ae155e4452335d238.
+Lossless log wrappers preserve every original output byte, including failures.
+These are local gates; current-head hosted review and merge remain required.
+An initial candidate-hash read used the wrong browser path `web/js/main.js`;
+the configured output is `dist/web/js/main.js`. This was a read failure after
+successful build, corrected by reading the actual build configuration. It
+supplies no build or product-failure claim.
+
+Existing receipts are left intact. New correction or execution evidence is an
+append in its owning repository; historical attribution is not rewritten. The
+owning Receipt River law still requires `repo` on new rows. No compatibility
+implementation, observation-only push, runtime or board mutation follows from
+this receipt convention. Writer remains InProgress; parity remains Incoming;
+B1/B2/B3 remain unimplemented/unverified.

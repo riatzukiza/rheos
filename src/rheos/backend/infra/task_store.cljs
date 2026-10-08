@@ -7,6 +7,7 @@
             [rheos.backend.infra.projects :as projects]
             [rheos.backend.law.frontmatter :as law-frontmatter]
             [rheos.backend.infra.content-parser :as content-parser]
+            [rheos.backend.infra.publication :as publication]
             [rheos.backend.domain.relationships :as relationships]
             [rheos.backend.law.relationships :as relationship-law]
             [rheos.backend.shape.kanban :as shape]))
@@ -88,13 +89,13 @@
 
 (defn- ^:async collect-below
   "Markdown files below `dir`, one level at a time."
-  [dir]
+  [dir metadata-paths]
   (try
     (let [names (await (.readdir fsp dir))
           nested (await
                   (js/Promise.all
                    (clj->js
-                    (mapv #(collect-entry (path/join dir %)) names))))]
+                    (mapv #(collect-entry (path/join dir %) metadata-paths) names))))]
       (vec (apply concat nested)))
     (catch :default err
       (throw (ex-info "Unavailable selected card directory"
@@ -110,12 +111,16 @@
    otherwise pull cards in from anywhere the process can read, and a link back
    to an ancestor would recurse until the process died. Neither is hypothetical:
    `stat` follows links, and this walk used it."
-  [entry-path]
-  (let [kind (await (entry-kind entry-path))]
-    (case kind
-      :file (if (str/ends-with? entry-path ".md") [entry-path] [])
-      :dir (await (collect-below entry-path))
-      [])))
+  [entry-path metadata-paths]
+  ;; Exclude only the owning project's known metadata before even lstat.
+  ;; Missing discovered cards/directories still refuse an incomplete graph.
+  (if (contains? metadata-paths (path/resolve entry-path))
+    []
+    (let [kind (await (entry-kind entry-path))]
+      (case kind
+        :file (if (str/ends-with? entry-path ".md") [entry-path] [])
+        :dir (await (collect-below entry-path metadata-paths))
+        []))))
 
 (defn- ^:async collect-markdown-files
   "Markdown files at or under a configured projection root.
@@ -124,7 +129,7 @@
    `shape.config` has already resolved it and checked it stays inside the task
    root. Everything discovered *below* it goes through [[collect-entry]], which
    does not follow links."
-  [entry-path]
+  [entry-path metadata-paths]
   (try
     (let [^js stat (await (.stat fsp entry-path))]
       (cond
@@ -132,7 +137,7 @@
       (if (str/ends-with? entry-path ".md") [entry-path] [])
 
       (.isDirectory stat)
-      (await (collect-below entry-path))
+      (await (collect-below entry-path metadata-paths))
 
       :else (throw (ex-info "Unsupported selected projection root"
                             {:kind :refused :cause :incomplete-projection
@@ -151,6 +156,15 @@
 
 (defn source-revisions [loaded]
   (into (sorted-map) (map (juxt :source-path :source-revision)) loaded))
+
+(defn- ^:async writer-metadata-paths [tasks-dir]
+  (let [real-root (try (await (.realpath fsp tasks-dir))
+                       (catch :default error
+                         (throw (ex-info "Unavailable selected project root"
+                                         {:kind :refused :cause :incomplete-projection
+                                          :source-path tasks-dir :diagnostic (.-message error)} error))))]
+    #{(path/resolve tasks-dir publication/reservation-dir-name)
+      (path/join real-root publication/reservation-dir-name)}))
 
 (defn- task-sort-key [task]
   [(get status-index (:status task) 99)
@@ -199,8 +213,9 @@
         roots (if (and projection (contains? projection :paths))
                 (:paths projection)
                 [tasks-dir])
+        metadata-paths (await (writer-metadata-paths tasks-dir))
         nested (await (js/Promise.all
-                       (clj->js (mapv collect-markdown-files roots))))
+                       (clj->js (mapv #(collect-markdown-files % metadata-paths) roots))))
         files (vec (distinct (apply concat nested)))
         tasks (vec (await (js/Promise.all
                            (clj->js
