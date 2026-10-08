@@ -152,7 +152,11 @@
                ["uuid: broken\npriority: [P0, P1]\n" "Task priority must be a string"]
                ["uuid: broken\npriority: {name: P0}\n" "Task priority must be a string"]
                ["uuid: broken\nstatus: [todo, done]\n" "Task status must be a string"]
-               ["uuid: broken\nstatus: {name: todo}\n" "Task status must be a string"]]]
+               ["uuid: broken\nstatus: {name: todo}\n" "Task status must be a string"]
+               ["uuid: [broken]\n" "Task uuid must be a string"]
+               ["uuid: {name: broken}\n" "Task uuid must be a string"]
+               ["slug: [broken]\n" "Task slug must be a string"]
+               ["slug: {name: broken}\n" "Task slug must be a string"]]]
         (let [raw (str "---\n" source "---\n\n# Keep this body\n")]
           (await (.writeFile fsp bad-path raw "utf8"))
           (let [error (try (await (task-store/load-tasks dir))

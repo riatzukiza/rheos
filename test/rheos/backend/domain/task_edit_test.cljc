@@ -31,7 +31,7 @@
     (is (identical? value (:new-value (first (:changes plan)))))))
 
 (deftest frontmatter-plan-refuses-collection-valued-core-fields
-  (doseq [field [:title :priority :status]
+  (doseq [field [:uuid :slug :title :priority :status]
           value [["one" "two"] {:name "one"}]]
     (let [error (try
                   (task-edit/plan-frontmatter-update
@@ -44,7 +44,7 @@
              (when error (ex-message error)))))))
 
 (deftest comment-plan-refuses-invalid-core-frontmatter
-  (doseq [field [:title :priority :status]
+  (doseq [field [:uuid :slug :title :priority :status]
           value [["one" "two"] {:name "one"} 7 false nil]]
     (let [error (try
                   (task-edit/plan-comment
@@ -57,6 +57,8 @@
 
 (deftest comment-plan-retains-valid-and-defaulted-frontmatter
   (doseq [frontmatter [{} {:title "Task" :priority "P1" :status "incoming"
+                          :metadata {:values [7 false nil]}}
+                         {:uuid "task-identity" :slug "task-slug"
                           :metadata {:values [7 false nil]}}]]
     (is (= "Body  \n\n\n---\nReviewed\n\n---"
            (task-edit/plan-comment "Body  \n" {:frontmatter frontmatter} "Reviewed")))))

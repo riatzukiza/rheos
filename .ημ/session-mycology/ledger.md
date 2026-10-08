@@ -216,3 +216,19 @@
 - Preserve historical receipts/proofs and append corrections. No fresh JVM, post-read fencing, installation or B1/B2/B3 proof inferred.
 - Evidence: .ημ/review-evidence/rheos1-status-writeback-shape-GREEN-20261008.json SHA25617d73243340b0221ddda7a5701bd8c5e41e9e3813667861279a8970788a072e1.
 - Operator correction: initial proposed receipt timestamp rejected before append; corrected candidate only. No product failure or historical row edit.
+
+## 2026-10-08T15:14:17.753Z — cephalon-rheos1-bc3-published-writeback-source-20261008T1510
+
+- p-efficiency: 0.91; p-friction: 0.09; p-skill-candidate: 0.03.
+- Publish concrete ordinaryRED/GREEN, settle confirmed source finding, verify exact native head/body/thread and hosted full diff rather than transfer old approvals.
+- Hosted219/1946/0/0 twice actualNode22.20; all10deterministicgates0; fourrelease0warnings. NewMiMo live and Codex automaticRunning; neither process metadata nor priorquota grants approval.
+- Preserve initial timestamp refusal and readback lag as operator corrections. Keep prior journal/proof bytes immutable, no observation-onlyheadchurn or B1/B2/B3claim.
+- Evidence: .ημ/review-evidence/rheos1-bc3-published-writeback-and-hosted-evidence-20261008.json SHA2564ba8bbcb923e2a2d1bc761abb8ba1a6c34de851d27a9b80b282278487c61e645.
+
+## 2026-10-08T15:25:45.131Z — cephalon-rheos1-identity-shape-RED-source-20261008T1524
+
+- p-efficiency: 0.86; p-friction: 0.12; p-skill-candidate: 0.03.
+- NativeCodex completed COMMENTED5458824219 confirms identity-type gap; canonical availability restores3agentcohort instead of preserving old quota as current.
+- Genuine directNodeRED220/2031/81fail0errors twice and JVM5/80/28fail0errors. Actual loader, mutation event/fileeffects and stale-source writer prove missinglaw consumption; no complete HTTP/CLI lookup or fencing claim.
+- Partial test-preparation literal mismatch stopped before execution; corrected from actual source line. Below20GiB floor, reuse existing caches only.
+- Evidence: .ημ/review-evidence/rheos1-identity-shape-RED-20261008.json SHA256b728ee0857aa270261847d459224c85b7a7a1c2646896e2fa0ccfc0afeb4bb6e.

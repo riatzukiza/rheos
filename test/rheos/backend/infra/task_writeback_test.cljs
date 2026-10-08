@@ -95,7 +95,11 @@
                    [:priority "priority: \"P3\"" "priority: [P2, P3]"]
                    [:priority "priority: \"P3\"" "priority: {name: P3}"]
                    [:status "status: \"incoming\"" "status: [incoming, ready]"]
-                   [:status "status: \"incoming\"" "status: {name: incoming}"]]]
+                   [:status "status: \"incoming\"" "status: {name: incoming}"]
+                   [:uuid "uuid: \"stale\"" "uuid: [stale]"]
+                   [:uuid "uuid: \"stale\"" "uuid: {name: stale}"]
+                   [:slug "uuid: \"stale\"" "uuid: \"stale\"\nslug: [stale]"]
+                   [:slug "uuid: \"stale\"" "uuid: \"stale\"\nslug: {name: stale}"]]]
         (-> (reduce (fn [pending [field from to]]
                       (.then pending
                              (fn []

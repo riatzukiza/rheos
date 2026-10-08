@@ -1,0 +1,297 @@
+{
+  "schema": "cephalon.observed-command-output-transcription/v1",
+  "tier": "derived",
+  "basis": "actual ordinary push, native readbacks and SHA256-verified hosted artifact; not a synthesized provider approval",
+  "observed_at": "2026-10-08T15:14:17.753Z",
+  "head": "bc3ed4978e9b1c1e2c2a88c65de9c631b51ca309",
+  "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+  "red_commit": "8aae9cd5e98c991bdd9788a8eb1b3dab429a3a69",
+  "ordinary_push": "04fb606→bc3ed497, RED then GREEN, both head/base riatzukiza/rheos, personal tracking/pushRemote, auto_merge:null",
+  "first_readback": "Native REST immediately after successful push still04fb606; later same PR read matchedbc3ed497. No repeated push or stale-head mutation.",
+  "scope": {
+    "head": "bc3ed4978e9b1c1e2c2a88c65de9c631b51ca309",
+    "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+    "changed_inputs": 50,
+    "paths": [
+      ".github/workflows/eta-mu-review.yml",
+      ".ημ/receipts.edn",
+      ".ημ/review-evidence/rheos1-04fb-completed-mimo-and-full-coderabbit-request-20261008.json",
+      ".ημ/review-evidence/rheos1-04fb-published-comment-refusal-and-current-gates-20261008.json",
+      ".ημ/review-evidence/rheos1-7d-hosted-and-receiver-7b-commented-20261008.json",
+      ".ημ/review-evidence/rheos1-comment-refusal-GREEN-20261008.json",
+      ".ημ/review-evidence/rheos1-comment-refusal-RED-20261008.json",
+      ".ημ/review-evidence/rheos1-comment-refusal-corrected-RED-20261008.json",
+      ".ημ/review-evidence/rheos1-comment-source-preservation-GREEN-20261008.json",
+      ".ημ/review-evidence/rheos1-comment-source-preservation-RED-20261008.json",
+      ".ημ/review-evidence/rheos1-f797-completed-review-and-comment-refusal-20261008.json",
+      ".ημ/review-evidence/rheos1-f797-hosted-receiver-consumer-and-kernel-binding-20261008.json",
+      ".ημ/review-evidence/rheos1-mimo-5458156763-native-04fb.json",
+      ".ημ/review-evidence/rheos1-source-preserving-main-integration-20261008.json",
+      ".ημ/review-evidence/rheos1-status-writeback-shape-GREEN-20261008.json",
+      ".ημ/review-evidence/rheos1-status-writeback-shape-RED-20261008.json",
+      ".ημ/review-evidence/rheos4-merged-contract-and-receiver-corrections-20261008.json",
+      ".ημ/review-evidence/rheos4-mimo-5455463863-completion-d556.json",
+      ".ημ/review-evidence/rheos4-mimo-5455463863-verification-d556.json",
+      ".ημ/review-evidence/rheos4-tied-diagnostics-published-20261008.json",
+      ".ημ/session-mycology/ledger.md",
+      "README.md",
+      "docs/cli.md",
+      "package.json",
+      "src/rheos/backend/domain/compose.cljs",
+      "src/rheos/backend/domain/task_edit.cljc",
+      "src/rheos/backend/domain/task_edit.cljs",
+      "src/rheos/backend/extern/content_parser.cljs",
+      "src/rheos/backend/extern/yaml.cljs",
+      "src/rheos/backend/infra/agent_tools.cljs",
+      "src/rheos/backend/infra/content_parser.cljs",
+      "src/rheos/backend/infra/http_server.cljs",
+      "src/rheos/backend/infra/task_create.cljs",
+      "src/rheos/backend/infra/task_edit.cljs",
+      "src/rheos/backend/infra/task_store.cljs",
+      "src/rheos/backend/infra/task_writeback.cljs",
+      "src/rheos/backend/infra/watcher.cljs",
+      "src/rheos/backend/law/frontmatter.cljc",
+      "src/rheos/backend/shape/content_parser.cljc",
+      "src/rheos/backend/shape/content_parser.cljs",
+      "test/rheos/backend/domain/compose_test.cljs",
+      "test/rheos/backend/domain/task_edit_test.cljc",
+      "test/rheos/backend/infra/task_create_test.cljs",
+      "test/rheos/backend/infra/task_edit_test.cljs",
+      "test/rheos/backend/infra/task_store_test.cljs",
+      "test/rheos/backend/infra/task_writeback_test.cljs",
+      "test/rheos/backend/infra/watcher_test.cljs",
+      "test/rheos/backend/shape/comment_source_test.cljc",
+      "test/rheos/backend/shape/content_parser_test.cljs",
+      "test/rheos/backend/shape/frontmatter_serialization_test.cljc"
+    ],
+    "stat": " .github/workflows/eta-mu-review.yml                |   89 +-\n \".\\316\\267\\316\\274/receipts.edn\"                   |   16 +\n ...mimo-and-full-coderabbit-request-20261008.json\" |  184 ++\n ...omment-refusal-and-current-gates-20261008.json\" |  254 +++\n ...hosted-and-receiver-7b-commented-20261008.json\" |  533 ++++++\n .../rheos1-comment-refusal-GREEN-20261008.json\"    |  133 ++\n .../rheos1-comment-refusal-RED-20261008.json\"      |   78 +\n ...s1-comment-refusal-corrected-RED-20261008.json\" |   92 +\n ...omment-source-preservation-GREEN-20261008.json\" |  119 ++\n ...-comment-source-preservation-RED-20261008.json\" |   50 +\n ...leted-review-and-comment-refusal-20261008.json\" |  315 ++++\n ...iver-consumer-and-kernel-binding-20261008.json\" |  173 ++\n .../rheos1-mimo-5458156763-native-04fb.json\"       |    1 +\n ...urce-preserving-main-integration-20261008.json\" | 1797 ++++++++++++++++++++\n ...os1-status-writeback-shape-GREEN-20261008.json\" |  167 ++\n ...heos1-status-writeback-shape-RED-20261008.json\" |  101 ++\n ...ontract-and-receiver-corrections-20261008.json\" |  188 ++\n .../rheos4-mimo-5455463863-completion-d556.json\"   |    1 +\n .../rheos4-mimo-5455463863-verification-d556.json\" |   55 +\n ...heos4-tied-diagnostics-published-20261008.json\" |   95 ++\n \".\\316\\267\\316\\274/session-mycology/ledger.md\"     |  125 ++\n README.md                                          |   82 +-\n docs/cli.md                                        |    6 +-\n package.json                                       |    3 +-\n src/rheos/backend/domain/compose.cljs              |    9 +-\n src/rheos/backend/domain/task_edit.cljc            |   25 +\n src/rheos/backend/domain/task_edit.cljs            |   37 -\n src/rheos/backend/extern/content_parser.cljs       |    7 +\n src/rheos/backend/extern/yaml.cljs                 |  137 ++\n src/rheos/backend/infra/agent_tools.cljs           |    2 +-\n src/rheos/backend/infra/content_parser.cljs        |   39 +\n src/rheos/backend/infra/http_server.cljs           |    2 +-\n src/rheos/backend/infra/task_create.cljs           |   12 +-\n src/rheos/backend/infra/task_edit.cljs             |   31 +-\n src/rheos/backend/infra/task_store.cljs            |   54 +-\n src/rheos/backend/infra/task_writeback.cljs        |   34 +-\n src/rheos/backend/infra/watcher.cljs               |    2 +-\n src/rheos/backend/law/frontmatter.cljc             |   20 +\n src/rheos/backend/shape/content_parser.cljc        |  195 +++\n src/rheos/backend/shape/content_parser.cljs        |  115 --\n test/rheos/backend/domain/compose_test.cljs        |   83 +\n test/rheos/backend/domain/task_edit_test.cljc      |   62 +\n test/rheos/backend/infra/task_create_test.cljs     |   53 +-\n test/rheos/backend/infra/task_edit_test.cljs       |  181 +-\n test/rheos/backend/infra/task_store_test.cljs      |  109 ++\n test/rheos/backend/infra/task_writeback_test.cljs  |  199 ++-\n test/rheos/backend/infra/watcher_test.cljs         |    2 +-\n test/rheos/backend/shape/comment_source_test.cljc  |   64 +\n test/rheos/backend/shape/content_parser_test.cljs  |  349 +++-\n .../shape/frontmatter_serialization_test.cljc      |   13 +\n 50 files changed, 6224 insertions(+), 269 deletions(-)\n",
+    "full_diff_bytes": 501144,
+    "full_diff_sha256": "c728801cc79bc58a1d9e991a5df81f3492466db8cfd96cac4b8f8eec0d4f19b5",
+    "journal_prefixes": [
+      {
+        "path": ".ημ/receipts.edn",
+        "base_bytes": 44956,
+        "head_bytes": 87997,
+        "suffix_bytes": 43041,
+        "head_sha256": "da8905e79e4f470692b4d7f5fa4d4d54a5690aa194b83a3a4d889b4982333baf",
+        "appended_lines": 16,
+        "byte_prefix_equal": true
+      },
+      {
+        "path": ".ημ/session-mycology/ledger.md",
+        "base_bytes": 7980,
+        "head_bytes": 21372,
+        "suffix_bytes": 13392,
+        "head_sha256": "813a1e7fbba206872730f202710148e47756fc61a87a4cd4dbe55d3e316ef193",
+        "appended_lines": 125,
+        "byte_prefix_equal": true
+      }
+    ]
+  },
+  "settlement": {
+    "head": "bc3ed4978e9b1c1e2c2a88c65de9c631b51ca309",
+    "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+    "thread": "PRRT_kwDOU4Vf-c6qaaqX",
+    "resolved": true,
+    "outdated": false,
+    "root": 4220417833,
+    "reply_id": 4220683447,
+    "reply_url": "https://github.com/riatzukiza/rheos/pull/1#discussion_r4220683447",
+    "reply_body_bytes": 1252,
+    "reply_body_sha256": "d48e13af933dc702952aca96b3e9041acd63571187cd3351cd3b35e913992556",
+    "whole_reply_readback_equal": true,
+    "threads": 16,
+    "unresolved": 0
+  },
+  "description": {
+    "head": "bc3ed4978e9b1c1e2c2a88c65de9c631b51ca309",
+    "base": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+    "whole_body_equal": true,
+    "bytes": 37807,
+    "sha256": "9f91a05ac374e3c680703d1840e5400a042f1c6dbe64153f04dc365c19391573",
+    "entire_prior_body_equal": true,
+    "prior_bytes": 32380,
+    "prior_sha256": "d59fb6547a1612d7e53cbfeae5ebee8d9c7333cdc74ed5701c921758f76d88b7",
+    "auto_merge": null
+  },
+  "hosted": {
+    "run_id": 37798017359,
+    "automatic_run_created_at": "2026-10-08T15:06:38Z",
+    "jobs": [
+      {
+        "id": 113382460220,
+        "name": "Evidence-first review (eta-mu) / Produce deterministic review evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-10-08T15:06:41Z",
+        "completed_at": "2026-10-08T15:08:50Z"
+      },
+      {
+        "id": 113382460637,
+        "name": "Evidence-first review (eta-mu) / Compile Muse tools and stage skills",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-10-08T15:06:41Z",
+        "completed_at": "2026-10-08T15:07:55Z"
+      },
+      {
+        "id": 113383506880,
+        "name": "Evidence-first review (eta-mu) / Review pull request with OpenCode MiMo",
+        "status": "in_progress",
+        "conclusion": null,
+        "started_at": "2026-10-08T15:08:52Z",
+        "completed_at": null
+      }
+    ],
+    "summary": {
+      "schema": "open-hax.review-evidence/v2",
+      "repository": "riatzukiza/rheos",
+      "pull_request": 1,
+      "base_sha": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+      "expected_head_sha": "bc3ed4978e9b1c1e2c2a88c65de9c631b51ca309",
+      "executed_sha": "bc3ed4978e9b1c1e2c2a88c65de9c631b51ca309",
+      "completion_sha": "bc3ed4978e9b1c1e2c2a88c65de9c631b51ca309",
+      "head_sha": "bc3ed4978e9b1c1e2c2a88c65de9c631b51ca309",
+      "exact_head": true,
+      "clean_checkout": true,
+      "generated_at": "2026-10-08T15:08:44.409Z",
+      "result": "success",
+      "statuses": {
+        "diff_stat": 0,
+        "diff_hygiene": 0,
+        "tool_versions": 0,
+        "generated_path_policy": 0,
+        "install": 0,
+        "bootstrap": 0,
+        "lint": 0,
+        "test": 0,
+        "build": 0,
+        "release_outputs": 0
+      },
+      "attempted": {
+        "diff_stat": true,
+        "diff_hygiene": true,
+        "tool_versions": true,
+        "generated_path_policy": true,
+        "install": true,
+        "bootstrap": true,
+        "lint": true,
+        "test": true,
+        "build": true,
+        "release_outputs": true
+      },
+      "errors": [],
+      "interpretation": "Exit 125 means the gate was skipped because a required prerequisite failed."
+    },
+    "artifact": {
+      "id": 11558983208,
+      "bytes": 181689,
+      "digest": "sha256:d221eb90b5779068b13c7c73c9f4826d627b59c5e26b1f5d8059418683becd24",
+      "zip_digest_equal": true,
+      "safe_entry_checks": true
+    },
+    "input_manifest": {
+      "schema": "open-hax.review-input/v1",
+      "base_sha": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+      "head_sha": "bc3ed4978e9b1c1e2c2a88c65de9c631b51ca309",
+      "diff_base_sha": "c5a8417b9a0fc9e7441f87a34af0cf4efa28db4f",
+      "full_diff": {
+        "path": "basehead.diff",
+        "bytes": 501144,
+        "sha256": "c728801cc79bc58a1d9e991a5df81f3492466db8cfd96cac4b8f8eec0d4f19b5"
+      },
+      "preview": {
+        "path": "pr.diff",
+        "limit_bytes": 300000,
+        "truncated": true
+      },
+      "provenance": {
+        "repository": "riatzukiza/rheos",
+        "pull_request": "1",
+        "run_id": "37798017359",
+        "run_attempt": "1",
+        "workflow_sha": "bec850598336f61d4aba272bb7ad9e7c5538007e",
+        "workflow_ref": "riatzukiza/rheos/.github/workflows/eta-mu-review.yml@refs/pull/1/merge"
+      }
+    },
+    "full_diff_matches_local": true,
+    "actual_tests": {
+      "tests": 219,
+      "assertions": 1946,
+      "failures": 0,
+      "errors": 0,
+      "invocations": 2,
+      "fixture_runtime": "v22.20.0"
+    },
+    "kondo": "0errors0warnings/8info",
+    "test_and_four_release_compiler_warnings": 0,
+    "pr_context_bytes": 32633,
+    "pr_context_sha256": "2df6d324578412bd3bfb581f966233ae25d59c89109f2338669ff15e28b5bd6b",
+    "pr_context_current_prose": "Captured preceding MiMo04fb description, before the later bc3 writeback addendum. Source/execution/full501144-byte diff is exactbc3; stale prose disclosed, no restart solely for prose.",
+    "approval_or_entire_run_success": false
+  },
+  "canonical_observed_status": {
+    "head": "bc3ed4978e9b1c1e2c2a88c65de9c631b51ca309",
+    "checks": {
+      "pass": 2
+    },
+    "threads": 16,
+    "unresolved": 0,
+    "exact_head_approvals": [],
+    "code_rounds": 0,
+    "configured_participants": [
+      "coderabbit",
+      "mimo"
+    ],
+    "quota_unavailable_source": 6061462739,
+    "quota_reset": "UNKNOWN",
+    "gate": "BLOCKED approval/convergence",
+    "scope": "actual CLI output at15:10; no policy override"
+  },
+  "coderabbit_current_summary": {
+    "id": 5966686355,
+    "updated_at": "2026-10-08T15:09:50Z",
+    "body_bytes": 8150,
+    "body_sha256": "62248f62e72aec2854c5c5b34164ebc6b00e98666b48c282c4cae6620006cc8a",
+    "actual_paused": true,
+    "coverage_head": "04fb6065bbb40d79b88262805d913b07daf2acb6",
+    "current_head_full_approval": false,
+    "last_full_request": 6062297642,
+    "reply": 6062300218,
+    "full_finished_at": "2026-10-08T14:45:10Z",
+    "next_conservative_full_request_after": "2026-10-08T15:46:00Z",
+    "fresh_native_footer_and_pending_binding_required": true,
+    "included_file_limit_documentation": {
+      "url": "https://docs.coderabbit.ai/management/plans",
+      "checked_at": "2026-10-08T15:14:17.753Z",
+      "Essentials_files_per_review": 150,
+      "actual_changed_inputs": 50,
+      "native_allowance": "0remaining/adjusted1review perhour; current default5 is not this observed allowance"
+    }
+  },
+  "codex": {
+    "prior_authenticated_quota": {
+      "id": 6061462739,
+      "updated_at": "2026-10-08T13:56:36Z",
+      "body_sha256": "f1ed71be2ef4257d8559ac5742f4e650a9bfd1a94b3d77d0ca7e200aae16c124"
+    },
+    "new_native_automatic_summary": {
+      "id": 6062841037,
+      "created_at": "2026-10-08T15:06:52Z",
+      "updated_at": "2026-10-08T15:06:52Z",
+      "body_sha256": "92ebba5db48ffbc425f1a43c597d89a7b8b0075a1558654666a14aa281f558ce",
+      "head_short": "bc3ed49",
+      "reported": "Running since15:06:48.716771Z/New commits",
+      "approval": false
+    },
+    "interpretation": "Retain actual native attempt and previous quota; canonical skill owns availability. No duplicate manual request or credits."
+  },
+  "current_canonical_skill_main": "4b4f48dae1b804b2581974e604cca618ecedadf1 (fresh remote read unchanged)",
+  "receipt_correction": "Initial proposed timestamp refused before any journal append. New accepted millisecondZ row appended, original candidates/rows/proofs unchanged. Initial staging halted before commit; only explicit four GREEN paths committed after successful appends.",
+  "limits": [
+    "Prior04fb approvals do not transfer tobc3. New MiMo/Codex outputs and complete CodeRabbit review remain pending.",
+    "Retain committed16receipt suffix and125reflection lines; root held prior bytes/owned appends untouched. No observation-only commit/push.",
+    "No post-read atomic fencing, full FSM/HTTP/CLI race, deployed release, B1/B2/B3 or artistic guarantee proof.",
+    "No live runtime/owner/maker/PM2/cloud/model/credential/publication/board mutation, paidusage or spore; heartbeat stays paused."
+  ]
+}

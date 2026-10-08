@@ -322,3 +322,34 @@
         (finally
           (unsub)
           (await (.rm fsp dir #js {:recursive true :force true})))))))
+
+(deftest ^:async invalid-identity-source-update-is-refused-before-write-or-event
+  (let [dir (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-identity-update-")))
+        task-path (path/join dir "identity.md")
+        project {:id "test" :tasks-dir dir :meta {}}
+        task {:uuid "identity" :source-path task-path}
+        captured (atom [])
+        unsub (events/subscribe! #(swap! captured conj %))]
+    (try
+      (doseq [field [:uuid :slug]
+              value ["[one, two]" "{name: one}"]]
+        (let [raw (str "---\r\n" (when (= field :slug) "uuid: identity\r\n")
+                       (name field) ": " value
+                       "\r\ntitle: Original\r\nstatus: incoming\r\n"
+                       "metadata: {values: [7, false, null]}\r\n---\r\nBody\t \r\n")
+              diagnostic (str "Task " (name field) " must be a string")]
+          (await (.writeFile fsp task-path raw "utf8"))
+          (reset! captured [])
+          (let [error (try (await (task-edit/update-frontmatter!
+                                   {:project project :task task :updates {:title "Updated"}}))
+                           nil (catch :default error error))]
+            (is (= :refused (:kind (ex-data error))))
+            (is (= field (:field (ex-data error))))
+            (is (= task-path (:source-path (ex-data error))))
+            (is (= diagnostic (:diagnostic (ex-data error))))
+            (is (= raw (await (.readFile fsp task-path "utf8")))
+                "identity refusal leaves the disk source byte-identical")
+            (is (empty? @captured) "identity refusal emits no mutation event"))))
+      (finally
+        (unsub)
+        (await (.rm fsp dir #js {:recursive true :force true}))))))
