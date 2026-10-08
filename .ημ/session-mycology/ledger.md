@@ -157,3 +157,11 @@
 - Portable law and real file/event tests demonstrate the same missing assertion. Correct initial fixture delimiter expectation using existing source grammar, retaining the original observer failure.
 - Historical receipt/reflection prefixes and original provider states stay intact. No paid credits, policy override, spore, deployment or B1/B2/B3 completion.
 - Evidence: .ημ/review-evidence/rheos1-comment-refusal-RED-20261008.json SHA256a8b3db50795d30868150fc82b99cd091e2643da82a95161b366f55b790f15a21.
+
+## 2026-10-08T13:52:39.505Z — cephalon-rheos1-comment-refusal-corrected-RED-source-20261008
+
+- p-efficiency: 0.65; p-friction: 0.42; p-skill-candidate: 0.07.
+- Append correction:135 original failures included63 fixture errors because top-level YAML scalars preserve string spelling. Corrected218/1915/72 RED has only missing-law failures; nine real scalar positives pass. JVM5/51/30 RED is unchanged.
+- Preserve historical receipts/proofs and RED349; commit correctedfixtures ordinarily. Never change the owning decoder to satisfy an incorrect test.
+- No spore, runtime/board mutation, policy waiver or B1/B2/B3 completion.
+- Evidence: .ημ/review-evidence/rheos1-comment-refusal-corrected-RED-20261008.json SHA256932f1b4f409cd8b9ae779f4facce616996720b0abd98bc26759b9fb2943ea5ba.

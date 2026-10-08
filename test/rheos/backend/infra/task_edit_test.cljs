@@ -220,7 +220,7 @@
         unsub (events/subscribe! #(swap! captured conj %))]
     (try
       (doseq [field [:title :priority :status]
-              value ["[one, two]" "{name: one}" "7" "false" "null"]]
+              value ["[one, two]" "{name: one}"]]
         (let [raw (str "---\r\nuuid: invalid\r\n" (name field) ": " value
                        "\r\nmetadata: {values: [7, false, null]}\r\n---\r\n"
                        "    code  \r\nBody\t \r\n")]
@@ -239,6 +239,39 @@
             (is (= raw (await (.readFile fsp task-path "utf8")))
                 "a refused comment retains every original source byte")
             (is (empty? @captured) "a refused comment emits no event"))))
+      (finally
+        (unsub)
+        (await (.rm fsp dir #js {:recursive true :force true}))))))
+
+(deftest ^:async scalar-frontmatter-comments-retain-decoded-spelling-and-event
+  (let [dir (await (.mkdtemp fsp (path/join (os/tmpdir) "rheos-scalar-comment-")))
+        task-path (path/join dir "scalar.md")
+        project {:id "test" :tasks-dir dir :meta {}}
+        task {:uuid "scalar" :source-path task-path}
+        captured (atom [])
+        unsub (events/subscribe! #(swap! captured conj %))]
+    (try
+      (doseq [field [:title :priority :status]
+              value ["7" "false" "null"]]
+        (let [body "    code  \r\nBody\t \r\n"
+              raw (str "---\r\nuuid: scalar\r\n" (name field) ": " value
+                       "\r\nmetadata: {values: [7, false, null]}\r\n---\r\n" body)]
+          (await (.writeFile fsp task-path raw "utf8"))
+          (reset! captured [])
+          (let [result (await (task-edit/append-comment!
+                               {:project project :task task :text "Reviewed" :source "test"}))
+                after (await (.readFile fsp task-path "utf8"))
+                frontmatter (:frontmatter (content-parser/parse-task-content after))
+                event (first @captured)]
+            (is (:ok result))
+            (is (= value (get frontmatter field)) "top-level scalar spelling remains a string")
+            (is (= {:values [7 false nil]} (:metadata frontmatter)))
+            (is (str/starts-with? (:body (content-shape/frontmatter-source after)) body))
+            (is (= 1 (count @captured)))
+            (is (= "comment" (:type event)))
+            (is (= "Reviewed" (:text event)))
+            (is (string? (:write-id frontmatter)))
+            (is (= (:write-id frontmatter) (:write-id event))))))
       (finally
         (unsub)
         (await (.rm fsp dir #js {:recursive true :force true}))))))

@@ -1,0 +1,92 @@
+{
+  "schema": "cephalon.observed-command-output/v1",
+  "tier": "derived",
+  "basis": "Append-only correction and actual local command output; not provider approval",
+  "production_source": "Exact f797115e9a0b44fe2415f1d81fe2f6b6afc47195 production task_edit.cljc/task_edit.cljs temporarily materialized while saved candidate bytes remain private",
+  "RED_commit_preserved": "349fc6ab745b8b696100a22e924b49fe28af57a6",
+  "corrects": {
+    "path": ".ημ/review-evidence/rheos1-comment-refusal-RED-20261008.json",
+    "sha256": "a8b3db50795d30868150fc82b99cd091e2643da82a95161b366f55b790f15a21",
+    "statement": "Of the recorded135 failures,63 came from mistaken Node fixture expectations that YAML scalars7/false/null remain nonstring. Owning YAML adapter read-frontmatter preserves top-level Scalar.source as strings; those9 cases are legal comments.72 failures genuinely demonstrate missing refusal (30 pureplanner +42 realFS for6 collection-valued core fields). Original135-failure observation andreceipt stay unchanged."
+  },
+  "corrected_contract": "Pure already-decoded nonstrings refuse; real YAML collections refuse; scalar spelling7/false/null is admitted as string with typed extensions/body retained and exactly one matching write-id comment event",
+  "candidate_first_green": {
+    "compiled": {
+      "tests": 217,
+      "assertions": 1897,
+      "failures": 63,
+      "errors": 0
+    },
+    "JVM": {
+      "tests": 5,
+      "assertions": 51,
+      "failures": 0,
+      "errors": 0
+    },
+    "lint": "0errors0warnings;8unchangedinfo",
+    "reason": "Only mistaken scalar fixtures remained; owning decoder unchanged"
+  },
+  "corrected_RED": [
+    {
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "test"
+      ],
+      "exit": 1,
+      "start": "2026-10-08T13:50:48.678796+00:00",
+      "end": "2026-10-08T13:51:08.352267+00:00",
+      "counts": {
+        "tests": 218,
+        "assertions": 1915,
+        "failures": 72,
+        "errors": 0
+      },
+      "stdout_bytes": 46869,
+      "stdout_sha256": "ff633ecbfb5d30ceca3eef5cb6590d0dbe7f9519eebe702c10fce091cbc95030",
+      "stdout_tail": "nt) (rheos/backend/infra/task_edit_test.cljs:235:17)\nexpected: (= task-path (:source-path (ex-data error)))\n  actual: (not (= \"/tmp/rheos-refused-comment-Q8QSi3/invalid.md\" nil))\n\nFAIL in (invalid-frontmatter-comment-is-refused-before-write-or-event) (rheos/backend/infra/task_edit_test.cljs:236:17)\nexpected: (= diagnostic (:diagnostic (ex-data error)))\n  actual: (not (= \"Task status must be a string\" nil))\n\nFAIL in (invalid-frontmatter-comment-is-refused-before-write-or-event) (rheos/backend/infra/task_edit_test.cljs:237:17)\nexpected: (= (str \"Refused card source \" task-path \": \" diagnostic) (when error (ex-message error)))\n  actual: (not (= \"Refused card source /tmp/rheos-refused-comment-Q8QSi3/invalid.md: Task status must be a string\" nil))\n\nFAIL in (invalid-frontmatter-comment-is-refused-before-write-or-event) (rheos/backend/infra/task_edit_test.cljs:239:17)\na refused comment retains every original source byte\nexpected: (= raw (await (.readFile fsp task-path \"utf8\")))\n  actual: (not (= \"---\\r\\nuuid: invalid\\r\\nstatus: {name: one}\\r\\nmetadata: {values: [7, false, null]}\\r\\n---\\r\\n    code  \\r\\nBody\\t \\r\\n\" \"---\\r\\nuuid: invalid\\r\\nstatus: {name: one}\\r\\nmetadata: {values: [7, false, null]}\\r\\nwrite-id: \\\"1791467468026-0.lcpd35d6ajdr2lnlnex\\\"\\r\\n---\\r\\n    code  \\r\\nBody\\t \\r\\n\\r\\n\\r\\n---\\r\\nReviewed\\r\\n\\r\\n---\"))\n\nFAIL in (invalid-frontmatter-comment-is-refused-before-write-or-event) (rheos/backend/infra/task_edit_test.cljs:241:17)\na refused comment emits no event\nexpected: (empty? (clojure.core/deref captured))\n  actual: (not (empty? [{:new-value nil, :task-id \"invalid\", :key nil, :parent nil, :protocol nil, :card-type nil, :old-value nil, :type \"comment\", :write-id \"1791467468026-0.lcpd35d6ajdr2lnlnex\", :source \"test\", :agent \"eta-mu\", :title nil, :source-path nil, :details nil, :status nil, :result nil, :from nil, :correlation/status nil, :timestamp \"2026-10-08T13:51:08.033Z\", :body nil, :board \"test\", :text \"Reviewed\", :to nil}]))\n\nTesting rheos.backend.infra.task-store-test\n\nTesting rheos.backend.infra.task-writeback-test\n\nTesting rheos.backend.infra.transition-test\n\nTesting rheos.backend.infra.view-store-test\n\nTesting rheos.backend.infra.watcher-test\n\nTesting rheos.backend.law.fsm-test\n\nTesting rheos.backend.shape.comment-source-test\n\nTesting rheos.backend.shape.content-parser-test\n\nTesting rheos.backend.shape.frontmatter-serialization-test\n\nTesting rheos.backend.shape.kanban-test\n\nTesting rheos.backend.shape.relationships-test\n\nRan 218 tests containing 1915 assertions.\n72 failures, 0 errors.\n ELIFECYCLE  Test failed. See above for more details.\n",
+      "stderr": " WARN  Issue while reading \"/home/err/.npmrc\". Failed to replace env in config: ${NPM_TOKEN}\nshadow-cljs - config: /home/err/spaces/cephalon-rheos-relationships/source-preserving/shadow-cljs.edn\ncompose-snapshot error: Doesn't support name: 42\nrheos: transition rejected: No transition from 'review' to 'in_review'\nno \"source-map-support\" (run \"npm install source-map-support --save-dev\" to get it)\ncompose-snapshot error: Doesn't support name: 42\nrheos: transition rejected: No transition from 'review' to 'in_review'\n"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/clojure",
+        "-Srepro",
+        "-Sdeps",
+        "{:paths [\"src\" \"test\"] :deps {org.clojure/clojure {:mvn/version \"1.12.4\"} metosin/malli {:mvn/version \"0.16.4\"} org.clojure/clojurescript {:mvn/version \"1.12.134\"}}}",
+        "-M",
+        "-e",
+        "(require 'clojure.test 'rheos.backend.domain.task-edit-test) (let [r (clojure.test/run-tests 'rheos.backend.domain.task-edit-test)] (System/exit (if (clojure.test/successful? r) 0 1)))"
+      ],
+      "exit": 1,
+      "start": "2026-10-08T13:50:48.636104+00:00",
+      "end": "2026-10-08T13:50:50.219718+00:00",
+      "counts": {
+        "tests": 5,
+        "assertions": 51,
+        "failures": 30,
+        "errors": 0
+      },
+      "stdout_bytes": 6567,
+      "stdout_sha256": "f12c22bdd0cdb29d62a22dc0434392bfa551bd248d8c7ac4a7e4acb8aa1c12c6",
+      "stdout_tail": "ontmatter) (task_edit_test.cljc:54)\nexpected: (= {:kind :refused, :field field} (ex-data error))\n  actual: (not (= {:kind :refused, :field :priority} nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:55)\nexpected: (= (str \"Task \" (name field) \" must be a string\") (when error (ex-message error)))\n  actual: (not (= \"Task priority must be a string\" nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:54)\nexpected: (= {:kind :refused, :field field} (ex-data error))\n  actual: (not (= {:kind :refused, :field :status} nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:55)\nexpected: (= (str \"Task \" (name field) \" must be a string\") (when error (ex-message error)))\n  actual: (not (= \"Task status must be a string\" nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:54)\nexpected: (= {:kind :refused, :field field} (ex-data error))\n  actual: (not (= {:kind :refused, :field :status} nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:55)\nexpected: (= (str \"Task \" (name field) \" must be a string\") (when error (ex-message error)))\n  actual: (not (= \"Task status must be a string\" nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:54)\nexpected: (= {:kind :refused, :field field} (ex-data error))\n  actual: (not (= {:kind :refused, :field :status} nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:55)\nexpected: (= (str \"Task \" (name field) \" must be a string\") (when error (ex-message error)))\n  actual: (not (= \"Task status must be a string\" nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:54)\nexpected: (= {:kind :refused, :field field} (ex-data error))\n  actual: (not (= {:kind :refused, :field :status} nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:55)\nexpected: (= (str \"Task \" (name field) \" must be a string\") (when error (ex-message error)))\n  actual: (not (= \"Task status must be a string\" nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:54)\nexpected: (= {:kind :refused, :field field} (ex-data error))\n  actual: (not (= {:kind :refused, :field :status} nil))\n\nFAIL in (comment-plan-refuses-invalid-core-frontmatter) (task_edit_test.cljc:55)\nexpected: (= (str \"Task \" (name field) \" must be a string\") (when error (ex-message error)))\n  actual: (not (= \"Task status must be a string\" nil))\n\nRan 5 tests containing 51 assertions.\n30 failures, 0 errors.\n",
+      "stderr": ""
+    }
+  ],
+  "production_bindings": [
+    {
+      "path": "src/rheos/backend/domain/task_edit.cljc",
+      "saved_sha256": "a0abc4f208aae69a52ac3947e195e4e5e809f9638fabc3027166a9d6cd3c6372",
+      "baseline_sha256": "539c9a3c384ae5ca3c98dabfa7cd241bddb191bf779135ed1708da2933da6b24"
+    },
+    {
+      "path": "src/rheos/backend/infra/task_edit.cljs",
+      "saved_sha256": "ca7261590015c8c544550103889309267281954c294363d8f5f5858a8b7fd5a7",
+      "baseline_sha256": "f694d85665c80ed399f8d7a1fd59d7a166916b24afce84fa134a6302fd009f17"
+    }
+  ],
+  "operator_staging_correction": "Initial staged-name guard compared default Git quoted Unicode output with literal paths and failed after explicit staging. NUL-delimited exact names verified same7 owned paths; no unstaging/reset/history change.",
+  "limits": [
+    "No test removed or disabled: nine erroneously refused scalar cases now assert actual compatible positive contract; all six collection refusals and15 pure nonstring laws retained",
+    "Candidate source guard unchanged after fixture correction",
+    "No live board/runtime/maker/PM2/cloud/model/publication effects"
+  ]
+}
