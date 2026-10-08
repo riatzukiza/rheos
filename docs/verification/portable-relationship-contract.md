@@ -105,3 +105,28 @@ implementation head. No live board, maker, owner, PM2, cloud or publication
 service was changed by these code tests.
 
 Process documentation: GPL-3.0-or-later.
+
+## Hosted disk reserve correction — 2026-10-08
+
+Native CodeRabbit review `5454296517`, finding `4217078068`, identified that
+the hosted source gate inherited the local 20 GiB allocation floor even though
+[GitHub documents 14 GB for its standard Ubuntu runner](https://docs.github.com/en/actions/reference/runners/github-hosted-runners).
+The current `7a39ec1` hosted job actually passed install, source bootstrap,
+lint, tests and build; the finding is a portability problem against documented
+capacity, not evidence that that observed job failed.
+
+The hosted gate now checks an 8 GiB reserve, prints the measured free space,
+and refuses invalid observations or a failing disk probe before bootstrap.
+The accepted local 20 GiB floor remains in force. Bootstrap failure still
+records its actual nonzero status and prevents downstream test/build execution.
+The threshold is an allocation guard, not a guarantee that future installs or
+builds fit; their actual failures remain visible.
+
+An isolated probe extracted the actual workflow gate script and used bounded
+disk/command fixtures. Before repair, the documented-capacity and 8 GiB cases
+were refused; an empty disk column could allow bootstrap after an arithmetic
+error. After repair, both capacity cases admit bootstrap, while below-reserve,
+invalid, empty and failed disk observations refuse it. A bootstrap exit 7
+remains exit 7 and leaves test/build unattempted. These seven fixtures validate
+gate orchestration, not product functional behavior or a hosted runner run.
+The prior functional results and original failed observations remain intact.

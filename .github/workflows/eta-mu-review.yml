@@ -27,7 +27,9 @@ jobs:
         run_gate install pnpm install --no-frozen-lockfile --lockfile=false
         install_status="$(awk -F= '$1 == "install" {print $2}' "$statuses")"
         if [[ "$install_status" == "0" ]]; then
-          run_gate source_dependencies bash -c 'available_kib=$(df -Pk . | awk "NR==2 {print \$4}"); if [[ "$available_kib" -lt 20971520 ]]; then echo "Source bootstrap refused: less than 20 GiB free"; exit 1; fi; bash scripts/bootstrap-source-deps.sh'
+          # Reserve for this ephemeral hosted runner, whose documented disk is 14 GB.
+          # The accepted 20 GiB floor still applies to local goal allocations.
+          run_gate source_dependencies bash -euo pipefail -c 'available_kib=$(df -Pk . | awk "NR==2 {print \$4}"); if ! [[ "$available_kib" =~ ^[0-9]+$ ]]; then echo "Source bootstrap refused: invalid free-space observation"; exit 1; fi; echo "Hosted source bootstrap: ${available_kib} KiB available; 8 GiB required"; if [[ "$available_kib" -lt 8388608 ]]; then echo "Source bootstrap refused: less than 8 GiB free on hosted runner"; exit 1; fi; bash scripts/bootstrap-source-deps.sh'
           run_gate lint pnpm lint:kondo
           source_status="$(awk -F= '$1 == "source_dependencies" {print $2}' "$statuses")"
           if [[ "$source_status" == "0" ]]; then

@@ -1,0 +1,457 @@
+{
+  "schema": "observed-command-output-transcription",
+  "observed_at": "2026-10-08T09:23:17.746073+00:00",
+  "repo": "riatzukiza/rheos",
+  "reviewed_head": "7a39ec108e7a0bf8803f63d20b81fbd000349d30",
+  "base": "11811264a308d406cb612aefa1dad40818675e5e",
+  "native_finding": {
+    "review_id": 5454296517,
+    "root_comment_id": 4217078068,
+    "thread_id": "PRRT_kwDOU4Vf-c6qSOib",
+    "review_state": "COMMENTED",
+    "review_completed_at": "2026-10-08T09:10:48Z",
+    "url": "https://github.com/riatzukiza/rheos/pull/4#discussion_r4217078068",
+    "scope": "92 selected changed inputs; one disk-capacity finding. No approval credit."
+  },
+  "capacity_documentation": "https://docs.github.com/en/actions/reference/runners/github-hosted-runners",
+  "change": {
+    "before_kib": 20971520,
+    "after_hosted_kib": 8388608,
+    "local_allocation_floor_kib": 20971520,
+    "invalid_disk_observation": "refuse",
+    "failed_df": "propagate exit with pipefail; no bootstrap",
+    "failed_bootstrap": "preserve actual exit; downstream test/build 125/unattempted"
+  },
+  "prior_hosted_evidence": {
+    "run_id": 37753989081,
+    "job_id": 113233886091,
+    "sha256": "406863f4651420a54e15820fb3dbcad61339dcd8fecd003305c4245adc358813",
+    "bytes": 67813,
+    "actual_gate_exits": {
+      "diff_stat": "0",
+      "diff_hygiene": "0",
+      "install": "0",
+      "source_dependencies": "0",
+      "lint": "0",
+      "test": "0",
+      "build": "0"
+    },
+    "limit": "Existing 7a run actually passed functional gates. Documented-capacity portability risk is not an observed failure of that job; no measured free-space value was printed by the old gate."
+  },
+  "probes": {
+    "red": {
+      "schema": "observed-command-output",
+      "stage": "red",
+      "workflow_sha256": "408814fba490a13615bd4c57041a8a41f14a527d9d0f12b8b3090fea43633c6e",
+      "fixture_scope": "Actual extracted workflow gate orchestration; stubbed df/Git/pnpm/bootstrap. No network/dependency allocation or product functional execution.",
+      "cases": [
+        {
+          "case": "documented-14gb",
+          "available_kib": "13671875",
+          "df_exit": 0,
+          "bootstrap_exit": 0,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "1",
+            "lint": "0",
+            "test": "125",
+            "build": "125"
+          },
+          "bootstrap_invoked": false,
+          "expected_contract_pass": false,
+          "stdout": "Source bootstrap refused: less than 20 GiB free\n",
+          "stderr": ""
+        },
+        {
+          "case": "exact-8gib",
+          "available_kib": "8388608",
+          "df_exit": 0,
+          "bootstrap_exit": 0,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "1",
+            "lint": "0",
+            "test": "125",
+            "build": "125"
+          },
+          "bootstrap_invoked": false,
+          "expected_contract_pass": false,
+          "stdout": "Source bootstrap refused: less than 20 GiB free\n",
+          "stderr": ""
+        },
+        {
+          "case": "below-8gib",
+          "available_kib": "8388607",
+          "df_exit": 0,
+          "bootstrap_exit": 0,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "1",
+            "lint": "0",
+            "test": "125",
+            "build": "125"
+          },
+          "bootstrap_invoked": false,
+          "expected_contract_pass": true,
+          "stdout": "Source bootstrap refused: less than 20 GiB free\n",
+          "stderr": ""
+        },
+        {
+          "case": "invalid-df",
+          "available_kib": "invalid",
+          "df_exit": 0,
+          "bootstrap_exit": 0,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "1",
+            "lint": "0",
+            "test": "125",
+            "build": "125"
+          },
+          "bootstrap_invoked": false,
+          "expected_contract_pass": true,
+          "stdout": "Source bootstrap refused: less than 20 GiB free\n",
+          "stderr": ""
+        },
+        {
+          "case": "empty-df",
+          "available_kib": "",
+          "df_exit": 0,
+          "bootstrap_exit": 0,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "0",
+            "lint": "0",
+            "test": "0",
+            "build": "0"
+          },
+          "bootstrap_invoked": true,
+          "expected_contract_pass": false,
+          "stdout": "",
+          "stderr": "bash: line 1: [[: 0%: syntax error: operand expected (error token is \"%\")\n"
+        },
+        {
+          "case": "df-failure",
+          "available_kib": "13671875",
+          "df_exit": 6,
+          "bootstrap_exit": 0,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "1",
+            "lint": "0",
+            "test": "125",
+            "build": "125"
+          },
+          "bootstrap_invoked": false,
+          "expected_contract_pass": true,
+          "stdout": "Source bootstrap refused: less than 20 GiB free\n",
+          "stderr": ""
+        },
+        {
+          "case": "bootstrap-failure",
+          "available_kib": "13671875",
+          "df_exit": 0,
+          "bootstrap_exit": 7,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "1",
+            "lint": "0",
+            "test": "125",
+            "build": "125"
+          },
+          "bootstrap_invoked": false,
+          "expected_contract_pass": false,
+          "stdout": "Source bootstrap refused: less than 20 GiB free\n",
+          "stderr": ""
+        }
+      ]
+    },
+    "green": {
+      "schema": "observed-command-output",
+      "stage": "green",
+      "workflow_sha256": "85f50220efa00421c3597468fd3c34641066e1a47391d3fde5f3bbadc04b72ae",
+      "fixture_scope": "Actual extracted workflow gate orchestration; stubbed df/Git/pnpm/bootstrap. No network/dependency allocation or product functional execution.",
+      "cases": [
+        {
+          "case": "documented-14gb",
+          "available_kib": "13671875",
+          "df_exit": 0,
+          "bootstrap_exit": 0,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "0",
+            "lint": "0",
+            "test": "0",
+            "build": "0"
+          },
+          "bootstrap_invoked": true,
+          "expected_contract_pass": true,
+          "stdout": "Hosted source bootstrap: 13671875 KiB available; 8 GiB required\n",
+          "stderr": ""
+        },
+        {
+          "case": "exact-8gib",
+          "available_kib": "8388608",
+          "df_exit": 0,
+          "bootstrap_exit": 0,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "0",
+            "lint": "0",
+            "test": "0",
+            "build": "0"
+          },
+          "bootstrap_invoked": true,
+          "expected_contract_pass": true,
+          "stdout": "Hosted source bootstrap: 8388608 KiB available; 8 GiB required\n",
+          "stderr": ""
+        },
+        {
+          "case": "below-8gib",
+          "available_kib": "8388607",
+          "df_exit": 0,
+          "bootstrap_exit": 0,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "1",
+            "lint": "0",
+            "test": "125",
+            "build": "125"
+          },
+          "bootstrap_invoked": false,
+          "expected_contract_pass": true,
+          "stdout": "Hosted source bootstrap: 8388607 KiB available; 8 GiB required\nSource bootstrap refused: less than 8 GiB free on hosted runner\n",
+          "stderr": ""
+        },
+        {
+          "case": "invalid-df",
+          "available_kib": "invalid",
+          "df_exit": 0,
+          "bootstrap_exit": 0,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "1",
+            "lint": "0",
+            "test": "125",
+            "build": "125"
+          },
+          "bootstrap_invoked": false,
+          "expected_contract_pass": true,
+          "stdout": "Source bootstrap refused: invalid free-space observation\n",
+          "stderr": ""
+        },
+        {
+          "case": "empty-df",
+          "available_kib": "",
+          "df_exit": 0,
+          "bootstrap_exit": 0,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "1",
+            "lint": "0",
+            "test": "125",
+            "build": "125"
+          },
+          "bootstrap_invoked": false,
+          "expected_contract_pass": true,
+          "stdout": "Source bootstrap refused: invalid free-space observation\n",
+          "stderr": ""
+        },
+        {
+          "case": "df-failure",
+          "available_kib": "13671875",
+          "df_exit": 6,
+          "bootstrap_exit": 0,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "6",
+            "lint": "0",
+            "test": "125",
+            "build": "125"
+          },
+          "bootstrap_invoked": false,
+          "expected_contract_pass": true,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "case": "bootstrap-failure",
+          "available_kib": "13671875",
+          "df_exit": 0,
+          "bootstrap_exit": 7,
+          "wrapper_exit": 0,
+          "statuses": {
+            "diff_stat": "0",
+            "diff_hygiene": "0",
+            "install": "0",
+            "source_dependencies": "7",
+            "lint": "0",
+            "test": "125",
+            "build": "125"
+          },
+          "bootstrap_invoked": true,
+          "expected_contract_pass": true,
+          "stdout": "Hosted source bootstrap: 13671875 KiB available; 8 GiB required\n",
+          "stderr": ""
+        }
+      ]
+    }
+  },
+  "local_verification": {
+    "lint": {
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "lint:kondo"
+      ],
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+      "exit_code": 0,
+      "started_at": "2026-10-08T09:20:58.980310+00:00",
+      "finished_at": "2026-10-08T09:21:00.367843+00:00"
+    },
+    "test": {
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "test"
+      ],
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+      "exit_code": 0,
+      "started_at": "2026-10-08T09:21:00.368074+00:00",
+      "finished_at": "2026-10-08T09:21:18.331441+00:00"
+    },
+    "build": {
+      "argv": [
+        "/home/err/.volta/bin/pnpm",
+        "build"
+      ],
+      "cwd": "/home/err/spaces/cephalon-rheos-relationships/rheos",
+      "exit_code": 0,
+      "started_at": "2026-10-08T09:21:18.331695+00:00",
+      "finished_at": "2026-10-08T09:21:53.452172+00:00"
+    }
+  },
+  "functional_summary": {
+    "tests": 173,
+    "assertions": 1269,
+    "failures": 0,
+    "errors": 0,
+    "compile_and_explicit_node_each_executed": true,
+    "test_compiler_warnings": 0,
+    "lint_errors": 0,
+    "lint_warnings": 0,
+    "release_targets": [
+      "server",
+      "cli",
+      "github-sync",
+      "app"
+    ],
+    "release_compiler_warnings": 0,
+    "existing_separate_notices": [
+      "NPM_TOKEN interpolation",
+      "source-map-support",
+      "intentional transition rejection"
+    ]
+  },
+  "artifacts": {
+    "workflow-before.yml": {
+      "bytes": 2039,
+      "sha256": "408814fba490a13615bd4c57041a8a41f14a527d9d0f12b8b3090fea43633c6e",
+      "private_path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/hosted-disk-reserve/workflow-before.yml"
+    },
+    "native-review-comments.json": {
+      "bytes": 5339,
+      "sha256": "ce53a4e5786885f78da1dba19152eb9168d97433da664e8a196ce81b55beb7ef",
+      "private_path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/hosted-disk-reserve/native-review-comments.json"
+    },
+    "native-coderabbit-review.json": {
+      "bytes": 11538,
+      "sha256": "52966dd014b442dea4e88d4504490735dc40329e782a00c9c44a54a23ba5df51",
+      "private_path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/hosted-disk-reserve/native-coderabbit-review.json"
+    },
+    "red-probe.json": {
+      "bytes": 3990,
+      "sha256": "a25191d188f4e8952c3d66ec8e5ee850383b87eb20b94f88c93ceb6d28aded01",
+      "private_path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/hosted-disk-reserve/red-probe.json"
+    },
+    "green-probe.json": {
+      "bytes": 4050,
+      "sha256": "b390c053fa0158f1563613b0cbd7982439158a747609a1e195285c93c64b47ad",
+      "private_path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/hosted-disk-reserve/green-probe.json"
+    },
+    "lint.stdout": {
+      "bytes": 1512,
+      "sha256": "a46bddc5d7943114b74d51b8304c051d53dda38482a7f794f91a3ec439145924",
+      "private_path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/hosted-disk-reserve/lint.stdout"
+    },
+    "lint.stderr": {
+      "bytes": 97,
+      "sha256": "b1a73e8d61369efcbb995662dafac3cc34fddd603cedc2618c34c048491cf8e2",
+      "private_path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/hosted-disk-reserve/lint.stderr"
+    },
+    "test.stdout": {
+      "bytes": 2868,
+      "sha256": "02e326120e28895cb6f21570236bd5d504c0a7ad7bffd98ca2ba9d54b123c3c3",
+      "private_path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/hosted-disk-reserve/test.stdout"
+    },
+    "test.stderr": {
+      "bytes": 413,
+      "sha256": "8d360b7189072fc0c1ae169d5c63965192069b903b8f5e68e5b793b1334c7dee",
+      "private_path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/hosted-disk-reserve/test.stderr"
+    },
+    "build.stdout": {
+      "bytes": 504,
+      "sha256": "897ef1fe9e8740a702c5d7c1234a87f6f0f7f5cd26b6427651932226e9450647",
+      "private_path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/hosted-disk-reserve/build.stdout"
+    },
+    "build.stderr": {
+      "bytes": 187,
+      "sha256": "d05e15188f65c1060eb6b3b86cf0d52e8e812efb1aa4eb449c037b3281ac11a9",
+      "private_path": "/home/err/.local/share/codex/cephalon-review-artifacts/rheos4-route-20261008/portable-contract-20261008/hosted-disk-reserve/build.stderr"
+    }
+  },
+  "limits": [
+    "Fixture df/Git/pnpm/bootstrap commands; seven orchestration probes do not prove actual hosted capacity or functional tests.",
+    "Local full tests/build use previously installed owned dependencies and caches; no independent dependency reproducibility claim.",
+    "Current MiMo job remains alive on 7a; no duplicate or cancellation.",
+    "No source-reader, writer, CLI/API/MCP parity, release or live board/runtime repair. No B1/B2/B3 completion.",
+    "No historical receipt/event/body changes. Append correction in owning repository."
+  ]
+}

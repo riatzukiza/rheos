@@ -55,3 +55,15 @@
 - Shared code does not guarantee shared lexical behavior: pinned JVM and JS blank/trim functions disagree. Retain behavioral RED and declare one character contract.
 - Read native comment help and use the installed surface. Preserve a malformed historical comment; append an explicit correction and compare actual readback rather than assuming success output implies intended content.
 - Full product gates and portable admission GREEN do not repair the observed reader projection. Keep that required adapter RED visible and keep consumer deployment closed. No spore.
+
+## 2026-10-08T09:10:00.206Z — portable contract published, code review pending
+
+- Receipt `cephalon-rheos4-portable-contract-handoff-source-20261008`; efficiency0.82, friction0.23, skill-candidate0.12.
+- Preserve corrected observations as new rows. A successful body readback can still have a stale native head immediately after push; wait for matching native/Git binding before review or qualification.
+- Current portable GREEN is a prerequisite result. Retained adapter RED and absent consumed mood/automatic recall stay explicit; reviews pending never count as approval. No spore.
+
+## 2026-10-08T09:25:10.200Z — hosted reserve corrected without rewriting observations
+
+- Receipt `cephalon-rheos4-hosted-disk-reserve-source-20261008`; efficiency0.86, friction0.18, skill-candidate0.10.
+- A successful observed CI job and a documented-capacity portability risk can both be true. Record each explicitly; preserve old outputs and append corrections.
+- Hosted ephemeral reserve differs from the accepted local allocation floor. Invalid resource observations refuse effects. Let an alive review reach its native terminal state before a synchronize event that would cancel it. No spore.
