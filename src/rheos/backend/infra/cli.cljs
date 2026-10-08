@@ -37,7 +37,7 @@
 
 (def exit-codes
   "What a caller may branch on. Stable — treat changes as breaking."
-  {:ok 0 :usage 1 :not-found 2 :refused 3 :internal 4})
+  {:ok 0 :usage 1 :not-found 2 :refused 3 :conflict 3 :internal 4 :partial-effect 4})
 
 (defn- debug? []
   (or (= "1" (aget js/process.env "RHEOS_DEBUG"))

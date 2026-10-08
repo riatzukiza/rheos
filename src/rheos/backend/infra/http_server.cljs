@@ -37,7 +37,7 @@
        :status (:status task)
        :priority (:priority task)
        :labels (clj->js (:labels task))
-       :type (:type task) :parent (:parent task) :epic (:epic task)
+       :type (clj->js (:type task)) :parent (clj->js (:parent task)) :epic (clj->js (:epic task))
        :dependency (clj->js (:dependency task))
        :relationshipErrors (clj->js (:relationship-errors task))
        :createdAt (:created-at task)

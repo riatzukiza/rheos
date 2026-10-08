@@ -103,7 +103,7 @@
         _ (when-not (:ok? normalized)
             (task-create/refuse! :refused "Malformed creation relationships" {:errors (:errors normalized)}))
         decision (task-create/decide-card {:project project :title title
-                                           :card-type card-type :parent parent
+                                           :card-type card-type :parent (:parent (:value normalized))
                                            :status status :uuid uuid
                                            :force-status? force-status?
                                            :existing existing})

@@ -165,3 +165,59 @@ owning Receipt River law still requires `repo` on new rows. No compatibility
 implementation, observation-only push, runtime or board mutation follows from
 this receipt convention. Writer remains InProgress; parity remains Incoming;
 B1/B2/B3 remain unimplemented/unverified.
+
+## PR9 relationship boundary corrections — 2026-10-08
+
+Full native CodeRabbit request6068511179 completed via6068513141 at20:37:33UTC.
+Review5462560894 assessed all59 inputs on28b2a9bf11e98b86628f3f5cf75ebbb0adbfab72
+and raised three findings:4223884239 (blank creation parent),4223884217
+(structured HTTP projection values),4223884206 (CLI error classification).
+This finding-bearing COMMENTED review is not an approval. The actual current
+MiMo approval5462365551 and hosted run37836132228 apply to that old head;
+neither approval transfers to the repair.
+
+RED commit22e15295e2ee15a6400d65a32a290c3f860c7ecd contains four behavioral
+regressions plus the expanded stable CLI mapping assertion. Final RED ran
+245tests/2261assertions/13failures/0errors twice, with zero compiler warnings
+and direct bundle exit1. It verifies real owning creation, the public board
+handler's browser-readable JSON, the real CLI dispatcher during a held writer
+reservation, and an event failure after the actual file effect.
+
+Creation now supplies the already accepted normalized parent to its existence
+decision. Empty, whitespace and null parent inputs produce root cards with no
+parent frontmatter; their events retain absence as nil. HTTP converts raw
+type/parent/epic values at the JS boundary while retaining the malformed values
+and relationship diagnostics. CLI conflict now has explicit refusal exit3;
+partial-effect explicitly retains error exit4. The earlier exit4 proof and
+its report above remain historical evidence, not current behavior.
+
+GREEN245tests/2261assertions/0failures/0errors ran twice under Node22.20.0.
+Full lint has zero errors/warnings and the same eight existing information
+diagnostics. Test compile157files/11compiled/0warnings/10.74s. Release server
+115/5/13.10s, CLI119/6/7.39s, GitHub sync73/0/4.63s and app95/0/6.42s all
+completed exit0 with zero compiler warnings. Raw GREEN6310bytes/SHA256
+a9a492b8e4a2f53121898de19ddb294c2b9268911f26d619d2b4ee381490bf40
+is retained losslessly. Initial test attempts and four corrected interop
+warnings are also retained; their harness-induced500 response is not claimed
+as an actual native HTTP failure.
+
+The new independent-process proof uses compiled CLI2236725bytes/SHA256
+76251ae169560fb43a2239998ac117297c7f4f208874fe06b8d1463d3f692f3c.
+One CLI owner holds a real executable gate; four separate CLI contenders
+(frontmatter, create, comment, move) each return conflict/exit3 with exact card,
+ledger and ownership-token bytes unchanged. Releasing the gate lets the owner
+publish successfully. Returned and independently read frontmatter both have
+the new status. Existing event bytes remain an exact prefix, the owned
+reservation is released, all processes are reaped and the private fixture is
+removed. Raw proof10031bytes/SHA256
+8896e2cfa84349535c4c19d8ee2f25b99ab674958f7364576a84825b29be00ff
+remains a private candidate execution, not installed consumer enforcement or
+the successor's complete CLI/HTTP/MCP parity matrix.
+
+Receipt River rejected one new-row input's `+00:00` UTC spelling before any
+ledger mutation; the corrected new input uses `Z`. Complete earlier receipt,
+reflection and native-event prefixes remain intact. No historical row was
+rewritten. Current-head hosted review, settlement and merge remain required;
+the independent canonical withdrawal/head-binding gap is tracked in
+riatzukiza/.agents issue25. No runtime or board state changed. The accepted
+encounter/mood/automatic-recall slice remains unfinished.

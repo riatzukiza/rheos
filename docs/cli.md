@@ -126,8 +126,8 @@ is refused rather than writing a card the board will never scan.
 | `0` | success | |
 | `1` | usage — unknown verb, missing flag, malformed argument | `rheos create` with no `--title` |
 | `2` | not found — unknown project, card, or preset | `rheos read-task no-such-card` |
-| `3` | refused by policy — FSM rejection, WIP limit, build gate, duplicate uuid, unreadable or unparseable projected card source | `rheos move c --to done` from `todo` |
-| `4` | internal error | |
+| `3` | refused by policy or writer conflict — FSM rejection, WIP limit, build gate, duplicate uuid, unreadable or unparseable projected card source, held reservation or changed source | `rheos move c --to done` from `todo` |
+| `4` | internal error or partial effect requiring native repair | |
 
 Diagnostics go to **stderr** as a single `rheos: <message>` line. Stack traces
 appear only with `RHEOS_DEBUG=1`. Verbs that emit JSON put it on **stdout**
