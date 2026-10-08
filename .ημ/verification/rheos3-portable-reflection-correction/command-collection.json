@@ -1,0 +1,366 @@
+{
+  "commands": [
+    {
+      "label": "canonical-status-FIRST-new-correction-context",
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/runtime/nbb/cli.js",
+        "-cp",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/runtime/pr-flow/scripts",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/runtime/pr-flow/scripts/pr.cljs",
+        "status",
+        "riatzukiza/rheos",
+        "3"
+      ],
+      "cwd": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/status-cwd",
+      "started_at": "2026-10-08T00:20:27.668002+00:00",
+      "finished_at": "2026-10-08T00:20:51.618554+00:00",
+      "exit": 0,
+      "failure": null,
+      "streams": {
+        "stdout": {
+          "encoded": "cmlhdHp1a2l6YS9yaGVvcyMzICBoZWFkIDQ3MzFmNDQKICBhY3Rpb25hYmlsaXR5IGhpc3Rvcnk6IFVOQVZBSUxBQkxFOyB0aHJlYWRzIHJldGFpbiBmaW5kaW5nIG9ibGlnYXRpb25zCiAgY29kZXJhYmJpdDogY29tcGxldGVkICAgY2hlY2tzOiB7fQogIHRocmVhZHM6IDAgdG90YWwsIDAgdW5yZXNvbHZlZDsgYnkgc2V2ZXJpdHkge307IGluZm9ybWF0aW9uYWwgMAogIGV4YWN0LWhlYWQgYXBwcm92YWxzOiAjeyJjb2RlcmFiYml0In0gIG9ic2VydmVkIGNvbW1pdCBiaW5kaW5nOiB7ImNvZGVyYWJiaXQiICN7IjQ3MzFmNDRjZDdkNWM5ODhlYTMxNzBkYzEwMTUwNDBjYjliMzM1MzgifX0KICBjb21wbGV0ZWQgcGxhbm5pbmcgcm91bmRzOiAwIC8gc29mdCBtaW5pbXVtIDUgIHBhcnRpY2lwYW50czogI3siY29kZXJhYmJpdCIgIm1pbW8ifQogIGNvZGV4IHF1b3RhLXVuYXZhaWxhYmxlOiBuYXRpdmUgc291cmNlIDYwMTg1OTQ5OTMgcmVxdWVzdCAgc2NvcGUgYWNjb3VudCBvYnNlcnZlZCAyMDI2LTEwLTA2VDE0OjM1OjIxWiByZXRyeS1hdC1tcyBVTktOT1dOCiAgZ2F0ZTogQkxPQ0tFRAogICAgLSBSZXZpZXcgbG9vcCByZXF1aXJlcyA1IGNvbXBsZXRlZCByb3VuZHMgb3IgdW5hbmltb3VzIGN1cnJlbnQtaGVhZCBhcHByb3ZhbCwgd2l0aCBldmVyeSBmaW5kaW5nIHNldHRsZWQK\n",
+          "grammar": "ONE-LF",
+          "bytes": 672,
+          "sha256": "47145687ae78a03bd78d129c93c3140c18ca53a4998180cc77a502c3d0d05412",
+          "representation": "exact command stream"
+        },
+        "stderr": {
+          "encoded": "\n",
+          "grammar": "ONE-LF",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "representation": "exact command stream"
+        }
+      }
+    },
+    {
+      "label": "fresh-native-owned-head-base-guard",
+      "argv": [
+        "gh",
+        "api",
+        "graphql",
+        "-f",
+        "query=query{repository(owner:\"riatzukiza\",name:\"rheos\"){pullRequest(number:3){headRefOid baseRefOid state isDraft autoMergeRequest{enabledAt}labels(first:30){nodes{name}}}}}"
+      ],
+      "cwd": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/worktree",
+      "started_at": "2026-10-08T00:23:18.864366+00:00",
+      "finished_at": "2026-10-08T00:23:19.832370+00:00",
+      "exit": 0,
+      "failure": null,
+      "streams": {
+        "stdout": {
+          "encoded": "eyJkYXRhIjp7InJlcG9zaXRvcnkiOnsicHVsbFJlcXVlc3QiOnsiaGVhZFJlZk9pZCI6IjQ3MzFmNDRjZDdkNWM5ODhlYTMxNzBkYzEwMTUwNDBjYjliMzM1MzgiLCJiYXNlUmVmT2lkIjoiMTE4MTEyNjRhMzA4ZDQwNmNiNjEyYWVmYTFkYWQ0MDgxODY3NWU1ZSIsInN0YXRlIjoiT1BFTiIsImlzRHJhZnQiOmZhbHNlLCJhdXRvTWVyZ2VSZXF1ZXN0IjpudWxsLCJsYWJlbHMiOnsibm9kZXMiOlt7Im5hbWUiOiJkb2N1bWVudGF0aW9uIn0seyJuYW1lIjoiYmxvY2tlZCJ9XX19fX19\n",
+          "bytes": 273,
+          "sha256": "35d2a0e3a6305604d789bcb83221e5a0c83d0a349a9678a9bb38dbbca0a4740a",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 273,
+          "original_raw_sha256": "35d2a0e3a6305604d789bcb83221e5a0c83d0a349a9678a9bb38dbbca0a4740a",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/fresh-native-owned-head-base-guard.stdout",
+          "path_substitution": null
+        },
+        "stderr": {
+          "encoded": "\n",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 0,
+          "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/fresh-native-owned-head-base-guard.stderr",
+          "path_substitution": null
+        }
+      }
+    },
+    {
+      "label": "actual-current-owner-parent-historical-row",
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/runtime/nbb/cli.js",
+        "-cp",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/runtime/receipt-river/src/cljs",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/reader.cljs",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/source.git",
+        "4731f44cd7d5c988ea3170dc1015040cb9b33538",
+        ".ημ/receipts.edn"
+      ],
+      "cwd": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/worktree",
+      "started_at": "2026-10-08T00:23:19.837060+00:00",
+      "finished_at": "2026-10-08T00:23:20.710145+00:00",
+      "exit": 0,
+      "failure": null,
+      "streams": {
+        "stdout": {
+          "encoded": "eyJoZWFkIjoiNDczMWY0NGNkN2Q1Yzk4OGVhMzE3MGRjMTAxNTA0MGNiOWIzMzUzOCIsInBhdGgiOiIuzrfOvC9yZWNlaXB0cy5lZG4iLCJwaHlzaWNhbC1saW5lcyI6MSwidmFsaWQtY291bnQiOjAsImludmFsaWQtY291bnQiOjEsImludmFsaWQiOlt7Im9rIjpmYWxzZSwibGluZS1udW1iZXIiOjEsInNjaGVtYSI6eyJzdGF0dXMiOiJ1bnZlcnNpb25lZCJ9LCJlcnJvcnMiOlsibWlzc2luZyByZXF1aXJlZCBrZXk6IHJlcG8iXX1dLCJzZWxlY3RlZC1sYXN0LWZpdmUiOlt7Im9rIjpmYWxzZSwibGluZS1udW1iZXIiOjEsInNjaGVtYSI6eyJzdGF0dXMiOiJ1bnZlcnNpb25lZCJ9LCJlcnJvcnMiOlsibWlzc2luZyByZXF1aXJlZCBrZXk6IHJlcG8iXX1dLCJhbGwtdmFsaWQiOmZhbHNlfQo=\n",
+          "bytes": 392,
+          "sha256": "8c573dc6039209a2f17dbd32c02af023ff29127aeae41f7e6c4ed924ef8abe0c",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 392,
+          "original_raw_sha256": "8c573dc6039209a2f17dbd32c02af023ff29127aeae41f7e6c4ed924ef8abe0c",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/actual-current-owner-parent-historical-row.stdout",
+          "path_substitution": null
+        },
+        "stderr": {
+          "encoded": "\n",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 0,
+          "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/actual-current-owner-parent-historical-row.stderr",
+          "path_substitution": null
+        }
+      }
+    },
+    {
+      "label": "actual-canonical-portable-reader-before",
+      "argv": [
+        "/usr/local/bin/bb",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/runtime/mycology/sm-list.bb",
+        "--ledger-only",
+        "--limit",
+        "1"
+      ],
+      "cwd": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/worktree",
+      "started_at": "2026-10-08T00:23:20.711092+00:00",
+      "finished_at": "2026-10-08T00:23:20.898404+00:00",
+      "exit": 0,
+      "failure": null,
+      "streams": {
+        "stdout": {
+          "encoded": "CiMjIFJlY2VudCBsZWRnZXIgZW50cmllcwotIHRzOiMgU2Vzc2lvbiByZWZsZWN0aW9uIGxlZGdlcgoKIyMgMjAyNi0xMC0wNiDigJQgZGlyZWN0IGJsb2NrZXIgcmVwb3J0aW5nIHBsYW4KCi0gT3duZXI6IGNvZGV4LWNoaWxkLXByczsgc2NvcGU6IGluY29taW5nIHVwc3RyZWFtIHBsYW5uaW5nIGNhcmQgYW5kIHNvdXJjZSBldmlkZW5jZS4KLSBFZmZpY2llbmN5IHA9MC44NzsgZnJpY3Rpb24gcD0wLjI1OyBza2lsbC1jYW5kaWRhdGUgcD0wLjI4LgotIEV2aWRlbmNlOiAuLi9yZWNlaXB0cy5lZG47IFJoZW9zIGlzc3VlIDQ7IHBpbm5lZCBzb3VyY2UgY29tcGFyaXNvbiBhbmQgYWNjZXB0ZWQgRm9yZXNpZ2h0IHBlcnNvbmFsLW1hcCBoZWFkLgotIExlc3NvbjogYSBkZWNsYXJlZCBXSVAgdmFsdWUgYW5kIGFuIGVuZm9yY2VkIHRyYW5zaXRpb24gY2hlY2sgYXJlIHNlcGFyYXRlIHNvdXJjZSBmYWN0cy4gU3VyZmFjZSB0aGUgYWN0dWFsIGVkZ2UvY2hlY2sgcmVsYXRpb25zaGlwIGFuZCBzZXR0bGUgb2JzdHJ1Y3Rpb24gcmVwb3J0aW5nIHBvbGljeSBpbiBwbGFubmluZyBiZWZvcmUgY2hhbmdpbmcgdGhlIGVuZ2luZS4KLSBCZXR0ZXIgcGF0aDogdmVyaWZ5IGluZGVwZW5kZW50IGZvcmsgb3duZXJzaGlwL2FuY2VzdHJ5LCBjb21wYXJlIHRoZSByZWxldmFudCBjYW5vbmljYWwgZmlsZXMsIHByZXNlcnZlIHRoZSBsZWRnZXIgcHJlZml4LCBhbmQgcHVibGlzaCBhIGJvdW5kZWQgcGxhbiB0aGF0IGNvbnN1bWVzIGV4aXN0aW5nIGJvb3RzdHJhcC9DSSBsYW5lcy4KLSBObyBza2lsbCBzcG9yZSwgcHJvbW90aW9uLCBzaGFyZWQgaGVscGVyL2NvbmZpZyBtdXRhdGlvbiBvciBtb2RlbC9zZXJ2aWNlIHN0YXJ0dXAuCg==\n",
+          "bytes": 862,
+          "sha256": "fc616fd4b77e551b60e6bd4caab89df4a06e989f61844954db27313a59341e36",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 862,
+          "original_raw_sha256": "fc616fd4b77e551b60e6bd4caab89df4a06e989f61844954db27313a59341e36",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/actual-canonical-portable-reader-before.stdout",
+          "path_substitution": null
+        },
+        "stderr": {
+          "encoded": "\n",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 0,
+          "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/actual-canonical-portable-reader-before.stderr",
+          "path_substitution": null
+        }
+      }
+    },
+    {
+      "label": "actual-current-owner-append-owned-suffix",
+      "argv": [
+        "/home/err/.volta/tools/image/node/22.20.0/bin/node",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/runtime/nbb/cli.js",
+        "-cp",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/runtime/receipt-river/src/cljs",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/writer.cljs",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/worktree/.ημ/receipts.edn"
+      ],
+      "cwd": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/worktree",
+      "started_at": "2026-10-08T00:23:20.901825+00:00",
+      "finished_at": "2026-10-08T00:23:21.573478+00:00",
+      "exit": 0,
+      "failure": null,
+      "streams": {
+        "stdout": {
+          "encoded": "eyJvayI6dHJ1ZSwibGluZS1udW1iZXIiOjIsInNjaGVtYSI6eyJzdGF0dXMiOiJkZWNsYXJlZCIsImlkIjoicmVjZWlwdC1yZWNvcmRlZCIsInZlcnNpb24iOjF9LCJlcnJvcnMiOltdfQo=\n",
+          "bytes": 107,
+          "sha256": "40e00c63d693a48d9bc45228c659039736e5d2a8bd1fd95d3571101d78ced327",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 107,
+          "original_raw_sha256": "40e00c63d693a48d9bc45228c659039736e5d2a8bd1fd95d3571101d78ced327",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/actual-current-owner-append-owned-suffix.stdout",
+          "path_substitution": null
+        },
+        "stderr": {
+          "encoded": "\n",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 0,
+          "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/actual-current-owner-append-owned-suffix.stderr",
+          "path_substitution": null
+        }
+      }
+    },
+    {
+      "label": "actual-canonical-portable-writer",
+      "argv": [
+        "/usr/local/bin/bb",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/runtime/mycology/sm-log.bb",
+        "--task",
+        "Append canonical portable reflection for direct blocker reporting planning",
+        "--efficiency",
+        "0.9",
+        "--friction",
+        "0.1",
+        "--candidate",
+        "0",
+        "--receipt-refs",
+        ".ημ/receipts.edn:2",
+        "--note",
+        "Historical direct-blocker planning prose is retained verbatim. Canonical writer records this correction phase only, not a reconstructed original session. Original IncomingP1/3 seven criteria and source/WIP/gate/event decisions remain proposed; no native review, Ready, implementation or board effect."
+      ],
+      "cwd": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/worktree",
+      "started_at": "2026-10-08T00:23:21.574196+00:00",
+      "finished_at": "2026-10-08T00:23:21.603723+00:00",
+      "exit": 0,
+      "failure": null,
+      "streams": {
+        "stdout": {
+          "encoded": "QXBwZW5kZWQgdG8gPG93bmVkLXdvcmt0cmVlPi8uzrfOvC9zZXNzaW9uLW15Y29sb2d5L2xlZGdlci5tZAo=\n",
+          "bytes": 62,
+          "sha256": "d73a66a65f3ee67439d5b26285ebe8f052de60bb30185f35900dd7e06351aa67",
+          "grammar": "ONE-LF",
+          "representation": "explicitly derived display with owned-worktree path substitution",
+          "original_raw_bytes": 150,
+          "original_raw_sha256": "40cde952eb41483ac8b3b00855e1066016edc6b708a2361af64733eb59074fdd",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/actual-canonical-portable-writer.stdout",
+          "path_substitution": {
+            "from": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/worktree",
+            "to": "<owned-worktree>"
+          }
+        },
+        "stderr": {
+          "encoded": "\n",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 0,
+          "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/actual-canonical-portable-writer.stderr",
+          "path_substitution": null
+        }
+      }
+    },
+    {
+      "label": "actual-canonical-portable-reader-after",
+      "argv": [
+        "/usr/local/bin/bb",
+        "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/runtime/mycology/sm-list.bb",
+        "--ledger-only",
+        "--limit",
+        "1"
+      ],
+      "cwd": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/worktree",
+      "started_at": "2026-10-08T00:23:21.605807+00:00",
+      "finished_at": "2026-10-08T00:23:21.670077+00:00",
+      "exit": 0,
+      "failure": null,
+      "streams": {
+        "stdout": {
+          "encoded": "CiMjIFJlY2VudCBsZWRnZXIgZW50cmllcwotIHRzOiAyMDI2LTEwLTA4VDAwOjIzOjIxLjU5NTg0ODQ4NVoKICBzZXNzaW9uOiA8b3duZWQtd29ya3RyZWU+CiAgdGFzazogQXBwZW5kIGNhbm9uaWNhbCBwb3J0YWJsZSByZWZsZWN0aW9uIGZvciBkaXJlY3QgYmxvY2tlciByZXBvcnRpbmcgcGxhbm5pbmcKICBwLWVmZmljaWVuY3k6IDAuOQogIHAtZnJpY3Rpb246IDAuMQogIHAtc2tpbGwtY2FuZGlkYXRlOiAwCiAgc3BvcmU6IG5vbmUKICByZWNlaXB0LXJlZnM6IC7Ot868L3JlY2VpcHRzLmVkbjoyCiAgbm90ZTogSGlzdG9yaWNhbCBkaXJlY3QtYmxvY2tlciBwbGFubmluZyBwcm9zZSBpcyByZXRhaW5lZCB2ZXJiYXRpbS4gQ2Fub25pY2FsIHdyaXRlciByZWNvcmRzIHRoaXMgY29ycmVjdGlvbiBwaGFzZSBvbmx5LCBub3QgYSByZWNvbnN0cnVjdGVkIG9yaWdpbmFsIHNlc3Npb24uIE9yaWdpbmFsIEluY29taW5nUDEvMyBzZXZlbiBjcml0ZXJpYSBhbmQgc291cmNlL1dJUC9nYXRlL2V2ZW50IGRlY2lzaW9ucyByZW1haW4gcHJvcG9zZWQ7IG5vIG5hdGl2ZSByZXZpZXcsIFJlYWR5LCBpbXBsZW1lbnRhdGlvbiBvciBib2FyZCBlZmZlY3QuCg==\n",
+          "bytes": 595,
+          "sha256": "175662ea316561829799d89ccadd2e25a3c6050561d3cefa83a542a6b2f0ccf4",
+          "grammar": "ONE-LF",
+          "representation": "explicitly derived display with owned-worktree path substitution",
+          "original_raw_bytes": 683,
+          "original_raw_sha256": "c6da92805f09e331d523eb13304700479d41aedb6d12f47aad14d12277feffe7",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/actual-canonical-portable-reader-after.stdout",
+          "path_substitution": {
+            "from": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/worktree",
+            "to": "<owned-worktree>"
+          }
+        },
+        "stderr": {
+          "encoded": "\n",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 0,
+          "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/actual-canonical-portable-reader-after.stderr",
+          "path_substitution": null
+        }
+      }
+    },
+    {
+      "label": "doc-diff-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/worktree",
+      "started_at": "2026-10-08T00:23:21.673343+00:00",
+      "finished_at": "2026-10-08T00:23:21.689217+00:00",
+      "exit": 0,
+      "failure": null,
+      "streams": {
+        "stdout": {
+          "encoded": "\n",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 0,
+          "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/doc-diff-whitespace.stdout",
+          "path_substitution": null
+        },
+        "stderr": {
+          "encoded": "\n",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 0,
+          "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/doc-diff-whitespace.stderr",
+          "path_substitution": null
+        }
+      }
+    },
+    {
+      "label": "complete-private-store-fsck",
+      "argv": [
+        "git",
+        "fsck",
+        "--full",
+        "--no-dangling"
+      ],
+      "cwd": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/worktree",
+      "started_at": "2026-10-08T00:23:21.690257+00:00",
+      "finished_at": "2026-10-08T00:23:22.050759+00:00",
+      "exit": 0,
+      "failure": null,
+      "streams": {
+        "stdout": {
+          "encoded": "\n",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 0,
+          "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/complete-private-store-fsck.stdout",
+          "path_substitution": null
+        },
+        "stderr": {
+          "encoded": "\n",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "grammar": "ONE-LF",
+          "representation": "exact command stream",
+          "original_raw_bytes": 0,
+          "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "original_raw_retained_private": "/home/err/.codex/parallel-goal/issues-20261006/Rheos3-portable-reflection-correction-914a2137ce/outside/raw-command-streams/complete-private-store-fsck.stderr",
+          "path_substitution": null
+        }
+      }
+    }
+  ]
+}
