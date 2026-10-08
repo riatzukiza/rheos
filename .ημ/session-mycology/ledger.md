@@ -330,3 +330,10 @@
 - Raw test output can contain trailing spaces. A lossless JSON string preserves exact bytes and permits ordinary diff hygiene without a blanket waiver or editing evidence.
 - Original118838-byte SHA8f7eb4cbb0589e735afe0da7305da73610575f17a55d1c6048bef3564a452061 retained; wrapper .ημ/review-evidence/rheos-writer-admission-red-committable-20261008.log.json SHAe6fa8ebe33c1d811aee672cf51b750a92be0f79f5585fab1232acf4c09b0bb16.
 - Append correction; no spore created or promoted.
+
+## 2026-10-08T19:04:04.941116Z — cephalon-rheos-writer-transition-green-create-edit-red-source-20261008
+
+- p-efficiency: 0.94; p-friction: 0.06; p-skill-candidate: 0.02.
+- Separate passing transition fixtures from remaining writer story acceptance. Real creation/edit paths showed26 failures/zeroerrors after the initial231-test transition subset passed.
+- Evidence: .ημ/review-evidence/rheos-writer-reservation-red-20261008.log.json, .ημ/review-evidence/rheos-writer-transition-green-attempt-20261008.log.json, .ημ/review-evidence/rheos-writer-create-edit-red-corrected-20261008.log.json.
+- Keep process-race/public-surface qualification outstanding. No spore created/promoted and no runtime mutation.
