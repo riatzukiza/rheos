@@ -173,3 +173,37 @@
 - Keep scalar YAML spelling/extension data/body unchanged, and retain all initial fixture mistakes as explicit correction history.
 - New sourcehead must acquire new hosted review; local GREEN and historical approvals cannot qualify it. No spore, runtime/board mutation, paidcredits or B1/B2/B3 completion.
 - Evidence: .ημ/review-evidence/rheos1-comment-refusal-GREEN-20261008.json SHA256699f90d60a8c7e84a8ea9c0e2a712b0ea1abb025686b88507a5a2d06c986e4ad.
+
+## 2026-10-08T14:09:29.615Z — cephalon-rheos1-04fb-published-comment-refusal-source-20261008
+
+- p-efficiency: 0.82; p-friction: 0.20; p-skill-candidate: 0.05.
+- Actual source04fb pushed/hosted all10gates0/15threads settled; provider review remains inprogress with no currentapproval. Preserve every original journal prefix and held post-publication append.
+- Read actual artifact filenames and native post-push heads before asserting readback. ImmediateREST can retain oldhead; a fresh read proved04fb without another push. Actual Markdown context keeps olderbody; manifests/full422703-byte45-path diff remain current and exact.
+- Correct fixture interpretation through append-only records, keep legal scalar spelling, and never transfer historical approvals to a new repair head.
+- No scope expansion, spore, runtime/board mutation, paidcredits or B1/B2/B3 completion.
+- Evidence: .ημ/review-evidence/rheos1-04fb-published-comment-refusal-and-current-gates-20261008.json SHA25628f9f27ba638c1e61158663d9ec6ea460b6e10095e7b1f95884b6aaf2638924e.
+
+## 2026-10-08T14:21:32.179Z — cephalon-rheos1-04fb-review-preparation-source-20261008T1420
+
+- p-efficiency: 0.73; p-friction: 0.12; p-skill-candidate: 0.02.
+- Prepare one complete current-head review request while the existing hosted job runs; a note is not a submitted request or review credit.
+- Inspect native userMessage items before interpreting scope history; an empty wrong-shape filter is not missing human authority.
+- Preserve prior receipts unchanged; no new baseline selection, spore, runtime/board mutation or B1/B2/B3 proof.
+- Operator omitted repo in private candidate, strict law rejected before writes; preserve failed candidate, append corrected new row with explicit repository.
+
+## 2026-10-08T14:42:39.978Z — cephalon-rheos1-04fb-mimo-completed-full-coderabbit-request-source-20261008T1441
+
+- p-efficiency: 0.88; p-friction: 0.10; p-skill-candidate: 0.03.
+- Follow actual job113349967319 through terminalSUCCESS, verify artifact/native2101byte body against full422703byte45path input and62 contiguous assessments; preserve historical stale prose and disclosed negative gaps.
+- Current CodeRabbit request6062297642 was submitted once after fresh cooldown/dedup/head-base evidence. Follow authenticated pendingstatus55899778974; scoped verification and check success alone do not create whole-input approval.
+- Combined status response lacks creator; use actual individual status endpoint for identity. No local classifier, production failure or synthetic reviewer.
+- Preserve every prior journal prefix; no observation-only push, scope expansion, spore or B1/B2/B3 completion.
+- Evidence: .ημ/review-evidence/rheos1-04fb-completed-mimo-and-full-coderabbit-request-20261008.json SHA25657274b5aa3f20e040fe9073b39d84a548bc17652dc650290bbbd130c1cf1a624.
+
+## 2026-10-08T14:55:57.579Z — cephalon-rheos1-status-writeback-shape-RED-source-20261008T1453
+
+- p-efficiency: 0.82; p-friction: 0.16; p-skill-candidate: 0.04.
+- Actual full45-input CodeRabbit review found the remaining status writeback missing-law consumer. Freeze the actual stale-source failure before adding the existing portable task law.
+- Node219/1928/13fail0errors twice; both directly invoked22.20 processes report actualruntime. Wrapper PATH target alone is insufficient: fresh pnpm exec uses22.18, while earlier child versions remain unverified. Append correction without altering old proofs.
+- No atomic post-read fencing or full FSM/CLI execution claimed by this writer fixture; no scope expansion, spore, deployment or B1/B2/B3 proof.
+- Evidence: .ημ/review-evidence/rheos1-status-writeback-shape-RED-20261008.json SHA25620191d8efadb22319edc736cab755d6d2c83f9b328ea71d21d716d302d9a1cec.

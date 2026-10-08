@@ -82,6 +82,53 @@
                         (done))))))))
 
 #_{:clj-kondo/ignore [:promise-chain/prefer-async-workflow]}
+(deftest write-task-status-refuses-newly-invalid-source
+  (testing "a valid task snapshot does not authorize writing newly invalid disk frontmatter"
+    (async done
+      (println "status-writeback fixture runtime:" (.-version js/process))
+      (let [dir (tmp-dir)
+            file-path (path/join dir "stale.md")
+            initial (task-source "stale" "Task One")
+            successes (atom [])
+            cases [[:title "title: \"Task One\"" "title: [one, two]"]
+                   [:title "title: \"Task One\"" "title: {name: one}"]
+                   [:priority "priority: \"P3\"" "priority: [P2, P3]"]
+                   [:priority "priority: \"P3\"" "priority: {name: P3}"]
+                   [:status "status: \"incoming\"" "status: [incoming, ready]"]
+                   [:status "status: \"incoming\"" "status: {name: incoming}"]]]
+        (-> (reduce (fn [pending [field from to]]
+                      (.then pending
+                             (fn []
+                               (.writeFileSync fs file-path initial "utf8")
+                               (let [task (assoc (:frontmatter
+                                                 (content-parser/parse-frontmatter
+                                                  (.readFileSync fs file-path "utf8")))
+                                                :source-path file-path)
+                                     invalid (str/replace initial from to)
+                                     invalid-bytes (js/Buffer.from invalid "utf8")]
+                                 (.writeFileSync fs file-path invalid-bytes)
+                                 (-> (writeback/write-task-status task dir "done" "stale-write")
+                                     (.then (fn [updated]
+                                              (swap! successes conj updated)
+                                              (is false (str "newly invalid " (name field) " must refuse"))
+                                              (is (.equals invalid-bytes (.readFileSync fs file-path))
+                                                  "refusal leaves the changed source byte-identical")))
+                                     (.catch (fn [error]
+                                               (let [data (ex-data error)]
+                                                 (is (= :refused (:kind data)))
+                                                 (is (= field (:field data)))
+                                                 (is (= file-path (:source-path data)))
+                                                 (is (= (.-message error) (:diagnostic data)))
+                                                 (is (.equals invalid-bytes (.readFileSync fs file-path))
+                                                     "refusal leaves the changed source byte-identical")))))))))
+                    (js/Promise.resolve) cases)
+            (.then (fn [] (is (empty? @successes) "no invalid source reports a successful status write")))
+            (.catch (fn [error] (is false (str "Unexpected stale-source fixture failure: " error))))
+            (.finally (fn []
+                        (.rmSync fs dir #js {:recursive true :force true})
+                        (done))))))))
+
+#_{:clj-kondo/ignore [:promise-chain/prefer-async-workflow]}
 (deftest write-task-status-retains-leading-bom-before-inserted-frontmatter
   (async done
     (let [dir (tmp-dir)
