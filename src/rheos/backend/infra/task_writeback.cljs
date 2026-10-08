@@ -32,5 +32,9 @@
                        updated-raw (-> raw
                                        (content-parser/update-frontmatter "status" new-status)
                                        (content-parser/inject-write-id write-id))]
-                   (.writeFile fsp file-path updated-raw "utf8"))))
-        (.then (fn [] (assoc task :status new-status))))))
+                   (-> (.writeFile fsp file-path updated-raw "utf8")
+                       (.then (fn []
+                                (assoc task :status new-status
+                                       :frontmatter (:frontmatter (content-parser/parse-frontmatter updated-raw))
+                                       :source-revision (.digest (.update (.createHash crypto "sha256")
+                                                                         updated-raw "utf8") "hex")))))))))))
