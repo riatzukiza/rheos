@@ -22,8 +22,9 @@
 
 (defn- ^:async update-reserved!
   "Apply `updates` (a map of key -> value) to a task's YAML frontmatter, write the
-   file back, and emit one ledger event per changed key. Returns a result map with
-   `:ok true`, the updated task, and the new frontmatter map.
+   file back, and emit one ledger event per changed key. Returns `:ok true`,
+   task reference data, and accepted `:frontmatter`. For ordinary edits, `:task`
+   retains the caller's map; consumers use `:frontmatter` or a fresh native read.
 
    An empty `updates` is a no-op carrying `:noop true`; it writes nothing, so the
    file never changes without the ledger saying why."
