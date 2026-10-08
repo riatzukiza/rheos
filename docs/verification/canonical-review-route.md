@@ -84,3 +84,30 @@ Rheos against the existing Cephalon epic. The fixed B1-B3 inventory is not
 expanded, and this caller adds no parser, validator or compatibility waiver.
 If current review or a required gate makes that repair a prerequisite, report
 that blocker and obtain the inventory decision before implementation.
+
+## Correction: invoke the existing source dependency bootstrap
+
+The first hosted run37739500781 on `b9dd41f` had exact/clean input and four
+passing gates, but test and build both exited1 before completing because
+`open-hax.openplanner-protocols` was unavailable. Native artifact11533600904
+retains those failures; producer SUCCESS did not make them pass.
+
+The caller had omitted the existing committed
+`scripts/bootstrap-source-deps.sh`. That script fetches protocols from eta-mu
+`0ed56aa74a53a1d1e9c2e55ce95451817a7f3a90` and chat UI from
+`86385532b4f8606946555d0ada8e3fb22f35b4c3`. There are no committed gitlinks or
+`.gitmodules` at this source head. This correction invokes that existing script
+after installation, with its own recorded gate, and checks at least20GiB free
+on the runner before its temporary Git clones. Install failure retains125 for
+all dependent gates; bootstrap failure retains125 for test and build. Lint
+remains a separate gate. The script, dependency revisions, package, compiler,
+application source and tests are unchanged. Its existing tolerant copy behavior
+is not strengthened or presented as an independent dependency-integrity proof.
+
+The two exact materialized dependency source roots are now ignored as
+regenerable bootstrap outputs. This qualifies the earlier statement about
+source ignores: owned product `src`, cards, receipts and neighboring dependency
+paths are visible, and tracked changes remain visible even under these roots.
+This does not waive checkout hygiene or failure gates. Actual current-head
+hosted execution is still required; the prior failed run and prior native
+reviews retain their original identities. No product readiness is implied.

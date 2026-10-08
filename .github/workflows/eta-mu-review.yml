@@ -27,10 +27,18 @@ jobs:
         run_gate install pnpm install --no-frozen-lockfile --lockfile=false
         install_status="$(awk -F= '$1 == "install" {print $2}' "$statuses")"
         if [[ "$install_status" == "0" ]]; then
+          run_gate source_dependencies bash -c 'available_kib=$(df -Pk . | awk "NR==2 {print \$4}"); if [[ "$available_kib" -lt 20971520 ]]; then echo "Source bootstrap refused: less than 20 GiB free"; exit 1; fi; bash scripts/bootstrap-source-deps.sh'
           run_gate lint pnpm lint:kondo
-          run_gate test pnpm test
-          run_gate build pnpm build
+          source_status="$(awk -F= '$1 == "source_dependencies" {print $2}' "$statuses")"
+          if [[ "$source_status" == "0" ]]; then
+            run_gate test pnpm test
+            run_gate build pnpm build
+          else
+            echo "test=125" >> "$statuses"
+            echo "build=125" >> "$statuses"
+          fi
         else
+          echo "source_dependencies=125" >> "$statuses"
           echo "lint=125" >> "$statuses"
           echo "test=125" >> "$statuses"
           echo "build=125" >> "$statuses"

@@ -35,3 +35,9 @@
 - Remote immutable Git tree is this operation's source boundary; local placeholder is not ownership. Existing package/config commands control over old workspace README.
 - Model is currently advertised free, while direct catalog403 does not establish availability. Local caller and Git hygiene preparation are not product, board, hosted review or character proof. No spore.
 - Actual current owning strict law rejects timestamps in four original rows; fifth and new row valid. Retain the original bytes and record later work through Rheos. Neither history repair nor a cumulative pass is implied.
+
+## 2026-10-08T06:55:10.603Z — existing source bootstrap caller correction
+
+- Receipt `cephalon-rheos4-existing-bootstrap-caller-correction-20261008`; efficiency0.66, friction0.38, skill-candidate0.19.
+- Real hosted gates exposed own omitted declared materializer. Inspect all existing build inputs before classifying a failure as new feature or baseline source repair.
+- Append the causal correction; preserve failed artifact and old journal bytes. Generated source dependencies are narrow reproducible outputs, while tracked mutations remain visible. No spore.
