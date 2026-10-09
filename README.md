@@ -202,14 +202,14 @@ package back to Rheos.
 
 ## Ledger ownership and existing board history
 
-[Clio](../clio/README.md) owns canonical event sourcing for eta-mu. Rheos's
+[Clio](https://github.com/open-hax/clio#readme) owns canonical event sourcing for eta-mu. Rheos's
 current `rheos.backend.infra.ledger/get-ledger` still constructs
 `open-hax.records.edn.event-admission/create-edn-event-admission` and reads/writes
 raw service envelopes in `<board-dir>/.events/ledger.edn`. This is a compatibility
 adapter inside `packages/protocols`, not a dependency on the retired standalone
 package and not a completed Clio migration.
 
-The [Clio-backed service provider](../protocols/README.md#legacy-edn-compatibility)
+The [Clio-backed service provider](https://github.com/open-hax/eta-mu/tree/main/packages/protocols#legacy-edn-compatibility)
 uses a separate `services.edn` plus historical schema snapshots. Moving an
 existing board requires an explicit importer, preservation and validation of
 its event history, and a comparison of rebuilt board projections before the
