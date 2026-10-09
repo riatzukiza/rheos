@@ -28,6 +28,13 @@
     (set (map (comp name key) configured))
     legacy-card-types))
 
+(defn configured-card-dir
+  "The directory `:card-dirs` declares for `card-type`. Keys are compared by
+   name, the same representation [[card-types]] validates against, so string
+   and keyword keys place cards identically."
+  [project card-type]
+  (some (fn [[k v]] (when (= (name k) (str card-type)) v)) (:card-dirs project)))
+
 (def conventional-dirs
   "Where each card type lives by convention, relative to the task root. Whether
    the directory is actually there is the orchestration's probe to make."

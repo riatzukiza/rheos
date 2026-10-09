@@ -111,8 +111,10 @@ evidence rather than an unavoidable suite blocker.
 
 ## shadow-cljs targets
 
-Defined in `shadow-cljs.edn`. Source paths pull in sibling workspace packages:
-`../protocols/src` and `../chat-ui/src`, alongside Rheos's own `src` and `test`.
+Defined in `shadow-cljs.edn`, which takes its source paths and dependencies from
+`deps.edn` (`:deps true`). Besides Rheos's own `src` and `test`, the source paths
+are `deps/protocols/src` and `deps/chat-ui/src`, which
+`scripts/bootstrap-source-deps.sh` populates.
 The deprecated `event-ledger` package is not on the source path or in the npm
 manifest.
 
@@ -218,9 +220,9 @@ UI, each using a domain / law / shape / infra layering:
 - `rheos.ui.infra` — `mount`, `api`, `chat-session`, `ledger-stream`
 
 The eight service protocols and compatibility wire envelope come from
-`@open-hax/protocols`, declared as `workspace:*` in `package.json` and consumed
-through `../protocols/src`. Chat components come from `@open-hax/chat-ui` through
-`../chat-ui/src`. Neither is a reason to add the deprecated `event-ledger`
+`@open-hax/protocols`, consumed as source through `deps/protocols/src`. Chat
+components come from `@open-hax/chat-ui` through `deps/chat-ui/src`. Both paths
+are populated by `scripts/bootstrap-source-deps.sh`. Neither is a reason to add the deprecated `event-ledger`
 package back to Rheos.
 
 ## Ledger ownership and existing board history

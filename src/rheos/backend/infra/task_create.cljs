@@ -46,7 +46,7 @@
    that escapes the task root or falls outside the project's card projection."
   [project card-type dir]
   (let [tasks-dir (:tasks-dir project)
-        configured (get-in project [:card-dirs (keyword card-type)])
+        configured (task-create/configured-card-dir project card-type)
         conventional (get task-create/conventional-dirs card-type)
         resolved (cond
                    dir (path/resolve tasks-dir dir)

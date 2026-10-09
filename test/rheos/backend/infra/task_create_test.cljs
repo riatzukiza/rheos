@@ -142,31 +142,55 @@
 
 (deftest ^:async configured-types-round-trip
   (testing "repository-declared card types determine placement"
-    (let [base (await (scratch-project))
-          project (assoc base :card-dirs {:story "stories" :chore "chores"})]
-      (try
-        (let [result (await (task-create/create-task!
-                             {:project project :title "Lawful Story"
-                              :card-type "story"
-                              :source "test"}))
-              fm (await (frontmatter-of (:source-path result)))]
-          (is (:ok result))
-          (is (= "story" (:card-type result)))
-          (is (= "stories" (path/basename (path/dirname (:source-path result)))))
-          (is (= "story" (:type fm))))
-        (finally (await (cleanup! project)))))))
+    (doseq [card-dirs [{:story "stories" :chore "chores"}
+                       {"story" "stories" "chore" "chores"}]]
+      (let [base (await (scratch-project))
+            project (assoc base :card-dirs card-dirs)
+            captured (atom [])
+            unsub (events/subscribe! #(swap! captured conj %))]
+        (try
+          (let [result (await (task-create/create-task!
+                               {:project project :title "Lawful Story"
+                                :card-type "story"
+                                :source "test"}))
+                fm (await (frontmatter-of (:source-path result)))
+                created (first (filter #(= "task-created" (:type %)) @captured))]
+            (is (:ok result))
+            (is (= "story" (:card-type result)))
+            (is (= "stories" (path/basename (path/dirname (:source-path result))))
+                (pr-str card-dirs))
+            (is (= "story" (:type fm)))
+            (is (some? created) "a task-created event was published")
+            (is (= (:uuid result) (:task-id created)))
+            (is (= "story" (:card-type created)))
+            (is (= (:source-path result) (:source-path created))))
+          (finally
+            (unsub)
+            (await (cleanup! project))))))))
+
+(defn- ^:async tree-listing [dir]
+  (let [entries (await (.readdir fsp dir #js {:recursive true}))]
+    (vec (sort (js->clj entries)))))
 
 (deftest ^:async configured-vocabulary-refuses-legacy-and-implicit-types
   (testing "a configured board cannot silently create an undeclared task"
     (let [base (await (scratch-project))
-          project (assoc base :card-dirs {:story "stories" :chore "chores"})]
+          project (assoc base :card-dirs {:story "stories" :chore "chores"})
+          captured (atom [])
+          unsub (events/subscribe! #(swap! captured conj %))]
       (try
-        (doseq [args [{:project project :title "Implicit" :source "test"}
-                      {:project project :title "Legacy" :card-type "task" :source "test"}]]
-          (let [err (try (await (task-create/create-task! args))
-                         nil (catch :default e e))]
-            (is (= :usage (:kind (ex-data err))))))
-        (finally (await (cleanup! project)))))))
+        (let [before (await (tree-listing (:tasks-dir project)))]
+          (doseq [args [{:project project :title "Implicit" :source "test"}
+                        {:project project :title "Legacy" :card-type "task" :source "test"}]]
+            (let [err (try (await (task-create/create-task! args))
+                           nil (catch :default e e))]
+              (is (= :usage (:kind (ex-data err))))
+              (is (= before (await (tree-listing (:tasks-dir project))))
+                  "a refusal leaves the board files untouched")
+              (is (empty? @captured) "a refusal publishes no event"))))
+        (finally
+          (unsub)
+          (await (cleanup! project)))))))
 
 (deftest ^:async emits-task-created-event
   (testing "Creation is a ledger fact carrying enough payload to reconstruct the card"

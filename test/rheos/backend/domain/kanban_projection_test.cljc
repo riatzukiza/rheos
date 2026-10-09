@@ -48,3 +48,12 @@
                            :fallback-created-at "fallback-time"
                            :source-path "/tmp/timestamps.md"})]
     (is (= "hyphenated" (:created-at task)))))
+
+(deftest mixed-label-values-are-stringified-before-trimming
+  (let [task (kanban/task {:document/frontmatter-data
+                           {:title "Mixed" :labels [" ci " 42 :ops nil "" "ci"]}
+                           :document/body "Body"}
+                          {:fallback-title "fallback"
+                           :fallback-created-at "fixed-time"
+                           :source-path "/tmp/mixed.md"})]
+    (is (= ["ci" "42" ":ops"] (:labels task)))))
