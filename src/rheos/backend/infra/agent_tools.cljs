@@ -222,7 +222,7 @@
     (await (task-create/create-task!
             {:project proj
              :title title
-             :card-type (or card-type type "task")
+             :card-type (or card-type type)
              :parent (or parent parent-uuid)
              :epic epic :dependency dependency
              :status status
@@ -334,7 +334,7 @@
     :input-schema {:type "object"
                    :properties (merge relationship-input-properties
                                {:title {:type "string"}
-                                :type {:type "string" :enum ["task" "epic"] :description "card type; default \"task\""}
+                                :type {:type "string" :description "card type from the selected project's configured :card-dirs vocabulary; legacy boards default to \"task\""}
                                 :project {:type "string"}
                                 :status {:type "string" :description "refused unless it is the FSM initial state; pass force-status to override"}
                                 :force-status {:type "boolean"}

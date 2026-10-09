@@ -12,9 +12,21 @@
    Root cards and child cards are the same operation; `:parent` is just optional."
   (:require [clojure.string :as str]
             [rheos.backend.law.fsm :as fsm]
+            [rheos.backend.law.frontmatter :as frontmatter-law]
             [rheos.backend.shape.content-parser :as content-parser]))
 
-(def card-types #{"task" "epic"})
+(def legacy-card-types
+  "Creation vocabulary for boards that have not declared `:card-dirs`."
+  #{"task" "epic"})
+
+(defn card-types
+  "The project's closed creation vocabulary. `:card-dirs` already maps card
+   types to repository-valid locations, so its keys are the declaration. Legacy
+   boards without that declaration retain task/epic compatibility."
+  [project]
+  (if-let [configured (seq (:card-dirs project))]
+    (set (map (comp name key) configured))
+    legacy-card-types))
 
 (def conventional-dirs
   "Where each card type lives by convention, relative to the task root. Whether
@@ -59,15 +71,22 @@
 
 (defn check-request!
   "Validate what can be judged without looking at the board, and return the
-   effective card type. Refuses a blank title or a type outside [[card-types]]."
-  [{:keys [title card-type]}]
+   effective card type. Refuses a blank title or a type outside the project's [[card-types]]."
+  [{:keys [project title card-type]}]
   (when (str/blank? title)
     (refuse! :usage "a card needs a --title" {}))
-  (let [card-type (or card-type "task")]
-    (when-not (card-types card-type)
+  (let [allowed (card-types project)
+        requested (some-> card-type str str/trim not-empty)
+        card-type (or requested (when (contains? allowed "task") "task"))]
+    (when-not card-type
+      (refuse! :usage
+               (str "this project declares card types "
+                    (str/join ", " (sort allowed)) "; pass --type")
+               {:card-types (sort allowed)}))
+    (when-not (contains? allowed card-type)
       (refuse! :usage (str "unknown card type: " card-type
-                           " (expected one of " (str/join ", " (sort card-types)) ")")
-               {:card-type card-type}))
+                           " (expected one of " (str/join ", " (sort allowed)) ")")
+               {:card-type card-type :card-types (sort allowed)}))
     card-type))
 
 (def uuid-pattern
@@ -77,7 +96,7 @@
    characters into a file name, so it is also a path component. Anchoring the
    first character to alphanumeric rules out both a leading dot and a bare `..`,
    and omitting the separators rules out escaping the card directory."
-  #"^[a-zA-Z0-9][a-zA-Z0-9._-]*$")
+  frontmatter-law/card-id-pattern)
 
 (defn check-uuid!
   "Refuse a uuid that cannot safely become part of a file name, and return it

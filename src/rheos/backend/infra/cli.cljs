@@ -132,9 +132,9 @@
    and `docs/cli.md`; kept in the order a card moves through its life."
   [{:verb "create" :group "lifecycle" :mutates? true
     :args "--title <text>"
-    :summary "Create a card (epic or task, root or child) and record a task-created event."
+    :summary "Create a repository-valid card (root or child) and record a task-created event."
     :flags [["--title <text>" "card title (required)"]
-            ["--type <task|epic>" "card type; default task"]
+            ["--type <type>" "card type from the project's configured :card-dirs vocabulary"]
             ["--parent <uuid>" "parent card uuid — omit for a root card"]
             ["--epic <uuid>" "existing epic UUID"]
             ["--dependency <uuid[,uuid]>" "existing dependency UUID or CSV"]
@@ -146,13 +146,14 @@
             ["--uuid <id>" "explicit uuid; refused if already taken"]
             ["--status <s>" "refused unless it is the FSM initial state"]
             ["--force-status" "allow a non-initial --status"]]
-    :example "rheos create --type epic --title \"Ledger cutover\" --priority P0"
+    :example "rheos create --type story --title \"Ledger cutover\" --priority P0"
     :notes "A card is written with a skeleton body unless --body-file is given, so it can pass its first gate."}
 
    {:verb "create-subtask" :group "lifecycle" :mutates? true
     :args "<parent-uuid> --title <text>"
     :summary "Alias of `create --parent`. Kept for compatibility; prefer `create`."
     :flags [["--title <text>" "card title (required)"]
+            ["--type <type>" "card type from the project's configured vocabulary"]
             ["--status <s>" "refused unless it is the FSM initial state"]
             ["--priority <P0..P3>" "priority; default P3"]
             ["--labels <a,b,c>" "comma-separated labels"]]

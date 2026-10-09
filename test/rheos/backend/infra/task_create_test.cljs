@@ -140,6 +140,34 @@
           (is (= :usage (:kind (ex-data bad-type)))))
         (finally (await (cleanup! project)))))))
 
+(deftest ^:async configured-types-round-trip
+  (testing "repository-declared card types determine placement"
+    (let [base (await (scratch-project))
+          project (assoc base :card-dirs {:story "stories" :chore "chores"})]
+      (try
+        (let [result (await (task-create/create-task!
+                             {:project project :title "Lawful Story"
+                              :card-type "story"
+                              :source "test"}))
+              fm (await (frontmatter-of (:source-path result)))]
+          (is (:ok result))
+          (is (= "story" (:card-type result)))
+          (is (= "stories" (path/basename (path/dirname (:source-path result)))))
+          (is (= "story" (:type fm))))
+        (finally (await (cleanup! project)))))))
+
+(deftest ^:async configured-vocabulary-refuses-legacy-and-implicit-types
+  (testing "a configured board cannot silently create an undeclared task"
+    (let [base (await (scratch-project))
+          project (assoc base :card-dirs {:story "stories" :chore "chores"})]
+      (try
+        (doseq [args [{:project project :title "Implicit" :source "test"}
+                      {:project project :title "Legacy" :card-type "task" :source "test"}]]
+          (let [err (try (await (task-create/create-task! args))
+                         nil (catch :default e e))]
+            (is (= :usage (:kind (ex-data err))))))
+        (finally (await (cleanup! project)))))))
+
 (deftest ^:async emits-task-created-event
   (testing "Creation is a ledger fact carrying enough payload to reconstruct the card"
     (let [project (await (scratch-project))

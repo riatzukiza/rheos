@@ -97,7 +97,7 @@
            dir uuid source force-status?]}]
   (when-not project
     (task-create/refuse! :not-found "unknown project" {}))
-  (let [card-type (task-create/check-request! {:title title :card-type card-type})
+  (let [card-type (task-create/check-request! {:project project :title title :card-type card-type})
         existing (await (tasks/load-tasks project))
         normalized (relationships/normalize {:parent parent :epic epic :dependency dependency})
         _ (when-not (:ok? normalized)
