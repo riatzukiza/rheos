@@ -350,7 +350,9 @@
     :input-schema {:type "object"
                    :properties (merge relationship-input-properties
                                {:parent-uuid {:type "string"} :title {:type "string"}
-                                :project {:type "string"} :status {:type "string"}
+                                :project {:type "string"}
+                                :type {:type "string" :description "card type from the selected project's configured :card-dirs vocabulary; legacy boards default to \"task\""}
+                                :status {:type "string"}
                                 :priority {:type "string"} :body {:type "string"}
                                 :labels {:type "array" :items {:type "string"}}})
                    :required ["parent-uuid" "title"]}
