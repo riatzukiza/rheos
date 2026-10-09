@@ -81,10 +81,12 @@
    or has trailing content other than a comment is unsupported, so callers fall
    back instead of publishing a partial value. Plain null, boolean and numeric
    scalars are not strings, so they are unsupported too; quote them to keep
-   the spelling as a string."
+   the spelling as a string. A leading `&` anchor, `*` alias or `!` tag is
+   YAML node syntax rather than content, so it is unsupported as well."
   [value]
   (cond
     (str/starts-with? value "#") unsupported
+    (re-find #"^[&*!]" value) unsupported
     (str/starts-with? value "\"")
     (if-let [[_ inner] (re-matches #"^\"([^\"\\]*)\"(?:[ \t]+#.*)?$" value)]
       inner
