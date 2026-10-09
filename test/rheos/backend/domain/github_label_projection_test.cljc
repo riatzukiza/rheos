@@ -149,3 +149,27 @@
            (:desired delta)))
     (is (= ["Domain:New"] (:add delta)))
     (is (empty? (:remove delta)))))
+
+(deftest long-labels-normalize-idempotently-and-keep-ownership
+  (testing "truncation at 50 characters cannot leave a trailing dash"
+    (doseq [label [(str (apply str (repeat 49 "a")) "-suffix")
+                   (str (apply str (repeat 49 "b")) " tail")
+                   (str (apply str (repeat 48 "c")) "--x")
+                   (apply str (repeat 80 "d"))
+                   (str "domain:" (apply str (repeat 60 "e")))]]
+      (let [once (labels/normalize-label label)]
+        (is (<= (count once) 50) label)
+        (is (not (re-find #"^-|-$" once)) label)
+        (is (= once (labels/normalize-label once)) label))))
+  (testing "a long label recorded in the marker is still owned on the next sync"
+    (let [long-label (str (apply str (repeat 49 "a")) "-suffix")
+          owned (labels/normalize-label long-label)
+          previous (task [long-label "domain:short"])
+          issue {:body (managed-body (labels/ownership-marker previous)
+                                     (str "`" owned "`, `domain:short`")
+                                     "Task body")
+                 :labels ["kanban" "status:review" "priority:P1" owned "domain:short"]}]
+      (is (= [owned "domain:short"] (labels/projected-task-labels (:body issue))))
+      (is (= (set [owned "domain:short"])
+             (set (:remove (labels/plan-delta (task) issue))))
+          "labels the projector added remain removable by name"))))

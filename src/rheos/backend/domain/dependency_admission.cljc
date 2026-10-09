@@ -14,14 +14,15 @@
   "Judge the complete selected graph and every reachable dependency predecessor
    at a workflow-owned guarded target. Parent/epic edges are graph constraints,
    never substitutes for predecessor completion. No effects or caller status list."
-  [fsm snapshot uuid target]
+  ([fsm snapshot uuid target] (decide fsm snapshot uuid target {}))
+  ([fsm snapshot uuid target opts]
   (let [errors (policy-errors fsm)
         policy (:dependency-admission fsm)]
     (cond
       (seq errors) {:allowed? false :errors errors}
       (not (some #{target} (:guarded-targets policy))) {:allowed? true}
       :else
-      (let [graph (relationships/inspect-graph snapshot)]
+      (let [graph (relationships/inspect-graph snapshot opts)]
         (if-not (:ok? graph)
           {:allowed? false :errors (:errors graph)}
           (let [by-id (into {} (map (juxt :uuid identity)) (:tasks graph))
@@ -41,4 +42,4 @@
                                     :target id :status (:status card)}))))
                   (if (seq blockers)
                     {:allowed? false :errors (vec (sort-by :target blockers))}
-                    {:allowed? true}))))))))))
+                    {:allowed? true})))))))))))

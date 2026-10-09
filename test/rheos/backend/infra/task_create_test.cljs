@@ -6,6 +6,8 @@
             [rheos.backend.domain.events :as events]
             [rheos.backend.domain.task-create :as card]
             [rheos.backend.infra.task-create :as task-create]
+            [rheos.backend.infra.task-edit :as task-edit]
+            [rheos.backend.infra.transition :as transition]
             [rheos.backend.infra.task-store :as task-store]
             [rheos.backend.infra.content-parser :as content-parser]))
 
@@ -167,6 +169,36 @@
           (finally
             (unsub)
             (await (cleanup! project))))))))
+
+(deftest ^:async configured-non-core-type-round-trip
+  (testing "a declared type beyond task/story/epic is creatable, editable and movable"
+    (let [base (await (scratch-project))
+          project (assoc base :card-dirs {:story "stories" :chore "chores"})]
+      (try
+        (let [chore (await (task-create/create-task!
+                            {:project project :title "Tidy the ledger"
+                             :card-type "chore" :source "test"}))
+              story (await (task-create/create-task!
+                            {:project project :title "Lawful Story"
+                             :card-type "story" :source "test"}))
+              edit (await (task-edit/update-frontmatter!
+                           {:project project
+                            :task {:uuid (:uuid chore) :source-path (:source-path chore)}
+                            :updates {"dependency" (:uuid story)}
+                            :source "test"}))
+              loaded (await (task-store/load-tasks project))
+              chore-task (first (filter #(= (:uuid chore) (:uuid %)) loaded))
+              moved (await (transition/move-task! {:project project :task chore-task
+                                                   :new-status "accepted" :source "test"}))]
+          (is (:ok chore))
+          (is (= "chore" (:card-type chore)))
+          (is (= "chores" (path/basename (path/dirname (:source-path chore)))))
+          (is (= "chore" (:type (await (frontmatter-of (:source-path chore))))))
+          (is (:ok story) "an existing declared-type card does not poison later creates")
+          (is (:ok edit) "relationship edits admit the declared type")
+          (is (:ok moved) (pr-str moved)))
+        (finally
+          (await (cleanup! project)))))))
 
 (defn- ^:async tree-listing [dir]
   (let [entries (await (.readdir fsp dir #js {:recursive true}))]
