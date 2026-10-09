@@ -1,0 +1,49 @@
+{
+  "evidence_tier": "observed",
+  "format": "Selected fresh native GitHub REST fields and command provenance; not full raw REST and not synthetic provider approval",
+  "observed_at": "2026-10-08T22:26:17.262237+00:00",
+  "authorization": "Human: I need them to just get merged if they are approved. Applies to the active cephalon prerequisite stack.",
+  "policy_disposition": "Prior local classifier/counter BLOCKED diagnostics remain historical facts. Human current instruction controls approved, passing, resolved PR merges; no required CI, active finding or GitHub protection waived.",
+  "merges": [
+    {
+      "repository": "riatzukiza/rheos",
+      "number": 9,
+      "title": "Implement canonical relationship writers and predecessor admission",
+      "url": "https://github.com/riatzukiza/rheos/pull/9",
+      "merged": true,
+      "merged_at": "2026-10-08T22:21:31Z",
+      "head": "f0f70cd52e085a9adc9010943bfc8705d01ae58a",
+      "base": "660a6f880769edcf9e52cc5e21e477a5545133f8",
+      "target_branch": "main",
+      "head_repository": "riatzukiza/rheos",
+      "base_repository": "riatzukiza/rheos",
+      "merge_commit_sha": "8581e0c390b1fa5a66f74bafff3ac80427174aaa",
+      "merge_parents": [
+        "660a6f880769edcf9e52cc5e21e477a5545133f8",
+        "f0f70cd52e085a9adc9010943bfc8705d01ae58a"
+      ],
+      "head_assertion": "gh pr merge --merge --match-head-commit; no admin bypass; no branch deletion"
+    },
+    {
+      "repository": "riatzukiza/foresight",
+      "number": 30,
+      "title": "plan: repair cumulative receipt verification with canonical anchors",
+      "url": "https://github.com/riatzukiza/foresight/pull/30",
+      "merged": true,
+      "merged_at": "2026-10-08T22:22:58Z",
+      "head": "b3e24c329974a8f9d2452b644647c0a432aa89ec",
+      "base": "e7ce01804633e0c3ddbb82cd444ac9e796b8cf65",
+      "target_branch": "codex/cephalon-personal-review",
+      "head_repository": "riatzukiza/foresight",
+      "base_repository": "riatzukiza/foresight",
+      "merge_commit_sha": "a17efe1110e857d3b72f686729e18dcd6ebe55d0",
+      "merge_parents": [
+        "e7ce01804633e0c3ddbb82cd444ac9e796b8cf65",
+        "b3e24c329974a8f9d2452b644647c0a432aa89ec"
+      ],
+      "head_assertion": "gh pr merge --merge --match-head-commit; no admin bypass; no branch deletion"
+    }
+  ],
+  "limits": "Source merges are not runtime release, installed Rheos readiness or B1/B2/B3 behavioral completion. Foresight30 merged into cephalon planning branch, not main.",
+  "remaining_current": "Foresight26 native CONFLICTING; Knoxx3 three unsettled author walkthroughs and failing required resolution; Eros1 one unresolved actual finding and failing resolution; eta-mu8 current CHANGES_REQUESTED; ReceiptRiver1 failed evidence review gate and cancelled MiMo; Foresight22 two unresolved findings/current CHANGES_REQUESTED and advanced integration head."
+}
