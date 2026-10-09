@@ -117,10 +117,16 @@
 (defn dependency-arg
   "The creation dependency argument from every `--dependency` given, joined as
    the CSV form task creation already accepts, so repeated flags are not
-   silently reduced to the last one. Nil when the flag is absent."
+   silently reduced to the last one. Nil when the flag is absent. A
+   `--dependency` given without an operand is a usage error, not an empty id."
   [flags]
-  (when-let [values (seq (get-flag-list flags "dependency"))]
-    (str/join "," values)))
+  (when (contains? flags "dependency")
+    (let [v (get flags "dependency")
+          values (if (vector? v) v [v])]
+      (when (some #(or (nil? %) (str/blank? %)) values)
+        (throw (ex-info "missing <uuid> for --dependency"
+                        {:kind :usage :hint (str bin-name " help create")})))
+      (str/join "," values))))
 
 (defn- flag-true? [flags key]
   (let [v (get-flag flags key)]
@@ -154,7 +160,7 @@
             ["--uuid <id>" "explicit uuid; refused if already taken"]
             ["--status <s>" "refused unless it is the FSM initial state"]
             ["--force-status" "allow a non-initial --status"]]
-    :example "rheos create --type story --title \"Ledger cutover\" --priority P0"
+    :example "rheos create --type epic --title \"Ledger cutover\" --priority P0"
     :notes "A card is written with a skeleton body unless --body-file is given, so it can pass its first gate."}
 
    {:verb "create-subtask" :group "lifecycle" :mutates? true

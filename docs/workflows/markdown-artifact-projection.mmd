@@ -1,8 +1,10 @@
 flowchart LR
-  M[Markdown file] --> D[Lossless Markdown Document]
+  M[Markdown file] --> C[content-parser, the active task_store loader]
+  C --> T[Legacy task shape]
+  T --> P[Board projection]
+  M --> D[Lossless Markdown Document]
   D --> F[Raw frontmatter preserved]
   D --> B[Body preserved]
-  D --> K[Kanban projection]
-  K --> T[Legacy task shape]
-  T --> P[Board projection]
-  D --> X[Future typed profiles and reactions]
+  D -. planned .-> K[Kanban projection]
+  K -. planned .-> T
+  D -.-> X[Future typed profiles and reactions]

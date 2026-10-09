@@ -172,7 +172,22 @@
   (testing "a single dependency (UUID or CSV) reaches creation unchanged"
     (is (= "dep-a,dep-b" (cli/dependency-arg
                           (:flags (cli/parse-args ["create" "--dependency" "dep-a,dep-b"])))))
-    (is (nil? (cli/dependency-arg (:flags (cli/parse-args ["create" "--title" "T"])))))))
+    (is (nil? (cli/dependency-arg (:flags (cli/parse-args ["create" "--title" "T"]))))))
+  (testing "a trailing --dependency without an operand is a usage error, not an empty id"
+    (let [error (try (cli/dependency-arg
+                      (:flags (cli/parse-args ["create" "--title" "T" "--dependency"])))
+                     nil
+                     (catch :default e e))]
+      (is (some? error))
+      (is (= :usage (:kind (ex-data error))))
+      (is (= "missing <uuid> for --dependency" (ex-message error))))))
+
+(deftest create-example-uses-the-legacy-vocabulary
+  (testing "the generic create example works on a board without :card-dirs"
+    (let [example (:example (first (filter #(= "create" (:verb %)) cli/verbs)))
+          requested (second (re-find #"--type (\S+)" example))]
+      (is (or (nil? requested) (contains? #{"task" "epic"} requested))
+          example))))
 
 (deftest limit-must-be-a-positive-integer
   (testing "`--limit abc` parses to a value the events verb has to refuse"
