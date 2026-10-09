@@ -48,9 +48,14 @@ any board — point it somewhere scratch first if you are learning.
 rheos projects
 rheos read-board --project kanban --status in_progress,review
 
-# 1. Create the card. Types and their directories come from :card-dirs.
-rheos create --type story --title "Ledger cutover" --priority P0
-rheos create --type story --title "Extract the fold" --parent ledger-cutover \
+# 1. Create the card. A board without :card-dirs (like the minimal config
+#    below) accepts --type task (the default) and epic; a board with :card-dirs
+#    accepts exactly the types it declares there, so adjust --type to match.
+#    A dependency must name a card that already exists, so create those first.
+rheos create --type epic --title "Ledger cutover" --priority P0
+rheos create --title "Schema law" --parent ledger-cutover
+rheos create --title "Storage port" --parent ledger-cutover
+rheos create --title "Extract the fold" --parent ledger-cutover \
   --dependency schema-law,storage-port --points 3
 
 # ...or author the body yourself instead of taking the skeleton:
