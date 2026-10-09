@@ -6,6 +6,8 @@
             [rheos.backend.domain.events :as events]
             [rheos.backend.domain.task-create :as card]
             [rheos.backend.infra.task-create :as task-create]
+            [rheos.backend.infra.task-edit :as task-edit]
+            [rheos.backend.infra.transition :as transition]
             [rheos.backend.infra.task-store :as task-store]
             [rheos.backend.infra.content-parser :as content-parser]))
 
@@ -139,6 +141,109 @@
           (is (= :usage (:kind (ex-data blank))))
           (is (= :usage (:kind (ex-data bad-type)))))
         (finally (await (cleanup! project)))))))
+
+(deftest ^:async configured-types-round-trip
+  (testing "repository-declared card types determine placement"
+    (doseq [card-dirs [{:story "stories" :chore "chores"}
+                       {"story" "stories" "chore" "chores"}]]
+      (let [base (await (scratch-project))
+            project (assoc base :card-dirs card-dirs)
+            captured (atom [])
+            unsub (events/subscribe! #(swap! captured conj %))]
+        (try
+          (let [result (await (task-create/create-task!
+                               {:project project :title "Lawful Story"
+                                :card-type "story"
+                                :source "test"}))
+                fm (await (frontmatter-of (:source-path result)))
+                created (first (filter #(= "task-created" (:type %)) @captured))]
+            (is (:ok result))
+            (is (= "story" (:card-type result)))
+            (is (= "stories" (path/basename (path/dirname (:source-path result))))
+                (pr-str card-dirs))
+            (is (= "story" (:type fm)))
+            (is (some? created) "a task-created event was published")
+            (is (= (:uuid result) (:task-id created)))
+            (is (= "story" (:card-type created)))
+            (is (= (:source-path result) (:source-path created))))
+          (finally
+            (unsub)
+            (await (cleanup! project))))))))
+
+(deftest ^:async configured-non-core-type-round-trip
+  (testing "a declared type beyond task/story/epic is creatable, editable and movable"
+    (let [base (await (scratch-project))
+          project (assoc base :card-dirs {:story "stories" :chore "chores"})
+          captured (atom [])]
+      (try
+        (let [chore (await (task-create/create-task!
+                            {:project project :title "Tidy the ledger"
+                             :card-type "chore" :source "test"}))
+              story (await (task-create/create-task!
+                            {:project project :title "Lawful Story"
+                             :card-type "story" :source "test"}))
+              unsub (events/subscribe! #(swap! captured conj %))]
+          (try
+            (let [edit (await (task-edit/update-frontmatter!
+                               {:project project
+                                :task {:uuid (:uuid chore) :source-path (:source-path chore)}
+                                :updates {"dependency" (:uuid story)}
+                                :source "test"}))
+                  loaded (await (task-store/load-tasks project))
+                  chore-task (first (filter #(= (:uuid chore) (:uuid %)) loaded))
+                  moved (await (transition/move-task! {:project project :task chore-task
+                                                       :new-status "accepted" :source "test"}))
+                  persisted (await (frontmatter-of (:source-path chore)))
+                  edit-event (first (filter #(and (= "frontmatter" (:type %))
+                                                  (= (:uuid chore) (:task-id %))
+                                                  (= "dependency" (some-> (:key %) name)))
+                                            @captured))
+                  move-event (first (filter #(and (= "status-change" (:type %))
+                                                  (= (:uuid chore) (:task-id %)))
+                                            @captured))]
+              (is (:ok chore))
+              (is (= "chore" (:card-type chore)))
+              (is (= "chores" (path/basename (path/dirname (:source-path chore)))))
+              (is (= "chore" (:type persisted)))
+              (is (:ok story) "an existing declared-type card does not poison later creates")
+              (is (:ok edit) "relationship edits admit the declared type")
+              (is (:ok moved) (pr-str moved))
+              (testing "both mutations are persisted"
+                (is (= [(:uuid story)] (:dependency persisted)) (pr-str persisted))
+                (is (= "accepted" (:status persisted)) (pr-str persisted)))
+              (testing "both mutations are recorded as events"
+                (is (some? edit-event) (pr-str @captured))
+                (is (= [(:uuid story)] (:new-value edit-event)))
+                (is (some? move-event) (pr-str @captured))
+                (is (= "accepted" (:to move-event)))))
+            (finally
+              (unsub))))
+        (finally
+          (await (cleanup! project)))))))
+
+(defn- ^:async tree-listing [dir]
+  (let [entries (await (.readdir fsp dir #js {:recursive true}))]
+    (vec (sort (js->clj entries)))))
+
+(deftest ^:async configured-vocabulary-refuses-legacy-and-implicit-types
+  (testing "a configured board cannot silently create an undeclared task"
+    (let [base (await (scratch-project))
+          project (assoc base :card-dirs {:story "stories" :chore "chores"})
+          captured (atom [])
+          unsub (events/subscribe! #(swap! captured conj %))]
+      (try
+        (let [before (await (tree-listing (:tasks-dir project)))]
+          (doseq [args [{:project project :title "Implicit" :source "test"}
+                        {:project project :title "Legacy" :card-type "task" :source "test"}]]
+            (let [err (try (await (task-create/create-task! args))
+                           nil (catch :default e e))]
+              (is (= :usage (:kind (ex-data err))))
+              (is (= before (await (tree-listing (:tasks-dir project))))
+                  "a refusal leaves the board files untouched")
+              (is (empty? @captured) "a refusal publishes no event"))))
+        (finally
+          (unsub)
+          (await (cleanup! project)))))))
 
 (deftest ^:async emits-task-created-event
   (testing "Creation is a ledger fact carrying enough payload to reconstruct the card"

@@ -114,6 +114,20 @@
   (let [v (get flags key)]
     (cond (nil? v) [] (vector? v) v :else [v])))
 
+(defn dependency-arg
+  "The creation dependency argument from every `--dependency` given, joined as
+   the CSV form task creation already accepts, so repeated flags are not
+   silently reduced to the last one. Nil when the flag is absent. A
+   `--dependency` given without an operand is a usage error, not an empty id."
+  [flags]
+  (when (contains? flags "dependency")
+    (let [v (get flags "dependency")
+          values (if (vector? v) v [v])]
+      (when (some #(or (nil? %) (str/blank? %)) values)
+        (throw (ex-info "missing <uuid> for --dependency"
+                        {:kind :usage :hint (str bin-name " help create")})))
+      (str/join "," values))))
+
 (defn- flag-true? [flags key]
   (let [v (get-flag flags key)]
     (and (some? v) (not= "false" v))))
@@ -132,12 +146,12 @@
    and `docs/cli.md`; kept in the order a card moves through its life."
   [{:verb "create" :group "lifecycle" :mutates? true
     :args "--title <text>"
-    :summary "Create a card (epic or task, root or child) and record a task-created event."
+    :summary "Create a repository-valid card (root or child) and record a task-created event."
     :flags [["--title <text>" "card title (required)"]
-            ["--type <task|epic>" "card type; default task"]
+            ["--type <type>" "card type from the project's configured :card-dirs vocabulary"]
             ["--parent <uuid>" "parent card uuid — omit for a root card"]
             ["--epic <uuid>" "existing epic UUID"]
-            ["--dependency <uuid[,uuid]>" "existing dependency UUID or CSV"]
+            ["--dependency <uuid[,uuid]>" "existing dependency UUID or CSV; repeatable"]
             ["--priority <P0..P3>" "priority; default P3"]
             ["--points <n>" "Fibonacci size estimate"]
             ["--labels <a,b,c>" "comma-separated labels"]
@@ -153,6 +167,7 @@
     :args "<parent-uuid> --title <text>"
     :summary "Alias of `create --parent`. Kept for compatibility; prefer `create`."
     :flags [["--title <text>" "card title (required)"]
+            ["--type <type>" "card type from the project's configured vocabulary"]
             ["--status <s>" "refused unless it is the FSM initial state"]
             ["--priority <P0..P3>" "priority; default P3"]
             ["--labels <a,b,c>" "comma-separated labels"]]
@@ -489,7 +504,7 @@
                         :card-type (get-flag flags "type")
                         :parent parent
                         :epic (get-flag flags "epic")
-                        :dependency (get-flag flags "dependency")
+                        :dependency (dependency-arg flags)
                         :status (get-flag flags "status")
                         :priority (get-flag flags "priority")
                         :points (get-flag flags "points")

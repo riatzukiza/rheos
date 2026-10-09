@@ -21,11 +21,11 @@ npm i -g @eta-mu/rheos
 rheos --help
 ```
 
-**From the workspace**, if you already have a checkout with Java 21 and pnpm:
+**From a checkout** of this repository, with Java 21 and pnpm:
 
 ```bash
-pnpm -C packages/rheos build      # -> dist/cli.cjs
-node packages/rheos/dist/cli.cjs --help
+pnpm build      # -> dist/cli.cjs
+node dist/cli.cjs --help
 ```
 
 > **Do not copy `dist/cli.cjs` on its own.** It is a shadow-cljs `:node-script`
@@ -48,9 +48,15 @@ any board — point it somewhere scratch first if you are learning.
 rheos projects
 rheos read-board --project kanban --status in_progress,review
 
-# 1. Create the card. Root cards need no parent; epics go in epics/.
+# 1. Create the card. A board without :card-dirs (like the minimal config
+#    below) accepts --type task (the default) and epic; a board with :card-dirs
+#    accepts exactly the types it declares there, so adjust --type to match.
+#    A dependency must name a card that already exists, so create those first.
 rheos create --type epic --title "Ledger cutover" --priority P0
-rheos create --title "Extract the fold" --parent ledger-cutover --points 3
+rheos create --title "Schema law" --parent ledger-cutover
+rheos create --title "Storage port" --parent ledger-cutover
+rheos create --title "Extract the fold" --parent ledger-cutover \
+  --dependency schema-law,storage-port --points 3
 
 # ...or author the body yourself instead of taking the skeleton:
 rheos create --title "Extract the fold" --parent ledger-cutover --body-file card.md
@@ -60,6 +66,7 @@ cat card.md | rheos create --title "Extract the fold" --body-file -
 rheos move extract-the-fold --to accepted
 rheos move extract-the-fold --to breakdown
 rheos frontmatter extract-the-fold --set points=3 --set priority=P1
+rheos frontmatter extract-the-fold --set dependency=schema-law,storage-port
 
 # 3. Advance it. `move` is the only way to change status.
 rheos move extract-the-fold --to ready
@@ -103,19 +110,22 @@ deprecation warning.
 ```
 
 Multi-project boards use a `:projects` vector, each entry with its own
-`:tasks-dir` and optional `:id`, `:title`, `:fsm`, `:card-projection`:
+`:tasks-dir` and optional `:id`, `:title`, `:fsm`, `:card-dirs`,
+`:card-projection`:
 
 ```clojure
 {:default-project "kanban"
- :projects [{:id "kanban" :title "eta-mu" :tasks-dir "./kanban" :fsm :promethean}
+ :projects [{:id "kanban" :title "eta-mu" :tasks-dir "./kanban" :fsm :promethean
+             :card-dirs {:epic "epics" :story "stories" :chore "chores"}}
             {:id "proxx"  :tasks-dir "../proxx/kanban"}]}
 ```
 
 `--tasks-dir` overrides the resolved task root for single-project boards.
 
-New cards are placed by type: `<tasks-dir>/epics/` for `--type epic` and
-`<tasks-dir>/tasks/` for `--type task` when those directories exist, else the
-task root itself. Override per-call with `--dir`. When a project configures
+When `:card-dirs` is non-empty, its keys are the closed set accepted by
+`--type`, and each value is that type's directory relative to the task root.
+Projects without `:card-dirs` retain the legacy `task`/`epic` vocabulary and
+conventional placement. Override placement per-call with `--dir`. When a project configures
 `:card-projection {:paths [...]}`, a create that would land outside those paths
 is refused rather than writing a card the board will never scan.
 
@@ -150,7 +160,7 @@ relationships use the same selected-graph admission as relationship edits.
 
 | Verb | Purpose |
 |---|---|
-| ✎ `create --title <t>` | Create a card (epic or task, root or child); records `task-created` |
+| ✎ `create --title <t>` | Create a repository-declared card type, root or child; records `task-created` |
 | ✎ `create-subtask <parent> --title <t>` | Alias of `create --parent`; kept for compatibility |
 | ✎ `move <uuid> --to <status>` | Change status. FSM-enforced, ledger-recorded, streamed to the UI |
 | ✎ `status-update <uuid> --to <status>` | The same enforced move via agent-tool dispatch; prints JSON |

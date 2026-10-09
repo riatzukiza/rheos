@@ -58,6 +58,9 @@
     (let [text (help-text #(cli/show-verb-help "create"))]
       (is (str/includes? text "rheos create"))
       (is (str/includes? text "--title"))
+      (is (str/includes? text "--dependency"))
+      (is (str/includes? text ":card-dirs"))
+      (is (not (str/includes? text "task|epic")))
       (is (str/includes? text "EXAMPLE"))
       (is (str/includes? text "FLAGS")))))
 
@@ -158,7 +161,33 @@
       (is (= ["points=3" "priority=P1"] (get flags "set")))))
   (testing "a single occurrence stays scalar"
     (is (= "points=3" (get (:flags (cli/parse-args ["frontmatter" "c" "--set" "points=3"]))
-                           "set")))))
+                           "set"))))
+  (testing "creation collects dependency ids without flattening their order"
+    (let [flags (:flags (cli/parse-args
+                         ["create" "--title" "T"
+                          "--dependency" "dep-a" "--dependency" "dep-b"]))]
+      (is (= ["dep-a" "dep-b"] (get flags "dependency")))
+      (testing "and creation receives every collected id, in order"
+        (is (= "dep-a,dep-b" (cli/dependency-arg flags))))))
+  (testing "a single dependency (UUID or CSV) reaches creation unchanged"
+    (is (= "dep-a,dep-b" (cli/dependency-arg
+                          (:flags (cli/parse-args ["create" "--dependency" "dep-a,dep-b"])))))
+    (is (nil? (cli/dependency-arg (:flags (cli/parse-args ["create" "--title" "T"]))))))
+  (testing "a trailing --dependency without an operand is a usage error, not an empty id"
+    (let [error (try (cli/dependency-arg
+                      (:flags (cli/parse-args ["create" "--title" "T" "--dependency"])))
+                     nil
+                     (catch :default e e))]
+      (is (some? error))
+      (is (= :usage (:kind (ex-data error))))
+      (is (= "missing <uuid> for --dependency" (ex-message error))))))
+
+(deftest create-example-uses-the-legacy-vocabulary
+  (testing "the generic create example works on a board without :card-dirs"
+    (let [example (:example (first (filter #(= "create" (:verb %)) cli/verbs)))
+          requested (second (re-find #"--type (\S+)" example))]
+      (is (or (nil? requested) (contains? #{"task" "epic"} requested))
+          example))))
 
 (deftest limit-must-be-a-positive-integer
   (testing "`--limit abc` parses to a value the events verb has to refuse"
