@@ -114,6 +114,14 @@
   (let [v (get flags key)]
     (cond (nil? v) [] (vector? v) v :else [v])))
 
+(defn dependency-arg
+  "The creation dependency argument from every `--dependency` given, joined as
+   the CSV form task creation already accepts, so repeated flags are not
+   silently reduced to the last one. Nil when the flag is absent."
+  [flags]
+  (when-let [values (seq (get-flag-list flags "dependency"))]
+    (str/join "," values)))
+
 (defn- flag-true? [flags key]
   (let [v (get-flag flags key)]
     (and (some? v) (not= "false" v))))
@@ -137,7 +145,7 @@
             ["--type <type>" "card type from the project's configured :card-dirs vocabulary"]
             ["--parent <uuid>" "parent card uuid — omit for a root card"]
             ["--epic <uuid>" "existing epic UUID"]
-            ["--dependency <uuid[,uuid]>" "existing dependency UUID or CSV"]
+            ["--dependency <uuid[,uuid]>" "existing dependency UUID or CSV; repeatable"]
             ["--priority <P0..P3>" "priority; default P3"]
             ["--points <n>" "Fibonacci size estimate"]
             ["--labels <a,b,c>" "comma-separated labels"]
@@ -490,7 +498,7 @@
                         :card-type (get-flag flags "type")
                         :parent parent
                         :epic (get-flag flags "epic")
-                        :dependency (get-flag flags "dependency")
+                        :dependency (dependency-arg flags)
                         :status (get-flag flags "status")
                         :priority (get-flag flags "priority")
                         :points (get-flag flags "points")

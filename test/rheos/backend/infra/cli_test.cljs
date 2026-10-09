@@ -166,7 +166,13 @@
     (let [flags (:flags (cli/parse-args
                          ["create" "--title" "T"
                           "--dependency" "dep-a" "--dependency" "dep-b"]))]
-      (is (= ["dep-a" "dep-b"] (get flags "dependency"))))))
+      (is (= ["dep-a" "dep-b"] (get flags "dependency")))
+      (testing "and creation receives every collected id, in order"
+        (is (= "dep-a,dep-b" (cli/dependency-arg flags))))))
+  (testing "a single dependency (UUID or CSV) reaches creation unchanged"
+    (is (= "dep-a,dep-b" (cli/dependency-arg
+                          (:flags (cli/parse-args ["create" "--dependency" "dep-a,dep-b"])))))
+    (is (nil? (cli/dependency-arg (:flags (cli/parse-args ["create" "--title" "T"])))))))
 
 (deftest limit-must-be-a-positive-integer
   (testing "`--limit abc` parses to a value the events verb has to refuse"
