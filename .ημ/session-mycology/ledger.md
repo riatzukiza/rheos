@@ -454,3 +454,22 @@
 - Correction to the earlier PR9 merge entry at line441: the canonical evidence link is [PR9 native qualified merge](../review-evidence/pr9-qualified-native-merge-8581e0c-20261008.json). Resolve it relative to this ledger. The earlier broken link remains historical, superseded by this correction.
 - Actual target exists; its bytes/hash are retained in the private verification packet. Original journal prefixes remain byte-identical.
 - Scores: efficiency0.8; friction0.25; skill candidate0.2. No spore.
+
+## 2026-10-09 — Current-head review successor
+
+- Receipt: rheos-pr10-current-head-review-successor-20261009.
+- Documentation correction settled; current-head hosted review retained. Obsolete model run required documented force-cancel after normal cancellation did not stop its always() job; terminal cancelled state independently verified. This supplies no review or approval.
+- Scores: efficiency0.65; friction0.45; skill candidate0.3. No spore.
+- Reuse actual immutable workflow evidence and current head/base; never manufacture review credit from job status or cancellation.
+
+## Authored story compatibility — approved plan and behavioral RED
+
+Origin: rheos-story-compatibility-native-ready-red-20261009
+
+PR10 merged as `d8a649db8e15ac6ff381dc60324bb287315a5a07` after exact-head MiMo approval, all native checks passing and the only finding settled. The canonical round counter remains a recorded diagnostic, not an invented PASS. Native Ready/Todo/InProgress preceded the test changes. Portable JVM RED: 28 tests/560 assertions/17 failures/0 errors; compiled native RED: 252 tests/2349 assertions/24 failures/0 errors twice. Production source is unchanged. [Actual RED and source bindings](../review-evidence/story-compatibility/red-proof.json). Scope remains the owning story compatibility prerequisite; the character milestone is unfinished.
+
+## Authored story compatibility — owning GREEN
+
+Origin: rheos-story-compatibility-green-20261009
+
+After committed RED `ad66378`, the exact authored `story` joins the portable admission set. JVM28/560 and compiled252/2349 pass; full lint0/0 and all four release builds pass. Native nine-story fixtures retain type/UUID/body/comment/file/event prefixes and enforce epic, graph, predecessor, FSM, WIP and executable gates. Actual native owner readback is Review. [Executed GREEN evidence](../review-evidence/story-compatibility/green-proof.json). Current implementation review and the real Foresight consumer remain obligations; no installed release or character milestone completion is claimed.

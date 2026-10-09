@@ -1,0 +1,53 @@
+{
+  "planning_pr": 10,
+  "merge": "d8a649db8e15ac6ff381dc60324bb287315a5a07",
+  "base": "8581e0c390b1fa5a66f74bafff3ac80427174aaa",
+  "reviewed_head": "64cb9b595d801c9f30b84b1ea01040ddbccae0d5",
+  "approval": 5464833181,
+  "canonical_counter": "0/5 BLOCKED convergence, not synthesized PASS",
+  "human_authority": "merge approved/passing/resolved in-scope PRs",
+  "native_card": "ready -> todo -> in_progress; independent readback and event prefix preserved",
+  "jvm_red": {
+    "exit": 1,
+    "tests": 28,
+    "assertions": 560,
+    "failures": 17,
+    "errors": 0
+  },
+  "compiled_native_red": {
+    "exit": 1,
+    "tests": 252,
+    "assertions": 2349,
+    "failures": 24,
+    "errors": 0,
+    "runs": 2
+  },
+  "setup_diagnostics": "Initial new-test syntax/API mistakes corrected before actual behavioral RED; no errors in final RED; baseline info and controlled-fixture stderr retained.",
+  "files": [
+    {
+      "path": ".ημ/review-evidence/story-compatibility/implementation-native-ready-in-progress-proof.json",
+      "bytes": 15517,
+      "sha256": "97b878808187bcbd9cd790bef0ceebdd3e0aaae030483ea46726536fb0ad2a22"
+    },
+    {
+      "path": ".ημ/review-evidence/story-compatibility/mimo-5464833181-native.json",
+      "bytes": 3892,
+      "sha256": "9e2a7a7f1f0755deb4c8c3580c015b11c47fa30db8a95676ad202160705edd20"
+    },
+    {
+      "path": ".ημ/review-evidence/story-compatibility/planning-merged-native.json",
+      "bytes": 19928,
+      "sha256": "0267ea3709bc2f14decf7fb774b726e8554a2bf8bf7dd916346dd50d27b4fa44"
+    },
+    {
+      "path": ".ημ/review-evidence/story-compatibility/story-red-final-compiled-native.stdout",
+      "bytes": 16786,
+      "sha256": "7e5faf6c583c35cc8aa5d2a5d9e4caa5aedabb008400d2bbd643036a5885ed02"
+    },
+    {
+      "path": ".ημ/review-evidence/story-compatibility/story-red-jvm.stdout",
+      "bytes": 4760,
+      "sha256": "73692264a534b9c5b46eb7533e864f2ae67d0ef8491f931203cadee8e6f6fb36"
+    }
+  ]
+}

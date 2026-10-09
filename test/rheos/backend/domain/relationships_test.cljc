@@ -4,6 +4,7 @@
                :cljs [cljs.test :refer-macros [deftest is testing]])
             [rheos.backend.law.frontmatter :as frontmatter]
             [rheos.backend.domain.relationships :as relationships]
+            [rheos.backend.domain.dependency-admission :as admission]
             [rheos.backend.law.relationships :as relationship-law]
             [rheos.backend.shape.relationships :as shape]))
 
@@ -101,10 +102,70 @@
   (doseq [target ["parent" "pred-B"]]
     (is (= #{:invalid-epic-target}
            (kinds (relationships/admit-update board "child" {:parent nil :epic target})))))
-  (doseq [type [nil "Epic" "story" :epic false]]
+  ;; The reviewed compatibility contract reclassifies exact "story" below.
+  (doseq [type [nil "Epic" :epic false "Story" " story" "story " "unknown" [] {}]]
     (is (= #{:malformed-card-type}
            (kinds (relationships/inspect-graph [{:uuid "card" :type type}])))))
   (is (:ok? (relationships/inspect-graph [{:uuid "legacy"}]))))
+
+(def story-board
+  [{:uuid "epic" :type "epic" :status "done"}
+   {:uuid "parent-story" :type "story" :parent "epic" :epic "epic" :status "done"}
+   {:uuid "child-story" :type "story" :parent "parent-story" :epic "epic"
+    :dependency ["parent-story"] :status "breakdown"}
+   {:uuid "ordinary-task" :type "task" :dependency ["child-story"] :status "breakdown"}])
+
+(def story-policy
+  {:states ["breakdown" "ready" "todo" "in_progress" "done"]
+   :dependency-admission {:successful-states ["done"]
+                          :guarded-targets ["ready" "todo" "in_progress"]}})
+
+(deftest authored-stories-retain-type-identity-and-relationships
+  (let [result (relationships/inspect-graph story-board)]
+    (is (:ok? result))
+    (is (= (set story-board) (set (:tasks result)))))
+  (let [result (relationships/admit-update story-board "ordinary-task"
+                                          {:parent "child-story" :epic "epic"})]
+    (is (:ok? result))
+    (is (= "task" (get-in result [:task :type])))
+    (is (= "child-story" (get-in result [:task :parent]))))
+  (is (= {:allowed? true}
+         (admission/decide story-policy story-board "child-story" "ready"))))
+
+(deftest story-is-never-an-epic-target
+  (is (= #{:invalid-epic-target}
+         (kinds (relationships/inspect-graph
+                 [{:uuid "story" :type "story"}
+                  {:uuid "child" :type "story" :epic "story"}])))))
+
+(deftest stories-retain-graph-refusals
+  (doseq [[expected cards]
+          [[:missing-reference [{:uuid "story" :type "story" :parent "missing"}]]
+           [:ambiguous-uuid [{:uuid "same" :type "story"} {:uuid "same" :type "story"}]]
+           [:malformed-uuid [{:type "story"}]]
+           [:conflicting-epic (conj (with-card story-board "child-story" {:epic "other"})
+                                    {:uuid "other" :type "epic"})]
+           [:cycle [{:uuid "a" :type "story" :parent "b"}
+                    {:uuid "b" :type "story" :parent "a"}]]
+           [:cycle [{:uuid "a" :type "story" :dependency ["b"]}
+                    {:uuid "b" :type "story" :dependency ["a"]}]]]]
+    (let [result (relationships/inspect-graph cards)]
+      (is (refusal? result))
+      (is (= #{expected} (kinds result))))))
+
+(deftest story-predecessor-completion-is-still-required
+  (doseq [status ["breakdown" "ready" "in_progress"]]
+    (let [result (admission/decide story-policy
+                                   (with-card story-board "parent-story" {:status status})
+                                   "child-story" "ready")]
+      (is (false? (:allowed? result)))
+      (is (= [{:kind :unfinished-predecessor :uuid "child-story"
+               :target "parent-story" :status status}]
+             (:errors result)))))
+  (is (= {:allowed? true}
+         (admission/decide story-policy
+                           (with-card story-board "child-story" {:status "done"})
+                           "ordinary-task" "ready"))))
 
 (deftest self-reference-refused-for-each-edge
   (doseq [field [:parent :epic :dependency]]

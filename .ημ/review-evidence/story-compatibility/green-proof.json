@@ -1,0 +1,93 @@
+{
+  "red_commit": "ad6637861d140773404cae9efc7c9f06479ec95d",
+  "base": "d8a649db8e15ac6ff381dc60324bb287315a5a07",
+  "production_change": "exact story in owning portable admission set; no identity/type migration or writer adapter changes",
+  "jvm": {
+    "exit": 0,
+    "tests": 28,
+    "assertions": 560,
+    "failures": 0,
+    "errors": 0
+  },
+  "compiled_native": {
+    "exit": 0,
+    "tests": 252,
+    "assertions": 2349,
+    "failures": 0,
+    "errors": 0,
+    "runs": 2
+  },
+  "lint": {
+    "exit": 0,
+    "errors": 0,
+    "warnings": 0,
+    "existing_infos": 8
+  },
+  "build": {
+    "exit": 0,
+    "targets": [
+      "server",
+      "cli",
+      "github-sync",
+      "app"
+    ],
+    "warnings": 0
+  },
+  "generated_outputs": [
+    {
+      "path": "dist/server.js",
+      "bytes": 2147427,
+      "sha256": "edc71c59e8ba164039e1c5a71b9d9f9139912aefaa68981767fc9eb45d52466d"
+    },
+    {
+      "path": "dist/cli.cjs",
+      "bytes": 2236751,
+      "sha256": "1d941d3e3c6a5b0ffad71759c23e8b8c3ceb3ce4aef274c1f211a558f4efe463"
+    },
+    {
+      "path": "dist/github-sync.cjs",
+      "bytes": 1687631,
+      "sha256": "26e2d45c95ef203682a0d31610062fcb72f0799ce721a9976cbadb3e4b7767c6"
+    },
+    {
+      "path": "dist/web/js/main.js",
+      "bytes": 562707,
+      "sha256": "feba63f5882becf858ef32bfb62da89b520f0a96f2a981cffc2d13d4de86d2de"
+    }
+  ],
+  "native_review": {
+    "exit": 0,
+    "status": "review",
+    "uuid": "4cbb1a2f-354e-46b4-ae9a-955041f59608",
+    "prior_event_prefix_equal": true
+  },
+  "boundaries": [
+    "Private fixture source/ledger equality is actual execution; no consumer transition claimed yet",
+    "Local Node22.18.0, hosted pinned Node22.20.0",
+    "Missing NPM_TOKEN/source-map-support and controlled negative fixture stderr retained; no compiler warnings",
+    "Dependencies were reused, no reviewed lockfile; no dependency reproducibility claim",
+    "No installed release, runtime deployment or B1/B2/B3 completion"
+  ],
+  "logs": [
+    {
+      "path": ".ημ/review-evidence/story-compatibility/story-green-build.stdout",
+      "bytes": 517,
+      "sha256": "2c8d7ef1cba21300c8dbb1d8fdb6fd304d4e80e3551f853f01bdb83fb258e98e"
+    },
+    {
+      "path": ".ημ/review-evidence/story-compatibility/story-green-compiled-native.stdout",
+      "bytes": 3495,
+      "sha256": "5cf45ee6d6271c7f0198e67d91c66356215be8222046b1cb8a369c66a4d0c810"
+    },
+    {
+      "path": ".ημ/review-evidence/story-compatibility/story-green-jvm.stdout",
+      "bytes": 160,
+      "sha256": "60a6bce385b7f630a4a66e7d6796f613a08af5a53982cfc2f8bd31782858600e"
+    },
+    {
+      "path": ".ημ/review-evidence/story-compatibility/story-green-lint.stdout",
+      "bytes": 1524,
+      "sha256": "6b4920344a6ffcf9b6d0acbd0809a3a684e8e6d7d0691d8afebd771b0260dc57"
+    }
+  ]
+}

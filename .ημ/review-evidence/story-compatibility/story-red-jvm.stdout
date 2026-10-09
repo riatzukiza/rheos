@@ -1,0 +1,75 @@
+
+Testing rheos.backend.domain.relationships-test
+
+FAIL in (stories-retain-graph-refusals) (relationships_test.cljc:154)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:missing-reference} #{:malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (relationships_test.cljc:154)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:ambiguous-uuid} #{:ambiguous-uuid :malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (relationships_test.cljc:154)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:malformed-uuid} #{:malformed-uuid :malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (relationships_test.cljc:154)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:conflicting-epic} #{:malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (relationships_test.cljc:154)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:cycle} #{:malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (relationships_test.cljc:154)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:cycle} #{:malformed-card-type}))
+
+FAIL in (story-predecessor-completion-is-still-required) (relationships_test.cljc:162)
+expected: (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status status}] (:errors result))
+  actual: (not (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status "breakdown"}] [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]))
+
+FAIL in (story-predecessor-completion-is-still-required) (relationships_test.cljc:162)
+expected: (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status status}] (:errors result))
+  actual: (not (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status "ready"}] [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]))
+
+FAIL in (story-predecessor-completion-is-still-required) (relationships_test.cljc:162)
+expected: (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status status}] (:errors result))
+  actual: (not (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status "in_progress"}] [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]))
+
+FAIL in (story-predecessor-completion-is-still-required) (relationships_test.cljc:165)
+expected: (= {:allowed? true} (admission/decide story-policy (with-card story-board "child-story" {:status "done"}) "ordinary-task" "ready"))
+  actual: (not (= {:allowed? true} {:allowed? false, :errors [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]}))
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (relationships_test.cljc:125)
+expected: (:ok? result)
+  actual: false
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (relationships_test.cljc:126)
+expected: (= (set story-board) (set (:tasks result)))
+  actual: (not (= #{{:uuid "epic", :type "epic", :status "done"} {:uuid "child-story", :type "story", :parent "parent-story", :epic "epic", :dependency ["parent-story"], :status "breakdown"} {:uuid "parent-story", :type "story", :parent "epic", :epic "epic", :status "done"} {:uuid "ordinary-task", :type "task", :dependency ["child-story"], :status "breakdown"}} #{}))
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (relationships_test.cljc:129)
+expected: (:ok? result)
+  actual: false
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (relationships_test.cljc:130)
+expected: (= "task" (get-in result [:task :type]))
+  actual: (not (= "task" nil))
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (relationships_test.cljc:131)
+expected: (= "child-story" (get-in result [:task :parent]))
+  actual: (not (= "child-story" nil))
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (relationships_test.cljc:132)
+expected: (= {:allowed? true} (admission/decide story-policy story-board "child-story" "ready"))
+  actual: (not (= {:allowed? true} {:allowed? false, :errors [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]}))
+
+FAIL in (story-is-never-an-epic-target) (relationships_test.cljc:136)
+expected: (= #{:invalid-epic-target} (kinds (relationships/inspect-graph [{:uuid "story", :type "story"} {:uuid "child", :type "story", :epic "story"}])))
+  actual: (not (= #{:invalid-epic-target} #{:malformed-card-type}))
+
+Testing rheos.backend.shape.relationships-test
+
+Ran 28 tests containing 560 assertions.
+17 failures, 0 errors.
