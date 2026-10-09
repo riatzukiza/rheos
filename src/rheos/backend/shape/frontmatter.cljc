@@ -15,8 +15,27 @@
    Returns nil for syntax outside that subset so every consumer can make the
    same fail-closed decision instead of growing a second comma-splitting parser."
   [value]
-  (when (re-matches canonical-string-sequence-pattern value)
+  ;; Escapes are not decoded here, so a sequence containing one is outside the
+  ;; subset. Returning raw backslash sequences would publish the wrong value.
+  (when (and (re-matches canonical-string-sequence-pattern value)
+             (not (str/includes? value "\\")))
     (mapv second (re-seq quoted-string-pattern value))))
+
+(defn- flat-scalar
+  "Plain and simple double-quoted scalars. A YAML comment (` #` or tab `#`)
+   ends a plain scalar. A quoted scalar that is unterminated, carries escapes,
+   or has trailing content other than a comment is unsupported, so callers fall
+   back instead of publishing a partial value."
+  [value]
+  (cond
+    (str/starts-with? value "#") unsupported
+    (str/starts-with? value "\"")
+    (if-let [[_ inner] (re-matches #"^\"([^\"\\]*)\"(?:[ \t]+#.*)?$" value)]
+      inner
+      unsupported)
+    :else
+    (let [plain (str/trim (str/replace value #"[ \t]+#.*$" ""))]
+      (if (empty? plain) unsupported plain))))
 
 (defn- flat-value [raw]
   (let [value (str/trim raw)]
@@ -27,7 +46,7 @@
           (str/starts-with? value "{")) unsupported
       (str/starts-with? value "[")
       (or (parse-canonical-string-sequence value) unsupported)
-      :else (str/replace value #"^\"|\"$" ""))))
+      :else (flat-scalar value))))
 
 (defn parse-flat [frontmatter-raw]
   (reduce (fn [acc line]

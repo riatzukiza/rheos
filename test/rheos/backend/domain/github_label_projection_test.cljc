@@ -95,7 +95,7 @@
                             (task)
                             {:body body
                              :labels ["kanban" "status:review"
-                                      "priority:P1" "human"]})))))))
+                                      "priority:P1" "human"]}))))))
   (testing "delimiter-injected legacy ownership is never authoritative"
     (doseq [metadata ["`foo`"
                       "`foo`, `human`"
@@ -107,7 +107,7 @@
                     :labels ["kanban" "status:review" "priority:P1"
                              "foo" "human"]})]
         (is (empty? (labels/projected-task-labels body)) metadata)
-        (is (empty? (:remove delta)) metadata))))
+        (is (empty? (:remove delta)) metadata)))))
 
 (deftest task-content-cannot-supply-missing-header-ownership
   (let [body (managed-body

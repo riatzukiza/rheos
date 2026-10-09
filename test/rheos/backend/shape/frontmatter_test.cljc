@@ -76,3 +76,19 @@
   (let [document (markdown/parse "# Plain")]
     (is (law/valid? document))
     (is (not (contains? document :document/frontmatter-decoding)))))
+
+(deftest escaped-sequence-members-are-not-published-raw
+  (let [document (markdown/parse "---\nlabels: [\"a\\nb\", \"ci\"]\n---\nBody")]
+    (is (not (contains? (:document/frontmatter-data document) :labels)))))
+
+(deftest scalar-comments-and-unterminated-quotes-are-not-decoded-data
+  (let [decoded (fn [line] (:document/frontmatter-data
+                            (markdown/parse (str "---\n" line "\n---\nBody"))))]
+    (testing "a YAML comment ends a plain or quoted scalar"
+      (is (= "Card" (:title (decoded "title: Card # note"))))
+      (is (= "Card" (:title (decoded "title: \"Card\" # note"))))
+      (is (= "C#1" (:title (decoded "title: C#1")))))
+    (testing "unsupported quoted forms are omitted so a fallback applies"
+      (doseq [line ["title: \"Card" "title: \"Card\" trailing"
+                    "title: \"a\\\"b\"" "title: # only a comment"]]
+        (is (not (contains? (decoded line) :title)) line)))))
