@@ -21,11 +21,11 @@ npm i -g @eta-mu/rheos
 rheos --help
 ```
 
-**From the workspace**, if you already have a checkout with Java 21 and pnpm:
+**From a checkout** of this repository, with Java 21 and pnpm:
 
 ```bash
-pnpm -C packages/rheos build      # -> dist/cli.cjs
-node packages/rheos/dist/cli.cjs --help
+pnpm build      # -> dist/cli.cjs
+node dist/cli.cjs --help
 ```
 
 > **Do not copy `dist/cli.cjs` on its own.** It is a shadow-cljs `:node-script`
@@ -51,7 +51,7 @@ rheos read-board --project kanban --status in_progress,review
 # 1. Create the card. Types and their directories come from :card-dirs.
 rheos create --type story --title "Ledger cutover" --priority P0
 rheos create --type story --title "Extract the fold" --parent ledger-cutover \
-  --dependency schema-law --dependency storage-port --points 3
+  --dependency schema-law,storage-port --points 3
 
 # ...or author the body yourself instead of taking the skeleton:
 rheos create --title "Extract the fold" --parent ledger-cutover --body-file card.md
