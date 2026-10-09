@@ -7,4 +7,8 @@ flowchart LR
   D --> B[Body preserved]
   D -. planned .-> K[Kanban projection]
   K -. planned .-> T
-  D -.-> X[Future typed profiles and reactions]
+  D --> X[Flat document-process profile]
+  X --> E[Contained EDN sidecar]
+  E --> V[Katamorph Malli validation]
+  V --> Q[Typed proposal or rejection event]
+  Q -. future interpreter .-> R[Workflow reactions]
