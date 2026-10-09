@@ -1,0 +1,148 @@
+
+> @eta-mu/rheos@0.1.0 test /home/err/spaces/cephalon-rheos-relationships/source-preserving
+> shadow-cljs compile test && node dist/test.cjs
+
+[:test] Compiling ...
+========= Running Tests =======================
+
+Testing rheos.backend.domain.board-test
+
+Testing rheos.backend.domain.compose-test
+
+Testing rheos.backend.domain.events-test
+
+Testing rheos.backend.domain.relationships-test
+
+Testing rheos.backend.domain.task-create-test
+
+Testing rheos.backend.domain.task-edit-test
+
+Testing rheos.backend.domain.transition-test
+
+Testing rheos.backend.infra.agent-tools-test
+{
+  "ok": true,
+  "uuid": "t1",
+  "from": "breakdown",
+  "to": "ready"
+}
+
+Testing rheos.backend.infra.cli-test
+
+Testing rheos.backend.infra.config-card-creation-test
+
+Testing rheos.backend.infra.config-test
+
+Testing rheos.backend.infra.github-issue-preflight-test
+
+Testing rheos.backend.infra.github-issues-test
+
+Testing rheos.backend.infra.relationship-admission-test
+
+Testing rheos.backend.infra.store-test
+
+Testing rheos.backend.infra.task-create-conflict-test
+
+Testing rheos.backend.infra.task-create-test
+
+Testing rheos.backend.infra.task-edit-test
+
+Testing rheos.backend.infra.task-store-test
+
+Testing rheos.backend.infra.task-writeback-test
+status-writeback fixture runtime: v22.18.0
+
+Testing rheos.backend.infra.transition-test
+
+Testing rheos.backend.infra.view-store-test
+
+Testing rheos.backend.infra.watcher-test
+
+Testing rheos.backend.law.dependency-admission-test
+
+Testing rheos.backend.law.fsm-test
+
+Testing rheos.backend.shape.comment-source-test
+
+Testing rheos.backend.shape.content-parser-test
+
+Testing rheos.backend.shape.frontmatter-serialization-test
+
+Testing rheos.backend.shape.kanban-test
+
+Testing rheos.backend.shape.relationships-test
+
+Ran 252 tests containing 2349 assertions.
+0 failures, 0 errors.
+===============================================
+[:test] Build completed. (157 files, 24 compiled, 0 warnings, 7.37s)
+
+Testing rheos.backend.domain.board-test
+
+Testing rheos.backend.domain.compose-test
+
+Testing rheos.backend.domain.events-test
+
+Testing rheos.backend.domain.relationships-test
+
+Testing rheos.backend.domain.task-create-test
+
+Testing rheos.backend.domain.task-edit-test
+
+Testing rheos.backend.domain.transition-test
+
+Testing rheos.backend.infra.agent-tools-test
+{
+  "ok": true,
+  "uuid": "t1",
+  "from": "breakdown",
+  "to": "ready"
+}
+
+Testing rheos.backend.infra.cli-test
+
+Testing rheos.backend.infra.config-card-creation-test
+
+Testing rheos.backend.infra.config-test
+
+Testing rheos.backend.infra.github-issue-preflight-test
+
+Testing rheos.backend.infra.github-issues-test
+
+Testing rheos.backend.infra.relationship-admission-test
+
+Testing rheos.backend.infra.store-test
+
+Testing rheos.backend.infra.task-create-conflict-test
+
+Testing rheos.backend.infra.task-create-test
+
+Testing rheos.backend.infra.task-edit-test
+
+Testing rheos.backend.infra.task-store-test
+
+Testing rheos.backend.infra.task-writeback-test
+status-writeback fixture runtime: v22.18.0
+
+Testing rheos.backend.infra.transition-test
+
+Testing rheos.backend.infra.view-store-test
+
+Testing rheos.backend.infra.watcher-test
+
+Testing rheos.backend.law.dependency-admission-test
+
+Testing rheos.backend.law.fsm-test
+
+Testing rheos.backend.shape.comment-source-test
+
+Testing rheos.backend.shape.content-parser-test
+
+Testing rheos.backend.shape.frontmatter-serialization-test
+
+Testing rheos.backend.shape.kanban-test
+
+Testing rheos.backend.shape.relationships-test
+
+Ran 252 tests containing 2349 assertions.
+0 failures, 0 errors.

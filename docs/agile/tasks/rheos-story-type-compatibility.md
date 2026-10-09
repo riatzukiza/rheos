@@ -2,12 +2,12 @@
 uuid: "4cbb1a2f-354e-46b4-ae9a-955041f59608"
 title: "Admit authored story cards without rewriting their type"
 type: "task"
-status: "in_progress"
+status: "review"
 priority: "P1"
 points: "2"
 labels: "compatibility, relationships, admission, cephalon"
 created_at: "2026-10-09"
-write-id: "1791511081313-0.pgiajpvpb984a60wyv"
+write-id: "1791511459911-0.hsld0vkw3sb4jrmsgrm"
 ---
 
 # Admit authored story cards without rewriting their type

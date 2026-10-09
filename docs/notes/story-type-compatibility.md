@@ -14,7 +14,7 @@ The actual consumer refusal is retained in Foresight's
 Its earlier scope-pending observation remains historical; the new human
 authorization supersedes that pending interpretation. No old receipt changes.
 
-## Proposed semantics
+## Admission semantics
 
 | Retained authored type | Complete-graph admission meaning |
 | --- | --- |
@@ -47,8 +47,13 @@ weaken UUID, epic or dependency laws.
 
 Planning source: personal main
 `8581e0c390b1fa5a66f74bafff3ac80427174aaa`, the ordinary merge of qualified
-writer head `f0f70cd52e085a9adc9010943bfc8705d01ae58a`. Implementation awaits
-planning review and native Ready. No installed release or consumer transition
-is claimed in this planning artifact.
+writer head `f0f70cd52e085a9adc9010943bfc8705d01ae58a`. Planning PR10 merged
+as `d8a649db8e15ac6ff381dc60324bb287315a5a07`; native Ready, Todo and
+InProgress preceded implementation. The portable and compiled native tests
+first reproduced the `malformed-card-type` refusal, including a complete
+nine-story board; the owning rule now admits the exact spelling. Retained RED
+results are [bound to the source and native planning merge](../../.ημ/review-evidence/story-compatibility/red-proof.json).
+Implementation qualification and actual Foresight consumer readback are still
+required. No installed release is implied by source CLI verification.
 
 Process documentation: GPL-3.0-or-later.

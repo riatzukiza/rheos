@@ -467,3 +467,9 @@
 Origin: rheos-story-compatibility-native-ready-red-20261009
 
 PR10 merged as `d8a649db8e15ac6ff381dc60324bb287315a5a07` after exact-head MiMo approval, all native checks passing and the only finding settled. The canonical round counter remains a recorded diagnostic, not an invented PASS. Native Ready/Todo/InProgress preceded the test changes. Portable JVM RED: 28 tests/560 assertions/17 failures/0 errors; compiled native RED: 252 tests/2349 assertions/24 failures/0 errors twice. Production source is unchanged. [Actual RED and source bindings](../review-evidence/story-compatibility/red-proof.json). Scope remains the owning story compatibility prerequisite; the character milestone is unfinished.
+
+## Authored story compatibility — owning GREEN
+
+Origin: rheos-story-compatibility-green-20261009
+
+After committed RED `ad66378`, the exact authored `story` joins the portable admission set. JVM28/560 and compiled252/2349 pass; full lint0/0 and all four release builds pass. Native nine-story fixtures retain type/UUID/body/comment/file/event prefixes and enforce epic, graph, predecessor, FSM, WIP and executable gates. Actual native owner readback is Review. [Executed GREEN evidence](../review-evidence/story-compatibility/green-proof.json). Current implementation review and the real Foresight consumer remain obligations; no installed release or character milestone completion is claimed.

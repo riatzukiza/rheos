@@ -152,7 +152,9 @@
    returns a normalized data projection; a failure returns no admitted tasks.
    Parent edges and dependency edges each point from card to referenced card
    and are independently acyclic. Epic membership is a separate constraint.
-   Missing :type means a legacy ordinary task, never an inferred epic."
+   Exact task/story types are ordinary cards and retain their authored type.
+   Missing :type means a legacy ordinary task, never an inferred epic. Only the
+   exact epic type can satisfy an epic membership target."
   [snapshot]
   (if-not (and (vector? snapshot) (every? map? snapshot))
     (failure [{:kind :malformed-snapshot}])
@@ -160,7 +162,7 @@
                     {:kind :malformed-uuid :uuid (:uuid card)})
           type-errors (for [card snapshot
                             :when (and (contains? card :type)
-                                       (not (contains? #{"task" "epic"} (:type card))))]
+                                       (not (contains? #{"task" "story" "epic"} (:type card))))]
                         {:kind :malformed-card-type :uuid (:uuid card)})
           duplicate-errors (for [[id n] (frequencies (map :uuid snapshot))
                                  :when (and (law/reference? id) (> n 1))]
