@@ -130,3 +130,16 @@
     (is (not (contains? (:document/frontmatter-data
                          (markdown/parse "---\ntitle: Card\n\n  continued\n---\nBody"))
                         :title)))))
+
+(deftest yaml-node-properties-are-not-published-as-plain-strings
+  (let [decoded (fn [raw] (:document/frontmatter-data
+                           (markdown/parse (str "---\n" raw "\n---\nBody"))))]
+    (testing "anchors, aliases and tags are node syntax, so the key is omitted"
+      (let [data (decoded "title: &card Card\nsummary: *card\nkind: !custom story\nstatus: ready")]
+        (is (not (contains? data :title)))
+        (is (not (contains? data :summary)))
+        (is (not (contains? data :kind)))
+        (is (= "ready" (:status data)))))
+    (testing "the same characters inside or after a plain scalar stay content"
+      (is (= "A&B *notes* !" (:title (decoded "title: A&B *notes* !"))))
+      (is (= "&card" (:title (decoded "title: \"&card\"")))))))
