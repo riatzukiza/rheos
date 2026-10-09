@@ -41,6 +41,11 @@
 
     :else nil))
 
+(def ^:private non-string-plain-pattern
+  "YAML 1.2 core-schema null, boolean, integer and float plain scalars. The flat
+   view only decodes strings, so these must not be published as their spelling."
+  #"^(?:~|null|Null|NULL|true|True|TRUE|false|False|FALSE|[-+]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][-+]?[0-9]+)?|0x[0-9a-fA-F]+|0o[0-7]+|[-+]?\.(?:inf|Inf|INF)|\.(?:nan|NaN|NAN))$")
+
 (defn parse-canonical-string-sequence
   "Decode Rheos's supported YAML subset for one single-line string sequence.
 
@@ -69,10 +74,12 @@
                 nil))))))))
 
 (defn- flat-scalar
-  "Plain and simple double-quoted scalars. A YAML comment (` #` or tab `#`)
+  "Plain and simple double-quoted string scalars. A YAML comment (` #` or tab `#`)
    ends a plain scalar. A quoted scalar that is unterminated, carries escapes,
    or has trailing content other than a comment is unsupported, so callers fall
-   back instead of publishing a partial value."
+   back instead of publishing a partial value. Plain null, boolean and numeric
+   scalars are not strings, so they are unsupported too; quote them to keep
+   the spelling as a string."
   [value]
   (cond
     (str/starts-with? value "#") unsupported
@@ -82,7 +89,9 @@
       unsupported)
     :else
     (let [plain (str/trim (str/replace value #"[ \t]+#.*$" ""))]
-      (if (empty? plain) unsupported plain))))
+      (if (or (empty? plain) (re-matches non-string-plain-pattern plain))
+        unsupported
+        plain))))
 
 (defn- flat-value [raw]
   (let [value (str/trim raw)]

@@ -180,3 +180,18 @@
       (doseq [line ["title: \"Card" "title: \"Card\" trailing"
                     "title: \"a\\\"b\"" "title: # only a comment"]]
         (is (not (contains? (decoded line) :title)) line)))))
+
+(deftest non-string-plain-scalars-are-not-published-as-strings
+  (let [decoded (fn [line] (:document/frontmatter-data
+                            (markdown/parse (str "---\n" line "\n---\nBody"))))]
+    (testing "null, boolean and numeric plain scalars are omitted so a fallback applies"
+      (doseq [line ["title: null" "title: ~" "title: NULL" "title: true" "title: False"
+                    "title: 42" "title: -3.5" "title: 1e3" "title: .inf" "title: .nan"
+                    "title: 0x1F" "title: null # note"]]
+        (is (not (contains? (decoded line) :title)) line)))
+    (testing "quoted spellings and ordinary strings stay strings"
+      (is (= "null" (:title (decoded "title: \"null\""))))
+      (is (= "42" (:title (decoded "title: \"42\""))))
+      (is (= "nullable card" (:title (decoded "title: nullable card"))))
+      (is (= "P1" (:priority (decoded "priority: P1"))))
+      (is (= "2026-10-09" (:created-at (decoded "created-at: 2026-10-09")))))))
