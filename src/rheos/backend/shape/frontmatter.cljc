@@ -27,7 +27,9 @@
     (mapv second (re-seq quoted-string-pattern value))))
 
 (defn- flat-scalar
-  "Plain and simple double-quoted string scalars. A YAML comment (` #` or tab `#`)
+  "Plain, simple double-quoted and single-quoted string scalars. In a
+   single-quoted scalar `''` is an escaped quote; the surrounding quotes are
+   syntax, not content. A YAML comment (` #` or tab `#`)
    ends a plain scalar. A quoted scalar that is unterminated, carries escapes,
    or has trailing content other than a comment is unsupported, so callers fall
    back instead of publishing a partial value. Plain null, boolean and numeric
@@ -39,6 +41,10 @@
     (str/starts-with? value "\"")
     (if-let [[_ inner] (re-matches #"^\"([^\"\\]*)\"(?:[ \t]+#.*)?$" value)]
       inner
+      unsupported)
+    (str/starts-with? value "'")
+    (if-let [[_ inner] (re-matches #"^'((?:[^']|'')*)'(?:[ \t]+#.*)?$" value)]
+      (str/replace inner "''" "'")
       unsupported)
     :else
     (let [plain (str/trim (str/replace value #"[ \t]+#.*$" ""))]
@@ -57,13 +63,28 @@
       (or (parse-canonical-string-sequence value) unsupported)
       :else (flat-scalar value))))
 
-(defn parse-flat [frontmatter-raw]
-  (reduce (fn [acc line]
-            (if-let [[_ k v] (re-matches #"^([A-Za-z0-9_-]+):[ ]*(.*)$" line)]
-              (let [value (flat-value v)]
-                (if (= unsupported value)
-                  acc
-                  (assoc acc (keyword k) value)))
-              acc))
-          {}
-          (str/split-lines (or frontmatter-raw ""))))
+(defn parse-flat
+  "The partial flat view of top-level keys. An indented line after a key
+   continues that key's value (a folded plain scalar or a nested block), which
+   this view does not decode, so the key is omitted rather than published as
+   its first line."
+  [frontmatter-raw]
+  (:acc
+   (reduce (fn [{:keys [acc current] :as state} line]
+             (cond
+               (str/blank? line) state
+
+               (re-find #"^[ \t]" line)
+               (if current
+                 {:acc (dissoc acc current) :current current}
+                 state)
+
+               :else
+               (if-let [[_ k v] (re-matches #"^([A-Za-z0-9_-]+):[ ]*(.*)$" line)]
+                 (let [key (keyword k)
+                       value (flat-value v)]
+                   {:acc (if (= unsupported value) (dissoc acc key) (assoc acc key value))
+                    :current key})
+                 {:acc acc :current nil})))
+           {:acc {} :current nil}
+           (str/split-lines (or frontmatter-raw "")))))

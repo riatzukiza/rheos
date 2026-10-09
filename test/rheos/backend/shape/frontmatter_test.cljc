@@ -107,3 +107,26 @@
       (is (= "nullable card" (:title (decoded "title: nullable card"))))
       (is (= "P1" (:priority (decoded "priority: P1"))))
       (is (= "2026-10-09" (:created-at (decoded "created-at: 2026-10-09")))))))
+
+(deftest single-quoted-scalars-are-decoded
+  (testing "the quote marks are YAML syntax, not content"
+    (is (= "Card" (get-in (markdown/parse "---\ntitle: 'Card'\n---\nBody")
+                          [:document/frontmatter-data :title]))))
+  (testing "a doubled quote is an escaped quote"
+    (is (= "It's" (get-in (markdown/parse "---\ntitle: 'It''s'\n---\nBody")
+                          [:document/frontmatter-data :title]))))
+  (testing "an unterminated single-quoted scalar is unsupported"
+    (is (not (contains? (:document/frontmatter-data
+                         (markdown/parse "---\ntitle: 'Card\n---\nBody"))
+                        :title)))))
+
+(deftest continued-plain-scalars-are-not-truncated
+  (testing "a scalar folded over an indented line is omitted, not cut to its first line"
+    (let [decoded (:document/frontmatter-data
+                   (markdown/parse "---\ntitle: Card\n  continued\nstatus: ready\n---\nBody"))]
+      (is (not (contains? decoded :title)))
+      (is (= "ready" (:status decoded)))))
+  (testing "a blank line before the continuation still continues the scalar"
+    (is (not (contains? (:document/frontmatter-data
+                         (markdown/parse "---\ntitle: Card\n\n  continued\n---\nBody"))
+                        :title)))))
