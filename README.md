@@ -15,14 +15,14 @@ editing build/test flows.
 Run these commands from the repository root:
 
 ```bash
-pnpm -C packages/rheos build        # shadow-cljs release server cli github-sync app -> dist/
-pnpm -C packages/rheos watch        # shadow-cljs watch server-dev (hot reload, dist-dev)
-pnpm -C packages/rheos start        # node dist/server.js  (production build output)
-pnpm -C packages/rheos start:dev    # node dist-dev/server.js  (dev build output)
-pnpm -C packages/rheos test         # shadow-cljs compile test && node dist/test.cjs
-pnpm -C packages/rheos lint         # clj-kondo --lint src test
-pnpm -C packages/rheos lint:kondo   # alias of lint
-pnpm -C packages/rheos clean        # rm -rf dist dist-dev target
+pnpm build                          # shadow-cljs release server cli github-sync app -> dist/
+pnpm watch                          # shadow-cljs watch server-dev (hot reload, dist-dev)
+pnpm start                          # node dist/server.js  (production build output)
+pnpm start:dev                      # node dist-dev/server.js  (dev build output)
+pnpm test                           # shadow-cljs compile test && node dist/test.cjs
+pnpm lint                           # clj-kondo --lint src test
+pnpm lint:kondo                     # alias of lint
+pnpm clean                          # rm -rf dist dist-dev target
 ```
 
 `build` releases the `server`, `cli`, `github-sync` and browser `app` targets.
