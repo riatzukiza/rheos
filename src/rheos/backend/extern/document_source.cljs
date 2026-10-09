@@ -6,9 +6,15 @@
             ["node:path" :as path]
             [clojure.string :as str]))
 
-(defn- inside-root? [root-path candidate-path]
-  (or (= root-path candidate-path)
-      (str/starts-with? candidate-path (str root-path path/sep))))
+(defn inside-root?
+  "Whether `candidate-path` is `root-path` or lies beneath it. Uses
+   `path/relative` rather than a string prefix, so the filesystem root and
+   sibling directories sharing a prefix are handled correctly."
+  [root-path candidate-path]
+  (let [rel (path/relative root-path candidate-path)]
+    (and (not= rel "..")
+         (not (str/starts-with? rel (str ".." path/sep)))
+         (not (path/isAbsolute rel)))))
 
 (defn ^:async resolve-contained-sidecar!
   "Resolve `relative-path` beside the Markdown document and prove its real path

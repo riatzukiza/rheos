@@ -52,6 +52,25 @@
               "board" "/tasks" document "change" [cards]))
       (is (= [:typed-document] @calls)))))
 
+(deftest ^:async typed-adapter-failure-still-runs-legacy-kanban-handling
+  (let [calls (atom [])
+        reported (atom [])]
+    (with-redefs [document-file-event/handle-file-event!
+                  (fn [& _]
+                    (swap! calls conj :typed-document)
+                    (js/Promise.reject (js/Error. "typed append refused")))
+                  watcher/handle-file-event!
+                  (fn [& _]
+                    (swap! calls conj :legacy-kanban)
+                    (js/Promise.resolve nil))
+                  watcher/report-watcher-error!
+                  (fn [file-path error]
+                    (swap! reported conj [file-path (.-message error)]))]
+      (await (watcher/handle-watched-markdown!
+              "board" "/tasks" "/tasks/card.md" "change" nil))
+      (is (= [:typed-document :legacy-kanban] @calls))
+      (is (= [["/tasks/card.md" "typed append refused"]] @reported)))))
+
 (deftest ^:async watcher-callback-contains-rejected-file-events
   (let [reported (atom [])]
     (with-redefs [watcher/handle-watched-markdown!

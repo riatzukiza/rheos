@@ -45,3 +45,15 @@
     (is (not= (source/content-sha256 "a" "\u0000b")
               (source/content-sha256 "a\u0000" "b"))
         "length framing keeps embedded NULs on their original side")))
+
+(deftest containment-uses-relative-paths
+  (testing "the filesystem root contains its descendants"
+    (is (source/inside-root? "/" "/tmp/translation.edn")))
+  (testing "a path equal to the root is contained"
+    (is (source/inside-root? "/tasks" "/tasks")))
+  (testing "a sibling sharing the root's prefix is not contained"
+    (is (not (source/inside-root? "/tasks" "/tasks-other/x.edn"))))
+  (testing "a parent traversal is not contained"
+    (is (not (source/inside-root? "/tasks/docs" "/tasks/x.edn"))))
+  (testing "a contained name that merely starts with .. is still contained"
+    (is (source/inside-root? "/tasks" "/tasks/..notes.edn"))))

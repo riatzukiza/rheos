@@ -75,7 +75,11 @@
         (is (= "rheos.document.file-change-rejected" (:event/type result)))
         (is (= :schema/invalid-value
                (get-in result [:payload :errors 0 :error/code])))
-        (is (nil? (get-in result [:payload :document/value]))))
+        (is (nil? (get-in result [:payload :document/value])))
+        (let [recorded (await (protocols/query-events (ledger/get-ledger root) {}))]
+          (is (= ["rheos.document.file-change-rejected"]
+                 (mapv :event/type recorded))
+              "exactly one rejection and no proposal is appended")))
       (finally
         (await (.rm fsp root #js {:recursive true :force true}))))))
 
@@ -90,7 +94,11 @@
                            "knowledge" root markdown-path "change"))]
         (is (= "rheos.document.file-change-rejected" (:event/type result)))
         (is (= :sidecar/path-escape
-               (get-in result [:payload :errors 0 :error/code]))))
+               (get-in result [:payload :errors 0 :error/code])))
+        (let [recorded (await (protocols/query-events (ledger/get-ledger root) {}))]
+          (is (= ["rheos.document.file-change-rejected"]
+                 (mapv :event/type recorded))
+              "exactly one rejection and no proposal is appended")))
       (finally
         (await (.rm fsp root #js {:recursive true :force true}))))))
 

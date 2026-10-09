@@ -121,21 +121,25 @@
       (catch :default err
         (js/console.error "Watcher error:" file-path (.-message err))))))
 
+(defn report-watcher-error! [file-path error]
+  (js/console.error "Watcher error:" file-path (.-message error)))
+
 (defn ^:async handle-watched-markdown!
   "Sequence the typed document adapter before the legacy Kanban adapter.
 
    Every Markdown file is offered to the typed document adapter. Only files in
    the board's card projection continue through the legacy Kanban adapter. A
    profiled card may satisfy both; serializing their ledger appends prevents two
-   file writers from racing on the same append-only EDN file."
+   file writers from racing on the same append-only EDN file. A typed-adapter
+   failure is reported and does not skip the legacy drift/correlation path."
   [board-id tasks-dir file-path event-type projection-paths]
-  (await (document-file-event/handle-file-event!
-          board-id tasks-dir file-path event-type))
+  (try
+    (await (document-file-event/handle-file-event!
+            board-id tasks-dir file-path event-type))
+    (catch :default error
+      (report-watcher-error! file-path error)))
   (when (projected? projection-paths file-path)
     (await (handle-file-event! board-id tasks-dir file-path event-type))))
-
-(defn report-watcher-error! [file-path error]
-  (js/console.error "Watcher error:" file-path (.-message error)))
 
 (defn ^:async handle-watched-markdown-safely!
   "Keep a rejected file-event promise inside the watcher callback boundary."
