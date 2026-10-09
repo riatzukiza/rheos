@@ -99,6 +99,7 @@
     (task-create/refuse! :not-found "unknown project" {}))
   (let [card-type (task-create/check-request! {:project project :title title :card-type card-type})
         existing (await (tasks/load-tasks project))
+        vocabulary {:card-types (task-create/card-types project)}
         normalized (relationships/normalize {:parent parent :epic epic :dependency dependency})
         _ (when-not (:ok? normalized)
             (task-create/refuse! :refused "Malformed creation relationships" {:errors (:errors normalized)}))
@@ -120,10 +121,10 @@
                                 {:path file-path :cause :create-conflict})
             (catch :default error
               (when-not (= "ENOENT" (.-code error)) (throw error))))
-        graph (relationships/inspect-graph proposed)
+        graph (relationships/inspect-graph proposed vocabulary)
         _ (when-not (:ok? graph)
             (task-create/refuse! :refused "Creation relationship graph refused" {:errors (:errors graph)}))
-        predecessor-decision (admission/decide (fsm/resolve-fsm {:fsm (:fsm project)}) proposed card-uuid card-status)
+        predecessor-decision (admission/decide (fsm/resolve-fsm {:fsm (:fsm project)}) proposed card-uuid card-status vocabulary)
         _ (when-not (:allowed? predecessor-decision)
             (task-create/refuse! :refused "Creation predecessor admission refused" {:errors (:errors predecessor-decision)}))
         write-id (events/generate-write-id)

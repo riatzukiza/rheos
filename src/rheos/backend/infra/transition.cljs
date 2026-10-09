@@ -7,6 +7,7 @@
    the event ledger."
   (:require [rheos.backend.domain.events :as events]
             [rheos.backend.domain.dependency-admission :as admission]
+            [rheos.backend.domain.task-create :as task-create]
             [rheos.backend.domain.transition :as transition]
             [rheos.backend.infra.ledger :as ledger]
             [rheos.backend.infra.publication :as publication]
@@ -32,7 +33,8 @@
 (defn- decide [project task target loaded]
   (let [structural (transition/decide-move project (:status task) target loaded)
         predecessors (admission/decide (fsm/resolve-fsm {:fsm (:fsm project)})
-                                      (tasks/relationship-snapshot loaded) (:uuid task) target)]
+                                      (tasks/relationship-snapshot loaded) (:uuid task) target
+                                      {:card-types (task-create/card-types project)})]
     (if-not (:allowed? structural) structural
       (if-not (:allowed? predecessors) predecessors structural))))
 

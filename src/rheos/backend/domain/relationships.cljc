@@ -147,22 +147,36 @@
     {:kind :conflicting-epic :uuid (:uuid card) :field :epic
      :target epic :parent-epic inherited}))
 
+(def core-card-types
+  "Card types every board admits, whether or not it declares `:card-dirs`."
+  #{"task" "story" "epic"})
+
+(defn- admitted-card-types
+  "The core types plus a board's declared vocabulary (`:card-types` in `opts`,
+   normally the project's `:card-dirs` keys). Declared types are ordinary cards:
+   only the exact core `epic` type can satisfy an epic membership target."
+  [opts]
+  (into core-card-types (filter string?) (:card-types opts)))
+
 (defn inspect-graph
   "Classify a complete raw snapshot without repairing it. Successful inspection
    returns a normalized data projection; a failure returns no admitted tasks.
    Parent edges and dependency edges each point from card to referenced card
    and are independently acyclic. Epic membership is a separate constraint.
-   Exact task/story types are ordinary cards and retain their authored type.
-   Missing :type means a legacy ordinary task, never an inferred epic. Only the
-   exact epic type can satisfy an epic membership target."
-  [snapshot]
+   Exact task/story types, and any type the board declares through
+   `{:card-types #{...}}` in `opts`, are ordinary cards and retain their
+   authored type. Missing :type means a legacy ordinary task, never an inferred
+   epic. Only the exact epic type can satisfy an epic membership target."
+  ([snapshot] (inspect-graph snapshot {}))
+  ([snapshot opts]
   (if-not (and (vector? snapshot) (every? map? snapshot))
     (failure [{:kind :malformed-snapshot}])
     (let [invalid (for [card snapshot :when (not (law/reference? (:uuid card)))]
                     {:kind :malformed-uuid :uuid (:uuid card)})
+          admitted (admitted-card-types opts)
           type-errors (for [card snapshot
                             :when (and (contains? card :type)
-                                       (not (contains? #{"task" "story" "epic"} (:type card))))]
+                                       (not (contains? admitted (:type card))))]
                         {:kind :malformed-card-type :uuid (:uuid card)})
           duplicate-errors (for [[id n] (frequencies (map :uuid snapshot))
                                  :when (and (law/reference? id) (> n 1))]
@@ -182,7 +196,7 @@
                                  (membership-errors cards by-uuid))]
               (if (seq errors)
                 (ordered-failure errors)
-                {:ok? true :tasks cards}))))))))
+                {:ok? true :tasks cards})))))))))
 
 (defn relationship-update? [updates]
   (boolean (seq (set/intersection (set (keys updates)) law/fields))))
@@ -207,7 +221,8 @@
    validate the whole proposed graph, including unchanged cards. A true semantic
    no-op has empty :changes/:updates and leaves the original task untouched.
    Refusals never return a task, updates or a partially admitted subset."
-  [snapshot uuid updates]
+  ([snapshot uuid updates] (admit-update snapshot uuid updates {}))
+  ([snapshot uuid updates opts]
   (cond
     (not (shape/valid-mutation? {:uuid uuid :updates updates}))
     (failure [{:kind :malformed-mutation}])
@@ -229,7 +244,7 @@
         (let [before (first matches)
               proposed (merge before updates)
               snapshot-after (mapv #(if (= uuid (:uuid %)) proposed %) snapshot)
-              graph (inspect-graph snapshot-after)]
+              graph (inspect-graph snapshot-after opts)]
           (if-not (:ok? graph)
             graph
             (let [after (first (filter #(= uuid (:uuid %)) (:tasks graph)))
@@ -249,4 +264,4 @@
                :task (if noop? before after)
                :relationships (select-keys after law/fields)
                :changes changes
-               :updates (into {} (map (juxt :field :new-value)) changes)})))))))
+               :updates (into {} (map (juxt :field :new-value)) changes)}))))))))
