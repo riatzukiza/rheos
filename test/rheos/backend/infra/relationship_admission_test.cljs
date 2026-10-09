@@ -293,6 +293,74 @@
          (is (.startsWith after history) "Successful admission retains the native event prefix")
          (is (> (count after) (count history)) "Success appends its native event"))))))
 
+(defn- nine-authored-stories []
+  (mapv (fn [n] {:uuid (str "story-" n) :type "story" :status "done"}) (range 9)))
+
+(deftest ^:async complete-nine-story-board-admits-native-ready-without-migration
+  (doseq [subject-type ["task" "story"]]
+    (await
+     (with-cards (into [{:uuid "subject" :type subject-type :status "breakdown"
+                        :parent "story-0" :epic "epic" :dependency "story-0"}
+                       {:uuid "epic" :type "epic" :status "done"}]
+                      (mapv #(assoc % :epic "epic") (nine-authored-stories)))
+       (^:async fn [{:keys [project dir ledger-path]}]
+         (let [source-path (path/join dir "subject.md")
+               before (await (.readFile fsp source-path "utf8"))
+               stories (into {} (for [n (range 9)]
+                                  [(str "story-" n) (fixture-card {:uuid (str "story-" n)
+                                                                  :type "story" :status "done" :epic "epic"})]))
+               history (await (.readFile fsp ledger-path "utf8"))
+               result (await (transition/move-task!
+                              {:project project :task {:uuid "subject" :status "breakdown" :source-path source-path}
+                               :new-status "ready" :source "test"}))
+               after (await (.readFile fsp source-path "utf8"))
+               loaded (await (tasks/load-tasks project))
+               subject (first (filter #(= "subject" (:uuid %)) loaded))]
+           (is (true? (:ok result)))
+           (is (= "ready" (:status subject)) "Independent canonical loader reads accepted status")
+           (is (= subject-type (:type subject)))
+           (is (= "subject" (:uuid subject)))
+           (is (= "story-0" (:parent subject)))
+           (is (= ["story-0"] (:dependency subject)))
+           (is (= (:content (parser/parse-frontmatter before))
+                  (:content (parser/parse-frontmatter after)))
+               "Body and retained comments are unchanged by status publication")
+           (is (= (dissoc (:frontmatter (parser/parse-frontmatter before)) :status :write-id)
+                  (dissoc (:frontmatter (parser/parse-frontmatter after)) :status :write-id))
+               "Only the requested status and native write-id change")
+           (doseq [[uuid bytes] stories]
+             (is (= bytes (await (.readFile fsp (path/join dir (str uuid ".md")) "utf8")))))
+           (let [events-after (await (.readFile fsp ledger-path "utf8"))]
+             (is (.startsWith events-after history))
+             (is (> (count events-after) (count history))))))))))
+
+(deftest ^:async story-board-still-refuses-unfinished-and-unrelated-malformed-cards
+  (doseq [extras [[{:uuid "predecessor" :type "story" :status "in_progress"}]
+                 [{:uuid "predecessor" :type "story" :status "done" :parent "missing"}]
+                 [{:uuid "predecessor" :type "story" :status "done"}
+                  {:uuid "unrelated" :type "Story" :status "done"}]]]
+    (await
+     (with-cards (into (into [{:uuid "subject" :type "story" :status "breakdown"
+                              :dependency "predecessor"}] extras)
+                      (nine-authored-stories))
+       (^:async fn [fixture]
+         (await (assert-refused-move! fixture "breakdown" "ready")))))))
+
+(deftest ^:async story-board-does-not-bypass-original-fsm-wip-or-command-gates
+  (await
+   (with-cards (into [{:uuid "subject" :type "story" :status "todo"}]
+                    (nine-authored-stories))
+     (^:async fn [{:keys [project] :as fixture}]
+       (await (assert-refused-move! fixture "todo" "done"))
+       (with-redefs [fsm/promethean-fsm (assoc-in fsm/promethean-fsm [:wip-limits "in_progress"] 0)]
+         (await (assert-refused-move! fixture "todo" "in_progress")))
+       (let [invoked (atom 0)]
+         (with-redefs [fsm/run-gate (fn [_ _]
+                                    (swap! invoked inc)
+                                    (js/Promise.resolve {:allowed? false :reason "fixture command failed"}))]
+           (await (assert-refused-move! (assoc fixture :project project) "todo" "in_progress")))
+         (is (= 1 @invoked) "Story graph reaches the original executable gate"))))))
+
 (deftest ^:async original-wip-and-command-gates-remain-obligations
   (await
    (with-cards [{:uuid "subject" :status "todo" :dependency "predecessor"}

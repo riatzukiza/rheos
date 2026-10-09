@@ -1,0 +1,84 @@
+{
+  "transitions": [
+    {
+      "to": "ready",
+      "exit": 0,
+      "readback": {
+        "uuid": "4cbb1a2f-354e-46b4-ae9a-955041f59608",
+        "frontmatter": {
+          "labels": "compatibility, relationships, admission, cephalon",
+          "type": "task",
+          "write-id": "1791511079884-0.ilowqmmg2irw9tmtawf",
+          "points": "2",
+          "title": "Admit authored story cards without rewriting their type",
+          "priority": "P1",
+          "status": "ready",
+          "uuid": "4cbb1a2f-354e-46b4-ae9a-955041f59608",
+          "created_at": "2026-10-09"
+        },
+        "sections": [
+          {
+            "type": "body",
+            "content": "# Admit authored story cards without rewriting their type\n\n## Context\n\nThe qualified relationship writer merged in personal Rheos PR9 as\n`8581e0c390b1fa5a66f74bafff3ac80427174aaa`. Its complete-graph admission\naccepts absent legacy type and the exact strings `task` and `epic`, but\nrejects `story`. Nine existing Foresight Codex cloud cards use that authored\nspelling. The actual receipt-repair transition from Breakdown to Ready\nreturned exit 3 and `malformed-card-type` for those cards; independent native\nreadback retained Breakdown. The character-design user explicitly authorized\nincluding this owning compatibility fix in the accepted encounter/mood/recall\nmilestone.\n\n## Outcome\n\nAn exact authored `story` is an ordinary non-epic card for relationship and\ndependency admission. Rheos preserves the stored type and identity, rather\nthan migrating cards or substituting a filtered graph.\n\n## Scope\n\nChange the owning portable relationship admission contract to accept the\nliteral `story`; document its semantics. Exercise pure JVM/compiled CLJS\ndecisions and the existing native transition/writeback paths with a complete\nboard containing stories. Review the intentionally changed old fixture that\nclassified `story` as malformed. Use the qualified source CLI for consumer\nreadiness after review; retain source/build hashes and actual native readback.\n\n## Non-goals\n\nNo new card type editor, case folding, whitespace trimming, inferred epic,\nfilename identity, authored-card migration, local Foresight validator, graph\nfilter, status bypass, alternate reservation/ledger, package publication,\nruntime deployment, maker interruption or claim that B1/B2/B3 is complete.\n\n## Acceptance criteria\n\n- [ ] Exact `story` is accepted alongside `task`, `epic` and an absent legacy\n  type. Its retained projection still says `story`; opaque stored UUIDs and\n  relationships retain their original meanings.\n- [ ] A story can be a parent or predecessor and can belong to an actual epic.\n  It cannot satisfy an epic target. Missing/ambiguous UUIDs, invalid references,\n  cycles and conflicting epic membership remain refused on a complete graph.\n- [ ] Explicit nil, keywords, booleans, collections, unknown spellings and\n  differently cased or padded type strings remain classified refusals. The\n  previous negative `story` fixture becomes an explicit positive compatibility\n  regression, with the other negatives retained.\n- [ ] Native guarded transitions admit a valid complete story-containing board\n  only when its predecessors and original FSM/WIP/command gates pass. Stories\n  with unfinished predecessors and malformed unrelated cards still refuse\n  admission without changing card or event bytes.\n- [ ] A successful native transition preserves unrelated story file bytes,\n  body/comments, type and UUID; only the requested subject status/write-id and\n  native append-only events may change. Independent canonical readback agrees.\n- [ ] After current-head implementation qualification, repeat the actual\n  Foresight receipt-repair Ready transition through the qualified Rheos CLI.\n  Preserve the nine authored story cards byte-for-byte and the event prefix;\n  report any remaining refusal instead of bypassing it.\n\n## Verification\n\nPlanning review and lawful native Ready precede implementation. First commit\nportable and native failing regressions against the qualified predecessor,\nthen repair the pure owner and run the existing full lint/test/build gates.\nBind review to both personal head/base and all changed inputs. Record actual\nJVM and compiled Node results, CLI hash, subject readback and retained source\nand event prefixes. Tests use private boards and real Rheos writers.\n\n## Risks\n\nExpanding the allowed type set can accidentally weaken epic membership or\nhide other malformed cards. Positive story cases must be paired with exact\nnegative types, invalid story-as-epic, cycle and unfinished-predecessor cases.\nThe source checkout has existing owned review receipts; retain their bytes\nand explicit provenance. A source CLI consumed here is not an installed\npackage release or proof of future board/runtime availability.\n\nProcess documentation: GPL-3.0-or-later."
+          }
+        ],
+        "source-path": "/home/err/spaces/cephalon-rheos-relationships/source-preserving/docs/agile/tasks/rheos-story-type-compatibility.md"
+      }
+    },
+    {
+      "to": "todo",
+      "exit": 0,
+      "readback": {
+        "uuid": "4cbb1a2f-354e-46b4-ae9a-955041f59608",
+        "frontmatter": {
+          "labels": "compatibility, relationships, admission, cephalon",
+          "type": "task",
+          "write-id": "1791511080611-0.nwtjrq1y7ufh1o6iowa",
+          "points": "2",
+          "title": "Admit authored story cards without rewriting their type",
+          "priority": "P1",
+          "status": "todo",
+          "uuid": "4cbb1a2f-354e-46b4-ae9a-955041f59608",
+          "created_at": "2026-10-09"
+        },
+        "sections": [
+          {
+            "type": "body",
+            "content": "# Admit authored story cards without rewriting their type\n\n## Context\n\nThe qualified relationship writer merged in personal Rheos PR9 as\n`8581e0c390b1fa5a66f74bafff3ac80427174aaa`. Its complete-graph admission\naccepts absent legacy type and the exact strings `task` and `epic`, but\nrejects `story`. Nine existing Foresight Codex cloud cards use that authored\nspelling. The actual receipt-repair transition from Breakdown to Ready\nreturned exit 3 and `malformed-card-type` for those cards; independent native\nreadback retained Breakdown. The character-design user explicitly authorized\nincluding this owning compatibility fix in the accepted encounter/mood/recall\nmilestone.\n\n## Outcome\n\nAn exact authored `story` is an ordinary non-epic card for relationship and\ndependency admission. Rheos preserves the stored type and identity, rather\nthan migrating cards or substituting a filtered graph.\n\n## Scope\n\nChange the owning portable relationship admission contract to accept the\nliteral `story`; document its semantics. Exercise pure JVM/compiled CLJS\ndecisions and the existing native transition/writeback paths with a complete\nboard containing stories. Review the intentionally changed old fixture that\nclassified `story` as malformed. Use the qualified source CLI for consumer\nreadiness after review; retain source/build hashes and actual native readback.\n\n## Non-goals\n\nNo new card type editor, case folding, whitespace trimming, inferred epic,\nfilename identity, authored-card migration, local Foresight validator, graph\nfilter, status bypass, alternate reservation/ledger, package publication,\nruntime deployment, maker interruption or claim that B1/B2/B3 is complete.\n\n## Acceptance criteria\n\n- [ ] Exact `story` is accepted alongside `task`, `epic` and an absent legacy\n  type. Its retained projection still says `story`; opaque stored UUIDs and\n  relationships retain their original meanings.\n- [ ] A story can be a parent or predecessor and can belong to an actual epic.\n  It cannot satisfy an epic target. Missing/ambiguous UUIDs, invalid references,\n  cycles and conflicting epic membership remain refused on a complete graph.\n- [ ] Explicit nil, keywords, booleans, collections, unknown spellings and\n  differently cased or padded type strings remain classified refusals. The\n  previous negative `story` fixture becomes an explicit positive compatibility\n  regression, with the other negatives retained.\n- [ ] Native guarded transitions admit a valid complete story-containing board\n  only when its predecessors and original FSM/WIP/command gates pass. Stories\n  with unfinished predecessors and malformed unrelated cards still refuse\n  admission without changing card or event bytes.\n- [ ] A successful native transition preserves unrelated story file bytes,\n  body/comments, type and UUID; only the requested subject status/write-id and\n  native append-only events may change. Independent canonical readback agrees.\n- [ ] After current-head implementation qualification, repeat the actual\n  Foresight receipt-repair Ready transition through the qualified Rheos CLI.\n  Preserve the nine authored story cards byte-for-byte and the event prefix;\n  report any remaining refusal instead of bypassing it.\n\n## Verification\n\nPlanning review and lawful native Ready precede implementation. First commit\nportable and native failing regressions against the qualified predecessor,\nthen repair the pure owner and run the existing full lint/test/build gates.\nBind review to both personal head/base and all changed inputs. Record actual\nJVM and compiled Node results, CLI hash, subject readback and retained source\nand event prefixes. Tests use private boards and real Rheos writers.\n\n## Risks\n\nExpanding the allowed type set can accidentally weaken epic membership or\nhide other malformed cards. Positive story cases must be paired with exact\nnegative types, invalid story-as-epic, cycle and unfinished-predecessor cases.\nThe source checkout has existing owned review receipts; retain their bytes\nand explicit provenance. A source CLI consumed here is not an installed\npackage release or proof of future board/runtime availability.\n\nProcess documentation: GPL-3.0-or-later."
+          }
+        ],
+        "source-path": "/home/err/spaces/cephalon-rheos-relationships/source-preserving/docs/agile/tasks/rheos-story-type-compatibility.md"
+      }
+    },
+    {
+      "to": "in_progress",
+      "exit": 0,
+      "readback": {
+        "uuid": "4cbb1a2f-354e-46b4-ae9a-955041f59608",
+        "frontmatter": {
+          "labels": "compatibility, relationships, admission, cephalon",
+          "type": "task",
+          "write-id": "1791511081313-0.pgiajpvpb984a60wyv",
+          "points": "2",
+          "title": "Admit authored story cards without rewriting their type",
+          "priority": "P1",
+          "status": "in_progress",
+          "uuid": "4cbb1a2f-354e-46b4-ae9a-955041f59608",
+          "created_at": "2026-10-09"
+        },
+        "sections": [
+          {
+            "type": "body",
+            "content": "# Admit authored story cards without rewriting their type\n\n## Context\n\nThe qualified relationship writer merged in personal Rheos PR9 as\n`8581e0c390b1fa5a66f74bafff3ac80427174aaa`. Its complete-graph admission\naccepts absent legacy type and the exact strings `task` and `epic`, but\nrejects `story`. Nine existing Foresight Codex cloud cards use that authored\nspelling. The actual receipt-repair transition from Breakdown to Ready\nreturned exit 3 and `malformed-card-type` for those cards; independent native\nreadback retained Breakdown. The character-design user explicitly authorized\nincluding this owning compatibility fix in the accepted encounter/mood/recall\nmilestone.\n\n## Outcome\n\nAn exact authored `story` is an ordinary non-epic card for relationship and\ndependency admission. Rheos preserves the stored type and identity, rather\nthan migrating cards or substituting a filtered graph.\n\n## Scope\n\nChange the owning portable relationship admission contract to accept the\nliteral `story`; document its semantics. Exercise pure JVM/compiled CLJS\ndecisions and the existing native transition/writeback paths with a complete\nboard containing stories. Review the intentionally changed old fixture that\nclassified `story` as malformed. Use the qualified source CLI for consumer\nreadiness after review; retain source/build hashes and actual native readback.\n\n## Non-goals\n\nNo new card type editor, case folding, whitespace trimming, inferred epic,\nfilename identity, authored-card migration, local Foresight validator, graph\nfilter, status bypass, alternate reservation/ledger, package publication,\nruntime deployment, maker interruption or claim that B1/B2/B3 is complete.\n\n## Acceptance criteria\n\n- [ ] Exact `story` is accepted alongside `task`, `epic` and an absent legacy\n  type. Its retained projection still says `story`; opaque stored UUIDs and\n  relationships retain their original meanings.\n- [ ] A story can be a parent or predecessor and can belong to an actual epic.\n  It cannot satisfy an epic target. Missing/ambiguous UUIDs, invalid references,\n  cycles and conflicting epic membership remain refused on a complete graph.\n- [ ] Explicit nil, keywords, booleans, collections, unknown spellings and\n  differently cased or padded type strings remain classified refusals. The\n  previous negative `story` fixture becomes an explicit positive compatibility\n  regression, with the other negatives retained.\n- [ ] Native guarded transitions admit a valid complete story-containing board\n  only when its predecessors and original FSM/WIP/command gates pass. Stories\n  with unfinished predecessors and malformed unrelated cards still refuse\n  admission without changing card or event bytes.\n- [ ] A successful native transition preserves unrelated story file bytes,\n  body/comments, type and UUID; only the requested subject status/write-id and\n  native append-only events may change. Independent canonical readback agrees.\n- [ ] After current-head implementation qualification, repeat the actual\n  Foresight receipt-repair Ready transition through the qualified Rheos CLI.\n  Preserve the nine authored story cards byte-for-byte and the event prefix;\n  report any remaining refusal instead of bypassing it.\n\n## Verification\n\nPlanning review and lawful native Ready precede implementation. First commit\nportable and native failing regressions against the qualified predecessor,\nthen repair the pure owner and run the existing full lint/test/build gates.\nBind review to both personal head/base and all changed inputs. Record actual\nJVM and compiled Node results, CLI hash, subject readback and retained source\nand event prefixes. Tests use private boards and real Rheos writers.\n\n## Risks\n\nExpanding the allowed type set can accidentally weaken epic membership or\nhide other malformed cards. Positive story cases must be paired with exact\nnegative types, invalid story-as-epic, cycle and unfinished-predecessor cases.\nThe source checkout has existing owned review receipts; retain their bytes\nand explicit provenance. A source CLI consumed here is not an installed\npackage release or proof of future board/runtime availability.\n\nProcess documentation: GPL-3.0-or-later."
+          }
+        ],
+        "source-path": "/home/err/spaces/cephalon-rheos-relationships/source-preserving/docs/agile/tasks/rheos-story-type-compatibility.md"
+      }
+    }
+  ],
+  "native_event_prefix_equal": true,
+  "event_bytes_before": 18562,
+  "event_bytes_after": 19877,
+  "event_sha256_after": "12bd81998014bd959527de64843d3357a739241e44bac6ee32f755e4505ac14b",
+  "authored_body_equal": true
+}

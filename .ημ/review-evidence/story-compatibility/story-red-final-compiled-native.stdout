@@ -1,0 +1,347 @@
+
+> @eta-mu/rheos@0.1.0 test /home/err/spaces/cephalon-rheos-relationships/source-preserving
+> shadow-cljs compile test && node dist/test.cjs
+
+[:test] Compiling ...
+========= Running Tests =======================
+
+Testing rheos.backend.domain.board-test
+
+Testing rheos.backend.domain.compose-test
+
+Testing rheos.backend.domain.events-test
+
+Testing rheos.backend.domain.relationships-test
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (rheos/backend/domain/relationships_test.cljc:125:9)
+expected: (:ok? result)
+  actual: false
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (rheos/backend/domain/relationships_test.cljc:126:9)
+expected: (= (set story-board) (set (:tasks result)))
+  actual: (not (= #{{:uuid "epic", :type "epic", :status "done"} {:uuid "parent-story", :type "story", :parent "epic", :epic "epic", :status "done"} {:uuid "child-story", :type "story", :parent "parent-story", :epic "epic", :dependency ["parent-story"], :status "breakdown"} {:uuid "ordinary-task", :type "task", :dependency ["child-story"], :status "breakdown"}} #{}))
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (rheos/backend/domain/relationships_test.cljc:129:9)
+expected: (:ok? result)
+  actual: false
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (rheos/backend/domain/relationships_test.cljc:130:9)
+expected: (= "task" (get-in result [:task :type]))
+  actual: (not (= "task" nil))
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (rheos/backend/domain/relationships_test.cljc:131:9)
+expected: (= "child-story" (get-in result [:task :parent]))
+  actual: (not (= "child-story" nil))
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (rheos/backend/domain/relationships_test.cljc:132:7)
+expected: (= {:allowed? true} (admission/decide story-policy story-board "child-story" "ready"))
+  actual: (not (= {:allowed? true} {:allowed? false, :errors [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]}))
+
+FAIL in (story-is-never-an-epic-target) (rheos/backend/domain/relationships_test.cljc:136:7)
+expected: (= #{:invalid-epic-target} (kinds (relationships/inspect-graph [{:uuid "story", :type "story"} {:uuid "child", :type "story", :epic "story"}])))
+  actual: (not (= #{:invalid-epic-target} #{:malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (rheos/backend/domain/relationships_test.cljc:154:11)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:missing-reference} #{:malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (rheos/backend/domain/relationships_test.cljc:154:11)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:ambiguous-uuid} #{:ambiguous-uuid :malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (rheos/backend/domain/relationships_test.cljc:154:11)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:malformed-uuid} #{:malformed-card-type :malformed-uuid}))
+
+FAIL in (stories-retain-graph-refusals) (rheos/backend/domain/relationships_test.cljc:154:11)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:conflicting-epic} #{:malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (rheos/backend/domain/relationships_test.cljc:154:11)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:cycle} #{:malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (rheos/backend/domain/relationships_test.cljc:154:11)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:cycle} #{:malformed-card-type}))
+
+FAIL in (story-predecessor-completion-is-still-required) (rheos/backend/domain/relationships_test.cljc:162:11)
+expected: (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status status}] (:errors result))
+  actual: (not (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status "breakdown"}] [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]))
+
+FAIL in (story-predecessor-completion-is-still-required) (rheos/backend/domain/relationships_test.cljc:162:11)
+expected: (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status status}] (:errors result))
+  actual: (not (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status "ready"}] [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]))
+
+FAIL in (story-predecessor-completion-is-still-required) (rheos/backend/domain/relationships_test.cljc:162:11)
+expected: (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status status}] (:errors result))
+  actual: (not (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status "in_progress"}] [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]))
+
+FAIL in (story-predecessor-completion-is-still-required) (rheos/backend/domain/relationships_test.cljc:165:7)
+expected: (= {:allowed? true} (admission/decide story-policy (with-card story-board "child-story" {:status "done"}) "ordinary-task" "ready"))
+  actual: (not (= {:allowed? true} {:allowed? false, :errors [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]}))
+
+Testing rheos.backend.domain.task-create-test
+
+Testing rheos.backend.domain.task-edit-test
+
+Testing rheos.backend.domain.transition-test
+
+Testing rheos.backend.infra.agent-tools-test
+{
+  "ok": true,
+  "uuid": "t1",
+  "from": "breakdown",
+  "to": "ready"
+}
+
+Testing rheos.backend.infra.cli-test
+
+Testing rheos.backend.infra.config-card-creation-test
+
+Testing rheos.backend.infra.config-test
+
+Testing rheos.backend.infra.github-issue-preflight-test
+
+Testing rheos.backend.infra.github-issues-test
+
+Testing rheos.backend.infra.relationship-admission-test
+
+FAIL in (complete-nine-story-board-admits-native-ready-without-migration) (rheos/backend/infra/relationship_admission_test.cljs:319:16)
+expected: (true? (:ok result))
+  actual: (not (true? false))
+
+FAIL in (complete-nine-story-board-admits-native-ready-without-migration) (rheos/backend/infra/relationship_admission_test.cljs:320:16)
+Independent canonical loader reads accepted status
+expected: (= "ready" (:status subject))
+  actual: (not (= "ready" "breakdown"))
+
+FAIL in (complete-nine-story-board-admits-native-ready-without-migration) (rheos/backend/infra/relationship_admission_test.cljs:335:18)
+expected: (> (count events-after) (count history))
+  actual: (not (> 399 399))
+
+FAIL in (complete-nine-story-board-admits-native-ready-without-migration) (rheos/backend/infra/relationship_admission_test.cljs:319:16)
+expected: (true? (:ok result))
+  actual: (not (true? false))
+
+FAIL in (complete-nine-story-board-admits-native-ready-without-migration) (rheos/backend/infra/relationship_admission_test.cljs:320:16)
+Independent canonical loader reads accepted status
+expected: (= "ready" (:status subject))
+  actual: (not (= "ready" "breakdown"))
+
+FAIL in (complete-nine-story-board-admits-native-ready-without-migration) (rheos/backend/infra/relationship_admission_test.cljs:335:18)
+expected: (> (count events-after) (count history))
+  actual: (not (> 399 399))
+
+FAIL in (story-board-does-not-bypass-original-fsm-wip-or-command-gates) (rheos/backend/infra/relationship_admission_test.cljs:362:14)
+Story graph reaches the original executable gate
+expected: (= 1 (clojure.core/deref invoked))
+  actual: (not (= 1 0))
+
+Testing rheos.backend.infra.store-test
+
+Testing rheos.backend.infra.task-create-conflict-test
+
+Testing rheos.backend.infra.task-create-test
+
+Testing rheos.backend.infra.task-edit-test
+
+Testing rheos.backend.infra.task-store-test
+
+Testing rheos.backend.infra.task-writeback-test
+status-writeback fixture runtime: v22.18.0
+
+Testing rheos.backend.infra.transition-test
+
+Testing rheos.backend.infra.view-store-test
+
+Testing rheos.backend.infra.watcher-test
+
+Testing rheos.backend.law.dependency-admission-test
+
+Testing rheos.backend.law.fsm-test
+
+Testing rheos.backend.shape.comment-source-test
+
+Testing rheos.backend.shape.content-parser-test
+
+Testing rheos.backend.shape.frontmatter-serialization-test
+
+Testing rheos.backend.shape.kanban-test
+
+Testing rheos.backend.shape.relationships-test
+
+Ran 252 tests containing 2349 assertions.
+24 failures, 0 errors.
+===============================================
+[:test] Build completed. (157 files, 2 compiled, 0 warnings, 7.71s)
+
+Testing rheos.backend.domain.board-test
+
+Testing rheos.backend.domain.compose-test
+
+Testing rheos.backend.domain.events-test
+
+Testing rheos.backend.domain.relationships-test
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (rheos/backend/domain/relationships_test.cljc:125:9)
+expected: (:ok? result)
+  actual: false
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (rheos/backend/domain/relationships_test.cljc:126:9)
+expected: (= (set story-board) (set (:tasks result)))
+  actual: (not (= #{{:uuid "epic", :type "epic", :status "done"} {:uuid "parent-story", :type "story", :parent "epic", :epic "epic", :status "done"} {:uuid "child-story", :type "story", :parent "parent-story", :epic "epic", :dependency ["parent-story"], :status "breakdown"} {:uuid "ordinary-task", :type "task", :dependency ["child-story"], :status "breakdown"}} #{}))
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (rheos/backend/domain/relationships_test.cljc:129:9)
+expected: (:ok? result)
+  actual: false
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (rheos/backend/domain/relationships_test.cljc:130:9)
+expected: (= "task" (get-in result [:task :type]))
+  actual: (not (= "task" nil))
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (rheos/backend/domain/relationships_test.cljc:131:9)
+expected: (= "child-story" (get-in result [:task :parent]))
+  actual: (not (= "child-story" nil))
+
+FAIL in (authored-stories-retain-type-identity-and-relationships) (rheos/backend/domain/relationships_test.cljc:132:7)
+expected: (= {:allowed? true} (admission/decide story-policy story-board "child-story" "ready"))
+  actual: (not (= {:allowed? true} {:allowed? false, :errors [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]}))
+
+FAIL in (story-is-never-an-epic-target) (rheos/backend/domain/relationships_test.cljc:136:7)
+expected: (= #{:invalid-epic-target} (kinds (relationships/inspect-graph [{:uuid "story", :type "story"} {:uuid "child", :type "story", :epic "story"}])))
+  actual: (not (= #{:invalid-epic-target} #{:malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (rheos/backend/domain/relationships_test.cljc:154:11)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:missing-reference} #{:malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (rheos/backend/domain/relationships_test.cljc:154:11)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:ambiguous-uuid} #{:ambiguous-uuid :malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (rheos/backend/domain/relationships_test.cljc:154:11)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:malformed-uuid} #{:malformed-card-type :malformed-uuid}))
+
+FAIL in (stories-retain-graph-refusals) (rheos/backend/domain/relationships_test.cljc:154:11)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:conflicting-epic} #{:malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (rheos/backend/domain/relationships_test.cljc:154:11)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:cycle} #{:malformed-card-type}))
+
+FAIL in (stories-retain-graph-refusals) (rheos/backend/domain/relationships_test.cljc:154:11)
+expected: (= #{expected} (kinds result))
+  actual: (not (= #{:cycle} #{:malformed-card-type}))
+
+FAIL in (story-predecessor-completion-is-still-required) (rheos/backend/domain/relationships_test.cljc:162:11)
+expected: (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status status}] (:errors result))
+  actual: (not (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status "breakdown"}] [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]))
+
+FAIL in (story-predecessor-completion-is-still-required) (rheos/backend/domain/relationships_test.cljc:162:11)
+expected: (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status status}] (:errors result))
+  actual: (not (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status "ready"}] [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]))
+
+FAIL in (story-predecessor-completion-is-still-required) (rheos/backend/domain/relationships_test.cljc:162:11)
+expected: (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status status}] (:errors result))
+  actual: (not (= [{:kind :unfinished-predecessor, :uuid "child-story", :target "parent-story", :status "in_progress"}] [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]))
+
+FAIL in (story-predecessor-completion-is-still-required) (rheos/backend/domain/relationships_test.cljc:165:7)
+expected: (= {:allowed? true} (admission/decide story-policy (with-card story-board "child-story" {:status "done"}) "ordinary-task" "ready"))
+  actual: (not (= {:allowed? true} {:allowed? false, :errors [{:kind :malformed-card-type, :uuid "child-story"} {:kind :malformed-card-type, :uuid "parent-story"}]}))
+
+Testing rheos.backend.domain.task-create-test
+
+Testing rheos.backend.domain.task-edit-test
+
+Testing rheos.backend.domain.transition-test
+
+Testing rheos.backend.infra.agent-tools-test
+{
+  "ok": true,
+  "uuid": "t1",
+  "from": "breakdown",
+  "to": "ready"
+}
+
+Testing rheos.backend.infra.cli-test
+
+Testing rheos.backend.infra.config-card-creation-test
+
+Testing rheos.backend.infra.config-test
+
+Testing rheos.backend.infra.github-issue-preflight-test
+
+Testing rheos.backend.infra.github-issues-test
+
+Testing rheos.backend.infra.relationship-admission-test
+
+FAIL in (complete-nine-story-board-admits-native-ready-without-migration) (rheos/backend/infra/relationship_admission_test.cljs:319:16)
+expected: (true? (:ok result))
+  actual: (not (true? false))
+
+FAIL in (complete-nine-story-board-admits-native-ready-without-migration) (rheos/backend/infra/relationship_admission_test.cljs:320:16)
+Independent canonical loader reads accepted status
+expected: (= "ready" (:status subject))
+  actual: (not (= "ready" "breakdown"))
+
+FAIL in (complete-nine-story-board-admits-native-ready-without-migration) (rheos/backend/infra/relationship_admission_test.cljs:335:18)
+expected: (> (count events-after) (count history))
+  actual: (not (> 399 399))
+
+FAIL in (complete-nine-story-board-admits-native-ready-without-migration) (rheos/backend/infra/relationship_admission_test.cljs:319:16)
+expected: (true? (:ok result))
+  actual: (not (true? false))
+
+FAIL in (complete-nine-story-board-admits-native-ready-without-migration) (rheos/backend/infra/relationship_admission_test.cljs:320:16)
+Independent canonical loader reads accepted status
+expected: (= "ready" (:status subject))
+  actual: (not (= "ready" "breakdown"))
+
+FAIL in (complete-nine-story-board-admits-native-ready-without-migration) (rheos/backend/infra/relationship_admission_test.cljs:335:18)
+expected: (> (count events-after) (count history))
+  actual: (not (> 399 399))
+
+FAIL in (story-board-does-not-bypass-original-fsm-wip-or-command-gates) (rheos/backend/infra/relationship_admission_test.cljs:362:14)
+Story graph reaches the original executable gate
+expected: (= 1 (clojure.core/deref invoked))
+  actual: (not (= 1 0))
+
+Testing rheos.backend.infra.store-test
+
+Testing rheos.backend.infra.task-create-conflict-test
+
+Testing rheos.backend.infra.task-create-test
+
+Testing rheos.backend.infra.task-edit-test
+
+Testing rheos.backend.infra.task-store-test
+
+Testing rheos.backend.infra.task-writeback-test
+status-writeback fixture runtime: v22.18.0
+
+Testing rheos.backend.infra.transition-test
+
+Testing rheos.backend.infra.view-store-test
+
+Testing rheos.backend.infra.watcher-test
+
+Testing rheos.backend.law.dependency-admission-test
+
+Testing rheos.backend.law.fsm-test
+
+Testing rheos.backend.shape.comment-source-test
+
+Testing rheos.backend.shape.content-parser-test
+
+Testing rheos.backend.shape.frontmatter-serialization-test
+
+Testing rheos.backend.shape.kanban-test
+
+Testing rheos.backend.shape.relationships-test
+
+Ran 252 tests containing 2349 assertions.
+24 failures, 0 errors.
+ ELIFECYCLE  Test failed. See above for more details.
