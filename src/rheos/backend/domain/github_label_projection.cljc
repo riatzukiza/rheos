@@ -10,8 +10,12 @@
                        str/trim
                        (str/replace #"\s+" "-")
                        (str/replace #"[^A-Za-z0-9_.:/-]+" "-")
-                       (str/replace #"^-+|-+$" ""))]
-    (subs normalized 0 (min 50 (count normalized)))))
+                       (str/replace #"^-+" ""))]
+    ;; Truncate before stripping trailing dashes, so the cut cannot leave a dash
+    ;; that a second normalization would remove (the ownership marker relies on
+    ;; normalize-label being idempotent).
+    (-> (subs normalized 0 (min 50 (count normalized)))
+        (str/replace #"-+$" ""))))
 
 (defn- label-key [label]
   (-> (str label) str/trim str/lower-case))
