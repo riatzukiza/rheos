@@ -37,11 +37,18 @@
     :regex (legacy-regex? field-value test-value)
     false))
 
-(defn- field-key [field]
-  (let [field-name (name field)]
-    (keyword (if (str/starts-with? field-name "meta.")
+(defn- field-key
+  "The context key a clause field reads. The explicit `meta.` prefix is an
+   adapter concern and is removed; a keyword namespace is part of the key, so
+   `:custom/status` keeps reading `:custom/status`."
+  [field]
+  (let [field-name (name field)
+        bare (if (str/starts-with? field-name "meta.")
                (subs field-name 5)
-               field-name))))
+               field-name)]
+    (if (and (keyword? field) (namespace field))
+      (keyword (namespace field) bare)
+      (keyword bare))))
 
 (defn match-clause? [context [field op value]]
   (apply-operator (get context (field-key field)) op value))

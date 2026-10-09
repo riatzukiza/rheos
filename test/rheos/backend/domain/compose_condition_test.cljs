@@ -34,3 +34,13 @@
                                        ["workflow" "research"]))
   (is (compose-condition/match-any? nil []))
   (is (compose-condition/contains-all? nil [])))
+
+(deftest qualified-keyword-fields-keep-their-namespace
+  (testing "a qualified field reads the qualified key, not its bare name"
+    (is (compose-condition/match-clause? {:custom/status "ready"}
+                                         [:custom/status := "ready"]))
+    (is (false? (compose-condition/match-clause? {:status "ready"}
+                                                 [:custom/status := "ready"]))))
+  (testing "the explicit meta. prefix is still removed"
+    (is (compose-condition/match-clause? {:status "ready"}
+                                         [:meta.status := "ready"]))))
