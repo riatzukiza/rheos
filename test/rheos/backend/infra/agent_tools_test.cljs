@@ -32,11 +32,12 @@
 
 (deftest tool-schemas-express-repository-types
   (testing "creation defers type vocabulary to project configuration"
-    (let [type-schema (get-in (tool "kanban_create_task")
-                              [:input-schema :properties :type])]
-      (is (= "string" (:type type-schema)))
-      (is (nil? (:enum type-schema)))
-      (is (re-find #"card-dirs" (:description type-schema))))))
+    (doseq [tool-name ["kanban_create_task" "kanban_create_subtask"]]
+      (let [type-schema (get-in (tool tool-name)
+                                [:input-schema :properties :type])]
+        (is (= "string" (:type type-schema)) tool-name)
+        (is (nil? (:enum type-schema)) tool-name)
+        (is (re-find #"card-dirs" (str (:description type-schema))) tool-name)))))
 
 (defn- ^:async dispatch-outcome
   "Dispatch `tool` against a temp board holding one card at `status`.
