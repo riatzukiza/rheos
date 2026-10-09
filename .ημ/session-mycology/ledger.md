@@ -447,3 +447,10 @@
 - Human explicitly included the owning story-card compatibility fix; continue its bounded planning/Ready/RED/GREEN path. Preserve earlier pending-scope observations as dated evidence.
 - Scores: efficiency 0.75; friction 0.40; skill candidate 0.25. No spore.
 - B1/B2/B3 remain unfinished; this is prerequisite delivery infrastructure.
+
+## 2026-10-09 — Correction to the PR9 merge-evidence link
+
+- Receipt: rheos-pr10-append-merge-link-correction-20261009.
+- Correction to the earlier PR9 merge entry at line441: the canonical evidence link is [PR9 native qualified merge](../review-evidence/pr9-qualified-native-merge-8581e0c-20261008.json). Resolve it relative to this ledger. The earlier broken link remains historical, superseded by this correction.
+- Actual target exists; its bytes/hash are retained in the private verification packet. Original journal prefixes remain byte-identical.
+- Scores: efficiency0.8; friction0.25; skill candidate0.2. No spore.
