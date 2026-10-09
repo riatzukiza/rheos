@@ -15,6 +15,7 @@ editing build/test flows.
 Run these commands from the repository root:
 
 ```bash
+bash scripts/bootstrap-source-deps.sh   # populate deps/protocols/src and deps/chat-ui/src first
 pnpm build                          # shadow-cljs release server cli github-sync app -> dist/
 pnpm watch                          # shadow-cljs watch server-dev (hot reload, dist-dev)
 pnpm start                          # node dist/server.js  (production build output)
