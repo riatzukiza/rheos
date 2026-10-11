@@ -106,3 +106,13 @@ independent readback confirms the exact progress comment and Review status.
 It remains the board-maintenance CLI until source qualification. No actual
 Muse corrective comment or Done claim is made yet; the dependent Incoming
 epic correction and B1/B2/liveB3 remain outstanding.
+
+### Chronology correction
+
+Receipt71 and GREEN commit4363d4d recorded the Review transition as completed
+while the native CLI's executable build/lint/test gate was still running.
+That was premature operator reporting. The earlier receipt stays unchanged;
+receipt72 corrects its timing. The native operation subsequently exits0,
+independent read confirms Review and the exact comment, all gate commands pass,
+and the owning reservation is released. The actual resulting card/status event
+is committed afterwards. No gate was skipped and no reservation was removed.
