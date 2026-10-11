@@ -156,7 +156,7 @@ relationships use the same selected-graph admission as relationship edits.
 | ✎ `status-update <uuid> --to <status>` | The same enforced move via agent-tool dispatch; prints JSON |
 | ✎ `comment <uuid> --text <t>` | Append a comment — the way to update a card after breakdown |
 | ✎ `add-comment <uuid> --text <t>` | Alias of `comment` |
-| ✎ `frontmatter <uuid> --set k=v` | Update descriptive fields or UUID relationships; `--set` repeats |
+| ✎ `frontmatter <uuid> --set k=v` | Update descriptive fields, UUID relationships or conditional Incoming epic type; `--set` repeats |
 
 `frontmatter` accepts the descriptive keys `title`, `priority`, `labels`,
 `points`, `category`, `description`, `estimate`, `assignee`, and the relationship
@@ -167,6 +167,15 @@ against the complete selected graph through the canonical writer; semantic
 relationship no-ops write nothing. `status` is refused and redirected to
 `move`, so the FSM stays the only status authority. Identity and provenance
 keys (`uuid`, `created_at`, `write-id`, `source-path`) are never writable.
+
+`--set type=epic` has separate conditional authority: the current card must be
+Incoming with absent, task or story type, and the complete proposed graph must
+be lawful. This can correct inherited child epic references without removing
+them or replacing the subject's UUID. An Incoming epic may repeat the request,
+but a semantic no-op still requires complete-graph validation and writes
+nothing. Other types, directions and lifecycle states are refused, as are
+protected fields in the same batch. CLI, HTTP and MCP share this guard and the
+existing reservation, source-revision and file/event failure boundary.
 
 There is no delete verb. Terminal states are reached with
 `move <uuid> --to rejected` or `--to archived`.

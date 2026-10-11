@@ -1,13 +1,13 @@
 ---
 uuid: "62b3d579-70a2-4670-9d7c-a23bc89b06f8"
 title: "Distinct future native event identities"
-status: "review"
+status: "done"
 type: "task"
 priority: "P1"
 points: "2"
 labels: "cephalon, admission, provenance, repair"
 category: "tasks"
-write-id: "1791749866549-0.0rs0r83ovsa4a9tghsy"
+write-id: "1791751539331-0.e3qyn0xzs3w4yxk5fif"
 created_at: "2026-10-11T19:29:54.964Z"
 ---
 
@@ -87,5 +87,9 @@ Process documentation: GPL-3.0-or-later.
 
 ---
 RED committed1caf71f0c7449fdfc60919feb1252cc25da15f36:255tests2396assertions3collision failures0errors. Candidate GREEN255tests2396assertions0fail/error; lint0errors0warnings8baselineinfos; all4release builds0warnings. Four separate candidate CLI processes under fixed Date.now emit four distinct IDs and retain the original duplicate-ID prefix; actual native readback and finally cleanup pass. Candidate CLI SHA25634c3092e8862ff550b2c22fbff91dee3b506f935cc60d0f0d146a424d0a6fc70. Source review/qualified adoption/actual Muse corrective comment remain outstanding; dependent epic-correction task stays Incoming. No live runtime or publication change.
+
+Qualified personal PR16 merged 7712a86d49c53f3c73d40058092b3f610fce5e7f after canonical PASS: exact CodeRabbit/Codex/MiMo, one completed code round, 3 passing checks, no findings. Actual Muse native corrective comment succeeded using CLI 34c3092e8862ff550b2c22fbff91dee3b506f935cc60d0f0d146a424d0a6fc70; independent native events/task readback and actual EDN prove one new UUID ID distinct from the entire old 55567-byte prefix. Both duplicate historical rows and all prior coordinator bytes are retained; unrelated cards and journals unchanged. Known CLI JSON namespace loss is disclosed, not repaired in this scope. Future-ID source and accepted consumer criterion are complete; no character runtime deployment claimed.
+
+Evidence correction: the prior progress comment phrase all prior coordinator bytes was too broad. The native Muse comment writer updated the current card write-id as its existing protocol requires. Exact comparison now verifies unchanged frontmatter except write-id and an exact prefix of the full original body/comments, plus the independently read Incoming status and absent type. The original 55567-byte event ledger prefix and both duplicate-ID rows remain byte-identical. An operator whole-card-prefix assertion failed on the expected write-id change; it was not a production refusal. Accepted consumer event/body-preservation proof is complete.
 
 ---
