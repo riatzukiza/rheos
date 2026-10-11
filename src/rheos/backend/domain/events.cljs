@@ -11,9 +11,13 @@
    for the single enforced write path that produces status-change events."
   (:require [open-hax.openplanner-protocols :as protocols]))
 
-(defn- kanban-envelope [board-id event-type payload]
+(defn- kanban-envelope
+  "Construct a new emission at the existing effect boundary. An independent
+   runtime UUID supplies identity; time remains observation metadata. Existing
+   ledger IDs are opaque retained facts and are never regenerated here."
+  [board-id event-type payload]
   {:event/type (str "kanban." event-type)
-   :event/id (str board-id "-" (:task-id payload) "-" (.now js/Date))
+   :event/id (str board-id "-" (:task-id payload) "-" (random-uuid))
    :event/time (.toISOString (new js/Date))
    :session/id board-id
    :delivery/mode "tell"
