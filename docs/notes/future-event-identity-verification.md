@@ -60,3 +60,49 @@ implement the Incoming epic correction, the character's graph/field/mood loop,
 or any live runtime change. The goal remains active and its heartbeat human-paused.
 
 Process documentation: GPL-3.0-or-later.
+
+## GREEN candidate — 2026-10-11 UTC
+
+RED was committed as `1caf71f0c7449fdfc60919feb1252cc25da15f36`.
+The subsequent production repair replaces the timestamp component with an
+independent ClojureScript runtime UUID at the existing emission boundary.
+Board/task prefix and all remaining envelope fields are unchanged. No new
+mutable counter, host-module import, layer dependency, public command or
+historical migration is introduced. This is collision resistance, not an
+absolute uniqueness or cryptographic guarantee.
+
+The same full package command now exits0: autorun and explicit execution each
+run **255 tests / 2396 assertions / 0 failures / 0 errors**. Test compilation
+and all four release builds (server, CLI, github-sync, app) report **0 warnings**.
+All four release outputs are nonempty. Lint remains **0 errors / 0 warnings /
+8 existing infos**. Actual test execution uses Node22.18.0 through pnpm;
+direct CLI proof uses local Node24.14.1. Hosted Node22.20.0 qualification
+remains separate.
+
+Four actual separate candidate CLI processes, across two disposable complete
+boards with identical board/task identity and frozen `Date.now()`, append
+four distinct future event IDs. Two historical duplicate-ID records produced
+by the qualified predecessor remain byte-identical prefixes on both boards.
+Independent native task/event reads retain the comments and four events per
+board. Finally cleanup removes both owned fixture directories. The candidate
+CLI is SHA256 `34c3092e8862ff550b2c22fbff91dee3b506f935cc60d0f0d146a424d0a6fc70`.
+Two earlier operator probes failed their own assertions: one assumed five
+task sections; another copied a ledger but omitted the corresponding card
+comments on its second board. Both had successful native writes and cleanup.
+Their transcripts are retained; the corrected fixture proves the contract.
+
+Local log SHA256 values:
+
+| Evidence | SHA256 |
+| --- | --- |
+| RED full test log | `17204cbc338e9c6f33be03a3e9219ca7ad780252e24dd140e6435515ea4cb6ab` |
+| GREEN full test log | `b8dde469bfbe1367f56430b9b47d7cdf3a1bb3b40a79adf02f649c1e1a33dc52` |
+| GREEN lint log | `c29b9a4416ee9ef28e2615856b4fbf7638d2936929e8c65a342bd2739b9d253a` |
+| Release build log | `74ccd07158a512d883c308f3b4b5fa8dd62f8c125fd0a3808a509411e959366d` |
+| Corrected separate-process proof | `e80da644e50410f165154b46536b2dcb3633ccd57294f4eee0726d0f82c2aec7` |
+
+The qualified predecessor's native comment and Review transition return0;
+independent readback confirms the exact progress comment and Review status.
+It remains the board-maintenance CLI until source qualification. No actual
+Muse corrective comment or Done claim is made yet; the dependent Incoming
+epic correction and B1/B2/liveB3 remain outstanding.

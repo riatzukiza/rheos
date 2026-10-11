@@ -7,7 +7,7 @@ priority: "P1"
 points: "2"
 labels: "cephalon, admission, provenance, repair"
 category: "tasks"
-write-id: "1791749312943-0.a3c4fj63nk779nuqj1"
+write-id: "1791749829833-0.0vwgcwnd1nzma28vwwt7"
 created_at: "2026-10-11T19:29:54.964Z"
 ---
 
@@ -83,3 +83,9 @@ or skip real ledger admission. Historical duplicate IDs remain a known data
 defect; corrective provenance must distinguish their different immutable rows.
 
 Process documentation: GPL-3.0-or-later.
+
+
+---
+RED committed1caf71f0c7449fdfc60919feb1252cc25da15f36:255tests2396assertions3collision failures0errors. Candidate GREEN255tests2396assertions0fail/error; lint0errors0warnings8baselineinfos; all4release builds0warnings. Four separate candidate CLI processes under fixed Date.now emit four distinct IDs and retain the original duplicate-ID prefix; actual native readback and finally cleanup pass. Candidate CLI SHA25634c3092e8862ff550b2c22fbff91dee3b506f935cc60d0f0d146a424d0a6fc70. Source review/qualified adoption/actual Muse corrective comment remain outstanding; dependent epic-correction task stays Incoming. No live runtime or publication change.
+
+---
