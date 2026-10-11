@@ -1,14 +1,14 @@
 ---
 uuid: "a6de84ce-06c4-4556-a9ba-6bbb78c7b60a"
 title: "Lawful incoming-card epic correction"
-status: "in_progress"
+status: "review"
 type: "task"
 priority: "P1"
 points: "3"
 labels: "cephalon, admission, provenance, repair"
 dependency: ["62b3d579-70a2-4670-9d7c-a23bc89b06f8"]
 category: "tasks"
-write-id: "1791751541319-0.2ez5snyhsord63ndalr"
+write-id: "1791751964284-0.2qgc8hbv4qu0qhsgqko"
 created_at: "2026-10-11T19:29:55.518Z"
 ---
 
@@ -94,5 +94,7 @@ Process documentation: GPL-3.0-or-later.
 
 ---
 Implementation plan after qualified event-ID predecessor Done: commit portable and real native writer RED for exact Incoming absent/task/story to epic, full proposed graph validation, same-epic no-op, protected/mixed/type/status/refusal cases and byte/event custody. Then implement conditional authority at the existing common admission, propagate public CLI/HTTP/MCP diagnostics/schema, retain reservation/revision/publication gates, run JVM/CLJS/full lint/test/build, and obtain fresh exact-head source review before real Muse correction. No general type editor or runtime deployment.
+
+RED4ff8cd0 committed: compiled262tests2567assertions63fail0errors, JVM31tests671assertions54fail0errors; initial delimiter compile failure retained separately. Candidate GREENcompiled262tests2606assertions0fail/error and JVM31/6710fail/error; full lint0errors0warnings8baselineinfos. Conditional Incoming exactepic guard is separate from descriptive mutable keys; CLI/HTTP/MCP share complete-graph admission, real writer no-op/custody/refusal/reservation/revision/file-event fixtures pass. Native Review full build/lint/test gate now starts; completion and release hashes are not yet claimed. Actual Muse epic correction waits qualified source adoption.
 
 ---

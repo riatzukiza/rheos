@@ -252,7 +252,9 @@
 (def ^:private frontmatter-update-schema
   {:type "object" :minProperties 1 :additionalProperties false
    :properties (merge (zipmap (map name law-frontmatter/mutable-keys) (repeat {}))
-                      (into {} (map (fn [[k v]] [(name k) v])) relationship-input-properties))})
+                      (into {} (map (fn [[k v]] [(name k) v])) relationship-input-properties)
+                      {"type" {:type "string" :enum ["epic"]
+                               :description "Incoming absent/task/story to epic, or Incoming epic repeat; requires a lawful complete proposed graph"}})})
 
 (def tools
   [{:name "project_glob"
@@ -323,7 +325,7 @@
                    :required ["uuid" "text"]}
     :handler tool-kanban-add-comment}
    {:name "kanban_update_frontmatter"
-    :description "Update descriptive fields or parent/epic/dependency through the canonical graph writer. Relationships use exact stored UUIDs; dependency accepts a UUID, CSV or a distinct UUID array. Null/blank singular values and null/blank/empty dependency remove the field. A semantic relationship no-op writes nothing. Status, identity and provenance are refused."
+    :description "Update descriptive fields or parent/epic/dependency through the canonical graph writer. Relationships use exact stored UUIDs; dependency accepts a UUID, CSV or a distinct UUID array. Null/blank singular values and null/blank/empty dependency remove the field. Type permits only Incoming absent/task/story to exact epic, or an Incoming epic repeat, after complete proposed-graph validation. A semantic structural no-op writes nothing. Status, identity and provenance are refused."
     :input-schema {:type "object"
                    :properties {:uuid {:type "string"} :project {:type "string"}
                                 :updates frontmatter-update-schema}

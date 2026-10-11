@@ -94,8 +94,9 @@
 
 (defn ^:async update-frontmatter!
   "The canonical edit boundary, including lower-level callers. Identity/status/
-   provenance keys are refused; relationship batches use the complete graph.
-   Empty requests and semantic relationship no-ops have no file/event effect."
+   provenance keys are refused; relationship and conditional Incoming epic
+   correction batches use the complete graph. Empty requests and semantic
+   structural no-ops have no file/event effect."
   [{:keys [project updates] :as request}]
   (if (empty? updates)
     (await (update-reserved! request))

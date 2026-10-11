@@ -187,10 +187,10 @@
 
    {:verb "frontmatter" :group "lifecycle" :mutates? true
     :args "<uuid> --set <key>=<value>"
-    :summary "Update descriptive fields or exact UUID relationships through the canonical graph writer."
+    :summary "Update descriptive fields, exact UUID relationships or conditional Incoming epic type through the canonical writer."
     :flags [["--set <key>=<value>" "repeatable; one ledger event per changed key"]]
     :example "rheos frontmatter my-card --set points=3 --set priority=P1"
-    :notes "Parent/epic take an exact UUID; dependency takes one UUID or CSV. Use --set parent=, --set epic= or --set dependency= to remove that field. Semantic relationship no-ops write nothing. Status is FSM-governed, use move; identity and provenance remain protected."}
+    :notes "Parent/epic take an exact UUID; dependency takes one UUID or CSV. Use --set parent=, --set epic= or --set dependency= to remove that field. Only an Incoming absent/task/story card may use --set type=epic; an Incoming epic repeat still validates the complete graph. Other type/status directions refuse. Semantic structural no-ops write nothing. Status is FSM-governed, use move; identity and provenance remain protected."}
 
    {:verb "read-task" :group "read"
     :args "<uuid>"

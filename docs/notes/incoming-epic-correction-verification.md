@@ -41,3 +41,44 @@ No actual Muse epic correction, source qualification or character runtime
 deployment is established by RED.
 
 Process documentation: GPL-3.0-or-later.
+
+## Executed GREEN and native Review
+
+RED commit `4ff8cd0` retains the law and tests before conditional domain admission.
+Actual JVM RED: 31 tests, 671 assertions, 54 failures and zero errors.
+GREEN uses that separate law in the existing common graph decision; `:type`
+remains outside descriptive mutable keys. The existing writer treats it as a
+structural batch, without changing reservation, complete revision recheck,
+write correlation, file/event ordering or failure machinery. Public MCP exposes
+only target `epic`; CLI guidance and HTTP/MCP diagnostics retain the same
+conditional common authority.
+
+Actual JVM GREEN: 31 tests / 671 assertions / zero failures or errors.
+Actual compiled GREEN, both autorun and explicit: 262 tests / 2606 assertions /
+zero failures or errors. The 39 extra assertions are the three successful
+public-route custody checks that could not execute after refused RED admission.
+Full clj-kondo: zero errors/zero warnings, eight existing informational layer
+diagnostics. Direct host Node differs from pnpm-resolved Node; the actual test
+fixture reports Node 22.18.0.
+
+The native InProgress→Review command actually completed with exit zero, running
+all four release builds, full lint and full tests under the original FSM gate.
+Each release and test compiler reported zero warnings; independent native task
+readback reports Review and its reservation has been released. All four release
+outputs are nonempty. Candidate CLI SHA256
+`85369213440634989365f75929045d36eb69b6c6b1e7679f68d483374a0d526b`.
+This is a prepared candidate, not source approval or actual Muse adoption.
+
+### Retained actual command-output hashes
+
+- `incoming-epic-red-compiled.log`: SHA256 `b69a12ffdcbd47137d55d0b46cdacd08017885172e7150f9b3599cd641641bf1`.
+- `incoming-epic-red-jvm.log`: SHA256 `7fd8dadac51fcc70d5fa255cd7d683315db74d7a6eba0997f600dd32a9617458`.
+- `incoming-epic-green.log`: SHA256 `87c5c8159600d1df3674381362b342c38f04fb9cf0b0489e6eed6f3f149e8fb8`.
+- `incoming-epic-green-jvm.log`: SHA256 `1009a908927d2208954b048eca62199a6171ca8ac1c80c1073ac3ca50b2e4fb0`.
+- `incoming-epic-green-lint.log`: SHA256 `0ba9c05e6434a36704a6ce2bdead4febe07d193015390106fdea386dd5ce67ba`.
+- `epic-correction-native-review-gate.log`: SHA256 `e76bf5c748c1c14a2be6e0116ae2c48d679b0b986619a8983e2e69057b238abd`.
+
+The packet is private operator evidence, not a native provider approval.
+No dependency versions, workflow pins, lifecycle policy, public grant, live
+maker, model, clock, gateway, PM2 service or cloud owner changed.
+The known CLI JSON namespace-loss gap is outside this repair.
