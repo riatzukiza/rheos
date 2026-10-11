@@ -1,14 +1,14 @@
 ---
 uuid: "a6de84ce-06c4-4556-a9ba-6bbb78c7b60a"
 title: "Lawful incoming-card epic correction"
-status: "incoming"
+status: "in_progress"
 type: "task"
 priority: "P1"
 points: "3"
 labels: "cephalon, admission, provenance, repair"
 dependency: ["62b3d579-70a2-4670-9d7c-a23bc89b06f8"]
 category: "tasks"
-write-id: "1791746995518-0.cpe1zck8g9r3wpskpm7"
+write-id: "1791751541319-0.2ez5snyhsord63ndalr"
 created_at: "2026-10-11T19:29:55.518Z"
 ---
 
@@ -90,3 +90,9 @@ stored bytes. The full graph can remain invalid for unrelated reasons, in which
 case the real correction must truthfully refuse instead of widening this scope.
 
 Process documentation: GPL-3.0-or-later.
+
+
+---
+Implementation plan after qualified event-ID predecessor Done: commit portable and real native writer RED for exact Incoming absent/task/story to epic, full proposed graph validation, same-epic no-op, protected/mixed/type/status/refusal cases and byte/event custody. Then implement conditional authority at the existing common admission, propagate public CLI/HTTP/MCP diagnostics/schema, retain reservation/revision/publication gates, run JVM/CLJS/full lint/test/build, and obtain fresh exact-head source review before real Muse correction. No general type editor or runtime deployment.
+
+---
