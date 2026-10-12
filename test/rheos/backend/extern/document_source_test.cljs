@@ -14,10 +14,10 @@
         docs (path/join root "docs")
         markdown-path (path/join docs "translation.md")
         sidecar-path (path/join docs "translation.edn")]
-    (await (.mkdir fsp docs #js {:recursive true}))
-    (await (.writeFile fsp markdown-path "body" "utf8"))
-    (await (.writeFile fsp sidecar-path "{}" "utf8"))
     (try
+      (await (.mkdir fsp docs #js {:recursive true}))
+      (await (.writeFile fsp markdown-path "body" "utf8"))
+      (await (.writeFile fsp sidecar-path "{}" "utf8"))
       (testing "contained relative EDN sidecar"
         (let [result (await (source/resolve-contained-sidecar!
                              root markdown-path "translation.edn"))]
