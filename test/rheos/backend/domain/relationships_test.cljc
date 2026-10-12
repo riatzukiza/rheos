@@ -234,10 +234,12 @@
     (let [result (relationships/admit-update board "child" {field "forged" :dependency "pred-A" :title "New"})]
       (is (refusal? result))
       (is (= #{:protected-field} (kinds result)))))
-  (doseq [field [:dependencies :type :allowlist :anything]]
+  (doseq [field [:dependencies :allowlist :anything]]
     (let [result (relationships/admit-update board "child" {field "forged" :parent "parent"})]
       (is (refusal? result))
       (is (= #{:unknown-field} (kinds result)))))
+  (is (= #{:invalid-epic-correction}
+         (kinds (relationships/admit-update board "child" {:type "forged" :parent "parent"}))))
   (is (= #{:missing-reference}
          (kinds (relationships/admit-update board "child" {:dependency "gone" :title "New"}))))
   (is (= #{:conflicting-epic}
@@ -293,10 +295,81 @@
     (is (not (contains? (:task result) :dependency)))))
 
 (deftest generic-frontmatter-authority-is-still-closed
+  (is (= [:type] (frontmatter/disallowed-keys {:type "epic"})))
   (doseq [key relationship-law/fields]
     (is (= [key] (frontmatter/disallowed-keys {key "reference"}))))
   (doseq [key frontmatter/mutable-keys]
     (is (empty? (frontmatter/disallowed-keys {key "description"})))))
+
+(def correction-board
+  [{:uuid "subject" :status "incoming" :title "Coordinator" :write-id "retained"}
+   {:uuid "first" :type "story" :status "incoming" :parent "subject" :epic "subject"}
+   {:uuid "second" :type "task" :status "incoming" :parent "subject" :epic "subject"
+    :dependency "first"}])
+
+(deftest incoming-epic-correction-is-conditional-structural-authority
+  (doseq [prior [::absent "task" "story"]]
+    (let [cards (if (= ::absent prior) correction-board
+                    (with-card correction-board "subject" {:type prior}))
+          before (first cards)
+          result (relationships/admit-update cards "subject" {:type "epic"})]
+      (is (frontmatter/incoming-epic-correction? before "epic"))
+      (is (= #{:invalid-epic-target} (kinds (relationships/inspect-graph cards))))
+      (is (:ok? result) "The inherited invalid epic references are repaired by the proposed graph")
+      (is (:relationship-change? result))
+      (is (= {:type "epic"} (:updates result)))
+      (is (= [{:field :type :old-value (when-not (= ::absent prior) prior) :new-value "epic"}]
+             (:changes result)))
+      (is (= (assoc before :type "epic") (:task result)))))
+  (let [cards (with-card correction-board "subject" {:type "epic"})
+        result (relationships/admit-update cards "subject" {:type "epic"})]
+    (is (:ok? result))
+    (is (:noop? result))
+    (is (= (first cards) (:task result)))
+    (is (= {} (:updates result)))
+    (is (= [] (:changes result)))))
+
+(deftest epic-correction-refuses-other-types-statuses-and-protected-batches
+  (doseq [prior [nil false :task [] {} "Epic" " task" "task "]]
+    (let [cards (with-card correction-board "subject" {:type prior})]
+      (is (not (frontmatter/incoming-epic-correction? (first cards) "epic")))
+      (is (= #{:invalid-epic-correction}
+             (kinds (relationships/admit-update cards "subject" {:type "epic"}))))))
+  (doseq [status [nil "Incoming" "accepted" "breakdown" "ready" "todo" "in_progress"
+                  "review" "document" "done" "blocked" "rejected" "archived"]]
+    (is (refusal? (relationships/admit-update
+                   (with-card correction-board "subject" {:status status}) "subject" {:type "epic"}))))
+  (doseq [target [nil "" "task" "story" "Epic" :epic false [] {}]]
+    (is (refusal? (relationships/admit-update correction-board "subject" {:type target}))))
+  (is (refusal? (relationships/admit-update [{:uuid "subject" :type "epic" :status "incoming"}]
+                                           "subject" {:type "task"})))
+  (doseq [field frontmatter/forbidden-keys]
+    (let [result (relationships/admit-update correction-board "subject" {field "forged" :type "epic"})]
+      (is (refusal? result))
+      (is (= #{:protected-field} (kinds result))))))
+
+(deftest epic-correction-checks-the-complete-post-update-graph-even-for-noops
+  (doseq [prior [::absent "epic"]
+          [expected changed]
+          [[:missing-reference (with-card correction-board "second" {:dependency "gone"})]
+           [:cycle (with-card correction-board "first" {:dependency "second"})]
+           [:cycle (with-card correction-board "subject" {:parent "first"})]
+           [:malformed-card-type (conj correction-board {:uuid "unrelated" :type false})]
+           [:malformed-relationship (conj correction-board {:uuid "unrelated" :dependency false})]
+           [:conflicting-epic (conj (with-card correction-board "first" {:parent "other"})
+                                   {:uuid "other" :type "epic"})]]]
+    (let [cards (if (= ::absent prior) changed (with-card changed "subject" {:type prior}))
+          result (relationships/admit-update cards "subject" {:type "epic"})]
+      (is (refusal? result))
+      (is (= #{expected} (kinds result)))))
+  (is (= #{:task-not-found}
+         (kinds (relationships/admit-update correction-board "missing" {:type "epic"}))))
+  (is (= #{:ambiguous-uuid}
+         (kinds (relationships/admit-update (conj correction-board (first correction-board))
+                                            "subject" {:type "epic"}))))
+  (let [result (relationships/admit-update correction-board "subject" {:type "epic" :title "Named"})]
+    (is (:ok? result))
+    (is (= {:title "Named" :type "epic"} (:updates result)))))
 
 (deftest malformed-mutations-never-throw-or-partially-admit
   (doseq [[uuid updates] [[nil {}] ["" {}] [" " {:parent nil}]

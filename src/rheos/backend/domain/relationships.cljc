@@ -199,17 +199,20 @@
                 {:ok? true :tasks cards})))))))))
 
 (defn relationship-update? [updates]
-  (boolean (seq (set/intersection (set (keys updates)) law/fields))))
+  ;; Type correction changes epic-target interpretation even without an edge edit.
+  (or (contains? updates :type)
+      (boolean (seq (set/intersection (set (keys updates)) law/fields)))))
 
 (defn- key-errors [updates]
-  (let [allowed (set/union frontmatter/mutable-keys law/fields)]
+  (let [allowed (conj (set/union frontmatter/mutable-keys law/fields) :type)]
     (for [field (sort (keys updates)) :when (not (contains? allowed field))]
       {:kind (if (contains? frontmatter/forbidden-keys field)
                :protected-field :unknown-field)
        :field field})))
 
 (defn disallowed-update-keys
-  "The same closed authority used by the writer, exposed for public diagnostics."
+  "Closed key diagnostics. The structural :type key is conditional authority:
+   lifecycle, prior type, target and whole-graph admission remain in admit-update."
   [updates]
   (mapv :field (key-errors updates)))
 
@@ -218,7 +221,9 @@
 
    Descriptive-only updates retain the existing closed-key authority and do
    not reinterpret malformed inherited relationships. Relationship batches
-   validate the whole proposed graph, including unchanged cards. A true semantic
+   validate the whole proposed graph, including unchanged cards. Exact Incoming
+   epic correction uses separate conditional authority and the same graph path.
+   A true semantic
    no-op has empty :changes/:updates and leaves the original task untouched.
    Refusals never return a task, updates or a partially admitted subset."
   ([snapshot uuid updates] (admit-update snapshot uuid updates {}))
@@ -237,6 +242,11 @@
         (seq bad-keys) (ordered-failure bad-keys)
         (empty? matches) (failure [{:kind :task-not-found :uuid uuid}])
         (> (count matches) 1) (failure [{:kind :ambiguous-uuid :uuid uuid}])
+        (and (contains? updates :type)
+             (not (frontmatter/incoming-epic-correction? (first matches) (:type updates))))
+        (failure [{:kind :invalid-epic-correction :uuid uuid :field :type
+                   :status (:status (first matches))
+                   :old-value (:type (first matches)) :new-value (:type updates)}])
         (not (relationship-update? updates))
         {:ok? true :relationship-change? false
          :task (merge (first matches) updates) :updates updates}
