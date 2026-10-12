@@ -49,7 +49,8 @@
             ;; particular, # is nonterminating and remains reader-owned.
             (= ch \\) (let [first-char (get text (inc i))]
                         (recur (+ i 2)
-                               (if (or (token-boundary? first-char)
+                               (if (or (nil? first-char)
+                                       (token-boundary? first-char)
                                        (contains? #{\\ \^ \@ \` \~} first-char))
                                  :normal
                                  :char)))

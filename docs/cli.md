@@ -225,7 +225,8 @@ Stdout is one JSON object with stable fields `ok` (boolean), `path`
 a one-based `row`; `duplicate-event-id` also supplies the exact `event-id` and
 its `first-row`. I/O issues have `io-code`. Missing arguments exit1 with
 `path: null`, zero records and a `usage` issue, including with `--json`. Missing
-paths exit2. Invalid, duplicate, malformed UTF-8, malformed EDN, blank/comment-only
+files (`ENOENT`) exit2. A non-directory path component (`ENOTDIR`) is an
+other I/O failure and exits4. Invalid, duplicate, malformed UTF-8, malformed EDN, blank/comment-only
 rows or empty files exit3; other I/O failures exit4. Every failure is nonzero
 and emits the ordinary single-line stderr diagnostic.
 

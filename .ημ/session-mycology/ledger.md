@@ -698,3 +698,12 @@ After committed RED `ad66378`, the exact authored `story` joins the portable adm
   spore: none
   receipt-refs: rheos-dangling-both-host-reader-arity-red-correction-20261012
   note: JVM reader also has internal four-argument read, confirmed by installed source and actual ArityException. Preserve 1/2/4 on both hosts. Receipt93 wrongly scoped four-argument form to CLJS; it remains historical. Previous attempted JVM GREEN had three fixture failures, no GREEN credit. Production guard removed before corrected RED; no production throw claimed. Prior receipts/reflections preserved; no runtime, consumer or paid-model change.
+
+- ts: 2026-10-12T22:26:21.850Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-dangling-character-guard-green-20261012
+  note: Explicit EOF nil guard precedes character boundary helper; actual decoder and lexical discard controls preserved. Exact real reader arities retained in both host fixtures. Reported installed production throw not reproduced; real whitespace helper accepts nil. Defensive helper-independent EOF contract verified with scoped strict fixture. All prior incidental fixture failures retained through appended correction receipts91-94. Current source approval/merge and dependent Muse consumer adoption required; no stale approval transfer. Missing NPM_TOKEN environment notice is separate from compiler and lint warnings. No credentials/paid/runtime/heartbeat change. Docs clarify ENOENT2 versus ENOTDIR4 taxonomy without changing exits. Actual owner ledger checked, not inferred. All owned prior receipt/reflection/event prefixes retained.

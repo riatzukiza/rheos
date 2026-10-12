@@ -1,13 +1,13 @@
 ---
 uuid: "af67891c-fbb4-4f40-a6a2-e9bda75d5068"
 title: "Standard event IDs and script-facing ledger integrity checks"
-status: "in_progress"
+status: "review"
 type: "task"
 priority: "P1"
 points: "3"
 labels: "cephalon, events, identity, provenance, repair"
 category: "tasks"
-write-id: "1791842637755-0.8pfodv932ta3nd5n4pe"
+write-id: "1791843949837-0.t46y3xtdmnt9rys8ix"
 created_at: "2026-10-12T15:09:38.874Z"
 ---
 
@@ -108,5 +108,7 @@ Personal main advanced via actual mergedPR12/two-parent212b223, introducing47bas
 Current personal-main212 integration GREEN: actual native Review all4releasebuilds0compilerwarnings/lint0errors0warnings/full335tests3408assertions0failures0errors/exit0; independent Review3point readback. Portable event-ledger JVM6/185/0/0 passes with new deps.edn/Katamorph base. Candidate read-only checker75native event rows pass. All47base changes retained; main12 brings declared-type graph vocabulary, metadata/Markdown projection, shared Katamorph conditions and GitHub sync, so nothing is claimed unchanged. Exact owned88receipt/reflection/event prefixes retained; imported unique main row appended as89. Original raw212Gitblob/proof remain inspectable, distinct from byte-prefix custody. Commit90 records ordinary integration; fresh exact-head/base reviews required before merge/consumer readiness.
 
 Current c7 native Codex5496409294 finding4252705523 identifies lone character marker EOF before scanner token-boundary classification: JVM reader whitespace predicate can throw outside decoding catch and abort complete scan. Reproduce literal standalone/nested/trailing backslash rows followed by an independently malformed later row on JVM and compiled Node; RED precedes minimum nil guard GREEN. Preserve strict discard scanner and reader-owned EDN decoding, all6 prior settlements, original journals/merged212 raw rows, portable complete diagnostics and native gate. No consumer/runtime adoption.
+
+Correction and final EOF GREEN: actual installed tools.reader1.6.0 accepts nil and ordinary malformed-row controls already pass; native Codex root4252705523 production-throw premise was not reproduced. Implemented the requested explicit nil guard defensively, before token-boundary classification. Scanner-only strict-helper fixture retains actual decoder helpers and all internal 1/2/4 read arities on BOTH JVM and CLJS. Earlier incidental fixture failures and incorrect arity assumptions are retained in receipts91-94, not causal production defects or GREEN. Final stable held-source JVM7/203/0/0; native Review four release builds0compilerwarnings, lint0/0, full336tests3426assertions0fail0error, exit0; source hashes identical before/after gate. Current real owner ledger79rows passes candidate check. Private logs are execution evidence, not provider approval. Source current-head review/merge and separate2pt consumer adoption remain unfinished; no runtime/heartbeat/credentials/model change.
 
 ---
