@@ -223,11 +223,14 @@ Stdout is one JSON object with stable fields `ok` (boolean), `path`
 (the supplied path), `record-count` (physical rows scanned), and `errors`
 (ordered issues). An issue's `code` names the refusal. Row-specific issues have
 a one-based `row`; `duplicate-event-id` also supplies the exact `event-id` and
-its `first-row`. I/O issues have `io-code`. Missing arguments exit1 with
-`path: null`, zero records and a `usage` issue, including with `--json`. Missing
-files (`ENOENT`) exit2. A non-directory path component (`ENOTDIR`) is an
-other I/O failure and exits4. Invalid, duplicate, malformed UTF-8, malformed EDN, blank/comment-only
-rows or empty files exit3; other I/O failures exit4. Every failure is nonzero
+its `first-row`. I/O issues have `io-code`. Missing arguments exit 1 with
+`path: null`, zero records and a `usage` issue, including with `--json`.
+Additional positional paths also exit 1 before reading any file, retaining the
+first supplied path and reporting zero records with a `usage` issue. Exactly
+one path is required. Missing files (`ENOENT`) exit 2. A non-directory path
+component (`ENOTDIR`) is an other I/O failure and exits 4. Invalid, duplicate,
+malformed UTF-8, malformed EDN, blank/comment-only rows or empty files exit 3;
+other I/O failures exit 4. Every failure is nonzero
 and emits the ordinary single-line stderr diagnostic.
 
 Every physical line must contain exactly one complete EDN value, which must be
@@ -235,7 +238,9 @@ a map with a unique nonblank string `:event/id`. A single terminal LF or CRLF is
 the last record's delimiter; extra blank physical rows are invalid. Trailing
 forms/junk and split records refuse. Actual `#_` reader-discard tokens refuse
 with `discarded-edn-form`, including within the record; literal `#_` text in
-strings, comments, characters or symbols is decoded normally. The scan retains all row errors rather
+strings, semicolon or `#!` dispatch comments, characters or symbols is decoded
+normally. Discards immediately after the `^` metadata macro also refuse.
+The scan retains all row errors rather
 than silently skipping a malformed line. This is identity/row admission, not
 full event-schema validation. Unique legacy timestamp IDs and opaque Unicode
 or punctuation remain compatible; records are never normalized or merged.
@@ -246,7 +251,11 @@ for explicit board ID, task ID and canonical lowercase UUID entropy strings.
 board/task prefix and UUID suffix without hyphen splitting; `opaque-id?` is the
 separate retained-ledger contract. Board/task components are exact nonblank
 opaque strings. Neither filename-safe identity nor an RFC UUID restriction is
-applied to them. The existing production emission adapter supplies fresh UUID
+applied to them. Native create, comment, frontmatter edit and transition writers
+preflight these known identity components before card, directory or event-ledger
+effects; a refused blank component cannot leave a partial publication. This
+preflight does not replace reservation, revision, event-construction or
+publication-failure checks. The existing production emission adapter supplies fresh UUID
 entropy on every call; write IDs continue to correlate a multi-field operation.
 Entropy is exactly 36 characters; trailing line terminators refuse on both
 JVM and JavaScript. Both `pnpm test` and `bb test` release the CLI before

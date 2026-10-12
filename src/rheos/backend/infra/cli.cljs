@@ -83,26 +83,27 @@
         cmd (when (and (seq args-vec) (not (flag-token? (nth args-vec 0)))) (nth args-vec 0))
         sub (when (and (> (count args-vec) 1) (not (flag-token? (nth args-vec 1)))) (nth args-vec 1))
         rest-args (if sub (subvec args-vec 2) (if cmd (subvec args-vec 1) args-vec))
-        flags (loop [remaining rest-args acc {}]
+        parsed (loop [remaining rest-args acc {} extra []]
                 (if (empty? remaining)
-                  acc
+                  {:flags acc :extra extra}
                   (let [k (first remaining)
                         v (second remaining)
                         flag-name (when (flag-token? k) (subs k 2))]
                     (cond
                       (nil? flag-name)
-                      (recur (rest remaining) acc)
+                      (recur (rest remaining) acc (conj extra k))
 
                       ;; Boolean: only consume the next token if it is an explicit
                       ;; true/false, so `--json --project x` parses both flags.
                       (contains? boolean-flags flag-name)
                       (if (contains? #{"true" "false"} v)
-                        (recur (drop 2 remaining) (add-flag acc flag-name v))
-                        (recur (rest remaining) (add-flag acc flag-name "true")))
+                        (recur (drop 2 remaining) (add-flag acc flag-name v) extra)
+                        (recur (rest remaining) (add-flag acc flag-name "true") extra))
 
                       :else
-                      (recur (drop 2 remaining) (add-flag acc flag-name v))))))]
-    {:command cmd :subcommand sub :flags flags}))
+                      (recur (drop 2 remaining) (add-flag acc flag-name v) extra)))))]
+    (cond-> {:command cmd :subcommand sub :flags (:flags parsed)}
+      (seq (:extra parsed)) (assoc :extra-positionals (:extra parsed)))))
 
 (defn- get-flag
   "Last value given for `key`, or nil."
@@ -677,10 +678,10 @@
                     {:kind :usage :hint (str bin-name " --help")}))))
 
 (defn- ^:async cmd-check-event-ledger [parsed]
-  (if-not (:subcommand parsed)
+  (if (or (nil? (:subcommand parsed)) (seq (:extra-positionals parsed)))
     (do
-      (print-json {:ok false :path nil :record-count 0 :errors [{:code :usage}]})
-      (fail! :usage "missing <path>; see rheos help check-event-ledger"))
+      (print-json {:ok false :path (:subcommand parsed) :record-count 0 :errors [{:code :usage}]})
+      (fail! :usage "exactly one <path> is required; see rheos help check-event-ledger"))
   (let [path (:subcommand parsed)
         observation (await (ledger-check/read-text path))
         report (case (:status observation)

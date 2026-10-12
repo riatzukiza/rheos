@@ -17,7 +17,7 @@
 
 (defn- token-boundary? [ch]
   (or (reader-utils/whitespace? ch)
-      (contains? #{\( \) \[ \] \{ \} \" \;} ch)))
+      (contains? #{\( \) \[ \] \{ \} \" \; \^} ch)))
 
 (defn- reader-discard? [text]
   ;; EDN's reader deliberately hides discarded forms, even on the second EOF
@@ -42,6 +42,7 @@
                   (recur (inc i) :char))
           (cond
             (= ch \;) (recur (inc i) :comment)
+            (and (= ch \#) (= \! (get text (inc i)))) (recur (+ i 2) :comment)
             (= ch \") (recur (inc i) :string)
             ;; The EDN reader ends a character immediately when its first
             ;; character is whitespace, a terminating macro or nonconstituent.

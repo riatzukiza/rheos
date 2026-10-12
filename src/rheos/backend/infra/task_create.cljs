@@ -14,6 +14,7 @@
             [rheos.backend.domain.task-create :as task-create]
             [rheos.backend.domain.relationships :as relationships]
             [rheos.backend.domain.dependency-admission :as admission]
+            [rheos.backend.shape.event-identity :as identity]
             [rheos.backend.law.fsm :as fsm]
             [rheos.backend.law.frontmatter :as law-frontmatter]
             [rheos.backend.infra.content-parser :as content-parser]
@@ -150,6 +151,7 @@
                               (assoc (ex-data error) :kind :refused :source-path file-path
                                      :diagnostic (.-message error))
                               error))))]
+    (identity/check-components! (:id project) card-uuid)
     (await (.mkdir fsp card-dir #js {:recursive true}))
     (when-not (= (tasks/source-revisions existing)
                  (tasks/source-revisions (await (tasks/load-tasks project))))

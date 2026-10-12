@@ -9,6 +9,7 @@
             [rheos.backend.domain.dependency-admission :as admission]
             [rheos.backend.domain.task-create :as task-create]
             [rheos.backend.domain.transition :as transition]
+            [rheos.backend.shape.event-identity :as identity]
             [rheos.backend.infra.ledger :as ledger]
             [rheos.backend.infra.publication :as publication]
             [rheos.backend.infra.task-store :as tasks]
@@ -47,7 +48,8 @@
       (let [decision (decide project current new-status loaded)]
         (if-not (:allowed? decision)
           (refusal from new-status decision)
-          (let [gate (await (fsm/run-gate decision (or (:gate-cwd project) (js/process.cwd))))]
+          (let [_ (identity/check-components! (:id project) (:uuid task))
+                gate (await (fsm/run-gate decision (or (:gate-cwd project) (js/process.cwd))))]
             (if-not (:allowed? gate)
               (refusal from new-status gate)
               (let [fresh (await (tasks/load-tasks project))

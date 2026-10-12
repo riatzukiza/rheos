@@ -1,13 +1,13 @@
 ---
 uuid: "af67891c-fbb4-4f40-a6a2-e9bda75d5068"
 title: "Standard event IDs and script-facing ledger integrity checks"
-status: "in_progress"
+status: "review"
 type: "task"
 priority: "P1"
 points: "3"
 labels: "cephalon, events, identity, provenance, repair"
 category: "tasks"
-write-id: "1791845792095-0.4gixzd6h1l83kvpo9l3"
+write-id: "1791846747681-0.f72n5vrp1lrnxe8in60"
 created_at: "2026-10-12T15:09:38.874Z"
 ---
 
@@ -112,5 +112,7 @@ Current c7 native Codex5496409294 finding4252705523 identifies lone character ma
 Correction and final EOF GREEN: actual installed tools.reader1.6.0 accepts nil and ordinary malformed-row controls already pass; native Codex root4252705523 production-throw premise was not reproduced. Implemented the requested explicit nil guard defensively, before token-boundary classification. Scanner-only strict-helper fixture retains actual decoder helpers and all internal 1/2/4 read arities on BOTH JVM and CLJS. Earlier incidental fixture failures and incorrect arity assumptions are retained in receipts91-94, not causal production defects or GREEN. Final stable held-source JVM7/203/0/0; native Review four release builds0compilerwarnings, lint0/0, full336tests3426assertions0fail0error, exit0; source hashes identical before/after gate. Current real owner ledger79rows passes candidate check. Private logs are execution evidence, not provider approval. Source current-head review/merge and separate2pt consumer adoption remain unfinished; no runtime/heartbeat/credentials/model change.
 
 Personal-main859 integration gate passed: inspected all18 incoming files; typed document/sidecar/watcher behavior retained. Original owned95 receipts byte-prefix retained; unique incoming938byte raw row appended as96/SHA90afc7d3f729e0fa78f0421f452352e92ea270e7b42e099dad0ab6495a689d69. Raw85982-row Gitblob retained separately; no whole incoming byte-prefix claim. Held126 source/test/manifest hashes unchanged across native Review: all4release builds0compilerwarnings/lint0errors0warnings/full360tests3513assertions0fail0error/exit0; JVM7/203/0/0. Independent native Review3point readback; candidate actual82row owner ledger checkPASS. Invalid show/help-ledger/positional-comment read or usage attempts supply no verification credit; corrected native verbs/--text used. No approval transfer, consumer readiness, runtime, heartbeat, credentials, paid or model change.
+
+Current83 native findings4253024776/4783/4792/4798 reproduced before source changes: JVM9tests211assertions3fail0error and compiled363tests3599assertions46fail0error. Test-onlyRED59a09d4 retained. MinimumGREEN handles metadata token boundary, dispatch comments, known identity preflight before card/directory/ledger effects in create/comment/edit/transition, and exact one positional ledger path. CodeRabbit4253061516 spacing corrected in owning CLI docs. Same controls GREEN JVM9/211/0/0 and full363/3599/0/0; native InProgress->Review all4release targets0compilerwarnings/lint0errors0warnings with8baselineINFO/fullsuitePASS,126heldsourcehashes unchanged. Real owner ledger passes candidate explicit-path checker; independent owner readback Review. Host missingNPM_TOKEN notice remains separate. No consumer adoption/current-head approval/runtime/heartbeat/model/credential/paid change.
 
 ---
