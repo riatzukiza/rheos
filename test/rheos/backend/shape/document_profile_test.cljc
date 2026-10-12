@@ -70,6 +70,14 @@
             {:resource/id :translation/glossary}]
            (get-in result [:document :document/resources])))))
 
+(deftest sidecar-ending-in-a-line-comment-decodes
+  ;; eta-mu-ai finding on #13: a final `; comment` without a trailing newline
+  ;; must not swallow the synthesized closing bracket.
+  (let [expected (:sidecar (profile/decode-sidecar sidecar-source))
+        decoded (profile/decode-sidecar (str sidecar-source "\n; policy note"))]
+    (is (:ok decoded))
+    (is (= expected (:sidecar decoded)))))
+
 (deftest malformed-and-schema-less-sidecars-are-rejected
   (testing "malformed EDN"
     (is (= :sidecar/invalid-edn

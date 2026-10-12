@@ -65,7 +65,7 @@
 (defn- read-edn [raw]
   #?(:clj
      (try
-       (let [forms (edn/read-string (str "[" raw "]"))]
+       (let [forms (edn/read-string (str "[" raw "\n]"))]
          (if (= 1 (count forms))
            {:ok true :value (first forms)}
            {:ok false
@@ -77,7 +77,7 @@
                     :error/message "sidecar is not valid EDN"}]}))
      :cljs
      (try
-       (let [forms (edn/read-string (str "[" raw "]"))]
+       (let [forms (edn/read-string (str "[" raw "\n]"))]
          (if (= 1 (count forms))
            {:ok true :value (first forms)}
            {:ok false
