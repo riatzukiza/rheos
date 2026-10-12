@@ -7,8 +7,40 @@
             [open-hax.records.edn.event-admission :as edn-admission]
             [open-hax.openplanner-protocols :as protocols]
             [rheos.backend.infra.ledger :as ledger]
+            [rheos.backend.domain.events :as events]
+            [rheos.backend.law.event-identity :as identity-law]
             [rheos.backend.infra.task-edit :as edit]
             [rheos.backend.infra.task-store :as tasks]))
+
+(deftest ^:async independent-native-admission-writers-have-distinct-frozen-time-ids
+  (let [dir (await (.mkdtemp fsp (path/join (.tmpdir os) "rheos-two-writers-")))
+        saved-now (.-now js/Date)
+        saved-iso (.-toISOString (.-prototype js/Date))
+        board "literal, id"
+        task " legacy-雪 "
+        timestamp "2026-10-11T18:45:52.193Z"]
+    (try
+      (set! (.-now js/Date) (fn [] 1791744352193))
+      (set! (.-toISOString (.-prototype js/Date)) (fn [] timestamp))
+      (let [first-writer (edn-admission/create-edn-event-admission dir)
+            second-writer (edn-admission/create-edn-event-admission dir)]
+        (await (events/emit-comment! first-writer board task "First" "shared" "test"))
+        (await (events/emit-comment! second-writer board task "Second" "shared" "test"))
+        (let [reader (edn-admission/create-edn-event-admission dir)
+              all (await (protocols/query-events reader {}))]
+          (is (= 2 (count all)))
+          (is (= 2 (count (set (map :event/id all)))))
+          (is (every? #(identity-law/generated-id? board task (:event/id %)) all))
+          (is (= ["First" "Second"] (mapv #(get-in % [:payload :text]) all)))
+          (doseq [event all]
+            (is (= {:event/type "kanban.comment" :event/time timestamp :session/id board
+                    :delivery/mode "tell" :payload {:task-id task :text (get-in event [:payload :text])
+                                                   :write-id "shared" :source "test" :agent "eta-mu" :type "comment"}}
+                   (dissoc event :event/id :causal/root))))))
+      (finally
+        (set! (.-now js/Date) saved-now)
+        (set! (.-toISOString (.-prototype js/Date)) saved-iso)
+        (await (.rm fsp dir #js {:recursive true :force true}))))))
 
 (deftest ^:async same-millisecond-native-batch-preserves-duplicate-history-and-new-identities
   (let [dir (await (.mkdtemp fsp (path/join (.tmpdir os) "rheos-event-identity-")))

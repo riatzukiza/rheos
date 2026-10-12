@@ -581,3 +581,30 @@ After committed RED `ad66378`, the exact authored `story` joins the portable adm
   spore: none
   receipt-refs: cephalon-rheos-owner-body-history-correction-20261012T1547
   note: Codex actual0fa planning finding4249844295 asked revised body history after the owner/consumer split. Qualified native Rheos comment operation now appends a complete7304byte current owner-body revision snapshot SHA946f94dc53b495cfe59264f1a3067155ab67cea1390c5ad30ab76a6752fde836, tied to source0fa and exact3pointowner/2pointconsumer dependency. Original task-created combined scope remains true initial history, unchanged. Independent native readback verifies full snapshot text, unchanged body and every metadata field except native write-id; exactly one canonical comment event appended and old event prefix remains byte-identical. Native comments are the supported later-information vocabulary; this supplies complete revision custody, not a new body-update event type, automatic latest-body projection, replay engine, source implementation, Ready or approval. No local event writer/parser/protocol introduced. Current0fa free hosted38271812769 deterministic and tool compile passed, reviewer/mandatorywrapper failed; no new-head approval. Muse CodeRabbit full request6127481165 completed via native6127483510 updated15:39:59 and summary6111723564 updated15:41:23 selectsall8/exact361reviewed/noactionable/no declaredomissions; canonical approval evidenceCodeRabbit, not formalGitHubAPPROVED. MuseCI/Sandboxpass but free inference401/mandatorywrapperfail/0of5cohorts remain. No paid/provider/credential/runtime/deployment/publication change, no spore. Receipt79 and complete source event/reflection prefixes preserved.
+
+- ts: 2026-10-12T19:34:55.068Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-event-id-checker-native-readiness-20261012
+  note: Human separately authorized standard event IDs/checks. This is native readiness only: no constructor/checker/law/tests/source RED/GREEN, feature commit, PR, consumer adoption or functional gate has occurred. The newly answered Muse context-enforcement/joint-delivery scope takes the critical path first. Existing qualified UUID emission remains unchanged. No ledger rewrite, board sidecar, runtime/clock/owner/PM2/cloud/social/paid/credential/heartbeat/deployment mutation. No spore.
+
+- ts: 2026-10-12T19:36:40.104Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-readiness-artifact-reference-correction-20261012
+  note: Receipt81 used the shortened native-read-in_progress.json reference. The actual retained native read file is native-read-in_progress-stdout.json,16729bytes/SHA2560ca1f375bd249b7b92219e8ac5ab62db166a717070a0485d3a7af22aae308f48, in the existing private rheos-event-id-checker-implementation-20261012 directory. Move evidence is native-move-in_progress-stdout.json,17181bytes/SHA2562b93b0cb10c0adaf608ff92971ef231f4c2ce563b46c273babc2752bc4fd3047. No original artifact or ledger row changed; readiness remains the only completed step and source implementation is unstarted. No spore.
+
+- ts: 2026-10-12T19:54:03.498Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-event-id-checker-red-20261012
+  note: Existing opaque identity predicate is reused without normalization or new filename/UUID restrictions on board/task IDs. The new named Malli laws precede shape/domain/adapter GREEN. One fixture literal typo was corrected before the first run; no typo is counted as intended RED. No consumer pin/adoption, runtime, heartbeat, maker or deployment change. No spore.

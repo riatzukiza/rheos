@@ -1,7 +1,9 @@
 (ns rheos.backend.domain.events-test
   (:require [cljs.test :refer [deftest testing is]]
             [open-hax.openplanner-protocols :as protocols]
-            [rheos.backend.domain.events :as events]))
+            [rheos.backend.domain.events :as events]
+            [rheos.backend.law.event-identity :as identity-law]
+            [rheos.backend.shape.event-identity :as identity]))
 
 (deftest generate-write-id-format
   (testing "Write ID is a non-empty string"
@@ -80,6 +82,27 @@
     (append-events! [_ envelopes] (js/Promise.resolve (vec envelopes)))
     (query-events [_ _] (js/Promise.resolve []))
     (watch-events [_ _ _] {:close! (fn [])})))
+
+(deftest ^:async producer-supplies-fresh-entropy-to-the-portable-constructor
+  (let [calls (atom [])
+        recorded (atom [])
+        admission (capturing-admission #(do (swap! recorded conj %) (js/Promise.resolve %)))
+        board "literal, id"
+        task " legacy-雪 "
+        compose identity/generated-id]
+    (with-redefs [identity/generated-id
+                  (fn [board-id task-id entropy]
+                    (swap! calls conj [board-id task-id entropy])
+                    (compose board-id task-id entropy))]
+      (await (events/emit-comment! admission board task "First" "shared-write" "test"))
+      (await (events/emit-comment! admission board task "Second" "shared-write" "test")))
+    (is (= 2 (count @calls)) "Every actual emission obtains entropy at the runtime edge")
+    (is (= [[board task] [board task]] (mapv #(subvec % 0 2) @calls)))
+    (is (every? #(identity-law/uuid-entropy? (nth % 2)) @calls))
+    (is (= 2 (count (set (map #(nth % 2) @calls)))))
+    (is (every? #(identity-law/generated-id? board task (:event/id %)) @recorded))
+    (is (= [board board] (mapv :session/id @recorded)))
+    (is (= [task task] (mapv #(get-in % [:payload :task-id]) @recorded)))))
 
 (deftest ^:async frozen-clock-emissions-retain-vocabulary-with-distinct-identities
   (let [saved-now (.-now js/Date)

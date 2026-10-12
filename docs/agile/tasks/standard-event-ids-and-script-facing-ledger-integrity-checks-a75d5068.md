@@ -1,13 +1,13 @@
 ---
 uuid: "af67891c-fbb4-4f40-a6a2-e9bda75d5068"
 title: "Standard event IDs and script-facing ledger integrity checks"
-status: "incoming"
+status: "in_progress"
 type: "task"
 priority: "P1"
 points: "3"
 labels: "cephalon, events, identity, provenance, repair"
 category: "tasks"
-write-id: "1791820024212-0.jg9yd0m95ulo1o2upr"
+write-id: "1791834802570-0.zxltnatcrqt5pfi3d4"
 created_at: "2026-10-12T15:09:38.874Z"
 ---
 
@@ -88,5 +88,9 @@ A syntax reader can accept only a prefix unless whole-row consumption is checked
 
 Process documentation: GPL-3.0-or-later.
 END CURRENT OWNER BODY
+
+Planning is qualified and merged in personal Rheos PR18 at 14913881d7ae025b982d5cf583bfeefdcbec9f64, preserving exact reviewed head 220acdc3ce8c4abf8df74a0da6a85fc09dfcb944. The independently reviewed three-point owner will now proceed through native readiness and RED before portable identity and explicit-path read-only checker implementation. Consumer adoption remains dependent and unimplemented. No live cephalon, model, inference credential or runtime change.
+
+Owner RED now exercised portable generated/opaque ID laws, explicit constructor/checker stubs, malformed physical-row/duplicate controls, real no-config CLI exits, production constructor-call boundary and two independent frozen-time ledger writers. Actual pnpm test exits1:268tests2710assertions58failures1error. The constructor error is the explicit unimplemented function, row/identity failures are unimplemented checker outputs, and real CLI failures are unknown check-event-ledger verb. Existing producer/storage/publish tests remain. Raw owned log45592bytes/SHA2562d4f18695ecd69d26a11153240f12b8cc648a611e1e35de93a6f0971ad701d76. No successful checker/source adoption is claimed. GREEN will implement portable decisions and read-only boundary before full gates.
 
 ---
