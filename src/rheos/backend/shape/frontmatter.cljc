@@ -118,7 +118,9 @@
   "The partial flat view of top-level keys. An indented line after a key
    continues that key's value (a folded plain scalar or a nested block), which
    this view does not decode, so the key is omitted rather than published as
-   its first line."
+   its first line. An indented comment-only line does not continue the value.
+   A mapping colon needs whitespace or end-of-line after it (`title:Card` is a
+   plain scalar, not a mapping entry)."
   [frontmatter-raw]
   (:acc
    (reduce (fn [{:keys [acc current] :as state} line]
@@ -126,14 +128,17 @@
                (str/blank? line) state
 
                (re-find #"^[ \t]" line)
-               (if current
-                 {:acc (dissoc acc current) :current current}
-                 state)
+               (cond
+                 ;; Indented YAML comments do not change the value.
+                 (re-matches #"^[ \t]+#.*$" line) state
+                 current {:acc (dissoc acc current) :current current}
+                 :else state)
 
                :else
-               (if-let [[_ k v] (re-matches #"^([A-Za-z0-9_-]+):[ ]*(.*)$" line)]
+               ;; Require whitespace after `:` or an empty value (`key:`).
+               (if-let [[_ k v] (re-matches #"^([A-Za-z0-9_-]+):(?:[ ]+(.*)|())$" line)]
                  (let [key (keyword k)
-                       value (flat-value v)]
+                       value (flat-value (or v ""))]
                    {:acc (if (= unsupported value) (dissoc acc key) (assoc acc key value))
                     :current key})
                  {:acc acc :current nil})))
