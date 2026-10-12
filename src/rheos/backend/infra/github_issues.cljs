@@ -321,13 +321,46 @@
          :selected-writes selected-writes
          :deferred-writes 0}))))
 
-(defn- ^:async apply-operation! [token repo operation write-delay-ms]
-  (loop [remaining (operation-requests repo operation)]
+(defn- ^:async apply-operation!
+  "Send one operation's requests in order. A failed request rethrows with
+   `:applied-requests`, the count of this operation's requests that already
+   changed GitHub, so `sync!` can report partial effects."
+  [token repo operation write-delay-ms]
+  (loop [remaining (operation-requests repo operation)
+         applied 0]
     (when-let [request (first remaining)]
-      (await (fetch-json! token (:url request) (:method request) (:body request)))
+      (try
+        (await (fetch-json! token (:url request) (:method request) (:body request)))
+        (catch :default cause
+          (throw (ex-info (ex-message cause)
+                          {:applied-requests applied
+                           :failed-request (select-keys request [:method :url])}
+                          cause))))
       (when (and (seq (rest remaining)) (pos? (or write-delay-ms 0)))
         (await (sleep! write-delay-ms)))
-      (recur (rest remaining)))))
+      (recur (rest remaining) (inc applied)))))
+
+(defn- partial-sync-error
+  "The sync stopped mid-run: report the writes GitHub already accepted.
+   Retry stays idempotent; the next run converges from GitHub's state."
+  [cause applied failed-operation]
+  (let [{:keys [applied-requests failed-request]} (ex-data cause)
+        partial-writes (or applied-requests 0)
+        applied-writes (+ (reduce + 0 (map #(or (:write-count %) 1) applied))
+                          partial-writes)]
+    (ex-info (str "GitHub sync stopped after " applied-writes " applied API "
+                  (if (= 1 applied-writes) "write" "writes")
+                  " (" (count applied) " complete "
+                  (if (= 1 (count applied)) "operation" "operations")
+                  ", " partial-writes " partial "
+                  (if (= 1 partial-writes) "write" "writes")
+                  " in the failed operation): " (ex-message cause))
+             {:applied-operations applied
+              :applied-writes applied-writes
+              :failed-operation failed-operation
+              :failed-operation-applied-writes partial-writes
+              :failed-request failed-request}
+             cause)))
 
 (defn ^:async sync! [tasks {:keys [token repo dry-run write-delay-ms max-writes] :as options}]
   (when (str/blank? token) (throw (js/Error. "Missing GITHUB_TOKEN or GH_TOKEN.")))
@@ -350,7 +383,10 @@
         (loop [remaining selected applied []]
           (if-let [operation (first remaining)]
             (do
-              (await (apply-operation! token repo operation write-delay-ms))
+              (try
+                (await (apply-operation! token repo operation write-delay-ms))
+                (catch :default cause
+                  (throw (partial-sync-error cause applied operation))))
               (when (and (seq (rest remaining)) (pos? (or write-delay-ms 0)))
                 (await (sleep! write-delay-ms)))
               (recur (rest remaining) (conj applied operation)))
