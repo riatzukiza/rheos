@@ -1,0 +1,40 @@
+{
+  "tier": "observed-command-output-index",
+  "provider_approval": false,
+  "finding": 4252484090,
+  "red_commit": "4600a4272f9efa56b6dab513c0de14b68363c3d8",
+  "green": {
+    "jvm_tests": 6,
+    "jvm_assertions": 185,
+    "compiled_tests": 271,
+    "compiled_assertions": 3009,
+    "failures": 0,
+    "errors": 0,
+    "native_review_exit": 0,
+    "native_status": "review",
+    "points": "3"
+  },
+  "unchanged_prior_controls": "7ff had actual UID0 270/2969 pass and fresh absent-CLI bb test pass. These adapter/task controls were not repeated on shape-only patch.",
+  "logs": [
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/adjacent-character-green-jvm.log",
+      "bytes": 110,
+      "sha256": "2f6cd6ee6b76bc669f46bb112a97dc6d762fd06e16c51efa71726ba23487b995"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/adjacent-character-green-native-review.log",
+      "bytes": 7718,
+      "sha256": "7948d15b419dfe1afa429e9b8d59259b2ac2676bcbc64086a41a85d66572e676"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/adjacent-character-green-native-readback.json",
+      "bytes": 20344,
+      "sha256": "f2ddf6b82140c1d4e8103b570bf5dd4f324bb6627df79a9657f3261971c73f21"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/adjacent-character-green-native-comment.log",
+      "bytes": 929,
+      "sha256": "d66a6898398a51cfb2592c94b1b9f91459ccdb254dab4c5eb4496a006194101f"
+    }
+  ]
+}

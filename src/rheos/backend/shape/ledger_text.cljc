@@ -43,9 +43,16 @@
           (cond
             (= ch \;) (recur (inc i) :comment)
             (= ch \") (recur (inc i) :string)
-            ;; A character literal consumes at least its following character,
-            ;; including a quote, semicolon, backslash or dispatch character.
-            (= ch \\) (recur (+ i 2) :char)
+            ;; The EDN reader ends a character immediately when its first
+            ;; character is whitespace, a terminating macro or nonconstituent.
+            ;; Otherwise named/unicode characters continue as a token. In
+            ;; particular, # is nonterminating and remains reader-owned.
+            (= ch \\) (let [first-char (get text (inc i))]
+                        (recur (+ i 2)
+                               (if (or (token-boundary? first-char)
+                                       (contains? #{\\ \^ \@ \` \~} first-char))
+                                 :normal
+                                 :char)))
             (token-boundary? ch) (recur (inc i) :normal)
             (and (= ch \#) (= \_ (get text (inc i)))) true
             :else (recur (inc i) :token)))))))

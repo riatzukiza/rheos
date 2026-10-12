@@ -1,13 +1,13 @@
 ---
 uuid: "af67891c-fbb4-4f40-a6a2-e9bda75d5068"
 title: "Standard event IDs and script-facing ledger integrity checks"
-status: "in_progress"
+status: "review"
 type: "task"
 priority: "P1"
 points: "3"
 labels: "cephalon, events, identity, provenance, repair"
 category: "tasks"
-write-id: "1791841254696-0.wd5jlbtgashybz4zqmk"
+write-id: "1791841421135-0.i9s78v6rmwa2og8ljb"
 created_at: "2026-10-12T15:09:38.874Z"
 ---
 
@@ -100,5 +100,7 @@ PR19 findings reproduced within the qualified checker owner. Corrected RED pnpm 
 Reviewed checker fixes GREEN: pnpm270tests2969assertions0failures0errors; actual root suite same0/0; fresh absent-CLI bb test rebuilds byte-identical current source CLI and passes270/2969/0/0. All4release targets0warnings/lint0errors0warnings with retained INFOs; JVM5tests145assertions0/0. UUID trailing terminators, five discard cases including Unicode whitespace, missing-path JSON, scoped root EACCES, sequential bb task verified. BOM positive agrees with actual compiled cljs.reader used by production. Review remains current; no source qualification, consumer adoption or runtime change.
 
 New current Codex finding4252484090 confirmed for13 reader-special single-character literals followed immediately by #_1. Exact backslash-hash example is already invalid under actual JVM tools.reader; valid semicolon/quote/backslash/bracket/caret/nonconstituent characters reproduce the real discarded-form bypass. Corrected portable fixtures construct literal backslash characters: JVM6tests185assertions39failures0errors/exit39 and compiled271tests3009assertions39failures0errors/exit1. Initial CLJS fixture pr-str produced strings instead of chars and falsely passed; retained as fixture error before correction. Production unchanged. Next scanner resumes normal scanning after a single reader-special char while preserving named/unicode char tokens and existing literal/comment/symbol controls. Receipt87 records RED; no consumer adoption/runtime/source approval.
+
+Adjacent reader-special character correction GREEN: after a literal whitespace/terminating-macro/nonconstituent char the scanner resumes normal dispatch scanning; named/unicode char tokens and nonterminating hash remain reader-owned. Corrected portable13case controls now pass JVM6tests185assertions0failures0errors. Actual native Review all4releasebuilds0warnings/lint0errors0warnings/full271tests3009assertions0failures0errors/exit0 and independent Review3point readback. Initial CLJS pr-str string false-green and both causal RED39fail logs retained. No literal/comment/symbol control removed. Root fault-injection and absent-CLI bb task proofs belong to earlier7ff unchanged code and were not repeated for this shape-only patch. Receipt88 will preserve exact RED prefixes; source review and separately gated consumer adoption remain pending.
 
 ---
