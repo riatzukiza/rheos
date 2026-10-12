@@ -143,3 +143,23 @@
     (testing "the same characters inside or after a plain scalar stay content"
       (is (= "A&B *notes* !" (:title (decoded "title: A&B *notes* !"))))
       (is (= "&card" (:title (decoded "title: \"&card\"")))))))
+
+(deftest indented-comment-does-not-drop-scalar
+  (testing "an indented comment after a mapping line is not a continuation"
+    (is (= "Card" (get-in (markdown/parse "---\ntitle: Card\n  # note\nstatus: ready\n---\nBody")
+                          [:document/frontmatter-data :title])))
+    (is (= "ready" (get-in (markdown/parse "---\ntitle: Card\n  # note\nstatus: ready\n---\nBody")
+                           [:document/frontmatter-data :status])))))
+
+(deftest mapping-colon-requires-separator
+  (testing "title:Card is a plain scalar line, not a mapping entry"
+    (is (not (contains? (:document/frontmatter-data
+                         (markdown/parse "---\ntitle:Card\nstatus: ready\n---\nBody"))
+                        :title)))
+    (is (= "ready" (get-in (markdown/parse "---\ntitle:Card\nstatus: ready\n---\nBody")
+                           [:document/frontmatter-data :status]))))
+  (testing "key: with no value stays a mapping line but empty is unsupported"
+    (let [decoded (:document/frontmatter-data
+                   (markdown/parse "---\nsummary:\nstatus: ready\n---\nBody"))]
+      (is (not (contains? decoded :summary)))
+      (is (= "ready" (:status decoded))))))
