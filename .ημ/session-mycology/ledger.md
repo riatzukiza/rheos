@@ -671,3 +671,12 @@ After committed RED `ad66378`, the exact authored `story` joins the portable adm
   spore: none
   receipt-refs: rheos-dangling-character-guard-red-20261012
   note: Current c7 source Codex5496409294/root4252705523 requests explicit EOF guard. Actual installed JVM tools.reader1.6.0 whitespace? accepts nil; corrected ordinary controls passJVM7/194/0/0 and compiled336/3417/0/0, so reported current-production throw is NOT reproduced. Strict helper fault fixture rejects nil/delegates real chars: causal REDJVM7/195/0fail1error/exit1 and Node336/3418/0fail1error/exit1. Compiler driver alone exits0 despite autorunerror; actual node exit1 retained. Initial malformed delimiter fixture failed parsing before correction, no causalcredit. One existing identity fixture inference warning retained; GREEN must have zero warnings. c7 prior6threads settled/body7689exact/currentrequests6133305155/6133306786/CRquota6133307097. Old7ff38310411790 native COMPLETEDcancelled22:06:25 after bounded cancellation; this is not provider termination proof. c7 hosted38313205208 started22:06:27, no new source approval yet. Exact journal prefixes preserved; qualified owner native Review-InProgress for same3pt scope; no consumer, runtime, paid or credentials change.
+
+- ts: 2026-10-12T22:10:57.280Z
+  task: cephalon event identity checker owner
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-dangling-scanner-red-correction-20261012
+  note: Correction appended without rewriting receipt91. First strict-helper override also altered actual EDN decoder: initial candidateJVM7/203/3fail0error and native gate336/3426/3fail0error/exit3 refused. Candidate source changed before native gate finished, so it receives no verification credit; final stable gate must repeat. Strict fixture now scopes helper to scanner and restores original helper during actual edn/read. Corrected causal scannerRED with production unchanged: JVM7/195/0fail1error/exit1; compiled Node336/3418/0fail1error/exit1; compile8files0warnings. Ordinary installed-reader cases remain positive; no claim reported real dependency throws. Added actual Buffer ^js hint in existing owned identity fixture to repair one concrete inference warning, assertions unchanged. All logs retained, no paid/credentials/runtime/consumer change.

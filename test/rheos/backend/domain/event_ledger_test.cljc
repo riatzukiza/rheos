@@ -5,6 +5,8 @@
             [rheos.backend.domain.event-ledger :as ledger]
             [rheos.backend.law.event-identity :as law]
             [rheos.backend.shape.event-identity :as identity]
+            #?(:cljs [cljs.tools.reader.edn :as edn]
+               :clj [clojure.tools.reader.edn :as edn])
             #?(:cljs [cljs.tools.reader.impl.utils :as reader-utils]
                :clj [clojure.tools.reader.impl.utils :as reader-utils])))
 
@@ -111,6 +113,7 @@
 
 (deftest dangling-character-marker-does-not-abort-the-physical-scan
   (let [original-whitespace? reader-utils/whitespace?
+        original-read edn/read
         rows [(str \\)
               (str "{:event/id \"nested\" :payload " \\)
               (str "{:event/id \"trailing\"} " \\)]
@@ -133,5 +136,10 @@
                     (fn [ch]
                       (if (nil? ch)
                         (throw (ex-info "EOF must be handled before the character helper" {}))
-                        (original-whitespace? ch)))]
+                        (original-whitespace? ch)))
+                    ;; This fault belongs to the scanner boundary. The actual
+                    ;; EDN decoder retains its installed helper contract.
+                    edn/read (fn [& args]
+                               (with-redefs [reader-utils/whitespace? original-whitespace?]
+                                 (apply original-read args)))]
         (check)))))

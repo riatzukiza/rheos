@@ -1,0 +1,47 @@
+{
+  "schema": "observed-command-output-index/v1",
+  "tier": "observed",
+  "finding": 4252705523,
+  "red_parent": "739a523",
+  "fixture_correction": "Strict helper is confined to scanner; actual edn/read reinstates installed whitespace helper for decoding",
+  "initial_candidate": "JVM7/203/3fail0error: first helper override affected real decoder; not GREEN",
+  "unstable_native_gate": "Refused exit3/336tests3426assertions3fail0error. Source was edited before gate finished; no verification credit, gate must repeat with held source",
+  "corrected_scanner_red": {
+    "production_scanner": "Unchanged c7, explicit nil guard not yet present",
+    "jvm": "7tests195assertions0fail1error/exit1",
+    "compiled_node": "336tests3418assertions0fail1error/exit1",
+    "compiler": "187files8compiled0warnings; compile driver exits0, node correctly exits1"
+  },
+  "compiler_fixture_correction": "Existing actual Buffer prefix has explicit ^js hint, without changing values/assertions",
+  "logs": [
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/dangling-green-jvm.log",
+      "bytes": 1941,
+      "sha256": "d93f91499dce879144fa5b1e3c39fc876a82328168839ab7e777b7efa46eec98"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/dangling-green-native-review.log",
+      "bytes": 12721,
+      "sha256": "516d7709f03493c6cf956e445ee188caf3bf1728e004f61d39b355c3e5d4fd14"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/dangling-scanner-only-red-jvm.log",
+      "bytes": 4976,
+      "sha256": "3cff99a22c90cb1da12bbc3b0fdbb13def688bb611361f1596587ca36a783ca3"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/dangling-scanner-only-red-cljs.log",
+      "bytes": 3396,
+      "sha256": "4a7bf51e7d586d601dbc3ecc2ece3d73d4f61264086b1ef9a0fb43ba83f26cdb"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/dangling-scanner-only-red-node.log",
+      "bytes": 3072,
+      "sha256": "99b87eeae3dda201df58327ef8068b78336e9eb909724462fcf333c102186d6f"
+    }
+  ],
+  "limits": [
+    "Installed reader already accepts nil; strict fixture is fault isolation, not current production throw",
+    "No source approval, consumer adoption or runtime mutation"
+  ]
+}

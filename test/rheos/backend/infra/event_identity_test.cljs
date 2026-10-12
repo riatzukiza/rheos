@@ -60,7 +60,7 @@
       (await (.writeFile fsp source-path original "utf8"))
       (let [seed (edn-admission/create-edn-event-admission events-dir)]
         (await (protocols/append-events! seed historical)))
-      (let [prefix (await (.readFile fsp ledger-path))
+      (let [^js prefix (await (.readFile fsp ledger-path))
             task (first (await (tasks/load-tasks project)))]
         (set! (.-now js/Date) (fn [] 1791744352193))
         (let [result (await (edit/update-frontmatter!
