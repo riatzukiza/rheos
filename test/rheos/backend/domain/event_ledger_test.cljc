@@ -13,6 +13,26 @@
 (def entropy-a "12345678-1234-4234-8234-123456789abc")
 (def entropy-b "12345678-1234-4234-8234-123456789abd")
 
+(deftest metadata-macro-cannot-hide-reader-discard
+  (doseq [row ["{:event/id \"ok\" :payload ^#_0 {:foo true} []}"
+               "{:event/id \"ok\" :payload ^{:foo #_0 true} []}"]]
+    (is (= [{:row 1 :code :discarded-edn-form}]
+           (:errors (ledger/check-text row)))))
+  (is (:ok (ledger/check-text
+            "{:event/id \"ok\" :payload ^{:foo true} []}"))))
+
+(deftest dispatch-comment-keeps-literal-discard-text-reader-owned
+  (doseq [row ["{:event/id \"ok\"} #! literal #_ text"
+               "{:event/id \"ok\" :payload [1 #! literal #_ text\n2]}"]]
+    ;; Only the first is a single physical ledger row; use the actual EDN
+    ;; reader separately for nested dispatch comments spanning lines.
+    (is (= "ok" (:event/id (edn/read-string row)))))
+  (is (:ok (ledger/check-text "{:event/id \"ok\"} #! literal #_ text")))
+  (is (= [{:row 1 :code :missing-edn-form}]
+         (:errors (ledger/check-text "#! literal #_ text"))))
+  (is (= [{:row 1 :code :discarded-edn-form}]
+         (:errors (ledger/check-text "{:event/id \"ok\"} #_0 #! literal")))))
+
 (deftest deterministic-generated-identity-preserves-opaque-components
   (doseq [[board task] [["board" "task"] ["literal, id" " task-α " ]
                         ["board-uuid-shaped" "legacy:punctuation/雪"]]]

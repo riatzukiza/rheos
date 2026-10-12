@@ -10,7 +10,45 @@
             [rheos.backend.domain.events :as events]
             [rheos.backend.law.event-identity :as identity-law]
             [rheos.backend.infra.task-edit :as edit]
+            [rheos.backend.infra.task-create :as create]
+            [rheos.backend.infra.transition :as transition]
             [rheos.backend.infra.task-store :as tasks]))
+
+(deftest ^:async invalid-event-components-refuse-before-card-publication
+  (doseq [[board task-id operations]
+          [["" "subject" [:comment :edit :move :create]]
+           [" \u2003 " "subject" [:comment :edit :move :create]]
+           ["board" "   " [:comment :edit :move]]]]
+    (doseq [operation operations]
+      (let [dir (await (.mkdtemp fsp (path/join (.tmpdir os) "rheos-preflight-")))
+            source-path (path/join dir "subject.md")
+            raw (str "---\nuuid: \"" task-id "\"\ntitle: Original\nstatus: incoming\npriority: P3\n---\n\nRetained bytes.\n")
+            project {:id board :tasks-dir dir :fsm "promethean"}
+            task {:uuid task-id :source-path source-path :status "incoming"}
+            captured (atom [])
+            unsub (events/subscribe! #(swap! captured conj %))]
+        (try
+          (when-not (= operation :create) (await (.writeFile fsp source-path raw "utf8")))
+          (let [before (vec (await (.readdir fsp dir)))
+                outcome (try
+                          (case operation
+                            :comment (await (edit/append-comment! {:project project :task task :text "Refused"}))
+                            :edit (await (edit/update-frontmatter! {:project project :task task :updates {:priority "P0"}}))
+                            :move (await (transition/move-task! {:project project :task task :new-status "breakdown"}))
+                            :create (await (create/create-task! {:project project :title "Refused creation" :uuid "new-task"})))
+                          (catch :default error (ex-data error)))]
+            (is (contains? #{:refused :conflict} (:kind outcome))
+                (str operation " must refuse known invalid identity before effects: " outcome))
+            (is (= before (vec (await (.readdir fsp dir))))
+                "No new card or event-ledger path may be left behind")
+            (when-not (= operation :create)
+              (is (= raw (await (.readFile fsp source-path "utf8")))
+                  "Original card bytes remain exact, without a new write-id"))
+            (is (empty? @captured) "No subscriber publication for a refused identity"))
+          (finally
+            (unsub)
+            (swap! ledger/ledger-cache dissoc dir)
+            (await (.rm fsp dir #js {:recursive true :force true}))))))))
 
 (deftest ^:async independent-native-admission-writers-have-distinct-frozen-time-ids
   (let [dir (await (.mkdtemp fsp (path/join (.tmpdir os) "rheos-two-writers-")))

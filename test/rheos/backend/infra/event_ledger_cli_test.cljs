@@ -59,6 +59,8 @@
                                    [["check-event-ledger" blank-row] 3]
                                    [["check-event-ledger" bom-path] 0]
                                    [["check-event-ledger" invalid-utf8] 3]
+                                   [["check-event-ledger" unique duplicate] 1]
+                                   [["check-event-ledger" unique "--config" broken-config duplicate] 1]
                                    [["check-event-ledger" unique "--config" broken-config
                                      "--tasks-dir" (path/join dir "never-created")] 0]
                                    [["check-event-ledger" missing] 2]
@@ -86,7 +88,7 @@
                       ;; Non-root observes mode-000 denial. Root uses a scoped
                       ;; readFile fault: root permissions cannot prove EACCES.
                       (is (= "EACCES" (get-in report [:errors 0 :io-code]))))
-                    (when (or (= 1 (count args)) (= "--json" (second args)))
+                    (when (= 1 expected)
                       (is (= 0 (:record-count report)))
                       (is (= "usage" (get-in report [:errors 0 :code]))))
                     (when (= (second args) duplicate)

@@ -716,3 +716,12 @@ After committed RED `ad66378`, the exact authored `story` joins the portable adm
   spore: none
   receipt-refs: rheos-personal-main-859-integration-green-20261012
   note: Inspected18 incoming files; typed document/sidecar/watcher behavior preserved. Held126 source hashes unchanged. NativeReview all4releases0warnings/lint0errors0warnings/full360tests3513assertions0fail0error/exit0; JVM7/203/0/0. Actual82-row owner ledger passes candidate checker. Prior95receipt prefix retained; unique938byte incoming raw row appended96, original complete82-row mainGitblob retained separately; no whole incoming prefix claim. Append97 records integration, no stale review transfer. MissingNPM_TOKEN/source-map-support notices separate; initial read-only/usage command errors corrected with no verification credit. No consumer/runtime/heartbeat/model/credential/paid change.
+
+- ts: 2026-10-12T23:01:19.138Z
+  task: Canonical event identity/checker owner: four native83a1 boundary findings
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-boundary-findings-red-20261012
+  note: Stable production unchanged throughout RED. JVM9tests211assertions3fail0error/exit3; compiledfull363tests3599assertions46fail0error/exit1. Actualmetadata discard bypass, dispatch-comment false rejection, extra-path misleading exit0 and actual native invalid-identity card-write-before-ledger partial effect reproduced. Real disposable card bytes, root directories/subscriber observations retained; legacyopaque positives unchanged. Compiler autorun is same suite twice, no duplicatecredit. Owner lawful Review->InProgress for repairs. Native current83a1 requests retained; Codexmanual6134140010quotaUNKNOWN excludesoptionalaccountavailability canonically, supplies noapproval. CR6134168419acceptedfullrequest/6134171821triggerpending; MiMo38318446265currentrunning after ownedobsoletec7CIcancel/forcecancel completedcancelled, no providerterminationclaim. No consumer/runtime/heartbeat/paid/model/authchange. Receipt/reflection/event prefixes retained; no spore.

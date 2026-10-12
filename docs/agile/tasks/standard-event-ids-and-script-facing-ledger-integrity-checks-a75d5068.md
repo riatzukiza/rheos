@@ -1,13 +1,13 @@
 ---
 uuid: "af67891c-fbb4-4f40-a6a2-e9bda75d5068"
 title: "Standard event IDs and script-facing ledger integrity checks"
-status: "review"
+status: "in_progress"
 type: "task"
 priority: "P1"
 points: "3"
 labels: "cephalon, events, identity, provenance, repair"
 category: "tasks"
-write-id: "1791845094627-0.rsviej56anrowexmdq"
+write-id: "1791845792095-0.4gixzd6h1l83kvpo9l3"
 created_at: "2026-10-12T15:09:38.874Z"
 ---
 
