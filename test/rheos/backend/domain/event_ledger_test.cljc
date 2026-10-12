@@ -146,7 +146,7 @@
                                ([options reader]
                                 (with-redefs [reader-utils/whitespace? original-whitespace?]
                                   (original-read options reader)))
-                               #?@(:cljs [([reader eof-error? eof options]
-                                           (with-redefs [reader-utils/whitespace? original-whitespace?]
-                                             (original-read reader eof-error? eof options)))]))]
+                               ([reader eof-error? eof options]
+                                (with-redefs [reader-utils/whitespace? original-whitespace?]
+                                  (original-read reader eof-error? eof options))))]
         (check)))))

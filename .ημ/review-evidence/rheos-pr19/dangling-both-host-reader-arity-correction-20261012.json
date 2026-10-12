@@ -1,0 +1,22 @@
+{
+  "tier": "observed-command-output-index",
+  "correction": "JVM reader also has internal four-argument read, confirmed by installed source and actual ArityException. Preserve 1/2/4 on both hosts. Receipt93 wrongly scoped four-argument form to CLJS; it remains historical. Previous attempted JVM GREEN had three fixture failures, no GREEN credit.",
+  "red": "Corrected JVM7tests195assertions0fail1error/exit1, exclusively scanner strict-nil refusal. CLJS expansion of existing 1/2/4 fixture is unchanged from actual336/3418/0fail1error RED.",
+  "logs": [
+    {
+      "name": "dangling-jvm-native-reader-arity-probe.log",
+      "bytes": 4279,
+      "sha256": "d351c9b34a316c32bf8633fd63907c930db5881cdb97e8134b0790203c1b6307"
+    },
+    {
+      "name": "dangling-final-green-jvm.log",
+      "bytes": 1941,
+      "sha256": "086b5e36d00b87ced25a1ae41451df430cf3cd3d91dd4010dd3dc2a391a533be"
+    },
+    {
+      "name": "dangling-both-host-arity-red-jvm.log",
+      "bytes": 4976,
+      "sha256": "46da819c50da750a9f00ad4e0984b04b4150d39829a6ae5d129d63adb3fb03e8"
+    }
+  ]
+}
