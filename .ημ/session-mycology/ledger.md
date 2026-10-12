@@ -536,3 +536,21 @@ After committed RED `ad66378`, the exact authored `story` joins the portable adm
   spore: none
   receipt-refs: rheos-incoming-epic-correction-domain-native-green-20261011
   note: ActualMuseepiccorrection waits fresh exacthead source review/qualifiedmerge/adoption; source Review is not delivery. Hashes in verification note/private retained logs. Initial RED delimiterfailure remainsretained; later semanticRED/Green actual. GoalACTIVE/heartbeatHUMAN-PAUSED; no runtime/maker/model/clock/grant/cloud/publication/deployment/spore mutation.
+
+- ts: 2026-10-11T21:43:49.206Z
+  task: B3 bounded source import and consumer integration
+  p-efficiency: 0.8
+  p-friction: 0.25
+  p-skill-candidate: 0.12
+  spore: none
+  receipt-refs: rheos-epic-qualified-real-muse-adoption-20261011
+  note: NativeexplanationwholebodyreadbackPASS including finalnewline after initialoperatorrstrip comparisonfailure. Firstinline repeat-cardassertion wasvacuous; itgetsno bytecustodycredit. Separatefrozenbyte-custodycorrection records actualrepeat andallbytes equality without rewriting prior proof. Canonicalwait60exit4 wasoperatorpendingtimeout, notfailedproviderattempt; sameMiMoattemptcompleted andno reviews werecancelled/restarted. No paidcredits/headcounterchurn/historyrewrite/localRheosparser/spore/live-maker/model/clock/gateway/PM2/cloud/grant/publication/deployment mutation. GoalACTIVE/heartbeatHUMAN-PAUSED.
+
+- ts: 2026-10-12T15:11:22.977Z
+  task: B3 bounded source import and consumer integration
+  p-efficiency: 0.8
+  p-friction: 0.25
+  p-skill-candidate: 0.12
+  spore: none
+  receipt-refs: cephalon-rheos-event-id-integrity-plan-20261012
+  note: Human authorized correction of existing ledger rows and requested a script check plus standard ID creation/checking. Fresh Rheos personal/main ae5cebca matched merged owner; reused existing checkout with14GiBfree, no new snapshot or installation. New normal codex/rheos-event-id-integrity branch retains prior owned source76/PR17Done completion appends unchanged. Qualified CLI SHA85369213440634989365f75929045d36eb69b6c6b1e7679f68d483374a0d526b created native5point Incoming taskaf67891c via explicit EDN board configuration. Proposed shared portable constructor/law plus canonical read-only CLI covers unique legacy opaque IDs, exact duplicate rows, missing/blank/non-string IDs, strict complete-row decoding and explicit exits. Consumer will pin reviewed Rheos source for CI; no local Muse/Foresight identity validator. Only two human-authorized historical event/id corrections are in scope; original row archives, sourceGitblob/SHA and all other fields/order/rows remain custody evidence. Plan not Ready or implemented yet; no source test/build/approval claimed. No active runtime/deployment/publication or unrelated board mutation. Initial missing-file discovery reads are operator discovery, not product verification; rg no-instruction result was exit1 and metadata assertion corrected without source writes. No spore.

@@ -1,14 +1,14 @@
 ---
 uuid: "a6de84ce-06c4-4556-a9ba-6bbb78c7b60a"
 title: "Lawful incoming-card epic correction"
-status: "review"
+status: "done"
 type: "task"
 priority: "P1"
 points: "3"
 labels: "cephalon, admission, provenance, repair"
 dependency: ["62b3d579-70a2-4670-9d7c-a23bc89b06f8"]
 category: "tasks"
-write-id: "1791751964284-0.2qgc8hbv4qu0qhsgqko"
+write-id: "1791754954073-0.m03bzsuivgmgijpwjj"
 created_at: "2026-10-11T19:29:55.518Z"
 ---
 
@@ -96,5 +96,8 @@ Process documentation: GPL-3.0-or-later.
 Implementation plan after qualified event-ID predecessor Done: commit portable and real native writer RED for exact Incoming absent/task/story to epic, full proposed graph validation, same-epic no-op, protected/mixed/type/status/refusal cases and byte/event custody. Then implement conditional authority at the existing common admission, propagate public CLI/HTTP/MCP diagnostics/schema, retain reservation/revision/publication gates, run JVM/CLJS/full lint/test/build, and obtain fresh exact-head source review before real Muse correction. No general type editor or runtime deployment.
 
 RED4ff8cd0 committed: compiled262tests2567assertions63fail0errors, JVM31tests671assertions54fail0errors; initial delimiter compile failure retained separately. Candidate GREENcompiled262tests2606assertions0fail/error and JVM31/6710fail/error; full lint0errors0warnings8baselineinfos. Conditional Incoming exactepic guard is separate from descriptive mutable keys; CLI/HTTP/MCP share complete-graph admission, real writer no-op/custody/refusal/reservation/revision/file-event fixtures pass. Native Review full build/lint/test gate now starts; completion and release hashes are not yet claimed. Actual Muse epic correction waits qualified source adoption.
+
+Qualified personal PR17 MERGED ae5cebca6124dae5fdd47707647b07daf10a8a4a, exact reviewed head8ef43eb2cb590f465552f462c8743a04282603fd/base7712a86d49c53f3c73d40058092b3f610fce5e7f/tree58edd246a4a3b20fe81f080d61bdabe1cbad3de1. Canonical gate PASS, one complete available configured cohort CodeRabbit/Codex/MiMo, three passing checks, zero finding threads. Real qualified CLI SHA85369213440634989365f75929045d36eb69b6c6b1e7679f68d483374a0d526b corrected actual Muse coordinatorbb5b1ee2-111c-4762-8321-889a7256b2f9 from absent type to exact epic while Incoming. Independent native coordinator/two-child reads pass; both parent/epic links and B scalar dependency A retained; body/UUID/status,16unrelated cards and journals unchanged. Whole57074-byte original event prefix SHA3241b199e71ce90031492fe153762a0d8415e891a5ef346820843b40229e6c38 retained; one477-byte native type event SH2822a793922f8a6ce1cf80084ce09a442243abea3ecf25785a1b9af5df684782, newIDkanban-bb5b1ee2-111c-4762-8321-889a7256b2f9-d3d23f00-5d6d-4bec-9c85-1290ad32f7c5. Both original duplicate-ID rows remain unchanged. Private observed-native proof SHAfd8769b463799679ee3f2c6472bf7bef24d9f032e12cf1a030c9f6fd670338a2. Initial operator repeat-card assertion was vacuous and gets no custody credit; separate actual frozen17-card/ledger/journal native repeat proved byteexact noop, correctionproof SHA9fdea9392f138155ecc6222af19b3ab481da40599e255b9e345bea74b82d5db9. Acceptance consumer proof now complete for this narrow card. No character field/mood/live recall or wider epic completion claimed.
+Qualified full CLI SHA256: 85369213440634989365f75929045d36eb69b6c6b1e7679f68d483374a0d526b.
 
 ---
