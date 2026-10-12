@@ -121,6 +121,29 @@
       (is (= (str/replace raw "status: incoming" "status: \"done\"") updated))
       (is (= {:count 3 :active true} (:metadata frontmatter) (:copy frontmatter))))))
 
+(deftest inline-array-leading-whitespace-reader-parity
+  ;; Ported from open-hax/eta-mu#335. This repository reads frontmatter as
+  ;; YAML, so YAML decides the edge cases. The invariant kept from eta-mu: a
+  ;; form feed before the bracket never yields an admitted label sequence.
+  (testing "form feed before the opening bracket cannot become an admitted array"
+    (doseq [prefix ["\f" " \f\t" "\t\f "]
+            value ["[]" "[ci]" "[\"security,review\", ci]"]]
+      (let [yaml (str "status: review\nlabels:" prefix value)
+            raw (str "---\n" yaml "\n---\nBody")
+            read (try (parser/parse-frontmatter raw) (catch :default e e))]
+        (is (= {:status "review"} (frontmatter/parse-flat yaml)) (pr-str [prefix value]))
+        (is (not (sequential? (get-in read [:frontmatter :labels]))) (pr-str [prefix value])))))
+  (testing "horizontal separators retain ordered values in both readers"
+    (doseq [prefix [" " "\t" " \t "]
+            [value expected] [["[]" []]
+                              ["[ci]" ["ci"]]
+                              ["[\"security,review\", ci]" ["security,review" "ci"]]]]
+      (let [yaml (str "labels:" prefix value)
+            raw (str "---\n" yaml "\n---\nBody")
+            frontmatter (:frontmatter (parser/parse-frontmatter raw))]
+        (is (= {:labels expected} frontmatter) (pr-str [prefix value]))
+        (is (= frontmatter (frontmatter/parse-flat yaml)) (pr-str [prefix value]))))))
+
 (deftest test-parse-sections
   (testing "parses single body section"
     (let [content "\n# Heading\nBody text"
