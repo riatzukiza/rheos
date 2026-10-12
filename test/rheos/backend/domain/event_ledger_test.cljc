@@ -139,7 +139,14 @@
                         (original-whitespace? ch)))
                     ;; This fault belongs to the scanner boundary. The actual
                     ;; EDN decoder retains its installed helper contract.
-                    edn/read (fn [& args]
-                               (with-redefs [reader-utils/whitespace? original-whitespace?]
-                                 (apply original-read args)))]
+                    edn/read (fn
+                               ([reader]
+                                (with-redefs [reader-utils/whitespace? original-whitespace?]
+                                  (original-read reader)))
+                               ([options reader]
+                                (with-redefs [reader-utils/whitespace? original-whitespace?]
+                                  (original-read options reader)))
+                               #?@(:cljs [([reader eof-error? eof options]
+                                           (with-redefs [reader-utils/whitespace? original-whitespace?]
+                                             (original-read reader eof-error? eof options)))]))]
         (check)))))

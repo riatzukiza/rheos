@@ -680,3 +680,12 @@ After committed RED `ad66378`, the exact authored `story` joins the portable adm
   spore: none
   receipt-refs: rheos-dangling-scanner-red-correction-20261012
   note: Correction appended without rewriting receipt91. First strict-helper override also altered actual EDN decoder: initial candidateJVM7/203/3fail0error and native gate336/3426/3fail0error/exit3 refused. Candidate source changed before native gate finished, so it receives no verification credit; final stable gate must repeat. Strict fixture now scopes helper to scanner and restores original helper during actual edn/read. Corrected causal scannerRED with production unchanged: JVM7/195/0fail1error/exit1; compiled Node336/3418/0fail1error/exit1; compile8files0warnings. Ordinary installed-reader cases remain positive; no claim reported real dependency throws. Added actual Buffer ^js hint in existing owned identity fixture to repair one concrete inference warning, assertions unchanged. All logs retained, no paid/credentials/runtime/consumer change.
+
+- ts: 2026-10-12T22:21:28.131Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-dangling-native-reader-arity-red-correction-20261012
+  note: Compiled cljs.tools.reader.edn/read has internal arities 1, 2 and 4. The test double preserves all three on CLJS, 1 and 2 on JVM; actual decoder helper restored only while decoding. Strict nil refusal belongs solely to the scanner. Native candidate gate and pnpm test had 3 failures because fixture lacked internal 4-arity; no GREEN credit. Earlier receipts remain immutable. Current installed real reader accepts nil; reported current production exception was not reproduced. Candidate is defensive explicit EOF handling, not proof of that exception. Existing receipt/reflection/event prefixes preserved. No consumer, runtime, credentials or paid-model change.
