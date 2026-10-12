@@ -4,26 +4,26 @@ title: "Standard event IDs and script-facing ledger integrity checks"
 status: "incoming"
 type: "task"
 priority: "P1"
-points: "5"
+points: "3"
 labels: "cephalon, events, identity, provenance, repair"
 category: "tasks"
-write-id: "1791817778874-0.ncyop7770rstm8s6qvf"
+write-id: "1791818721501-0.l0yxqop5gbvx6uo11p"
 created_at: "2026-10-12T15:09:38.874Z"
 ---
 
 ## Context
 
-The human authorized the historical row repair on 2026-10-12: "You can fix the ledger rows. We should probably have a check for that on the scripts, and a standard way of creating and checking the ids". Muse PR6 retains two distinct title/labels events at ledger rows 76 and 77 with one event/id. Rheos PR16 already replaced timestamp-only event generation with UUID generation, but there is no reusable ID construction/check contract or script-facing ledger identity check.
+The human authorized the historical row repair on 2026-10-12: "You can fix the ledger rows. We should probably have a check for that on the scripts, and a standard way of creating and checking the ids". Muse PR6 at immutable cd5c4d5372aede740feeed74554f635a08559b09 had two distinct title/labels events at ledger rows76/77 with one event/id; the separately authorized correction is now committed at8acedb549a93c7a97634f9f40a4844a34e3285e3 with original-row custody. Rheos PR16 already replaced timestamp-only generation with UUID generation, but there is no reusable construction/check contract or script-facing ledger identity check.
 
 ## Outcome
 
-One standard Rheos event-ID construction and validation boundary is used by the producer and available to scripts/CI. The explicitly authorized Muse data correction makes both existing records independently addressable and retains their original bytes and source revisions as provenance.
+One portable Rheos owner module supplies distinct generated-ID and retained-ledger-ID contracts, used by the producer and available to scripts/CI. This owner card can complete after its own source qualification and publication; the dependent consumer rollout has separate acceptance and review gates.
 
 ## Scope
 
-Extract the existing board/task/UUID event-ID composition into a reusable portable shape/law boundary. Keep entropy generation at the runtime edge. Add a read-only canonical Rheos CLI check that reads every event ledger row, rejects malformed/non-map records and missing/non-string/blank IDs, and reports every duplicate with one-based row locations. Preserve compatible opaque legacy IDs; validation must not require rewriting distinct historical timestamp-based IDs. Event IDs identify individual records; write IDs remain correlation values shared by one multi-field operation.
+Extract the existing board/task/UUID composition into a deterministic portable constructor accepting explicit board ID, task ID and UUID entropy. Keep entropy generation at the runtime edge. Name separate generated-ID validation (the producer's prefix plus canonical UUID suffix) and ledger-admission validation (compatible nonblank opaque IDs, with uniqueness checked over all physical records). Add a read-only canonical CLI check that reads every physical ledger line, refuses incomplete or extra forms and invalid/non-map records, and reports duplicate IDs with exact one-based row locations. Event IDs identify records; write IDs remain correlation values shared by a multi-field operation.
 
-The owning consumer applies only the two explicitly authorized event/id changes. Archive the exact original two lines, original Git blob/commit, full ledger SHA256 and before/after row hashes, preserving row order, record count, every other field and all other row bytes. This specific human authorization is an exception for these two data corrections, not a standing permission to rewrite receipts or history. Add a consumer CI invocation of the qualified canonical check through a revision-bound Rheos source; do not create a second Muse/Foresight validator.
+Export the checker through the owning CLI/script boundary and document invocation and revision binding. The separate two-point consumer card `adopt-qualified-event-id-checks-in-the-muse-consumer` depends on owner UUID `af67891c-fbb4-4f40-a6a2-e9bda75d5068` on this same coordinating board; its implementation and PR belong in personal Muse. This three-point owner plus the two-point rollout retain the original five-point total provisionally. The dependent consumer card covers the already authorized Muse correction, its original-row archive and consumer CI pin/adoption after this owner implementation is qualified. Owner release and consumer adoption do not transfer approval or completion to each other; no Muse/Foresight validator is introduced.
 
 ## Non-goals
 
@@ -31,15 +31,15 @@ No runtime restart, deployment, live publication, unrelated board transitions, d
 
 ## Acceptance criteria
 
-1. The producer uses the shared constructor and generated IDs have a validated UUID suffix with the existing board/task prefix. Invalid creation inputs fail explicitly. Frozen time and two independent real writers retain distinct event IDs; existing event meanings and persistence-before-publication stay intact.
-2. The read-only canonical check accepts unique compatible opaque IDs, including legacy timestamp IDs. It detects identical and different-payload duplicate records, missing/null/boolean/blank IDs, non-map data and malformed input with exact physical row numbers. It never silently skips an unreadable row or counts a partial scan as success.
-3. The CLI has documented stable success/failure exits and makes no board/card/ledger write while checking, including missing/unreadable input and invalid-data cases. Scripts invoke this owner rather than reimplementing identity rules.
-4. The real Muse rows 76 and 77 are corrected under the quoted authorization. Original raw rows remain recoverable; all original payloads, timestamps, write IDs and causal roots remain byte-identical, and all 78 other original rows remain byte-identical and in order. The qualified canonical check verifies the complete corrected ledger.
-5. Consumer CI pins and invokes the reviewed owner. A deliberately duplicated fixture fails the same checker and a unique compatible fixture passes. The consumer's ordinary gates and fresh exact-head review/settlement qualify its new revision.
+1. Identical explicit constructor inputs return the identical generated ID; changing valid UUID entropy changes the ID. Invalid board/task/UUID creation inputs refuse. Generated-ID validation checks the existing board/task prefix and canonical UUID suffix. The production adapter obtains fresh entropy for each emission before calling the constructor; controlled adapter tests observe that boundary. Frozen time and two independent real writers retain distinct event IDs, unchanged non-ID fields and persistence-before-publication.
+2. Ledger admission independently accepts unique compatible opaque strings, including timestamp-based legacy IDs, without applying generated-ID UUID restrictions. It refuses identical and different-payload duplicates, missing/null/boolean/blank/non-string IDs and non-map records with exact physical row numbers. An ID check does not claim full event-schema admission.
+3. Each physical line must contain exactly one complete EDN form. Two forms on one line, a form spanning lines, trailing forms/junk and blank or comment-only physical lines refuse. A single terminal LF or CRLF is a record terminator rather than another blank row; extra blank lines refuse. A zero-byte file refuses rather than passing as an empty scan. No malformed line is silently skipped or partial scan treated as success.
+4. CLI outcomes bind the existing exit contract: unique nonempty input exits0, missing path exits2, malformed/invalid/duplicate/empty input exits3, unreadable input or other I/O failure exits4, and missing command arguments exit1. Every failure exits nonzero. Real process tests preserve fixture bytes and prove no board/config/card/ledger creation or write on any check path, including missing/unreadable input.
+5. The public owner invocation accepts an explicit active-ledger path, has stable documented result fields and uses the same portable ID rules as production. Owner script/CLI tests include a duplicate negative and unique compatible positive. Full source gates and exact-head review qualify the owner revision before the separate consumer pins/adopts it; the owner can complete independently.
 
 ## Verification
 
-Planning review and native Ready precede source implementation. Commit meaningful failing law/CLI tests first, then green portable semantics and outer adapters. Run full existing lint/test/build gates with zero compiler/lint warnings. Exercise actual checker process exits and unchanged fixture bytes, full real ledger validation and negative replay/index fixtures. Record exact input/output/source hashes and actual review IDs. No local test or source plan stands in for native source qualification or live character proof.
+Planning review and native Ready precede source implementation. Commit meaningful failing law/CLI tests first, then green portable semantics and outer adapters. Run full existing lint/test/build gates with zero compiler/lint warnings. Exercise constructor determinism and adapter entropy, strict per-line EOF/blank/empty controls, actual process exits and unchanged fixture bytes. Record exact input/output/source hashes and actual review IDs. Consumer ledger validation and adoption remain separately gated; no owner test/source plan supplies live character proof.
 
 ## Risks
 
