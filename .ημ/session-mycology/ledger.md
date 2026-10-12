@@ -536,3 +536,48 @@ After committed RED `ad66378`, the exact authored `story` joins the portable adm
   spore: none
   receipt-refs: rheos-incoming-epic-correction-domain-native-green-20261011
   note: ActualMuseepiccorrection waits fresh exacthead source review/qualifiedmerge/adoption; source Review is not delivery. Hashes in verification note/private retained logs. Initial RED delimiterfailure remainsretained; later semanticRED/Green actual. GoalACTIVE/heartbeatHUMAN-PAUSED; no runtime/maker/model/clock/grant/cloud/publication/deployment/spore mutation.
+
+- ts: 2026-10-11T21:43:49.206Z
+  task: B3 bounded source import and consumer integration
+  p-efficiency: 0.8
+  p-friction: 0.25
+  p-skill-candidate: 0.12
+  spore: none
+  receipt-refs: rheos-epic-qualified-real-muse-adoption-20261011
+  note: NativeexplanationwholebodyreadbackPASS including finalnewline after initialoperatorrstrip comparisonfailure. Firstinline repeat-cardassertion wasvacuous; itgetsno bytecustodycredit. Separatefrozenbyte-custodycorrection records actualrepeat andallbytes equality without rewriting prior proof. Canonicalwait60exit4 wasoperatorpendingtimeout, notfailedproviderattempt; sameMiMoattemptcompleted andno reviews werecancelled/restarted. No paidcredits/headcounterchurn/historyrewrite/localRheosparser/spore/live-maker/model/clock/gateway/PM2/cloud/grant/publication/deployment mutation. GoalACTIVE/heartbeatHUMAN-PAUSED.
+
+- ts: 2026-10-12T15:11:22.977Z
+  task: B3 bounded source import and consumer integration
+  p-efficiency: 0.8
+  p-friction: 0.25
+  p-skill-candidate: 0.12
+  spore: none
+  receipt-refs: cephalon-rheos-event-id-integrity-plan-20261012
+  note: Human authorized correction of existing ledger rows and requested a script check plus standard ID creation/checking. Fresh Rheos personal/main ae5cebca matched merged owner; reused existing checkout with14GiBfree, no new snapshot or installation. New normal codex/rheos-event-id-integrity branch retains prior owned source76/PR17Done completion appends unchanged. Qualified CLI SHA85369213440634989365f75929045d36eb69b6c6b1e7679f68d483374a0d526b created native5point Incoming taskaf67891c via explicit EDN board configuration. Proposed shared portable constructor/law plus canonical read-only CLI covers unique legacy opaque IDs, exact duplicate rows, missing/blank/non-string IDs, strict complete-row decoding and explicit exits. Consumer will pin reviewed Rheos source for CI; no local Muse/Foresight identity validator. Only two human-authorized historical event/id corrections are in scope; original row archives, sourceGitblob/SHA and all other fields/order/rows remain custody evidence. Plan not Ready or implemented yet; no source test/build/approval claimed. No active runtime/deployment/publication or unrelated board mutation. Initial missing-file discovery reads are operator discovery, not product verification; rg no-instruction result was exit1 and metadata assertion corrected without source writes. No spore.
+
+- ts: 2026-10-12T15:29:33.921Z
+  task: B3 bounded source import and consumer integration
+  p-efficiency: 0.8
+  p-friction: 0.25
+  p-skill-candidate: 0.12
+  spore: none
+  receipt-refs: cephalon-rheos-event-id-plan-refinement-20261012T1530
+  note: Actual Codex planning review completed15:21:28 with5findings. Card now specifies exactly one complete EDN form per physical line with whole-row EOF; rejects two forms, split forms, junk, blank/comment-only lines and zero-byte input, distinguishes one terminal LF/CRLF from extra blanks. Generated-ID strict board/task/canonicalUUID validation is distinct from nonblank legacy opaque ledger-ID admission. Constructor accepts explicit entropy for deterministic tests; runtime obtains fresh entropy per emission. Explicit CLI exits0success/1usage/2missing/3malformed-invalid-duplicate-empty/4unreadableIO; real process no-write/no-config-admission controls planned. Native existing qualified CLI SHA85369213440634989365f75929045d36eb69b6c6b1e7679f68d483374a0d526b changes owner estimate5to3 and creates separate Incoming2point consumer card with native canonical identity adopt-qualified-event-id-checks-in-the-muse-consumer and dependencyaf67891c. Consumer is coordinated on same owner board to avoid unsupported cross-board admission; implementation/PR remains personal Muse after owner implementation qualifies and reaches Done. Source release and consumer qualification independent. All estimates provisional, original total5 retained. Native writeIDs1791818721501-0.l0yxqop5gbvx6uo11p and1791818730059-0.ztb8eohw33ck66he87w preserved. MiMo hosted free inference failed twice, latest15:21:06, actual artifact retained privately; no assessment/approval/cohort. CodeRabbit original quota15:12:05 says52minute cooldown, earliest16:04:05 fresh evidence required; no early manual request/paid usage. Portable module, strict CLI and consumer invocation are plans only; lawful Ready precedes RED, no feature implementation/adoption yet. Existing source77 receipt/reflection prefix immutable. No runtime/owner/cloud/PM2/publication/deployment changes or spore.
+
+- ts: 2026-10-12T15:39:09.173Z
+  task: B3 bounded source import and consumer integration
+  p-efficiency: 0.8
+  p-friction: 0.25
+  p-skill-candidate: 0.12
+  spore: none
+  receipt-refs: cephalon-rheos-event-id-opaque-config-refinement-20261012T1540
+  note: Actual Codex5492907211 exactae2b684 planning review at15:34:33 identified two P2 omissions. Scope/AC now preserve accepted exact nonblank configured board/stored task identity strings including literal, id, punctuation/internal whitespace/Unicode; no new-card filename/RFC pattern, trimming or ambiguous prefix split. Explicit entropy remains canonicalUUID; producer adapter must exercise opaque existing identities. Standalone explicit ledger check must dispatch before config/view bootstrap, and actual process tests cover cwd without config plus unrelated malformed/unreadable KANBAN_CONFIG independently of ledger-specific exits. This fixes plan acceptance only, no code/test/CLI implementation yet. Prior five planning findings actually settled by replies4249742370/3054/3779/4416/4978 with independent native readback. Original3+2 provisional estimate/dependency/status unchanged; complete source78 receipt/reflection/event prefixes retained. Fresh current free inference still failed Invalid credential while App credential prerequisite passed and publication skipped; no paid use, provider switch, quota exception or mandatory-wrapper waiver. Muse361d4c3 CI/Sandbox pass, currentCodeRabbit full request6127481165 genuine fresh-head reason/all8inputs13receiptssuffix is pending, no duplicate. No runtime/deployment/publication/spore or complete-goal claim.
+
+- ts: 2026-10-12T15:48:13.442Z
+  task: B3 bounded source import and consumer integration
+  p-efficiency: 0.8
+  p-friction: 0.25
+  p-skill-candidate: 0.12
+  spore: none
+  receipt-refs: cephalon-rheos-owner-body-history-correction-20261012T1547
+  note: Codex actual0fa planning finding4249844295 asked revised body history after the owner/consumer split. Qualified native Rheos comment operation now appends a complete7304byte current owner-body revision snapshot SHA946f94dc53b495cfe59264f1a3067155ab67cea1390c5ad30ab76a6752fde836, tied to source0fa and exact3pointowner/2pointconsumer dependency. Original task-created combined scope remains true initial history, unchanged. Independent native readback verifies full snapshot text, unchanged body and every metadata field except native write-id; exactly one canonical comment event appended and old event prefix remains byte-identical. Native comments are the supported later-information vocabulary; this supplies complete revision custody, not a new body-update event type, automatic latest-body projection, replay engine, source implementation, Ready or approval. No local event writer/parser/protocol introduced. Current0fa free hosted38271812769 deterministic and tool compile passed, reviewer/mandatorywrapper failed; no new-head approval. Muse CodeRabbit full request6127481165 completed via native6127483510 updated15:39:59 and summary6111723564 updated15:41:23 selectsall8/exact361reviewed/noactionable/no declaredomissions; canonical approval evidenceCodeRabbit, not formalGitHubAPPROVED. MuseCI/Sandboxpass but free inference401/mandatorywrapperfail/0of5cohorts remain. No paid/provider/credential/runtime/deployment/publication change, no spore. Receipt79 and complete source event/reflection prefixes preserved.
