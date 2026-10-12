@@ -31,6 +31,14 @@
                  (identity/generated-id "board" "task" bad))))
   (is (not (law/generated-id? "board" "task" "board-task-legacy"))))
 
+(deftest canonical-entropy-refuses-every-trailing-line-terminator
+  (doseq [ending ["\n" "\r" "\r\n" "\u2028" "\u2029"]]
+    (let [bad (str entropy-a ending)]
+      (is (not (law/uuid-entropy? bad)))
+      (is (thrown? #?(:cljs cljs.core/ExceptionInfo :clj clojure.lang.ExceptionInfo)
+                   (identity/generated-id "board" "task" bad)))
+      (is (not (law/generated-id? "board" "task" (str "board-task-" bad)))))))
+
 (deftest ledger-identities-remain-opaque-and-unique
   (let [text "{:event/id \"old-1791744352193\"}\n{:event/id \"literal, id-雪\" :payload {:x 1}}\n"
         expected {:ok true :record-count 2 :errors []}]
@@ -68,3 +76,18 @@
         (is (= code (get-in result [:errors 0 :code]))))))
   (let [result (ledger/check-text "{:event/id \"ok\"}\nnot-a-map\n{:event/id \"ok\"}\n")]
     (is (= [2 3] (mapv :row (:errors result))) "No malformed line stops or hides the later scan")))
+
+(deftest discarded-forms-cannot-hide-physical-ledger-input
+  (doseq [text ["{:event/id \"ok\"} #_{:event/id \"extra\"}"
+                "#_{:event/id \"hidden\"} {:event/id \"ok\"}"
+                "{:event/id \"ok\" :payload [#_42 1]}"
+                "{:event/id \"ok\"}#_#_1 2"]]
+    (let [result (ledger/check-text text)]
+      (is (false? (:ok result)))
+      (is (= 1 (get-in result [:errors 0 :row])))
+      (is (= :discarded-edn-form (get-in result [:errors 0 :code])))))
+  (doseq [text ["{:event/id \"ok\" :payload \"literal #_ text\"}"
+                "{:event/id \"ok\" :payload \"escaped \\\" #_ text\"} ; #_ is a comment"
+                (str "{:event/id \"ok\" :payload " (pr-str [\# \_ \" \;]) "}")
+                "{:event/id \"ok\" :payload foo#_bar}"]]
+    (is (:ok (ledger/check-text text)))))

@@ -617,3 +617,12 @@ After committed RED `ad66378`, the exact authored `story` joins the portable adm
   spore: none
   receipt-refs: cephalon-rheos-event-id-checker-green-20261012
   note: Fresh compiled CLI and native build gate passed268tests2851assertions; portable JVM3tests111assertions passed. Test-before-build hosted ordering required building the CLI inside the test command. Preserve private raw logs, exact committed ledger prefixes and provider/source qualification boundaries; no consumer or runtime adoption.
+
+- ts: 2026-10-12T21:07:43.001Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-reviewed-checker-red-20261012
+  note: All five actual Codex findings are being repaired within the authorized owning Rheos scope; no local consumer checker, policy waiver, identity override, credentials, paid model, runtime, heartbeat, maker or deployment change. Preserve exact committed362 receipt84/reflection/event prefixes. No spore.

@@ -1,6 +1,7 @@
 (ns rheos.backend.infra.event-ledger-cli-test
   "Actual compiled CLI exits and no-write controls; no board bootstrap is allowed."
   (:require [cljs.test :refer [deftest is]]
+            [clojure.string :as str]
             ["node:child_process" :as child]
             ["node:fs" :as fs]
             ["node:os" :as os]
@@ -51,16 +52,21 @@
                                    [["check-event-ledger" missing] 2]
                                    [["check-event-ledger" dir] 4]
                                    [["check-event-ledger" unreadable] 4]
-                                   [["check-event-ledger"] 1]]]
+                                   [["check-event-ledger"] 1]
+                                   [["check-event-ledger" "--json"] 1]]]
               (let [result (.spawnSync child (.-execPath js/process)
                                        (clj->js (into [cli-path] args))
                                        #js {:cwd dir :env env :encoding "utf8"})]
                 (is (= expected (.-status result))
                     (str args " config=" config-path " stderr=" (.-stderr result)))
-                (when (and (seq (.-stdout result)) (second args))
+                (is (seq (.-stdout result)) "Every checker outcome emits JSON, including missing path")
+                (when (seq (.-stdout result))
                   (let [report (js->clj (js/JSON.parse (.-stdout result)) :keywordize-keys true)]
                     (is (= (zero? expected) (:ok report)))
-                    (is (= (second args) (:path report)))
+                    (is (= (when-not (str/starts-with? (or (second args) "") "--") (second args)) (:path report)))
+                    (when (or (= 1 (count args)) (= "--json" (second args)))
+                      (is (= 0 (:record-count report)))
+                      (is (= "usage" (get-in report [:errors 0 :code]))))
                     (when (= (second args) duplicate)
                       (is (= [{:row 2 :code "duplicate-event-id" :event-id "same" :first-row 1}]
                              (:errors report))))))))))

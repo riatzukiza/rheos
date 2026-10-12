@@ -7,7 +7,7 @@ priority: "P1"
 points: "3"
 labels: "cephalon, events, identity, provenance, repair"
 category: "tasks"
-write-id: "1791835694493-0.xyw3qcthjfgnur8o4u"
+write-id: "1791839207722-0.p92ejbize0lp7kt2w43"
 created_at: "2026-10-12T15:09:38.874Z"
 ---
 
@@ -94,5 +94,7 @@ Planning is qualified and merged in personal Rheos PR18 at 14913881d7ae025b982d5
 Owner RED now exercised portable generated/opaque ID laws, explicit constructor/checker stubs, malformed physical-row/duplicate controls, real no-config CLI exits, production constructor-call boundary and two independent frozen-time ledger writers. Actual pnpm test exits1:268tests2710assertions58failures1error. The constructor error is the explicit unimplemented function, row/identity failures are unimplemented checker outputs, and real CLI failures are unknown check-event-ledger verb. Existing producer/storage/publish tests remain. Raw owned log45592bytes/SHA2562d4f18695ecd69d26a11153240f12b8cc648a611e1e35de93a6f0971ad701d76. No successful checker/source adoption is claimed. GREEN will implement portable decisions and read-only boundary before full gates.
 
 GREEN source prepared: portable constructor and strict physical-row identity checker; producer uses fresh UUID entropy through the constructor. Actual compiled explicit-path CLI bypasses config/bootstrap and preserves fixtures; duplicates, split/extra/blank rows, empty input, malformed UTF-8 and missing/unreadable files refuse with documented exits. Fresh absent-dist control rebuilt CLI then passed 268 tests / 2851 assertions; JVM portable rules 3 tests / 111 assertions pass. Qualified predecessor CLI85369213 native InProgress -> Review actually ran pnpm build/lint/test, all four targets zero compiler warnings, lint zero errors/warnings, 268/2851 zero failures/errors. Host missing-NPM_TOKEN notices and external-path JVM deprecation notices remain separate. Complete raw logs retained privately; no source qualification/consumer adoption/deployment credit yet.
+
+PR19 findings reproduced within the qualified checker owner. Corrected RED pnpm suite 270 tests/2936 assertions/21 failures/0 errors; JVM portable suite 5/142/27/0. Initial char fixture accidentally supplied two invalid positive inputs; corrected, not counted as causal RED. Actual root suite retains mode-000 EACCES mismatch; absent dist/cli.cjs bb test failed and did not rebuild CLI; original owned binary restored. Source fixes and fresh review remain required; no consumer adoption or runtime change.
 
 ---
