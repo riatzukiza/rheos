@@ -662,3 +662,12 @@ After committed RED `ad66378`, the exact authored `story` joins the portable adm
   spore: none
   receipt-refs: cephalon-rheos-current-personal-main-integration-20261012
   note: Ordinary history-preserving base integration, no force/reset/simplification. Owning checker source and separate incoming consumer gate remain distinct. No runtime/heartbeat/maker/model/credentials/paid/deployment changes; no spore.
+
+- ts: 2026-10-12T22:08:22.928Z
+  task: cephalon event identity checker owner
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-dangling-character-guard-red-20261012
+  note: Current c7 source Codex5496409294/root4252705523 requests explicit EOF guard. Actual installed JVM tools.reader1.6.0 whitespace? accepts nil; corrected ordinary controls passJVM7/194/0/0 and compiled336/3417/0/0, so reported current-production throw is NOT reproduced. Strict helper fault fixture rejects nil/delegates real chars: causal REDJVM7/195/0fail1error/exit1 and Node336/3418/0fail1error/exit1. Compiler driver alone exits0 despite autorunerror; actual node exit1 retained. Initial malformed delimiter fixture failed parsing before correction, no causalcredit. One existing identity fixture inference warning retained; GREEN must have zero warnings. c7 prior6threads settled/body7689exact/currentrequests6133305155/6133306786/CRquota6133307097. Old7ff38310411790 native COMPLETEDcancelled22:06:25 after bounded cancellation; this is not provider termination proof. c7 hosted38313205208 started22:06:27, no new source approval yet. Exact journal prefixes preserved; qualified owner native Review-InProgress for same3pt scope; no consumer, runtime, paid or credentials change.

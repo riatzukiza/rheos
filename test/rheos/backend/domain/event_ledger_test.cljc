@@ -4,7 +4,9 @@
             [clojure.string :as str]
             [rheos.backend.domain.event-ledger :as ledger]
             [rheos.backend.law.event-identity :as law]
-            [rheos.backend.shape.event-identity :as identity]))
+            [rheos.backend.shape.event-identity :as identity]
+            #?(:cljs [cljs.tools.reader.impl.utils :as reader-utils]
+               :clj [clojure.tools.reader.impl.utils :as reader-utils])))
 
 (def entropy-a "12345678-1234-4234-8234-123456789abc")
 (def entropy-b "12345678-1234-4234-8234-123456789abd")
@@ -106,3 +108,30 @@
               (str "{:event/id \"ok\" :payload ["
                    (str/join " " (map #(str "\\" %) single-chars)) "]}")))
         "Literal reader-special characters without a discard remain valid")))
+
+(deftest dangling-character-marker-does-not-abort-the-physical-scan
+  (let [original-whitespace? reader-utils/whitespace?
+        rows [(str \\)
+              (str "{:event/id \"nested\" :payload " \\)
+              (str "{:event/id \"trailing\"} " \\)]
+        check (fn []
+                (doseq [row rows]
+                  (testing row
+                    (let [result (ledger/check-text
+                                  (str "{:event/id \"ok\"}\n" row
+                                       "\nnot-a-map\n{:event/id \"ok\"}\n"))]
+                      (is (false? (:ok result)))
+                      (is (= 4 (:record-count result)))
+                      (is (= [{:row 2 :code :invalid-edn}
+                              {:row 3 :code :non-map-record}
+                              {:row 4 :code :duplicate-event-id :event-id "ok" :first-row 1}]
+                             (:errors result)))))))]
+    (testing "The actual installed reader reports the malformed row and continues"
+      (check))
+    (testing "Scanner EOF handling does not depend on the helper accepting nil"
+      (with-redefs [reader-utils/whitespace?
+                    (fn [ch]
+                      (if (nil? ch)
+                        (throw (ex-info "EOF must be handled before the character helper" {}))
+                        (original-whitespace? ch)))]
+        (check)))))

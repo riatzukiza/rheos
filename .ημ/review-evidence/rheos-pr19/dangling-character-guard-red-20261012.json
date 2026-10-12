@@ -1,0 +1,93 @@
+{
+  "schema": "observed-command-output-index/v1",
+  "tier": "observed",
+  "finding": 4252705523,
+  "review": 5496409294,
+  "baseline": "c7a02438237b19fab332e6e89e47f66150f3ef5a",
+  "initial_fixture": "Unmatched delimiter before correction; not causal RED",
+  "actual_dependency_controls": {
+    "jvm": {
+      "tests": 7,
+      "assertions": 194,
+      "failures": 0,
+      "errors": 0,
+      "exit": 0,
+      "reader": "tools.reader1.6.0 whitespace? uses when ch and accepts nil"
+    },
+    "cljs": {
+      "tests": 336,
+      "assertions": 3417,
+      "failures": 0,
+      "errors": 0,
+      "compiler_warnings": 1,
+      "exit": 0
+    }
+  },
+  "strict_helper_fixture_red": {
+    "contract": "Handle scanner EOF before calling the character predicate; controlled replacement refuses nil and delegates all actual characters",
+    "jvm": {
+      "tests": 7,
+      "assertions": 195,
+      "failures": 0,
+      "errors": 1,
+      "exit": 1
+    },
+    "cljs": {
+      "tests": 336,
+      "assertions": 3418,
+      "failures": 0,
+      "errors": 1,
+      "node_exit": 1,
+      "compile_exit": 0,
+      "compiler_warnings": 1
+    }
+  },
+  "logs": [
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/dangling-red-jvm.log",
+      "sha256": "b855dc5ac47a282227dc9c197cc8b7747ea791c201886932d8dd51ffd3173b22",
+      "bytes": 163
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/dangling-red-cljs.log",
+      "sha256": "ca61977dd0d97e2e0841f53d95ed8485fcde253f9852c6e779183e9fbe66efe2",
+      "bytes": 1353
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/dangling-red-jvm-corrected.log",
+      "sha256": "ceacd7e461524e0ead8a272bf8b04fd3a6b331654e15d4f831d17ca93e66a675",
+      "bytes": 110
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/dangling-red-cljs-corrected.log",
+      "sha256": "5b0323d920b87948d6ad93aed0df11bc3f94040a3e00feeff89afb651b810936",
+      "bytes": 4397
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/dangling-current-jvm-reader-source.log",
+      "sha256": "58230ee6e05f4486671f9ce48a4f4c058b148f46f9c4d13b24352b69e7512d34",
+      "bytes": 399
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/dangling-strict-helper-red-jvm.log",
+      "sha256": "8e5e670cd91e503a031f393f1a06644fc915b16027619e5c55a8f7cc3a229597",
+      "bytes": 4976
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/dangling-strict-helper-red-cljs.log",
+      "sha256": "4d4049870d24a5a93cb8299325a34d3164f5d08daa803c29aa53a5e3a38ba9d2",
+      "bytes": 4624
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/dangling-strict-helper-red-node.log",
+      "sha256": "99b87eeae3dda201df58327ef8068b78336e9eb909724462fcf333c102186d6f",
+      "bytes": 3072
+    }
+  ],
+  "limitations": [
+    "Actual installed reader did not reproduce the reported JVM exception",
+    "Controlled strict-helper error is the causal RED for explicit scanner EOF contract",
+    "One pre-existing changed-identity fixture compiler inference warning observed; zero-warning gate remains required",
+    "No consumer/runtime adoption"
+  ]
+}
