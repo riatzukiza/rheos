@@ -394,3 +394,43 @@
     (is (re-find #"Increase --max-writes to at least 53" (.-message error)))
     (is (empty? @applied)
         "the complete plan is rejected before even a fitting prefix operation can write")))
+
+(deftest ^:async failed-sync-reports-writes-already-applied
+  ;; CodeRabbit review 5494798004 (#12): a failure mid-run must report the
+  ;; writes GitHub already accepted, including a partial multi-request update.
+  (let [label-op {:type :create-label :name "new-label" :write-count 1}
+        update-op {:type :update-issue :issue-number 9
+                   :add-labels ["status:review"]
+                   :remove-labels ["status:incoming"]
+                   :patch {:title "Retitled"}
+                   :write-count 3}
+        calls (atom [])
+        original-fetch (.-fetch js/globalThis)
+        response (fn [ok?]
+                   #js {:ok ok? :status (if ok? 200 502)
+                        :text (fn [] (js/Promise.resolve "bad gateway"))
+                        :json (fn [] (js/Promise.resolve #js {}))})]
+    (set! (.-fetch js/globalThis)
+          (fn [url opts]
+            (swap! calls conj [(.-method opts) url])
+            ;; label POST, issue-label POST, label DELETE succeed; PATCH fails.
+            (js/Promise.resolve (response (< (count @calls) 4)))))
+    (let [error (try
+                  (with-redefs [github/load-repo-state!
+                                (fn [_ _] (js/Promise.resolve {:labels [] :issues []}))
+                                github/plan-sync
+                                (fn [_ _ _] {:operations [label-op update-op]})]
+                    (await (github/sync! [] {:token "t" :repo "open-hax/eta-mu"
+                                             :max-writes 10})))
+                  nil
+                  (catch :default cause cause)
+                  (finally (set! (.-fetch js/globalThis) original-fetch)))
+          data (ex-data error)]
+      (is (= 4 (count @calls)))
+      (is (= [label-op] (:applied-operations data)))
+      (is (= 3 (:applied-writes data)))
+      (is (= update-op (:failed-operation data)))
+      (is (= 2 (:failed-operation-applied-writes data)))
+      (is (= "PATCH" (get-in data [:failed-request :method])))
+      (is (re-find #"stopped after 3 applied API writes .*GitHub API 502"
+                   (ex-message error))))))
