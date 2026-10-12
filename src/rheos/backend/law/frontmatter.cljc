@@ -48,6 +48,17 @@
   [k]
   (contains? mutable-keys k))
 
+(defn incoming-epic-correction?
+  "Conditional structural authority, separate from descriptive mutable keys.
+   Only an exact Incoming ordinary card can become exact epic. An Incoming
+   epic may repeat that request, but the caller must still validate the complete
+   proposed graph before admitting a no-op. Present malformed types refuse."
+  [card target]
+  (and (= "incoming" (:status card))
+       (= "epic" target)
+       (or (not (contains? card :type))
+           (contains? #{"task" "story" "epic"} (:type card)))))
+
 (defn status-update?
   "True when `updates` attempts to set the FSM-governed `:status`."
   [updates]

@@ -130,6 +130,144 @@
         (set! *print-fn* saved-print)
         (projects/set-projects! saved-projects)))))
 
+(defn- ^:async fixture-type-update!
+  "Exercise the real public routes; admission remains in the common writer."
+  [surface {:keys [project dir]} updates]
+  (let [saved {:projects (projects/all) :default-project-id (projects/default-id)}]
+    (projects/set-projects! {:projects [project] :default-project-id (:id project)})
+    (try
+      (case surface
+        :cli (let [result (await (fixture-cli-outcome! dir
+                                  (into ["frontmatter" "subject"]
+                                        (mapcat (fn [[k v]] ["--set" (str (name k) "=" v)]) updates))))]
+               (assoc result :ok? (zero? (:exit-code result))))
+        :mcp (try
+               {:ok? (:ok (await (agent-tools/dispatch "kanban_update_frontmatter"
+                                  {:uuid "subject" :project (:id project) :updates updates})))}
+               (catch :default error {:ok? false :error error}))
+        :http (let [status (atom 200) response (atom nil) reply (js-obj)]
+                (aset reply "code" (fn [code] (reset! status code) reply))
+                (aset reply "send" #(reset! response (js->clj % :keywordize-keys true)))
+                (await (http-server/handle-update-frontmatter
+                         #js {:query #js {:project (:id project)} :params #js {:uuid "subject"}
+                              :body (clj->js {:updates updates})} reply))
+                {:ok? (= 200 @status) :status @status :response @response}))
+      (finally (projects/set-projects! saved)))))
+
+(deftest ^:async incoming-epic-correction-through-every-public-route-retains-native-custody
+  (doseq [[surface prior] [[:cli nil] [:mcp "task"] [:http "story"]]]
+    (await
+     (with-cards [(cond-> {:uuid "subject" :status "incoming"} prior (assoc :type prior))
+                  {:uuid "first" :status "incoming" :parent "subject" :epic "subject"}
+                  {:uuid "second" :status "incoming" :parent "subject" :epic "subject" :dependency "first"}]
+       (^:async fn [{:keys [project dir ledger-path] :as fixture}]
+         (let [subject (path/join dir "subject.md")
+               before (await (.readFile fsp subject "utf8"))
+               others (await (.readFile fsp (path/join dir "second.md") "utf8"))
+               first-before (await (.readFile fsp (path/join dir "first.md") "utf8"))
+               history (await (.readFile fsp ledger-path "utf8"))
+               result (await (fixture-type-update! surface fixture {:type "epic"}))]
+           (is (:ok? result) (str "Actual public route admits correction: " surface))
+           (when (:ok? result)
+             (let [after (await (.readFile fsp subject "utf8"))
+                   post-history (await (.readFile fsp ledger-path "utf8"))
+                   raw-before (parser/parse-frontmatter before)
+                   raw-after (parser/parse-frontmatter after)
+                   payloads (map :payload (await (events/query-events (ledger/get-ledger dir) {})))
+                   changes (filter #(and (= "frontmatter" (:type %)) (= "type" (:key %))) payloads)
+                   repeated (await (fixture-type-update! surface fixture {:type "epic"}))]
+               (is (= "epic" (get-in raw-after [:frontmatter :type])))
+               (is (= (:content raw-before) (:content raw-after)) "Exact body/comments retained")
+               (is (= (dissoc (:frontmatter raw-before) :type :write-id)
+                      (dissoc (:frontmatter raw-after) :type :write-id)))
+               (is (= first-before (await (.readFile fsp (path/join dir "first.md") "utf8"))))
+               (is (= others (await (.readFile fsp (path/join dir "second.md") "utf8"))))
+               (is (.startsWith post-history history))
+               (is (= 1 (count changes)))
+               (is (= prior (:old-value (first changes))))
+               (is (= "epic" (:new-value (first changes))))
+               (is (:ok? repeated))
+               (is (= after (await (.readFile fsp subject "utf8"))) "Same-epic no-op has no write-id effect")
+               (is (= post-history (await (.readFile fsp ledger-path "utf8"))))
+               (is (= ["first"] (:dependency (first (filter #(= "second" (:uuid %))
+                                                              (await (tasks/load-tasks project)))))))))))))))
+
+(deftest ^:async epic-correction-refusals-preserve-complete-native-files-and-events
+  (doseq [surface [:cli :mcp :http]
+          [status type updates extra]
+          [["accepted" "task" {:type "epic"} nil]
+           ["incoming" "epic" {:type "task"} nil]
+           ["incoming" "task" {:type "epic" :uuid "forged"} nil]
+           ["incoming" "task" {:type "epic" :status "done"} nil]
+           ["incoming" "epic" {:type "epic"} {:uuid "unrelated" :dependency "missing"}]]]
+    (await
+     (with-cards (cond-> [{:uuid "subject" :status status :type type}] extra (conj extra))
+       (^:async fn [{:keys [dir ledger-path] :as fixture}]
+         (let [subject (path/join dir "subject.md")
+               before (await (.readFile fsp subject "utf8"))
+               history (await (.readFile fsp ledger-path "utf8"))
+               result (await (fixture-type-update! surface fixture updates))]
+           (is (false? (:ok? result)) (str surface " " updates))
+           (is (= before (await (.readFile fsp subject "utf8"))))
+           (is (= history (await (.readFile fsp ledger-path "utf8"))))))))))
+
+(deftest ^:async epic-correction-keeps-reservation-and-complete-source-recheck
+  (await
+   (with-cards [{:uuid "subject" :status "incoming"} {:uuid "other" :status "incoming"}]
+     (^:async fn [{:keys [project dir ledger-path]}]
+       (let [task {:uuid "subject" :source-path (path/join dir "subject.md")}
+             before (await (.readFile fsp (:source-path task) "utf8"))
+             history (await (.readFile fsp ledger-path "utf8"))
+             reserved (await (publication/with-reservation! project
+                               (^:async fn []
+                                 (try (await (edit/update-frontmatter! {:project project :task task :updates {:type "epic"}}))
+                                      nil (catch :default e e)))))
+             original tasks/load-tasks
+             reads (atom 0)
+             changed (with-redefs [tasks/load-tasks
+                                  (^:async fn [selected]
+                                    (when (= 2 (swap! reads inc))
+                                      (await (.appendFile fsp (path/join dir "other.md") "\nConcurrent source change.\n")))
+                                    (await (original selected)))]
+                       (try (await (edit/update-frontmatter! {:project project :task task :updates {:type "epic"}}))
+                            nil (catch :default e e)))]
+         (is (= :conflict (:kind (ex-data reserved))))
+         (is (= :conflict (:kind (ex-data changed))))
+         (is (= before (await (.readFile fsp (:source-path task) "utf8"))))
+         (is (= history (await (.readFile fsp ledger-path "utf8")))))))))
+
+(deftest ^:async epic-correction-file-and-event-failures-retain-actual-boundaries
+  (doseq [phase [:file-write :event-append]]
+    (await
+     (with-cards [{:uuid "subject" :status "incoming"}]
+       (^:async fn [{:keys [project dir ledger-path]}]
+         (let [task {:uuid "subject" :source-path (path/join dir "subject.md")}
+               before (await (.readFile fsp (:source-path task) "utf8"))
+               history (await (.readFile fsp ledger-path "utf8"))
+               write-file (.-writeFile fsp)
+               failure (try
+                         (if (= phase :file-write)
+                           (do
+                             (set! (.-writeFile fsp)
+                                   (fn [target & args]
+                                     (if (= target (:source-path task))
+                                       (js/Promise.reject (js/Error. "Controlled epic file failure"))
+                                       (apply write-file target args))))
+                             (await (edit/update-frontmatter! {:project project :task task :updates {:type "epic"}})))
+                           (with-redefs [events/emit-frontmatter-change! (fn [& _] (js/Promise.reject (js/Error. "Controlled epic event failure")))]
+                             (await (edit/update-frontmatter! {:project project :task task :updates {:type "epic"}}))))
+                         nil
+                         (catch :default e e)
+                         (finally (set! (.-writeFile fsp) write-file)))
+               after (await (.readFile fsp (:source-path task) "utf8"))]
+           (is (= phase (:phase (ex-data failure))))
+           (is (= history (await (.readFile fsp ledger-path "utf8"))))
+           (if (= phase :file-write)
+             (is (= before after))
+             (do (is (= :partial-effect (:kind (ex-data failure))))
+                 (is (= "epic" (get-in (parser/parse-frontmatter after) [:frontmatter :type])))
+                 (is (pos? (get-in (ex-data failure) [:file-readback :bytes])))))))))))
+
 (deftest ^:async cli-writer-conflict-is-a-refusal-without-effects
   (await
    (with-cards [{:uuid "subject" :status "incoming"}]
@@ -495,7 +633,7 @@
        (let [task {:uuid "subject" :source-path (path/join dir "subject.md")}]
          (doseq [updates [{:dependency "missing" :priority "P0"}
                           {:parent "predecessor" :uuid "replacement"}
-                          {:status "done"} {:write-id "forged"} {:type "epic"}
+                          {:status "done"} {:write-id "forged"} {:type "task"}
                           {:dependency ["predecessor" "predecessor"]}]]
            (let [before (await (.readFile fsp (:source-path task) "utf8"))
                  history (await (.readFile fsp ledger-path "utf8"))
