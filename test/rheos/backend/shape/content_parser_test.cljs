@@ -3,7 +3,8 @@
             [clojure.string :as str]
             ["yaml" :as yaml]
             [rheos.backend.infra.content-parser :as parser]
-            [rheos.backend.shape.content-parser :as content-shape]))
+            [rheos.backend.shape.content-parser :as content-shape]
+            [rheos.backend.shape.frontmatter :as frontmatter]))
 
 (deftest test-parse-frontmatter
   (testing "parses quoted string values"
@@ -23,6 +24,15 @@
     (let [raw "---\nlabels: [\"epics\", \"cljs\", \"kanban\"]\n---\nBody"
           result (parser/parse-frontmatter raw)]
       (is (= ["epics" "cljs" "kanban"] (get-in result [:frontmatter :labels])))))
+
+  (testing "quoted commas agree with the canonical flat decoder"
+    (let [yaml "labels: [\"security,review\", \"ci\"]"
+          raw (str "---\n" yaml "\n---\nBody")
+          read-task-labels (get-in (parser/parse-frontmatter raw)
+                                   [:frontmatter :labels])
+          canonical-labels (:labels (frontmatter/parse-flat yaml))]
+      (is (= ["security,review" "ci"] read-task-labels))
+      (is (= canonical-labels read-task-labels))))
 
   (testing "parses empty values"
     (let [raw "---\ncategory:\n---\nBody"
@@ -373,7 +383,25 @@
           parsed (parser/parse-task-content result)
           comments (filter #(= "comment" (:type %)) (:sections parsed))]
       (is (= 1 (count comments)))
-      (is (= "First comment" (:content (first comments)))))))
+      (is (= "First comment" (:content (first comments))))
+      (is (re-find #"First comment\n\n---$" result)
+          "the closing delimiter cannot render the comment as a Setext heading"))))
+
+(deftest test-append-comment-preserves-dependencies
+  (testing "comment rewrites cannot invent a dependency from an empty vector"
+    (let [raw "---\nuuid: \"test\"\ndependency: []\n---\n\nBody"
+          result (parser/append-comment raw "First comment")]
+      (is (= [] (get-in (parser/parse-task-content result)
+                         [:frontmatter :dependency])))
+      (is (re-find #"dependency: \[\]" result))
+      (is (not (re-find #"dependency: \[\"\"\]" result)))))
+  (testing "comment rewrites preserve non-empty dependency order"
+    (let [raw "---\nuuid: \"test\"\ndependency: [\"dep-a\", \"dep-b\"]\n---\n\nBody"
+          result (parser/append-comment raw "First comment")]
+      (is (= ["dep-a" "dep-b"]
+             (get-in (parser/parse-task-content result)
+                     [:frontmatter :dependency])))
+      (is (re-find #"dependency: \[\"dep-a\", \"dep-b\"\]" result)))))
 
 (deftest test-append-comment-appends-to-last
   (testing "appends to the last comment section"

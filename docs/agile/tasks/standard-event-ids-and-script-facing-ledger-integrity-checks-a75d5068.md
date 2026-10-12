@@ -7,7 +7,7 @@ priority: "P1"
 points: "3"
 labels: "cephalon, events, identity, provenance, repair"
 category: "tasks"
-write-id: "1791841421135-0.i9s78v6rmwa2og8ljb"
+write-id: "1791841828628-0.o527h6dnc2bepw4hok0"
 created_at: "2026-10-12T15:09:38.874Z"
 ---
 
@@ -102,5 +102,9 @@ Reviewed checker fixes GREEN: pnpm270tests2969assertions0failures0errors; actual
 New current Codex finding4252484090 confirmed for13 reader-special single-character literals followed immediately by #_1. Exact backslash-hash example is already invalid under actual JVM tools.reader; valid semicolon/quote/backslash/bracket/caret/nonconstituent characters reproduce the real discarded-form bypass. Corrected portable fixtures construct literal backslash characters: JVM6tests185assertions39failures0errors/exit39 and compiled271tests3009assertions39failures0errors/exit1. Initial CLJS fixture pr-str produced strings instead of chars and falsely passed; retained as fixture error before correction. Production unchanged. Next scanner resumes normal scanning after a single reader-special char while preserving named/unicode char tokens and existing literal/comment/symbol controls. Receipt87 records RED; no consumer adoption/runtime/source approval.
 
 Adjacent reader-special character correction GREEN: after a literal whitespace/terminating-macro/nonconstituent char the scanner resumes normal dispatch scanning; named/unicode char tokens and nonterminating hash remain reader-owned. Corrected portable13case controls now pass JVM6tests185assertions0failures0errors. Actual native Review all4releasebuilds0warnings/lint0errors0warnings/full271tests3009assertions0failures0errors/exit0 and independent Review3point readback. Initial CLJS pr-str string false-green and both causal RED39fail logs retained. No literal/comment/symbol control removed. Root fault-injection and absent-CLI bb task proofs belong to earlier7ff unchanged code and were not repeated for this shape-only patch. Receipt88 will preserve exact RED prefixes; source review and separately gated consumer adoption remain pending.
+
+Personal main advanced via actual mergedPR12/two-parent212b223, introducing47base files. PR19 native API still showed149base at first read; that stale binding cannot qualify source. Ordinary no-commit merge into owned985 source preserves all code history. Incoming main receipt row was interleaved before prior row80 by upstream merge; preserved exact owned88-row prefix and appended its unique1212byte row unchanged as89/SHA48fbc570ea71f4889d167753f66f51370fdff75845304428b26b241747133ca6. All original base rows/complete raw212blob retained; do not claim byte-identical212wholeprefix. Current integration full gates/fresh head-base reviews required. No runtime, consumer adoption or approval transfer.
+
+Current personal-main212 integration GREEN: actual native Review all4releasebuilds0compilerwarnings/lint0errors0warnings/full335tests3408assertions0failures0errors/exit0; independent Review3point readback. Portable event-ledger JVM6/185/0/0 passes with new deps.edn/Katamorph base. Candidate read-only checker75native event rows pass. All47base changes retained; main12 brings declared-type graph vocabulary, metadata/Markdown projection, shared Katamorph conditions and GitHub sync, so nothing is claimed unchanged. Exact owned88receipt/reflection/event prefixes retained; imported unique main row appended as89. Original raw212Gitblob/proof remain inspectable, distinct from byte-prefix custody. Commit90 records ordinary integration; fresh exact-head/base reviews required before merge/consumer readiness.
 
 ---

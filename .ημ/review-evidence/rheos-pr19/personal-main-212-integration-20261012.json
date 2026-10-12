@@ -1,0 +1,63 @@
+{
+  "tier": "observed-command-output-index",
+  "provider_approval": false,
+  "merge_parents": [
+    "985a62cb0b8967d3d12035e690380f7d0ef4c8f0",
+    "212b223572cf5fa84ff0ea55fee4598f5fb821e1"
+  ],
+  "upstream_merged_pr": "https://github.com/riatzukiza/rheos/pull/12",
+  "base_inputs": 47,
+  "retained_owned_receipt_prefix_rows": 88,
+  "imported_receipt_row": 89,
+  "imported_raw_row_bytes": 1212,
+  "imported_raw_row_sha256": "48fbc570ea71f4889d167753f66f51370fdff75845304428b26b241747133ca6",
+  "raw_base_receipts": {
+    "git_blob": "193644642d912c6ffd232164053136d8cdb660e6",
+    "bytes": 212651,
+    "sha256": "c41f76afdec2b8aaded8193a99f3655eb9108bc7a15b68951c8c869a7c99f120",
+    "preserved_whole_prefix": false
+  },
+  "results": {
+    "tests": 335,
+    "assertions": 3408,
+    "failures": 0,
+    "errors": 0,
+    "native_review_exit": 0,
+    "native_status": "review",
+    "jvm_tests": 6,
+    "jvm_assertions": 185,
+    "native_event_rows": 76
+  },
+  "logs": [
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/integration-main-212-merge.log",
+      "bytes": 169,
+      "sha256": "3c5dce34f9dbd823777794e678f8bbb4beaf34bb3bedc92c5880756099d8a3a2"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/integration-main-212-native-review.log",
+      "bytes": 10081,
+      "sha256": "8b5573a49dedc83b7989eb7e936b6ab2d7171f17ef094665d27c1da98dfce4f3"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/integration-main-212-native-readback.json",
+      "bytes": 21900,
+      "sha256": "bea3b0956ee1fc88c1dd9b5c49047c1789f8ebb2e6fdd2241414f66caef0a66d"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/integration-main-212-jvm.log",
+      "bytes": 110,
+      "sha256": "2f6cd6ee6b76bc669f46bb112a97dc6d762fd06e16c51efa71726ba23487b995"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/integration-main-212-green-native-comment.log",
+      "bytes": 892,
+      "sha256": "d646bc5709c9d5dece44169cf69406d35da33e0bea0f8b6b9ce3198f0c35a20b"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/integration-main-212-final-ledger-check.json",
+      "bytes": 98,
+      "sha256": "83d7371526f202d887152ca73ecad9f6b85fcdce779789d402bd66bd53db064f"
+    }
+  ]
+}

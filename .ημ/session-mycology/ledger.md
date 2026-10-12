@@ -653,3 +653,12 @@ After committed RED `ad66378`, the exact authored `story` joins the portable adm
   spore: none
   receipt-refs: cephalon-rheos-adjacent-character-discard-green-20261012
   note: All six verified review findings repaired through owning Rheos source. Fresh exact-head independent reviews still required before authorized merge and separate consumer gate. No ledger history rewrite, runtime/credentials/model/paid/deployment change; no spore.
+
+- ts: 2026-10-12T21:51:10.009Z
+  task: cephalon-character-memory/B3/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-current-personal-main-integration-20261012
+  note: Ordinary history-preserving base integration, no force/reset/simplification. Owning checker source and separate incoming consumer gate remain distinct. No runtime/heartbeat/maker/model/credentials/paid/deployment changes; no spore.

@@ -14,15 +14,18 @@
 (defn- tmp-dir []
   (path/join (.tmpdir os) (str "rheos-test-" (.now js/Date) "-" (rand-int 100000))))
 
-(defn- write-task! [dir uuid title]
+(defn- write-task!
+  ([dir uuid title] (write-task! dir uuid title nil))
+  ([dir uuid title dependency-line]
   (let [file-path (path/join dir (str uuid ".md"))
         raw (str "---\n"
                  "uuid: \"" uuid "\"\n"
                  "title: \"" title "\"\n"
                  "status: \"incoming\"\n"
                  "priority: \"P3\"\n"
+                 (when dependency-line (str "dependency: " dependency-line "\n"))
                  "---\n\n# " title "\n\nBody")]
-    (.writeFile fsp file-path raw "utf8")))
+    (.writeFile fsp file-path raw "utf8"))))
 
 (deftest ^:async collection-priority-edit-is-refused-before-write-or-event
   (let [dir (tmp-dir)

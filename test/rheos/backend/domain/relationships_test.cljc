@@ -108,6 +108,27 @@
            (kinds (relationships/inspect-graph [{:uuid "card" :type type}])))))
   (is (:ok? (relationships/inspect-graph [{:uuid "legacy"}]))))
 
+(deftest declared-card-types-are-ordinary-cards
+  (let [vocabulary {:card-types #{"chore" "story"}}
+        board [{:uuid "epic-A" :type "epic"}
+               {:uuid "tidy" :type "chore" :epic "epic-A"}
+               {:uuid "dep" :type "chore"}]]
+    (is (= #{:malformed-card-type}
+           (kinds (relationships/inspect-graph board)))
+        "undeclared types stay closed without the board's vocabulary")
+    (is (:ok? (relationships/inspect-graph board vocabulary)))
+    (is (= #{:malformed-card-type}
+           (kinds (relationships/inspect-graph (conj board {:uuid "x" :type "unknown"})
+                                               vocabulary)))
+        "the vocabulary only admits declared types")
+    (is (= #{:invalid-epic-target}
+           (kinds (relationships/inspect-graph [{:uuid "tidy" :type "chore"}
+                                                {:uuid "child" :epic "tidy"}]
+                                               vocabulary)))
+        "a declared type never satisfies an epic membership target")
+    (is (:ok? (relationships/admit-update board "tidy" {:dependency ["dep"]} vocabulary)))
+    (is (:allowed? (admission/decide {} board "tidy" "ready" vocabulary)))))
+
 (def story-board
   [{:uuid "epic" :type "epic" :status "done"}
    {:uuid "parent-story" :type "story" :parent "epic" :epic "epic" :status "done"}

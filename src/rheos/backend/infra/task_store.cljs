@@ -1,5 +1,5 @@
 (ns rheos.backend.infra.task-store
-  "Task loading from projected Markdown files with YAML frontmatter parsing."
+  "Markdown discovery plus the legacy Kanban task projection."
   (:require ["node:fs/promises" :as fsp]
             ["node:crypto" :as crypto]
             ["node:path" :as path]
@@ -67,13 +67,8 @@
                         (merge (ex-data err) {:kind :refused :source-path file-path :diagnostic diagnostic})
                         err))))))
 
-(defn- ^:async entry-kind
-  "`:file`, `:dir`, `:link`, or nil — read with `lstat`, so a symlink reports as
-   a link rather than as whatever it points at."
-  [full-path]
+(defn- ^:async entry-kind [full-path]
   (try
-    ;; ^js: `isSymbolicLink` is not in the externs shadow infers from, so the
-    ;; call compiles to a munged name under :advanced without the hint.
     (let [^js st (await (.lstat fsp full-path))]
       (cond
         (.isSymbolicLink st) :link
@@ -171,11 +166,7 @@
    (case (:priority task) "P0" 0 "P1" 1 "P2" 2 "P3" 3 4)
    (str/lower-case (:title task))])
 
-(defn- source->project
-  "Normalize `load-tasks`' argument. A project map passes through; a tasks-dir
-   string is resolved through the shared registry so a configured project keeps
-   its `:card-projection`."
-  [source]
+(defn- source->project [source]
   (if (map? source)
     source
     (or (projects/find-project-by-tasks-dir source)

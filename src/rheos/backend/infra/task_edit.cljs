@@ -10,6 +10,7 @@
    this namespace owns the file write + event emission chokepoint."
   (:require ["node:fs/promises" :as fsp]
             [rheos.backend.domain.events :as events]
+            [rheos.backend.domain.task-create :as task-create]
             [rheos.backend.domain.task-edit :as task-edit]
             [rheos.backend.domain.relationships :as relationships]
             [rheos.backend.law.relationships :as relationship-law]
@@ -42,7 +43,8 @@
           _ (when-not (= 1 (count current))
               (publication/conflict! "Task identity or selected source changed before edit"
                                      {:uuid (:uuid task) :source-path (:source-path task)}))
-          decision (relationships/admit-update (tasks/relationship-snapshot loaded) (:uuid task) updates)
+          decision (relationships/admit-update (tasks/relationship-snapshot loaded) (:uuid task) updates
+                                                {:card-types (task-create/card-types project)})
           _ (when-not (:ok? decision)
               (throw (ex-info "Relationship/frontmatter admission refused"
                               {:kind :refused :errors (:errors decision) :uuid (:uuid task)})))
