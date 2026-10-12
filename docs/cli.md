@@ -1,8 +1,8 @@
 # The `rheos` CLI
 
-Agent-first kanban board CLI. Every verb here writes through the same enforced
-paths the HTTP API, MCP tools, and web UI use, so no two surfaces can disagree
-about what happened to a card.
+Agent-first kanban board CLI. Card mutations use the same enforced paths as the
+HTTP API, MCP tools, and web UI. The explicit-path ledger check reads retained
+event identities independently of board configuration.
 
 - [Install](#install)
 - [Agent quickstart](#agent-quickstart)
@@ -192,8 +192,48 @@ There is no delete verb. Terminal states are reached with
 | `projects` | Project ids, titles, default flag, meta as JSON |
 | `events [uuid]` | Ledger events, newest last |
 | `drift` | Cards whose files changed outside a recorded Rheos write |
+| `check-event-ledger <path>` | Read-only physical-row and opaque event-ID integrity report as JSON |
 
 `read-board` with no `--project` composes **every** configured project. Scope it.
+
+#### Event ID integrity for scripts
+
+```bash
+node dist/cli.cjs check-event-ledger docs/agile/.events/ledger.edn
+```
+
+The explicit input path is read before configuration discovery/loading, project
+resolution, tool-registry setup or view-store bootstrap. `KANBAN_CONFIG` and
+board-selection flags do not select or change this input. The checker never
+creates, edits, sorts, deletes or replays a ledger, card, config or board.
+Use the owning source revision's actual compiled CLI; a successful check is not
+proof that a downstream consumer has pinned or adopted that revision.
+
+With a path, stdout is one JSON object with stable fields `ok` (boolean), `path`
+(the supplied path), `record-count` (physical rows scanned), and `errors`
+(ordered issues). An issue's `code` names the refusal. Row-specific issues have
+a one-based `row`; `duplicate-event-id` also supplies the exact `event-id` and
+its `first-row`. I/O issues have `io-code`. Missing arguments exit1. Missing
+paths exit2. Invalid, duplicate, malformed UTF-8, malformed EDN, blank/comment-only
+rows or empty files exit3; other I/O failures exit4. Every failure is nonzero
+and emits the ordinary single-line stderr diagnostic.
+
+Every physical line must contain exactly one complete EDN value, which must be
+a map with a unique nonblank string `:event/id`. A single terminal LF or CRLF is
+the last record's delimiter; extra blank physical rows are invalid. Trailing
+forms/junk and split records refuse. The scan retains all row errors rather
+than silently skipping a malformed line. This is identity/row admission, not
+full event-schema validation. Unique legacy timestamp IDs and opaque Unicode
+or punctuation remain compatible; records are never normalized or merged.
+
+`rheos.backend.shape.event-identity/generated-id` is the portable constructor
+for explicit board ID, task ID and canonical lowercase UUID entropy strings.
+`rheos.backend.law.event-identity/generated-id?` validates the expected exact
+board/task prefix and UUID suffix without hyphen splitting; `opaque-id?` is the
+separate retained-ledger contract. Board/task components are exact nonblank
+opaque strings. Neither filename-safe identity nor an RFC UUID restriction is
+applied to them. The existing production emission adapter supplies fresh UUID
+entropy on every call; write IDs continue to correlate a multi-field operation.
 
 The `compose` query DSL is shared verbatim with the HTTP `/api/board/compose`
 endpoint and the `kanban_read_board` MCP tool: `--status`, `--priority`,

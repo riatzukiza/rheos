@@ -59,6 +59,7 @@
                          ["{:event/id\n\"split\"}" 1 :invalid-edn]
                          ["{:event/id \"ok\"} {:event/id \"extra\"}" 1 :extra-edn-form]
                          ["{:event/id \"ok\"} junk" 1 :extra-edn-form]
+                         ["{:event/id \"ok\"} :rheos.backend.shape.ledger-text/eof" 1 :extra-edn-form]
                          ["{:event/id \"ok\"} )" 1 :invalid-edn]]]
     (testing text
       (let [result (ledger/check-text text)]

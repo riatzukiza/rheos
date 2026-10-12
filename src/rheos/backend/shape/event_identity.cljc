@@ -1,7 +1,9 @@
 (ns rheos.backend.shape.event-identity
-  "Deterministic identity composition; runtime entropy stays at the producer edge.")
+  "Deterministic identity composition; runtime entropy stays at the producer edge."
+  (:require [rheos.backend.law.event-identity :as law]))
 
 (defn generated-id [board-id task-id entropy]
-  ;; RED: the reviewed constructor is not implemented yet.
-  (throw (ex-info "Event ID constructor not implemented"
-                  {:kind :refused :board-id board-id :task-id task-id :entropy entropy})))
+  (let [input {:board-id board-id :task-id task-id :entropy entropy}]
+    (when-not (law/generation-input? input)
+      (throw (ex-info "Invalid event identity components" {:kind :refused :input input})))
+    (str board-id "-" task-id "-" entropy)))

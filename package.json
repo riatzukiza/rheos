@@ -19,7 +19,7 @@
     "watch": "shadow-cljs watch server-dev",
     "start": "node dist/server.js",
     "start:dev": "node dist-dev/server.js",
-    "test": "shadow-cljs compile test && node dist/test.cjs",
+    "test": "shadow-cljs release cli && shadow-cljs compile test && node dist/test.cjs",
     "lint": "clj-kondo --lint src test",
     "lint:kondo": "clj-kondo --lint src test",
     "clean": "rm -rf dist dist-dev target"

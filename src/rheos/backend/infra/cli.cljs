@@ -21,6 +21,8 @@
             [rheos.backend.infra.agent-tools :as agent-tools]
             [rheos.backend.infra.config :as config]
             [rheos.backend.domain.events :as events]
+            [rheos.backend.domain.event-ledger :as event-ledger]
+            [rheos.backend.extern.ledger-check :as ledger-check]
             [rheos.backend.infra.ledger :as ledger]
             [rheos.backend.infra.projects :as projects]
             [rheos.backend.infra.task-create :as task-create]
@@ -258,6 +260,13 @@
     :flags [["--json" "emit JSON"]]
     :example "rheos drift"}
 
+   {:verb "check-event-ledger" :group "read" :config-free? true
+    :args "<path>"
+    :summary "Read every physical EDN row and check opaque event-ID uniqueness; always prints JSON."
+    :flags []
+    :example "rheos check-event-ledger docs/agile/.events/ledger.edn"
+    :notes "Explicit path only. Bypasses config/project/view bootstrap; KANBAN_CONFIG and board flags do not select its input. Checks identity and row completeness, not the full event schema. Never creates or writes a file. Exit 0 valid, 1 usage, 2 missing path, 3 invalid/duplicate/empty input, 4 I/O failure."}
+
    {:verb "serve" :group "service"
     :args ""
     :summary "Run the HTTP server (board UI, REST API, SSE stream, MCP endpoint)."
@@ -319,9 +328,10 @@
         (println "FLAGS")
         (doseq [line (flag-lines (:flags v))] (println line))
         (println ""))
-      (println "COMMON FLAGS")
-      (doseq [line (flag-lines common-flags)] (println line))
-      (println "")
+      (when-not (:config-free? v)
+        (println "COMMON FLAGS")
+        (doseq [line (flag-lines common-flags)] (println line))
+        (println ""))
       (when (:notes v)
         (println "NOTES")
         (println (str "  " (:notes v)))
@@ -651,7 +661,25 @@
     (throw (ex-info (str "unknown verb: " verb)
                     {:kind :usage :hint (str bin-name " --help")}))))
 
-(defn- ^:async run [parsed]
+(defn- ^:async cmd-check-event-ledger [parsed]
+  (let [path (require-positional (:subcommand parsed) "check-event-ledger" "path")
+        observation (await (ledger-check/read-text path))
+        report (case (:status observation)
+                 :readable (assoc (event-ledger/check-text (:text observation)) :path path)
+                 :malformed {:ok false :path path :record-count 0
+                             :errors [{:code :invalid-utf8}]}
+                 {:ok false :path path :record-count 0
+                  :errors [{:code :io-error :io-code (:code observation)}]})
+        kind (cond
+               (:ok report) :ok
+               (= :unavailable (:status observation))
+               (if (= "ENOENT" (:code observation)) :not-found :internal)
+               :else :refused)]
+    (print-json report)
+    (when-not (:ok report)
+      (fail! kind (str "event ledger check failed: " path)))))
+
+(defn- ^:async run-board [parsed]
   (let [flags (:flags parsed)
         verb (:command parsed)
         config-path (or (get-flag flags "config") (aget js/process.env "KANBAN_CONFIG"))
@@ -661,6 +689,13 @@
     ;; Share resolved projects with the tool registry so CLI and server resolve identically.
     (projects/set-projects! ps)
     (await (dispatch-verb verb ps view-store parsed))))
+
+(defn- ^:async run [parsed]
+  ;; This explicit-path operation must run before any board config discovery,
+  ;; project resolution, view-store creation or tool-registry bootstrap.
+  (if (= "check-event-ledger" (:command parsed))
+    (await (cmd-check-event-ledger parsed))
+    (await (run-board parsed))))
 
 (defn ^:async main []
   (let [args (vec (drop 2 (js->clj js/process.argv)))

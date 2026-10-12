@@ -15,16 +15,23 @@
         malformed (path/join dir "malformed.edn")
         missing (path/join dir "missing.edn")
         unreadable (path/join dir "unreadable.edn")
+        invalid-utf8 (path/join dir "invalid-utf8.edn")
+        two-forms (path/join dir "two-forms.edn")
+        blank-row (path/join dir "blank-row.edn")
         broken-config (path/join dir "unrelated-config.edn")
         inaccessible-config (path/join dir "unreadable-config.edn")
         files [[unique "{:event/id \"legacy-1791744352193\"}\n{:event/id \"literal, id-雪\"}\n"]
                [duplicate "{:event/id \"same\"}\n{:event/id \"same\" :payload {:changed true}}\n"]
                [empty-path ""] [malformed "{:event/id\n\"split\"}\n"]
+               [two-forms "{:event/id \"first\"} {:event/id \"second\"}\n"]
+               [blank-row "{:event/id \"first\"}\n\n"]
                [unreadable "{:event/id \"inaccessible\"}\n"]
                [broken-config "{:this-is-not-valid"]
                [inaccessible-config "{:this-is-not-readable true}"]]]
     (try
       (doseq [[file content] files] (.writeFileSync fs file content "utf8"))
+      (let [bytes (js/Buffer.from #js [123 255 125])]
+        (.writeFileSync fs invalid-utf8 bytes))
       (.chmodSync fs unreadable 0)
       (.chmodSync fs inaccessible-config 0)
       (let [names (vec (.readdirSync fs dir))]
@@ -36,6 +43,11 @@
                                    [["check-event-ledger" duplicate] 3]
                                    [["check-event-ledger" malformed] 3]
                                    [["check-event-ledger" empty-path] 3]
+                                   [["check-event-ledger" two-forms] 3]
+                                   [["check-event-ledger" blank-row] 3]
+                                   [["check-event-ledger" invalid-utf8] 3]
+                                   [["check-event-ledger" unique "--config" broken-config
+                                     "--tasks-dir" (path/join dir "never-created")] 0]
                                    [["check-event-ledger" missing] 2]
                                    [["check-event-ledger" dir] 4]
                                    [["check-event-ledger" unreadable] 4]
@@ -56,6 +68,7 @@
         (.chmodSync fs unreadable 384)
         (.chmodSync fs inaccessible-config 384)
         (doseq [[file content] files]
-          (is (= content (.readFileSync fs file "utf8")) "Every fixture remains byte-identical")))
+          (is (= content (.readFileSync fs file "utf8")) "Every fixture remains byte-identical"))
+        (is (.equals (js/Buffer.from #js [123 255 125]) (.readFileSync fs invalid-utf8))))
       (finally
         (.rmSync fs dir #js {:recursive true :force true})))))

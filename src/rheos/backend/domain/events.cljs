@@ -9,7 +9,8 @@
    CLI (picked up by the file watcher), or drag-drop — flows to the live UI
    through the one [[record!]] chokepoint. See [[rheos.backend.domain.transition]]
    for the single enforced write path that produces status-change events."
-  (:require [open-hax.openplanner-protocols :as protocols]))
+  (:require [open-hax.openplanner-protocols :as protocols]
+            [rheos.backend.shape.event-identity :as identity]))
 
 (defn- kanban-envelope
   "Construct a new emission at the existing effect boundary. An independent
@@ -17,7 +18,7 @@
    ledger IDs are opaque retained facts and are never regenerated here."
   [board-id event-type payload]
   {:event/type (str "kanban." event-type)
-   :event/id (str board-id "-" (:task-id payload) "-" (random-uuid))
+   :event/id (identity/generated-id board-id (:task-id payload) (str (random-uuid)))
    :event/time (.toISOString (new js/Date))
    :session/id board-id
    :delivery/mode "tell"
