@@ -135,8 +135,9 @@
                  :else state)
 
                :else
-               ;; Require whitespace after `:` or an empty value (`key:`).
-               (if-let [[_ k v] (re-matches #"^([A-Za-z0-9_-]+):(?:[ ]+(.*)|())$" line)]
+               ;; Require horizontal whitespace (space or tab, as YAML allows)
+               ;; after `:` or an empty value (`key:`).
+               (if-let [[_ k v] (re-matches #"^([A-Za-z0-9_-]+):(?:[ \t]+(.*)|())$" line)]
                  (let [key (keyword k)
                        value (flat-value (or v ""))]
                    {:acc (if (= unsupported value) (dissoc acc key) (assoc acc key value))
