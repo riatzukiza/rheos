@@ -16,10 +16,20 @@
    so both snake_case and kebab-case spellings of the forbidden keys are listed."
   (:require [clojure.string :as str]))
 
+(def descriptive-keys
+  "Existing descriptive frontmatter accepted by the update endpoint."
+  #{:title :priority :labels :points :category :description :estimate :assignee})
+
+(def card-id-pattern
+  "Line-safe card identifier grammar. Dependency values are serialized inside
+   quoted inline arrays, so accepting quotes or line breaks would let an
+   otherwise valid update alter the surrounding frontmatter syntax."
+  #"^[a-zA-Z0-9][a-zA-Z0-9._-]*$")
+
 (def mutable-keys
   "Closed set of frontmatter keys a client may write. Anything outside this set is
    rejected by [[disallowed-keys]]."
-  #{:title :priority :labels :points :category :description :estimate :assignee})
+  descriptive-keys)
 
 (def status-key
   "The FSM-governed key. Routed to its own endpoint, never accepted here."
