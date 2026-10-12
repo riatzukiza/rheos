@@ -176,21 +176,46 @@ and `@fastify/static` serving the built web UI from `dist/web`):
 - `POST /api/chat/start`, `POST /api/chat`, `GET /api/chat/stream` — chat proxy
 - `GET /api/health`
 
+## Typed Markdown document processes
+
+Rheos can interpret a Markdown add/change as a typed document-process proposal
+without making Markdown the accepted workflow authority. The frontmatter stays
+within the lossless parser's honest flat-scalar capability and names:
+
+```yaml
+rheos-profile: document-process/v1
+rheos-document: translation-review
+rheos-contract: translation/document-v1
+rheos-resource: workflow/translation-review
+rheos-schema: translation/document-v1
+rheos-sidecar: translation-review.edn
+```
+
+The contained relative EDN sidecar carries the schema registry, process value,
+and any additional Katamorph references. Rheos merges the Markdown identity/body,
+validates the assembled value through Katamorph, and appends either
+`rheos.document.file-change-proposed` or
+`rheos.document.file-change-rejected`. A rejection invokes no action. See
+`test/fixtures/document-process/` for the downstream Sol/Knoxx conformance pair.
+
 ## Namespace layout
 
 CLJS source lives under `src/rheos/`, split into a backend service and a browser
 UI, each using a domain / law / shape / infra layering:
 
-- `rheos.backend.domain` — `board`, `compose`, `events`, `task-create`,
+- `rheos.backend.domain` — `board`, `compose`, `document-event`, `events`, `task-create`,
   `task-edit`, `transition` (the last three are the write chokepoints: creation,
   frontmatter/comments, status)
-- `rheos.backend.law` — `frontmatter`, `fsm` (legal-transition rules)
+- `rheos.backend.law` — `document-profile`, `frontmatter`, `fsm` (legal-transition rules)
 - `rheos.backend.shape` — portable `content-parser` source frames, sections and
-  range-based patches; `kanban` (markdown card parsing)
-- `rheos.backend.extern` — native YAML decoding/encoding and task-content JS conversion
+  range-based patches; `document-profile`; `kanban` (markdown card parsing)
+- `rheos.backend.extern` — native YAML decoding/encoding, task-content JS
+  conversion, and contained document/sidecar path, file, clock, ID, and digest
+  operations
 - `rheos.backend.infra` — `http-server`, `cli`, `mcp`, `config`, `projects`,
-  `store` / `task-store` / `view-store`, `ledger`, `watcher`, `task-writeback`,
-  `agent-tools`, `chat-proxy`, `content-parser` (validated YAML composition)
+  `store` / `task-store` / `view-store`, `document-file-event`, `ledger`,
+  `watcher`, `task-writeback`, `agent-tools`, `chat-proxy`, `content-parser`
+  (validated YAML composition)
 - `rheos.ui.domain` — `board`, `filter-bar`, `layout`, `orchestrator`, `sidebar`
 - `rheos.ui.law` — `url`
 - `rheos.ui.infra` — `mount`, `api`, `chat-session`, `ledger-stream`

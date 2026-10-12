@@ -7,7 +7,7 @@ priority: "P1"
 points: "3"
 labels: "cephalon, events, identity, provenance, repair"
 category: "tasks"
-write-id: "1791843949837-0.t46y3xtdmnt9rys8ix"
+write-id: "1791845094627-0.rsviej56anrowexmdq"
 created_at: "2026-10-12T15:09:38.874Z"
 ---
 
@@ -110,5 +110,7 @@ Current personal-main212 integration GREEN: actual native Review all4releasebuil
 Current c7 native Codex5496409294 finding4252705523 identifies lone character marker EOF before scanner token-boundary classification: JVM reader whitespace predicate can throw outside decoding catch and abort complete scan. Reproduce literal standalone/nested/trailing backslash rows followed by an independently malformed later row on JVM and compiled Node; RED precedes minimum nil guard GREEN. Preserve strict discard scanner and reader-owned EDN decoding, all6 prior settlements, original journals/merged212 raw rows, portable complete diagnostics and native gate. No consumer/runtime adoption.
 
 Correction and final EOF GREEN: actual installed tools.reader1.6.0 accepts nil and ordinary malformed-row controls already pass; native Codex root4252705523 production-throw premise was not reproduced. Implemented the requested explicit nil guard defensively, before token-boundary classification. Scanner-only strict-helper fixture retains actual decoder helpers and all internal 1/2/4 read arities on BOTH JVM and CLJS. Earlier incidental fixture failures and incorrect arity assumptions are retained in receipts91-94, not causal production defects or GREEN. Final stable held-source JVM7/203/0/0; native Review four release builds0compilerwarnings, lint0/0, full336tests3426assertions0fail0error, exit0; source hashes identical before/after gate. Current real owner ledger79rows passes candidate check. Private logs are execution evidence, not provider approval. Source current-head review/merge and separate2pt consumer adoption remain unfinished; no runtime/heartbeat/credentials/model change.
+
+Personal-main859 integration gate passed: inspected all18 incoming files; typed document/sidecar/watcher behavior retained. Original owned95 receipts byte-prefix retained; unique incoming938byte raw row appended as96/SHA90afc7d3f729e0fa78f0421f452352e92ea270e7b42e099dad0ab6495a689d69. Raw85982-row Gitblob retained separately; no whole incoming byte-prefix claim. Held126 source/test/manifest hashes unchanged across native Review: all4release builds0compilerwarnings/lint0errors0warnings/full360tests3513assertions0fail0error/exit0; JVM7/203/0/0. Independent native Review3point readback; candidate actual82row owner ledger checkPASS. Invalid show/help-ledger/positional-comment read or usage attempts supply no verification credit; corrected native verbs/--text used. No approval transfer, consumer readiness, runtime, heartbeat, credentials, paid or model change.
 
 ---

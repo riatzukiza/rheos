@@ -707,3 +707,12 @@ After committed RED `ad66378`, the exact authored `story` joins the portable adm
   spore: none
   receipt-refs: rheos-dangling-character-guard-green-20261012
   note: Explicit EOF nil guard precedes character boundary helper; actual decoder and lexical discard controls preserved. Exact real reader arities retained in both host fixtures. Reported installed production throw not reproduced; real whitespace helper accepts nil. Defensive helper-independent EOF contract verified with scoped strict fixture. All prior incidental fixture failures retained through appended correction receipts91-94. Current source approval/merge and dependent Muse consumer adoption required; no stale approval transfer. Missing NPM_TOKEN environment notice is separate from compiler and lint warnings. No credentials/paid/runtime/heartbeat change. Docs clarify ENOENT2 versus ENOTDIR4 taxonomy without changing exits. Actual owner ledger checked, not inferred. All owned prior receipt/reflection/event prefixes retained.
+
+- ts: 2026-10-12T22:44:54.901Z
+  task: Three-point canonical event-ID checker owner: ordinary personal-main integration
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-personal-main-859-integration-green-20261012
+  note: Inspected18 incoming files; typed document/sidecar/watcher behavior preserved. Held126 source hashes unchanged. NativeReview all4releases0warnings/lint0errors0warnings/full360tests3513assertions0fail0error/exit0; JVM7/203/0/0. Actual82-row owner ledger passes candidate checker. Prior95receipt prefix retained; unique938byte incoming raw row appended96, original complete82-row mainGitblob retained separately; no whole incoming prefix claim. Append97 records integration, no stale review transfer. MissingNPM_TOKEN/source-map-support notices separate; initial read-only/usage command errors corrected with no verification credit. No consumer/runtime/heartbeat/model/credential/paid change.
