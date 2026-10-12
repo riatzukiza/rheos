@@ -92,3 +92,17 @@
                 (str "{:event/id \"ok\" :payload " (pr-str [\# \_ \" \;]) "}")
                 "{:event/id \"ok\" :payload foo#_bar}"]]
     (is (:ok (ledger/check-text text)))))
+
+(deftest discard-adjacent-to-single-character-literals
+  (let [single-chars [\; \" \\ \[ \] \{ \} \( \) \^ \@ \` \~]]
+    (doseq [ch single-chars]
+      (let [text (str "{:event/id \"ok\" :payload [\\" ch "#_1]}")
+            result (ledger/check-text text)]
+        (testing text
+          (is (false? (:ok result)))
+          (is (= 1 (get-in result [:errors 0 :row])))
+          (is (= :discarded-edn-form (get-in result [:errors 0 :code]))))))
+    (is (:ok (ledger/check-text
+              (str "{:event/id \"ok\" :payload ["
+                   (str/join " " (map #(str "\\" %) single-chars)) "]}")))
+        "Literal reader-special characters without a discard remain valid")))

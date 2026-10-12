@@ -1,0 +1,60 @@
+{
+  "tier": "observed-command-output-index",
+  "provider_approval": false,
+  "finding": 4252484090,
+  "source_head": "7ff96babea14f6ca2110d9452c826939b9338ec2",
+  "red": {
+    "jvm": {
+      "tests": 6,
+      "assertions": 185,
+      "fail": 39,
+      "errors": 0,
+      "exit": 39
+    },
+    "cljs": {
+      "tests": 271,
+      "assertions": 3009,
+      "fail": 39,
+      "errors": 0,
+      "exit": 1
+    }
+  },
+  "fixture_correction": "Initial pr-str emitted CLJS strings, corrected explicit backslash syntax before production change. Initial CLJS pass supplies no production proof.",
+  "logs": [
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/adjacent-character-current-jvm-probe.log",
+      "bytes": 669,
+      "sha256": "ad45dfa2e2c6a7d9ef8f6647b9c3d42cfdce90322e18279969883915fd3c9327"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/adjacent-character-red-jvm.log",
+      "bytes": 8028,
+      "sha256": "6da649e5e76c1aca28fe5e28daea27b8852f6d2f176b4f08624a811d2b308021"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/adjacent-character-red-cljs.log",
+      "bytes": 5289,
+      "sha256": "04647205451d39c881c809531bafaeb4f7196173d0b002f14439ff6c58750811"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/adjacent-character-red-jvm-corrected.log",
+      "bytes": 8028,
+      "sha256": "6da649e5e76c1aca28fe5e28daea27b8852f6d2f176b4f08624a811d2b308021"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/adjacent-character-red-cljs-corrected.log",
+      "bytes": 23054,
+      "sha256": "f3de08e2d54eb5c21e4cb543ad33f26db78e2ec49ee347c2b57b30c6b4165919"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/adjacent-character-native-reopen.log",
+      "bytes": 66,
+      "sha256": "847c6582a75238171abe84aa391f05c16dea7923a81bc73a150f3ce287d3e926"
+    },
+    {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/adjacent-character-red-native-comment.log",
+      "bytes": 951,
+      "sha256": "cbfad1f788d307d32605a4e05527a938bca9c2510caecffdfb754b4444c0d77c"
+    }
+  ]
+}
