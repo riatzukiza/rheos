@@ -44,10 +44,10 @@
         fixture-sidecar (await (.readFile fsp
                                           (path/join fixture-root "translation-review.edn")
                                           "utf8"))]
-    (await (.mkdir fsp root #js {:recursive true}))
-    (await (.writeFile fsp markdown-path fixture-markdown "utf8"))
-    (await (.writeFile fsp sidecar-path fixture-sidecar "utf8"))
     (try
+      (await (.mkdir fsp root #js {:recursive true}))
+      (await (.writeFile fsp markdown-path fixture-markdown "utf8"))
+      (await (.writeFile fsp sidecar-path fixture-sidecar "utf8"))
       (let [result (await (document-file-event/handle-file-event!
                            "knowledge" root markdown-path "change"))
             recorded (await (protocols/query-events (ledger/get-ledger root) {}))]
@@ -66,10 +66,10 @@
   (let [root (tmp-dir)
         markdown-path (path/join root "translation.md")
         sidecar-path (path/join root "translation.edn")]
-    (await (.mkdir fsp root #js {:recursive true}))
-    (await (.writeFile fsp markdown-path (markdown-source "translation.edn") "utf8"))
-    (await (.writeFile fsp sidecar-path (sidecar-source "42") "utf8"))
     (try
+      (await (.mkdir fsp root #js {:recursive true}))
+      (await (.writeFile fsp markdown-path (markdown-source "translation.edn") "utf8"))
+      (await (.writeFile fsp sidecar-path (sidecar-source "42") "utf8"))
       (let [result (await (document-file-event/handle-file-event!
                            "knowledge" root markdown-path "add"))]
         (is (= "rheos.document.file-change-rejected" (:event/type result)))
@@ -86,10 +86,10 @@
 (deftest ^:async escaping-sidecar-path-appends-a-typed-rejection
   (let [root (tmp-dir)
         markdown-path (path/join root "translation.md")]
-    (await (.mkdir fsp root #js {:recursive true}))
-    (await (.writeFile fsp markdown-path
-                       (markdown-source "../../outside.edn") "utf8"))
     (try
+      (await (.mkdir fsp root #js {:recursive true}))
+      (await (.writeFile fsp markdown-path
+                         (markdown-source "../../outside.edn") "utf8"))
       (let [result (await (document-file-event/handle-file-event!
                            "knowledge" root markdown-path "change"))]
         (is (= "rheos.document.file-change-rejected" (:event/type result)))
@@ -105,9 +105,9 @@
 (deftest ^:async unprofiled-markdown-remains-outside-the-new-event-path
   (let [root (tmp-dir)
         markdown-path (path/join root "note.md")]
-    (await (.mkdir fsp root #js {:recursive true}))
-    (await (.writeFile fsp markdown-path "---\ntitle: Note\n---\nBody" "utf8"))
     (try
+      (await (.mkdir fsp root #js {:recursive true}))
+      (await (.writeFile fsp markdown-path "---\ntitle: Note\n---\nBody" "utf8"))
       (testing "no typed event is appended"
         (is (nil? (await (document-file-event/handle-file-event!
                           "knowledge" root markdown-path "change"))))
