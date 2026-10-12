@@ -7,7 +7,7 @@ priority: "P1"
 points: "3"
 labels: "cephalon, events, identity, provenance, repair"
 category: "tasks"
-write-id: "1791839207722-0.p92ejbize0lp7kt2w43"
+write-id: "1791840102663-0.gpnwaw18l38rcihtvzr"
 created_at: "2026-10-12T15:09:38.874Z"
 ---
 
@@ -96,5 +96,7 @@ Owner RED now exercised portable generated/opaque ID laws, explicit constructor/
 GREEN source prepared: portable constructor and strict physical-row identity checker; producer uses fresh UUID entropy through the constructor. Actual compiled explicit-path CLI bypasses config/bootstrap and preserves fixtures; duplicates, split/extra/blank rows, empty input, malformed UTF-8 and missing/unreadable files refuse with documented exits. Fresh absent-dist control rebuilt CLI then passed 268 tests / 2851 assertions; JVM portable rules 3 tests / 111 assertions pass. Qualified predecessor CLI85369213 native InProgress -> Review actually ran pnpm build/lint/test, all four targets zero compiler warnings, lint zero errors/warnings, 268/2851 zero failures/errors. Host missing-NPM_TOKEN notices and external-path JVM deprecation notices remain separate. Complete raw logs retained privately; no source qualification/consumer adoption/deployment credit yet.
 
 PR19 findings reproduced within the qualified checker owner. Corrected RED pnpm suite 270 tests/2936 assertions/21 failures/0 errors; JVM portable suite 5/142/27/0. Initial char fixture accidentally supplied two invalid positive inputs; corrected, not counted as causal RED. Actual root suite retains mode-000 EACCES mismatch; absent dist/cli.cjs bb test failed and did not rebuild CLI; original owned binary restored. Source fixes and fresh review remain required; no consumer adoption or runtime change.
+
+Reviewed checker fixes GREEN: pnpm270tests2969assertions0failures0errors; actual root suite same0/0; fresh absent-CLI bb test rebuilds byte-identical current source CLI and passes270/2969/0/0. All4release targets0warnings/lint0errors0warnings with retained INFOs; JVM5tests145assertions0/0. UUID trailing terminators, five discard cases including Unicode whitespace, missing-path JSON, scoped root EACCES, sequential bb task verified. BOM positive agrees with actual compiled cljs.reader used by production. Review remains current; no source qualification, consumer adoption or runtime change.
 
 ---

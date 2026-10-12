@@ -209,11 +209,12 @@ creates, edits, sorts, deletes or replays a ledger, card, config or board.
 Use the owning source revision's actual compiled CLI; a successful check is not
 proof that a downstream consumer has pinned or adopted that revision.
 
-With a path, stdout is one JSON object with stable fields `ok` (boolean), `path`
+Stdout is one JSON object with stable fields `ok` (boolean), `path`
 (the supplied path), `record-count` (physical rows scanned), and `errors`
 (ordered issues). An issue's `code` names the refusal. Row-specific issues have
 a one-based `row`; `duplicate-event-id` also supplies the exact `event-id` and
-its `first-row`. I/O issues have `io-code`. Missing arguments exit1. Missing
+its `first-row`. I/O issues have `io-code`. Missing arguments exit1 with
+`path: null`, zero records and a `usage` issue, including with `--json`. Missing
 paths exit2. Invalid, duplicate, malformed UTF-8, malformed EDN, blank/comment-only
 rows or empty files exit3; other I/O failures exit4. Every failure is nonzero
 and emits the ordinary single-line stderr diagnostic.
@@ -221,7 +222,9 @@ and emits the ordinary single-line stderr diagnostic.
 Every physical line must contain exactly one complete EDN value, which must be
 a map with a unique nonblank string `:event/id`. A single terminal LF or CRLF is
 the last record's delimiter; extra blank physical rows are invalid. Trailing
-forms/junk and split records refuse. The scan retains all row errors rather
+forms/junk and split records refuse. Actual `#_` reader-discard tokens refuse
+with `discarded-edn-form`, including within the record; literal `#_` text in
+strings, comments, characters or symbols is decoded normally. The scan retains all row errors rather
 than silently skipping a malformed line. This is identity/row admission, not
 full event-schema validation. Unique legacy timestamp IDs and opaque Unicode
 or punctuation remain compatible; records are never normalized or merged.
@@ -234,6 +237,9 @@ separate retained-ledger contract. Board/task components are exact nonblank
 opaque strings. Neither filename-safe identity nor an RFC UUID restriction is
 applied to them. The existing production emission adapter supplies fresh UUID
 entropy on every call; write IDs continue to correlate a multi-field operation.
+Entropy is exactly 36 characters; trailing line terminators refuse on both
+JVM and JavaScript. Both `pnpm test` and `bb test` release the CLI before
+compiling/running tests, so a fresh checkout cannot use an absent or stale CLI.
 
 The `compose` query DSL is shared verbatim with the HTTP `/api/board/compose`
 endpoint and the `kanban_read_board` MCP tool: `--status`, `--priority`,

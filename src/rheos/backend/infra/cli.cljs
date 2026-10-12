@@ -662,7 +662,11 @@
                     {:kind :usage :hint (str bin-name " --help")}))))
 
 (defn- ^:async cmd-check-event-ledger [parsed]
-  (let [path (require-positional (:subcommand parsed) "check-event-ledger" "path")
+  (if-not (:subcommand parsed)
+    (do
+      (print-json {:ok false :path nil :record-count 0 :errors [{:code :usage}]})
+      (fail! :usage "missing <path>; see rheos help check-event-ledger"))
+  (let [path (:subcommand parsed)
         observation (await (ledger-check/read-text path))
         report (case (:status observation)
                  :readable (assoc (event-ledger/check-text (:text observation)) :path path)
@@ -677,7 +681,7 @@
                :else :refused)]
     (print-json report)
     (when-not (:ok report)
-      (fail! kind (str "event ledger check failed: " path)))))
+      (fail! kind (str "event ledger check failed: " path))))))
 
 (defn- ^:async run-board [parsed]
   (let [flags (:flags parsed)

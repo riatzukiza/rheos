@@ -10,7 +10,9 @@
 
 (def registry
   {::opaque-id [:and :string [:re relationships/reference-pattern]]
-   ::uuid-entropy [:and :string [:re (str "^" uuid-pattern "$")]]
+   ;; JVM `$` also matches before a final line terminator. Exact length makes
+   ;; the shared grammar cover the whole input on both JVM and JavaScript.
+   ::uuid-entropy [:and [:string {:min 36 :max 36}] [:re (str "^" uuid-pattern "$")]]
    ::generation-input [:map {:closed true}
                        [:board-id [:ref ::opaque-id]]
                        [:task-id [:ref ::opaque-id]]

@@ -81,6 +81,7 @@
   (doseq [text ["{:event/id \"ok\"} #_{:event/id \"extra\"}"
                 "#_{:event/id \"hidden\"} {:event/id \"ok\"}"
                 "{:event/id \"ok\" :payload [#_42 1]}"
+                "{:event/id \"ok\"}\u2003#_1"
                 "{:event/id \"ok\"}#_#_1 2"]]
     (let [result (ledger/check-text text)]
       (is (false? (:ok result)))

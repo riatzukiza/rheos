@@ -626,3 +626,12 @@ After committed RED `ad66378`, the exact authored `story` joins the portable adm
   spore: none
   receipt-refs: cephalon-rheos-reviewed-checker-red-20261012
   note: All five actual Codex findings are being repaired within the authorized owning Rheos scope; no local consumer checker, policy waiver, identity override, credentials, paid model, runtime, heartbeat, maker or deployment change. Preserve exact committed362 receipt84/reflection/event prefixes. No spore.
+
+- ts: 2026-10-12T21:23:21.456Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-reviewed-checker-green-20261012
+  note: Exact-length named Malli UUID law rejects every trailing terminator on CLJ/CLJS. Owning lexical guard rejects reader-discard dispatch outside strings/comments/chars/symbols and reuses actual reader whitespace; EDN remains semantic decoder. Config-free CLI always emits report shape, including missing-path usage. Root-safe scoped boundary fixture and working bb entrypoint preserve assertions and source ownership. Source push/review/settlement and downstream adoption still required. No local consumer parser, policy waiver, force/squash, runtime/heartbeat/maker/credential/paid/model/deployment change; no spore.
