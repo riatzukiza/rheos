@@ -7,7 +7,7 @@ priority: "P1"
 points: "3"
 labels: "cephalon, events, identity, provenance, repair"
 category: "tasks"
-write-id: "1791846747681-0.f72n5vrp1lrnxe8in60"
+write-id: "1791849714988-0.cz26y7appbhbhojdaz1"
 created_at: "2026-10-12T15:09:38.874Z"
 ---
 
@@ -114,5 +114,9 @@ Correction and final EOF GREEN: actual installed tools.reader1.6.0 accepts nil a
 Personal-main859 integration gate passed: inspected all18 incoming files; typed document/sidecar/watcher behavior retained. Original owned95 receipts byte-prefix retained; unique incoming938byte raw row appended as96/SHA90afc7d3f729e0fa78f0421f452352e92ea270e7b42e099dad0ab6495a689d69. Raw85982-row Gitblob retained separately; no whole incoming byte-prefix claim. Held126 source/test/manifest hashes unchanged across native Review: all4release builds0compilerwarnings/lint0errors0warnings/full360tests3513assertions0fail0error/exit0; JVM7/203/0/0. Independent native Review3point readback; candidate actual82row owner ledger checkPASS. Invalid show/help-ledger/positional-comment read or usage attempts supply no verification credit; corrected native verbs/--text used. No approval transfer, consumer readiness, runtime, heartbeat, credentials, paid or model change.
 
 Current83 native findings4253024776/4783/4792/4798 reproduced before source changes: JVM9tests211assertions3fail0error and compiled363tests3599assertions46fail0error. Test-onlyRED59a09d4 retained. MinimumGREEN handles metadata token boundary, dispatch comments, known identity preflight before card/directory/ledger effects in create/comment/edit/transition, and exact one positional ledger path. CodeRabbit4253061516 spacing corrected in owning CLI docs. Same controls GREEN JVM9/211/0/0 and full363/3599/0/0; native InProgress->Review all4release targets0compilerwarnings/lint0errors0warnings with8baselineINFO/fullsuitePASS,126heldsourcehashes unchanged. Real owner ledger passes candidate explicit-path checker; independent owner readback Review. Host missingNPM_TOKEN notice remains separate. No consumer adoption/current-head approval/runtime/heartbeat/model/credential/paid change.
+
+Integration of actual personal main f8137e33fedc75ac978df5b0b2b66bc3f8a14498 (merged PR14) into this owned source: all six incoming files inspected; bounded plain/mixed inline-label scanner and its source/parity/performance tests retained. Exact prior99-row receipt byte-prefix retained plus one original1055byte incoming row SHA9240fe96f8a02f69e42e1495696b87f797b747121f4ad6effaeb735a820091e9. Incoming full83-row blob214644bytes/SHAbbfd50d1d651cac08cd99e8b0f230aef1de3c33177eb4a583b47625d8bfe54d1 retained; it is not claimed as the whole current byte-prefix. All raw rows remain.
+Qualified native85369213 CLI ran the unchanged InProgress→Review build gate: all4 release targets0compilerwarnings, lint0errors0warnings with8 pre-existing INFOs, full373tests3757assertions0fail0error/exit0. Independent owning readback Review/3points. All130 held source/test/manifest hashes matched before/after. Existing portable JVM event-ledger+frontmatter suites30tests372assertions0fail0error/exit0. Current read-only owning checker passed88 physical event rows before this comment. NPM_TOKEN environment notices remain separate from lint/compiler warnings; no credentials changed.
+Actual MiMo5497189581 at23:55:58UTC Oct12 APPROVED exact922/all33files/all30diffchunks/no confirmed findings; hosted38320987052 succeeded. That native approval is retained only for prior922/base859, not transferred to this new integration. New exact source/base needs fresh full input reviews/checks before authorized MERGE. No dependent Muse readiness/adoption, B1/B2/liveB3 completion, runtime, maker, model, paid usage or heartbeat change. No spore.
 
 ---
