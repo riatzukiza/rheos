@@ -19,7 +19,7 @@
 ;; receipt-river moves onto Clio after the E1.11 package move-out. Canonical
 ;; order will then be Clio's cause/stream order; `:ts` is display only.
 ;;
-;; Usage: bb scripts/verify_receipts.clj [--base <rev>] [--at <rev>]
+;; Usage: bb scripts/verify_receipts.clj [--base <rev>] [--at <rev>] [--range]
 ;;   --base defaults to origin/main, --at defaults to HEAD.
 (ns verify-receipts
   (:require [babashka.process :as process]
@@ -80,13 +80,30 @@
       true
       (catch Exception _ false))))
 
+(defn read-one-edn-map!
+  "Parse exactly one EDN map from `text`; trailing forms or non-maps fail."
+  [^String text label]
+  (try
+    (with-open [rdr (java.io.PushbackReader. (java.io.StringReader. text))]
+      (let [opts {:default tagged-literal :eof ::eof}
+            form (edn/read opts rdr)
+            more (edn/read opts rdr)]
+        (when (= form ::eof)
+          (fail! (str "Receipt segment must contain exactly one EDN map: " label)))
+        (when-not (= more ::eof)
+          (fail! (str "Receipt segment must contain exactly one EDN map: " label)))
+        (when-not (map? form)
+          (fail! (str "Receipt segment must contain exactly one EDN map: " label)))
+        form))
+    (catch Exception e
+      (when (re-find #"exactly one EDN map" (str (ex-message e)))
+        (throw e))
+      (fail! (str "Unreadable EDN receipt in " label ": " (ex-message e))))))
+
 (defn read-records [^String text label]
   (->> (str/split-lines text)
        (remove str/blank?)
-       (mapv (fn [line]
-               (try (edn/read-string {:default tagged-literal} line)
-                    (catch Exception e
-                      (fail! (str "Unreadable EDN receipt in " label ": " (ex-message e)))))))))
+       (mapv (fn [line] (read-one-edn-map! line label)))))
 
 (defn path-exists? [rev path]
   (zero? (:exit (process/shell {:out :string :err :string :continue true}
@@ -109,11 +126,23 @@
         (fail! (str "Receipt segment must contain exactly one EDN map: " path)))
       {:segment/path path :segment/bytes bytes :segment/records records})))
 
+(defn directory-at?
+  "True when `path` is a git tree at `rev`. `ls-tree` without `-d` lists children,
+  so a directory that contains README.md would otherwise look like a blob."
+  [rev path]
+  (let [out (str/trim (git-text "cat-file" "-t" (str rev ":" path)))]
+    (= "tree" out)))
+
 (defn read-ledger [rev]
-  (let [own (remove str/blank? (str/split (git-text "ls-tree" "-z" rev "--" segment-directory) #"\u0000"))
-        _ (when (and (seq own) (not (str/starts-with? (first own) "040000 tree ")))
+  (let [directory? (and (path-exists? rev segment-directory)
+                        (directory-at? rev segment-directory))
+        _ (when (and (path-exists? rev segment-directory) (not directory?))
             (fail! (str segment-directory " must be a directory at " rev)))
-        entries (remove str/blank? (str/split (git-text "ls-tree" "-z" rev "--" (str segment-directory "/")) #"\u0000"))
+        entries (if directory?
+                  (remove str/blank?
+                          (str/split (git-text "ls-tree" "-z" rev "--" (str segment-directory "/"))
+                                     #"\u0000"))
+                  [])
         segments (->> entries
                       (keep (fn [entry]
                               (let [[_ mode kind _ path] (re-matches #"([0-7]{6}) ([a-z]+) ([0-9a-f]{40,64})\t(.+)" entry)
@@ -121,11 +150,17 @@
                                 (cond
                                   (or (nil? path) (str/includes? name "/"))
                                   (fail! (str "Unexpected receipt segment entry: " entry))
-                                  (= segment-readme name) nil
+                                  ;; Exempt only a regular blob README.md — never a tree/symlink.
+                                  (and (= segment-readme name)
+                                       (= "100644" mode)
+                                       (= "blob" kind))
+                                  nil
+                                  (= segment-readme name)
+                                  (fail! (str "Receipt segment README.md must be a regular file: " path))
                                   (segment-name? name) (read-segment rev path mode kind)
                                   :else (fail! (str "Receipt segment name must match <UTC timestamp>-<id>.edn: " path))))))
                       (sort-by :segment/path))]
-    {:directory? (boolean (seq own))
+    {:directory? directory?
      :segments (into [(read-legacy rev)] segments)}))
 
 (defn merged-records
@@ -180,17 +215,44 @@
        :receipts/segments (dec (count head-segments))})))
 
 (defn parse-args [args]
-  (loop [[flag value & more :as args] args opts {:base "origin/main" :at "HEAD"}]
+  (loop [args args opts {:base "origin/main" :at "HEAD" :range? false}]
     (cond (empty? args) opts
-          (= "--base" flag) (recur more (assoc opts :base value))
-          (= "--at" flag) (recur more (assoc opts :at value))
-          :else (fail! (str "Unknown argument: " flag)))))
+          (= "--base" (first args))
+          (let [[_ value & more] args]
+            (when-not value (fail! "--base requires a revision"))
+            (recur more (assoc opts :base value)))
+          (= "--at" (first args))
+          (let [[_ value & more] args]
+            (when-not value (fail! "--at requires a revision"))
+            (recur more (assoc opts :at value)))
+          (= "--range" (first args))
+          (recur (rest args) (assoc opts :range? true))
+          :else (fail! (str "Unknown argument: " (first args))))))
+
+(defn verify-range!
+  "Verify every adjacent commit from `base` (exclusive) to `at` (inclusive) so a
+  segment cannot be added and then edited/deleted within one PR range."
+  [base at]
+  (let [revs (->> (str/split (git-text "rev-list" "--reverse" (str base ".." at)) #"\n")
+                  (remove str/blank?)
+                  vec)]
+    (when (empty? revs)
+      (fail! (str "No commits between " base " and " at)))
+    (reduce (fn [prev rev]
+              (verify! prev rev)
+              rev)
+            base
+            revs)
+    (verify! base at)))  ;; final base→at summary
 
 (defn -main [& args]
   (try
-    (let [{:keys [base at]} (parse-args args)
-          base (str/trim (git-text "merge-base" base at))]
-      (prn (assoc (verify! base at) :receipts/base base :receipts/at at)))
+    (let [{:keys [base at range?]} (parse-args args)
+          base (str/trim (git-text "merge-base" base at))
+          summary (if range?
+                    (verify-range! base at)
+                    (verify! base at))]
+      (prn (assoc summary :receipts/base base :receipts/at at :receipts/range? range?)))
     (catch clojure.lang.ExceptionInfo e
       (if (:receipts/error (ex-data e))
         (do (binding [*out* *err*] (println "verify-receipts:" (ex-message e)))
