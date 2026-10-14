@@ -3,8 +3,10 @@
          :task (shell "shadow-cljs release server cli")}
   watch {:doc "Dev watch with hot-reload"
          :task (shell "shadow-cljs watch server-dev")}
-  test {:doc "Run tests"
-        :task (shell "shadow-cljs compile test && node dist/test.cjs")}
+  test {:doc "Build the CLI and run tests"
+        :task (do (shell "shadow-cljs release cli")
+                  (shell "shadow-cljs compile test")
+                  (shell "node dist/test.cjs"))}
   lint {:doc "Lint source with clj-kondo"
         :task (shell "clj-kondo --lint src test")}
   verify-receipts {:doc "Check the segmented Receipt River ledger against a base (default origin/main)"

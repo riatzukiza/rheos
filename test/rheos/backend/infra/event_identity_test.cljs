@@ -7,8 +7,78 @@
             [open-hax.records.edn.event-admission :as edn-admission]
             [open-hax.openplanner-protocols :as protocols]
             [rheos.backend.infra.ledger :as ledger]
+            [rheos.backend.domain.events :as events]
+            [rheos.backend.law.event-identity :as identity-law]
             [rheos.backend.infra.task-edit :as edit]
+            [rheos.backend.infra.task-create :as create]
+            [rheos.backend.infra.transition :as transition]
             [rheos.backend.infra.task-store :as tasks]))
+
+(deftest ^:async invalid-event-components-refuse-before-card-publication
+  (doseq [[board task-id operations]
+          [["" "subject" [:comment :edit :move :create]]
+           [" \u2003 " "subject" [:comment :edit :move :create]]
+           ["board" "   " [:comment :edit :move]]]]
+    (doseq [operation operations]
+      (let [dir (await (.mkdtemp fsp (path/join (.tmpdir os) "rheos-preflight-")))
+            source-path (path/join dir "subject.md")
+            raw (str "---\nuuid: \"" task-id "\"\ntitle: Original\nstatus: incoming\npriority: P3\n---\n\nRetained bytes.\n")
+            project {:id board :tasks-dir dir :fsm "promethean"}
+            task {:uuid task-id :source-path source-path :status "incoming"}
+            captured (atom [])
+            unsub (events/subscribe! #(swap! captured conj %))]
+        (try
+          (when-not (= operation :create) (await (.writeFile fsp source-path raw "utf8")))
+          (let [before (vec (await (.readdir fsp dir)))
+                outcome (try
+                          (case operation
+                            :comment (await (edit/append-comment! {:project project :task task :text "Refused"}))
+                            :edit (await (edit/update-frontmatter! {:project project :task task :updates {:priority "P0"}}))
+                            :move (await (transition/move-task! {:project project :task task :new-status "breakdown"}))
+                            :create (await (create/create-task! {:project project :title "Refused creation" :uuid "new-task"})))
+                          (catch :default error (ex-data error)))]
+            (is (contains? #{:refused :conflict} (:kind outcome))
+                (str operation " must refuse known invalid identity before effects: " outcome))
+            (is (= before (vec (await (.readdir fsp dir))))
+                "No new card or event-ledger path may be left behind")
+            (when-not (= operation :create)
+              (is (= raw (await (.readFile fsp source-path "utf8")))
+                  "Original card bytes remain exact, without a new write-id"))
+            (is (empty? @captured) "No subscriber publication for a refused identity"))
+          (finally
+            (unsub)
+            (swap! ledger/ledger-cache dissoc dir)
+            (await (.rm fsp dir #js {:recursive true :force true}))))))))
+
+(deftest ^:async independent-native-admission-writers-have-distinct-frozen-time-ids
+  (let [dir (await (.mkdtemp fsp (path/join (.tmpdir os) "rheos-two-writers-")))
+        saved-now (.-now js/Date)
+        saved-iso (.-toISOString (.-prototype js/Date))
+        board "literal, id"
+        task " legacy-雪 "
+        timestamp "2026-10-11T18:45:52.193Z"]
+    (try
+      (set! (.-now js/Date) (fn [] 1791744352193))
+      (set! (.-toISOString (.-prototype js/Date)) (fn [] timestamp))
+      (let [first-writer (edn-admission/create-edn-event-admission dir)
+            second-writer (edn-admission/create-edn-event-admission dir)]
+        (await (events/emit-comment! first-writer board task "First" "shared" "test"))
+        (await (events/emit-comment! second-writer board task "Second" "shared" "test"))
+        (let [reader (edn-admission/create-edn-event-admission dir)
+              all (await (protocols/query-events reader {}))]
+          (is (= 2 (count all)))
+          (is (= 2 (count (set (map :event/id all)))))
+          (is (every? #(identity-law/generated-id? board task (:event/id %)) all))
+          (is (= ["First" "Second"] (mapv #(get-in % [:payload :text]) all)))
+          (doseq [event all]
+            (is (= {:event/type "kanban.comment" :event/time timestamp :session/id board
+                    :delivery/mode "tell" :payload {:task-id task :text (get-in event [:payload :text])
+                                                   :write-id "shared" :source "test" :agent "eta-mu" :type "comment"}}
+                   (dissoc event :event/id :causal/root))))))
+      (finally
+        (set! (.-now js/Date) saved-now)
+        (set! (.-toISOString (.-prototype js/Date)) saved-iso)
+        (await (.rm fsp dir #js {:recursive true :force true}))))))
 
 (deftest ^:async same-millisecond-native-batch-preserves-duplicate-history-and-new-identities
   (let [dir (await (.mkdtemp fsp (path/join (.tmpdir os) "rheos-event-identity-")))
@@ -28,7 +98,7 @@
       (await (.writeFile fsp source-path original "utf8"))
       (let [seed (edn-admission/create-edn-event-admission events-dir)]
         (await (protocols/append-events! seed historical)))
-      (let [prefix (await (.readFile fsp ledger-path))
+      (let [^js prefix (await (.readFile fsp ledger-path))
             task (first (await (tasks/load-tasks project)))]
         (set! (.-now js/Date) (fn [] 1791744352193))
         (let [result (await (edit/update-frontmatter!

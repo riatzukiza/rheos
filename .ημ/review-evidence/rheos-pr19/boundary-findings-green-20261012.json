@@ -1,0 +1,89 @@
+{
+  "tier": "observed-command-output index; no provider approval or adoption",
+  "red_commit": "59a09d4fb55385b87b8ec1281110d5cbbde56f3f",
+  "parent": "83a1a27cf5b5636f0f1800b714af7ecde64c46d1",
+  "findings": [
+    4253024776,
+    4253024783,
+    4253024792,
+    4253024798,
+    4253061516
+  ],
+  "jvm": {
+    "tests": 9,
+    "assertions": 211,
+    "failures": 0,
+    "errors": 0,
+    "exit": 0
+  },
+  "cljs": {
+    "tests": 363,
+    "assertions": 3599,
+    "failures": 0,
+    "errors": 0,
+    "exit": 0
+  },
+  "native_gate": {
+    "status": "review",
+    "four_release_targets_zero_compiler_warnings": true,
+    "lint_errors": 0,
+    "lint_warnings": 0,
+    "baseline_lint_info": 8,
+    "held_source_hash_count": 126,
+    "all_unchanged": true,
+    "exit": 0
+  },
+  "owner_ledger": {
+    "ok": true,
+    "record-count": 86,
+    "errors": [],
+    "path": "docs/agile/.events/ledger.edn"
+  },
+  "candidate_cli_sha256": "49f575ed5b5b94e6ca03bee5051093998822b6a3a200aac75c4b2fe251f34af6",
+  "logs": {
+    "boundary-findings-jvm-green.log": {
+      "bytes": 110,
+      "sha256": "5b11bc52e14d521d91185c7524e71246795e72a3c96a9c5e1e2295e353d53c22"
+    },
+    "boundary-findings-cljs-green.log": {
+      "bytes": 6893,
+      "sha256": "e6807014998afb0f996521e06b1c77a2602e139d7e531875eccc6b78046fd4c4"
+    },
+    "boundary-findings-native-review.log": {
+      "bytes": 9360,
+      "sha256": "4560c34ab885a648a15633d163324d46f6c3f9c55128563d7477a727f4efedf4"
+    },
+    "boundary-findings-native-review-readback.json": {
+      "bytes": 25188,
+      "sha256": "0fb9bc87eb7cdad1bbc6d4d7067a25a7d9775b2e91e6bd5a74b771def46c84f3"
+    },
+    "boundary-findings-final-owner-ledger-check.json": {
+      "bytes": 98,
+      "sha256": "2f255d4922834b7f55bde8d825f06b9d7716ec522f8ba5ad758df001fcb42c1f"
+    }
+  },
+  "prefixes": {
+    ".ημ/receipts.edn": {
+      "bytes": 251475,
+      "sha256": "ab4bfc0b099b050a3d07073be5c0b90a185e82ba4d2d273f427ff7c8cdef00cb",
+      "unchanged": true
+    },
+    ".ημ/session-mycology/ledger.md": {
+      "bytes": 95920,
+      "sha256": "1ff3d1a544b5860bbd1f78ae5f068297e4d0839ddae6ef6225fac691da5f6a69",
+      "unchanged": true
+    },
+    "docs/agile/.events/ledger.edn": {
+      "bytes": 85247,
+      "sha256": "7351a19b83c15c3d21b9c692e5e2f6171fed5f4671b165bb89d9a33f151d5f03",
+      "unchanged": true
+    }
+  },
+  "limits": [
+    "Source review and merge remain required",
+    "No consumer adoption/runtime/heartbeat/model/auth/paid change",
+    "Host missing-NPM_TOKEN notices distinct from compiler/lint warnings",
+    "Compiler autorun repeats same controls; no duplicate proof credit"
+  ],
+  "operator_correction": "Initial proof read expected an ok/task wrapper; actual read-task returns uuid/frontmatter/sections directly. Failed inspection supplied no verification credit; actual native gate/comment was not repeated."
+}

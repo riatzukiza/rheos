@@ -15,6 +15,7 @@
             [rheos.backend.domain.relationships :as relationships]
             [rheos.backend.law.relationships :as relationship-law]
             [rheos.backend.shape.content-parser :as content-shape]
+            [rheos.backend.shape.event-identity :as identity]
             [rheos.backend.infra.content-parser :as content-parser]
             [rheos.backend.infra.ledger :as ledger]
             [rheos.backend.infra.task-store :as tasks]
@@ -74,11 +75,11 @@
                                                :diagnostic (.-message err))
                                         err))
                         (throw err))))
-          ledger (ledger/get-ledger (:tasks-dir project))
           src (or source "cli")]
       (if (and relationship-batch? (:noop? decision))
         {:ok true :task (first current) :frontmatter (:frontmatter (first current)) :noop true}
         (do
+          (identity/check-components! (:id project) (:uuid task))
           (when-not (= (tasks/source-revisions loaded)
                        (tasks/source-revisions (await (tasks/load-tasks project))))
             (publication/conflict! "Complete selected source changed before relationship edit"
@@ -89,9 +90,10 @@
                     (watcher/register-cli-event! write-id (:uuid task))
                     (.writeFile fsp task-path (:raw plan) "utf8"))
                   (^:async fn []
-                    (doseq [{:keys [key old-value new-value]} (:changes plan)]
-                      (await (events/emit-frontmatter-change! ledger (:id project) (:uuid task)
-                                                              key old-value new-value write-id src))))))
+                    (let [board-ledger (ledger/get-ledger (:tasks-dir project))]
+                      (doseq [{:keys [key old-value new-value]} (:changes plan)]
+                        (await (events/emit-frontmatter-change! board-ledger (:id project) (:uuid task)
+                                                                key old-value new-value write-id src)))))))
           {:ok true :task task :frontmatter (:frontmatter plan)})))))
 
 (defn ^:async update-frontmatter!
@@ -122,6 +124,7 @@
                           (throw err))))
         write-id (events/generate-write-id)
         new-raw (content-parser/inject-write-id comment-raw write-id)
+        _ (identity/check-components! (:id project) (:uuid task))
         ledger (ledger/get-ledger (:tasks-dir project))]
     (when-not (= raw (await (.readFile fsp task-path "utf8")))
       (publication/conflict! "Card source changed before comment publication"

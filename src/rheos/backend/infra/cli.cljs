@@ -21,6 +21,8 @@
             [rheos.backend.infra.agent-tools :as agent-tools]
             [rheos.backend.infra.config :as config]
             [rheos.backend.domain.events :as events]
+            [rheos.backend.domain.event-ledger :as event-ledger]
+            [rheos.backend.extern.ledger-check :as ledger-check]
             [rheos.backend.infra.ledger :as ledger]
             [rheos.backend.infra.projects :as projects]
             [rheos.backend.infra.task-create :as task-create]
@@ -81,26 +83,27 @@
         cmd (when (and (seq args-vec) (not (flag-token? (nth args-vec 0)))) (nth args-vec 0))
         sub (when (and (> (count args-vec) 1) (not (flag-token? (nth args-vec 1)))) (nth args-vec 1))
         rest-args (if sub (subvec args-vec 2) (if cmd (subvec args-vec 1) args-vec))
-        flags (loop [remaining rest-args acc {}]
+        parsed (loop [remaining rest-args acc {} extra []]
                 (if (empty? remaining)
-                  acc
+                  {:flags acc :extra extra}
                   (let [k (first remaining)
                         v (second remaining)
                         flag-name (when (flag-token? k) (subs k 2))]
                     (cond
                       (nil? flag-name)
-                      (recur (rest remaining) acc)
+                      (recur (rest remaining) acc (conj extra k))
 
                       ;; Boolean: only consume the next token if it is an explicit
                       ;; true/false, so `--json --project x` parses both flags.
                       (contains? boolean-flags flag-name)
                       (if (contains? #{"true" "false"} v)
-                        (recur (drop 2 remaining) (add-flag acc flag-name v))
-                        (recur (rest remaining) (add-flag acc flag-name "true")))
+                        (recur (drop 2 remaining) (add-flag acc flag-name v) extra)
+                        (recur (rest remaining) (add-flag acc flag-name "true") extra))
 
                       :else
-                      (recur (drop 2 remaining) (add-flag acc flag-name v))))))]
-    {:command cmd :subcommand sub :flags flags}))
+                      (recur (drop 2 remaining) (add-flag acc flag-name v) extra)))))]
+    (cond-> {:command cmd :subcommand sub :flags (:flags parsed)}
+      (seq (:extra parsed)) (assoc :extra-positionals (:extra parsed)))))
 
 (defn- get-flag
   "Last value given for `key`, or nil."
@@ -273,6 +276,13 @@
     :flags [["--json" "emit JSON"]]
     :example "rheos drift"}
 
+   {:verb "check-event-ledger" :group "read" :config-free? true
+    :args "<path>"
+    :summary "Read every physical EDN row and check opaque event-ID uniqueness; always prints JSON."
+    :flags []
+    :example "rheos check-event-ledger docs/agile/.events/ledger.edn"
+    :notes "Explicit path only. Bypasses config/project/view bootstrap; KANBAN_CONFIG and board flags do not select its input. Checks identity and row completeness, not the full event schema. Never creates or writes a file. Exit 0 valid, 1 usage, 2 missing path, 3 invalid/duplicate/empty input, 4 I/O failure."}
+
    {:verb "serve" :group "service"
     :args ""
     :summary "Run the HTTP server (board UI, REST API, SSE stream, MCP endpoint)."
@@ -334,9 +344,10 @@
         (println "FLAGS")
         (doseq [line (flag-lines (:flags v))] (println line))
         (println ""))
-      (println "COMMON FLAGS")
-      (doseq [line (flag-lines common-flags)] (println line))
-      (println "")
+      (when-not (:config-free? v)
+        (println "COMMON FLAGS")
+        (doseq [line (flag-lines common-flags)] (println line))
+        (println ""))
       (when (:notes v)
         (println "NOTES")
         (println (str "  " (:notes v)))
@@ -666,7 +677,29 @@
     (throw (ex-info (str "unknown verb: " verb)
                     {:kind :usage :hint (str bin-name " --help")}))))
 
-(defn- ^:async run [parsed]
+(defn- ^:async cmd-check-event-ledger [parsed]
+  (if (or (nil? (:subcommand parsed)) (seq (:extra-positionals parsed)))
+    (do
+      (print-json {:ok false :path (:subcommand parsed) :record-count 0 :errors [{:code :usage}]})
+      (fail! :usage "exactly one <path> is required; see rheos help check-event-ledger"))
+  (let [path (:subcommand parsed)
+        observation (await (ledger-check/read-text path))
+        report (case (:status observation)
+                 :readable (assoc (event-ledger/check-text (:text observation)) :path path)
+                 :malformed {:ok false :path path :record-count 0
+                             :errors [{:code :invalid-utf8}]}
+                 {:ok false :path path :record-count 0
+                  :errors [{:code :io-error :io-code (:code observation)}]})
+        kind (cond
+               (:ok report) :ok
+               (= :unavailable (:status observation))
+               (if (= "ENOENT" (:code observation)) :not-found :internal)
+               :else :refused)]
+    (print-json report)
+    (when-not (:ok report)
+      (fail! kind (str "event ledger check failed: " path))))))
+
+(defn- ^:async run-board [parsed]
   (let [flags (:flags parsed)
         verb (:command parsed)
         config-path (or (get-flag flags "config") (aget js/process.env "KANBAN_CONFIG"))
@@ -676,6 +709,13 @@
     ;; Share resolved projects with the tool registry so CLI and server resolve identically.
     (projects/set-projects! ps)
     (await (dispatch-verb verb ps view-store parsed))))
+
+(defn- ^:async run [parsed]
+  ;; This explicit-path operation must run before any board config discovery,
+  ;; project resolution, view-store creation or tool-registry bootstrap.
+  (if (= "check-event-ledger" (:command parsed))
+    (await (cmd-check-event-ledger parsed))
+    (await (run-board parsed))))
 
 (defn ^:async main []
   (let [args (vec (drop 2 (js->clj js/process.argv)))

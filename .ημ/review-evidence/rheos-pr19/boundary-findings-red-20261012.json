@@ -1,0 +1,46 @@
+{
+  "tier": "observed-command-output index; not raw REST/provider approval",
+  "parent": "83a1a27cf5b5636f0f1800b714af7ecde64c46d1",
+  "native_review": 5496808729,
+  "findings": [
+    4253024776,
+    4253024783,
+    4253024792,
+    4253024798
+  ],
+  "production_unchanged_during_red": true,
+  "jvm": {
+    "tests": 9,
+    "assertions": 211,
+    "failures": 3,
+    "errors": 0,
+    "exit": 3
+  },
+  "cljs": {
+    "tests": 363,
+    "assertions": 3599,
+    "failures": 46,
+    "errors": 0,
+    "exit": 1
+  },
+  "observations": [
+    "Metadata macro can hide a real discard",
+    "Dispatch-comment literal discard falsely rejected",
+    "Real blank board/legacy blank task identity can leave changed card bytes/new event path without event append",
+    "Extra explicit ledger paths ignored with exit0"
+  ],
+  "limits": [
+    "Test-only causal RED, no source approval or consumer adoption",
+    "Compiler test autorun repeats same suite; no duplicate proof credit"
+  ],
+  "logs": {
+    "jvm": {
+      "bytes": 817,
+      "sha256": "143ebf8321d2bdb5a51843d58627d753fc3d996c3242a6cea9e336280deaf120"
+    },
+    "cljs": {
+      "bytes": 38299,
+      "sha256": "159b9a02b3daf6f4dbd97b38dcc568a4de7f5c74fbbbdf1758500928f5262021"
+    }
+  }
+}

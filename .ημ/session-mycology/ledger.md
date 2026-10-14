@@ -581,3 +581,165 @@ After committed RED `ad66378`, the exact authored `story` joins the portable adm
   spore: none
   receipt-refs: cephalon-rheos-owner-body-history-correction-20261012T1547
   note: Codex actual0fa planning finding4249844295 asked revised body history after the owner/consumer split. Qualified native Rheos comment operation now appends a complete7304byte current owner-body revision snapshot SHA946f94dc53b495cfe59264f1a3067155ab67cea1390c5ad30ab76a6752fde836, tied to source0fa and exact3pointowner/2pointconsumer dependency. Original task-created combined scope remains true initial history, unchanged. Independent native readback verifies full snapshot text, unchanged body and every metadata field except native write-id; exactly one canonical comment event appended and old event prefix remains byte-identical. Native comments are the supported later-information vocabulary; this supplies complete revision custody, not a new body-update event type, automatic latest-body projection, replay engine, source implementation, Ready or approval. No local event writer/parser/protocol introduced. Current0fa free hosted38271812769 deterministic and tool compile passed, reviewer/mandatorywrapper failed; no new-head approval. Muse CodeRabbit full request6127481165 completed via native6127483510 updated15:39:59 and summary6111723564 updated15:41:23 selectsall8/exact361reviewed/noactionable/no declaredomissions; canonical approval evidenceCodeRabbit, not formalGitHubAPPROVED. MuseCI/Sandboxpass but free inference401/mandatorywrapperfail/0of5cohorts remain. No paid/provider/credential/runtime/deployment/publication change, no spore. Receipt79 and complete source event/reflection prefixes preserved.
+
+- ts: 2026-10-12T19:34:55.068Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-event-id-checker-native-readiness-20261012
+  note: Human separately authorized standard event IDs/checks. This is native readiness only: no constructor/checker/law/tests/source RED/GREEN, feature commit, PR, consumer adoption or functional gate has occurred. The newly answered Muse context-enforcement/joint-delivery scope takes the critical path first. Existing qualified UUID emission remains unchanged. No ledger rewrite, board sidecar, runtime/clock/owner/PM2/cloud/social/paid/credential/heartbeat/deployment mutation. No spore.
+
+- ts: 2026-10-12T19:36:40.104Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-readiness-artifact-reference-correction-20261012
+  note: Receipt81 used the shortened native-read-in_progress.json reference. The actual retained native read file is native-read-in_progress-stdout.json,16729bytes/SHA2560ca1f375bd249b7b92219e8ac5ab62db166a717070a0485d3a7af22aae308f48, in the existing private rheos-event-id-checker-implementation-20261012 directory. Move evidence is native-move-in_progress-stdout.json,17181bytes/SHA2562b93b0cb10c0adaf608ff92971ef231f4c2ce563b46c273babc2752bc4fd3047. No original artifact or ledger row changed; readiness remains the only completed step and source implementation is unstarted. No spore.
+
+- ts: 2026-10-12T19:54:03.498Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-event-id-checker-red-20261012
+  note: Existing opaque identity predicate is reused without normalization or new filename/UUID restrictions on board/task IDs. The new named Malli laws precede shape/domain/adapter GREEN. One fixture literal typo was corrected before the first run; no typo is counted as intended RED. No consumer pin/adoption, runtime, heartbeat, maker or deployment change. No spore.
+
+- ts: 2026-10-12T20:08:52.356Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-event-id-checker-green-20261012
+  note: Fresh compiled CLI and native build gate passed268tests2851assertions; portable JVM3tests111assertions passed. Test-before-build hosted ordering required building the CLI inside the test command. Preserve private raw logs, exact committed ledger prefixes and provider/source qualification boundaries; no consumer or runtime adoption.
+
+- ts: 2026-10-12T21:07:43.001Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-reviewed-checker-red-20261012
+  note: All five actual Codex findings are being repaired within the authorized owning Rheos scope; no local consumer checker, policy waiver, identity override, credentials, paid model, runtime, heartbeat, maker or deployment change. Preserve exact committed362 receipt84/reflection/event prefixes. No spore.
+
+- ts: 2026-10-12T21:23:21.456Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-reviewed-checker-green-20261012
+  note: Exact-length named Malli UUID law rejects every trailing terminator on CLJ/CLJS. Owning lexical guard rejects reader-discard dispatch outside strings/comments/chars/symbols and reuses actual reader whitespace; EDN remains semantic decoder. Config-free CLI always emits report shape, including missing-path usage. Root-safe scoped boundary fixture and working bb entrypoint preserve assertions and source ownership. Source push/review/settlement and downstream adoption still required. No local consumer parser, policy waiver, force/squash, runtime/heartbeat/maker/credential/paid/model/deployment change; no spore.
+
+- ts: 2026-10-12T21:40:54.931Z
+  task: cephalon-character-memory/B3/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-adjacent-character-discard-red-20261012
+  note: Canonical owning Rheos checker repair within authorized scope. No local consumer parser or ledger history rewrite, model/credentials/paid/runtime/heartbeat/deployment change; no source approval transfer or spore.
+
+- ts: 2026-10-12T21:44:17.076Z
+  task: cephalon-character-memory/B3/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-adjacent-character-discard-green-20261012
+  note: All six verified review findings repaired through owning Rheos source. Fresh exact-head independent reviews still required before authorized merge and separate consumer gate. No ledger history rewrite, runtime/credentials/model/paid/deployment change; no spore.
+
+- ts: 2026-10-12T21:51:10.009Z
+  task: cephalon-character-memory/B3/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-current-personal-main-integration-20261012
+  note: Ordinary history-preserving base integration, no force/reset/simplification. Owning checker source and separate incoming consumer gate remain distinct. No runtime/heartbeat/maker/model/credentials/paid/deployment changes; no spore.
+
+- ts: 2026-10-12T22:08:22.928Z
+  task: cephalon event identity checker owner
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-dangling-character-guard-red-20261012
+  note: Current c7 source Codex5496409294/root4252705523 requests explicit EOF guard. Actual installed JVM tools.reader1.6.0 whitespace? accepts nil; corrected ordinary controls passJVM7/194/0/0 and compiled336/3417/0/0, so reported current-production throw is NOT reproduced. Strict helper fault fixture rejects nil/delegates real chars: causal REDJVM7/195/0fail1error/exit1 and Node336/3418/0fail1error/exit1. Compiler driver alone exits0 despite autorunerror; actual node exit1 retained. Initial malformed delimiter fixture failed parsing before correction, no causalcredit. One existing identity fixture inference warning retained; GREEN must have zero warnings. c7 prior6threads settled/body7689exact/currentrequests6133305155/6133306786/CRquota6133307097. Old7ff38310411790 native COMPLETEDcancelled22:06:25 after bounded cancellation; this is not provider termination proof. c7 hosted38313205208 started22:06:27, no new source approval yet. Exact journal prefixes preserved; qualified owner native Review-InProgress for same3pt scope; no consumer, runtime, paid or credentials change.
+
+- ts: 2026-10-12T22:10:57.280Z
+  task: cephalon event identity checker owner
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-dangling-scanner-red-correction-20261012
+  note: Correction appended without rewriting receipt91. First strict-helper override also altered actual EDN decoder: initial candidateJVM7/203/3fail0error and native gate336/3426/3fail0error/exit3 refused. Candidate source changed before native gate finished, so it receives no verification credit; final stable gate must repeat. Strict fixture now scopes helper to scanner and restores original helper during actual edn/read. Corrected causal scannerRED with production unchanged: JVM7/195/0fail1error/exit1; compiled Node336/3418/0fail1error/exit1; compile8files0warnings. Ordinary installed-reader cases remain positive; no claim reported real dependency throws. Added actual Buffer ^js hint in existing owned identity fixture to repair one concrete inference warning, assertions unchanged. All logs retained, no paid/credentials/runtime/consumer change.
+
+- ts: 2026-10-12T22:21:28.131Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-dangling-native-reader-arity-red-correction-20261012
+  note: Compiled cljs.tools.reader.edn/read has internal arities 1, 2 and 4. The test double preserves all three on CLJS, 1 and 2 on JVM; actual decoder helper restored only while decoding. Strict nil refusal belongs solely to the scanner. Native candidate gate and pnpm test had 3 failures because fixture lacked internal 4-arity; no GREEN credit. Earlier receipts remain immutable. Current installed real reader accepts nil; reported current production exception was not reproduced. Candidate is defensive explicit EOF handling, not proof of that exception. Existing receipt/reflection/event prefixes preserved. No consumer, runtime, credentials or paid-model change.
+
+- ts: 2026-10-12T22:22:44.989Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-dangling-both-host-reader-arity-red-correction-20261012
+  note: JVM reader also has internal four-argument read, confirmed by installed source and actual ArityException. Preserve 1/2/4 on both hosts. Receipt93 wrongly scoped four-argument form to CLJS; it remains historical. Previous attempted JVM GREEN had three fixture failures, no GREEN credit. Production guard removed before corrected RED; no production throw claimed. Prior receipts/reflections preserved; no runtime, consumer or paid-model change.
+
+- ts: 2026-10-12T22:26:21.850Z
+  task: cephalon-character-memory/ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-dangling-character-guard-green-20261012
+  note: Explicit EOF nil guard precedes character boundary helper; actual decoder and lexical discard controls preserved. Exact real reader arities retained in both host fixtures. Reported installed production throw not reproduced; real whitespace helper accepts nil. Defensive helper-independent EOF contract verified with scoped strict fixture. All prior incidental fixture failures retained through appended correction receipts91-94. Current source approval/merge and dependent Muse consumer adoption required; no stale approval transfer. Missing NPM_TOKEN environment notice is separate from compiler and lint warnings. No credentials/paid/runtime/heartbeat change. Docs clarify ENOENT2 versus ENOTDIR4 taxonomy without changing exits. Actual owner ledger checked, not inferred. All owned prior receipt/reflection/event prefixes retained.
+
+- ts: 2026-10-12T22:44:54.901Z
+  task: Three-point canonical event-ID checker owner: ordinary personal-main integration
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-personal-main-859-integration-green-20261012
+  note: Inspected18 incoming files; typed document/sidecar/watcher behavior preserved. Held126 source hashes unchanged. NativeReview all4releases0warnings/lint0errors0warnings/full360tests3513assertions0fail0error/exit0; JVM7/203/0/0. Actual82-row owner ledger passes candidate checker. Prior95receipt prefix retained; unique938byte incoming raw row appended96, original complete82-row mainGitblob retained separately; no whole incoming prefix claim. Append97 records integration, no stale review transfer. MissingNPM_TOKEN/source-map-support notices separate; initial read-only/usage command errors corrected with no verification credit. No consumer/runtime/heartbeat/model/credential/paid change.
+
+- ts: 2026-10-12T23:01:19.138Z
+  task: Canonical event identity/checker owner: four native83a1 boundary findings
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-boundary-findings-red-20261012
+  note: Stable production unchanged throughout RED. JVM9tests211assertions3fail0error/exit3; compiledfull363tests3599assertions46fail0error/exit1. Actualmetadata discard bypass, dispatch-comment false rejection, extra-path misleading exit0 and actual native invalid-identity card-write-before-ledger partial effect reproduced. Real disposable card bytes, root directories/subscriber observations retained; legacyopaque positives unchanged. Compiler autorun is same suite twice, no duplicatecredit. Owner lawful Review->InProgress for repairs. Native current83a1 requests retained; Codexmanual6134140010quotaUNKNOWN excludesoptionalaccountavailability canonically, supplies noapproval. CR6134168419acceptedfullrequest/6134171821triggerpending; MiMo38318446265currentrunning after ownedobsoletec7CIcancel/forcecancel completedcancelled, no providerterminationclaim. No consumer/runtime/heartbeat/paid/model/authchange. Receipt/reflection/event prefixes retained; no spore.
+
+- ts: 2026-10-12T23:13:15.130Z
+  task: Finite B3 prerequisite: standard event IDs and strict native ledger check
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: rheos-boundary-findings-green-20261012
+  note: ActualRED JVM9/211/3fail0error and full363/3599/46fail0error retained in59a; minimumGREEN metadata/dispatch-comment scanner, pure known-component preflight before4nativewriter effects, exactsinglepath CLI and CodeRabbitspacing. GREEN JVM9/211/0/0 and full363/3599/0/0; native Review all4release0compilerwarnings/lint0errors0warnings8priorINFO/fullsuitePASS/126heldhashesunchanged/exit0. IndependentReviewreadback, actual86rowownerledgerPASS, allpriorreceipt/reflection/eventprefixbyteexact. Initial proof-inspection expectedwrongok/task wrapper, correctedactualdirectuuid/frontmatter; no gate/commentreplay or falseverification. No weakenedtests; currentheadreview/merge and separateconsumeradoption unfinished; no runtime/maker/heartbeat/model/auth/paid change or spore.
+
+- ts: 2026-10-13T00:02:57.360Z
+  task: cephalon-character-memory/B3/owning-ledger-integrity
+  p-efficiency: 0.8
+  p-friction: 0.2
+  p-skill-candidate: 0.1
+  spore: none
+  receipt-refs: cephalon-rheos-personal-main-f813-integration-20261013
+  note: Actual main PR14 advanced to f813; all six incoming files inspected. Receipt conflict resolved as exact owned99-row prefix plus one original1055byte incoming row/SHA9240fe96f8a02f69e42e1495696b87f797b747121f4ad6effaeb735a820091e9 (row100); all incoming83 raw rows retained and original complete214644byte blob/SHAbbfd50d1d651cac08cd99e8b0f230aef1de3c33177eb4a583b47625d8bfe54d1 preserved, not claimed as current whole prefix. Original reflection/event prefixes remain exact. Qualified native853 CLI full InProgress-to-Review gate passes all4release0compilerwarnings/lint0errors0warnings/8priorINFOs/full373tests3757assertions0fail0error/exit0,130held source/test/manifest hashes match. Independent native Review3 readback; existing portable JVM event-ledger+frontmatter30tests372assertions0fail0error/exit0. Owning final read-only checker89rowsPASS. Missing NPM_TOKEN interpolation notices are separate and no credential changed. Prior native MiMo5497189581 actual APPROVED exact922/all33inputs/all30chunks/no confirmed findings and hosted38320987052SUCCESS is archived, not transferred to integrated source/base. Proof is an observed-command-output transcription, not rawREST or new approval; actual ordinary merge parents are to be read after commit. Changed source needs fresh hosted review/checks before authorized MERGE; no Muse readiness/adoption/B1/B2/liveB3, runtime/maker/clock/owner/PM2/cloud/model/auth/paid/heartbeat/social/deployment mutation or spore. Latest installed canonical50-file PR pack matches fetched main5cea3e51a15d19277bd642147292c11b82de5369; existing global device dirt preserved.

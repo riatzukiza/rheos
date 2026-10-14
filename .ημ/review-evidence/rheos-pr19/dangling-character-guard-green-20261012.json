@@ -1,0 +1,53 @@
+{
+  "tier": "observed-command-output-index",
+  "finding": 4252705523,
+  "red_commit": "4dc709e",
+  "change": "Explicit EOF nil guard precedes character boundary helper; actual decoder and lexical discard controls preserved. Exact real reader arities retained in both host fixtures.",
+  "functional": {
+    "jvm": "7tests203assertions0fail0error/exit0",
+    "compiled": "336tests3426assertions0fail0error/exit0",
+    "releases": "server/cli/github-sync/app zero compiler warnings",
+    "lint": "zero errors/warnings; eight retained architecture INFOs",
+    "stable_sources": "All three held semantic/test hashes unchanged across native gate",
+    "board": "Independent native Review/3points readback",
+    "ledger": "Actual current owner event ledger80physical rows passes compiled canonical checker"
+  },
+  "limits": [
+    "Reported installed production throw not reproduced; real whitespace helper accepts nil. Defensive helper-independent EOF contract verified with scoped strict fixture.",
+    "All prior incidental fixture failures retained through appended correction receipts91-94.",
+    "Current source approval/merge and dependent Muse consumer adoption required; no stale approval transfer.",
+    "Missing NPM_TOKEN environment notice is separate from compiler and lint warnings. No credentials/paid/runtime/heartbeat change."
+  ],
+  "logs": [
+    {
+      "name": "dangling-stable-green-jvm.log",
+      "bytes": 110,
+      "sha256": "6269efe9d938aea591d00f6f8ee181889ae83ac4dfc45fc50d2005962e538ae3"
+    },
+    {
+      "name": "dangling-stable-green-native-review.log",
+      "bytes": 8846,
+      "sha256": "bd97a0fc142ee378ea4a13d18eef89a40b3d7c38709400b0567f3e5f878c02ab"
+    },
+    {
+      "name": "dangling-stable-green-held-sources.sha256",
+      "bytes": 338,
+      "sha256": "525bac08ecddd1eaed81b1920bc850ec4ce969414aa9bb7bd7b6346da1db09e3"
+    },
+    {
+      "name": "dangling-stable-green-native-comment.log",
+      "bytes": 1082,
+      "sha256": "982179a20d50834860723490e08c8561d644ec7558b5756453b00f4d90a5d913"
+    },
+    {
+      "name": "dangling-stable-green-final-readback.json",
+      "bytes": 24316,
+      "sha256": "d9e32c0922971d9a3bcdb8fbc4bc66af0065d43b022894633b018b019768f0ac"
+    },
+    {
+      "name": "dangling-stable-green-final-ledger-check.json",
+      "bytes": 98,
+      "sha256": "b74a563c6c322fa88642626479104261d08062a58069da80507075239849e56d"
+    }
+  ]
+}

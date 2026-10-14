@@ -1,0 +1,67 @@
+{
+  "tier": "observed-command-output index; not raw REST or provider approval",
+  "owned_parent": "4ec2d6fca5d3277010b3c587af9943096f2d9f98",
+  "incoming_parent": "8592aa00a39515f9bae2b4e6418ae76b1de3fc5b",
+  "incoming_delta_files": 18,
+  "held_sources": 126,
+  "gate_exit": 0,
+  "release_targets": 4,
+  "compiler_warnings": 0,
+  "lint_errors": 0,
+  "lint_warnings": 0,
+  "tests": 360,
+  "assertions": 3513,
+  "failures": 0,
+  "errors": 0,
+  "jvm": {
+    "tests": 7,
+    "assertions": 203,
+    "failures": 0,
+    "errors": 0
+  },
+  "native_owner_readback": "review/3points",
+  "actual_ledger_check": {
+    "ok": true,
+    "record-count": 82,
+    "errors": [],
+    "path": "docs/agile/.events/ledger.edn"
+  },
+  "receipt_custody": {
+    "owned_prior_rows": 95,
+    "incoming_rows": 82,
+    "appended_raw_rows": [
+      {
+        "row": 96,
+        "bytes": 938,
+        "sha256": "90afc7d3f729e0fa78f0421f452352e92ea270e7b42e099dad0ab6495a689d69"
+      }
+    ],
+    "owned_prefix_exact": true,
+    "all_incoming_raw_rows_present": true,
+    "incoming_whole_prefix_not_claimed": true,
+    "initial_merge_conflict": "Expected overlapping append history in .ημ/receipts.edn only; resolved by exact owned prefix plus actual unique raw incoming row, no rewriting or reordering any retained owned row."
+  },
+  "limits": [
+    "incoming whole receipt prefix not byte-identical; all original raw rows retained",
+    "new head/base needs fresh complete review",
+    "no consumer adoption or live character proof"
+  ],
+  "logs": {
+    "859-integration-native-review.log": {
+      "bytes": 9359,
+      "sha256": "43804aafd12f0bf2394d23cefaeb5e1d24a4a3dcc4b322a5dfbfb86cb29de611"
+    },
+    "859-integration-jvm.log": {
+      "bytes": 110,
+      "sha256": "6269efe9d938aea591d00f6f8ee181889ae83ac4dfc45fc50d2005962e538ae3"
+    },
+    "859-integration-native-comment.log": {
+      "bytes": 951,
+      "sha256": "4a3bd80ebe8df5ce7858ffd6be103a9476fb1fecf8f8913508d8e2dbeba8a5ae"
+    },
+    "859-integration-held-source-hashes.json": {
+      "bytes": 14616,
+      "sha256": "4f55c57f0176da3958b21aeb105e1f2ec0832c79446e497db6a5c1a5b859bf17"
+    }
+  }
+}

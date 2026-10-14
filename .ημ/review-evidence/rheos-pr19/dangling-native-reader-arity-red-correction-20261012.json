@@ -1,0 +1,52 @@
+{
+  "tier": "observed-command-output-index",
+  "finding": 4252705523,
+  "prior_red_commit": "ffa304f",
+  "correction": "Compiled cljs.tools.reader.edn/read has internal arities 1, 2 and 4. The test double preserves all three on CLJS, 1 and 2 on JVM; actual decoder helper restored only while decoding. Strict nil refusal belongs solely to the scanner.",
+  "prior_failures": "Native candidate gate and pnpm test had 3 failures because fixture lacked internal 4-arity; no GREEN credit. Earlier receipts remain immutable.",
+  "red": {
+    "jvm": {
+      "tests": 7,
+      "assertions": 195,
+      "failures": 0,
+      "errors": 1,
+      "exit": 1
+    },
+    "node": {
+      "tests": 336,
+      "assertions": 3418,
+      "failures": 0,
+      "errors": 1,
+      "exit": 1
+    },
+    "compile_warnings": 0
+  },
+  "production_limit": "Current installed real reader accepts nil; reported current production exception was not reproduced. Candidate is defensive explicit EOF handling, not proof of that exception.",
+  "logs": [
+    {
+      "name": "dangling-native-arity-red-compile.log",
+      "bytes": 3396,
+      "sha256": "7d5362d46285fa7e0137a793d2a52dffc149a34a756d668409c5243dfb57eb46"
+    },
+    {
+      "name": "dangling-native-arity-red-node.log",
+      "bytes": 3072,
+      "sha256": "99b87eeae3dda201df58327ef8068b78336e9eb909724462fcf333c102186d6f"
+    },
+    {
+      "name": "dangling-native-arity-red-jvm.log",
+      "bytes": 4976,
+      "sha256": "fde133579a64f0cd628467664f337dc861638686cb75687d8600c839ebf7f332"
+    },
+    {
+      "name": "dangling-scoped-green-native-review.log",
+      "bytes": 12721,
+      "sha256": "ee35032814656b635fbf6f9098904de46477691530cac9d678189727df332fb7"
+    },
+    {
+      "name": "dangling-reader-arity-green-test.log",
+      "bytes": 10245,
+      "sha256": "b5bec39800a9280b51ea777c9c5ff8eda6f7f856cb0dc32edcc59e6edb6ab86d"
+    }
+  ]
+}

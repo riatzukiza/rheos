@@ -1,0 +1,182 @@
+{
+  "schema": "cephalon.observed-source-integration/v1",
+  "tier": "observed-command-output-transcription",
+  "source_before_integration": "922f5dd644d75e39e10c0694d6f5833fc7e835ec",
+  "incoming_personal_main": "f8137e33fedc75ac978df5b0b2b66bc3f8a14498",
+  "expected_ordinary_merge_parents": [
+    "922f5dd644d75e39e10c0694d6f5833fc7e835ec",
+    "f8137e33fedc75ac978df5b0b2b66bc3f8a14498"
+  ],
+  "actual_merge_commit": "not yet created; verify after ordinary commit",
+  "incoming_diff": "six files/285insertions/20deletions; inspected in full",
+  "qualified_board_source": "8ef43eb2cb590f465552f462c8743a04282603fd",
+  "qualified_board_merge": "ae5cebca6124dae5fdd47707647b07daf10a8a4a",
+  "qualified_board_cli_sha256": "85369213440634989365f75929045d36eb69b6c6b1e7679f68d483374a0d526b",
+  "config": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/openhax.kanban.edn",
+  "native_gate": {
+    "exit": 0,
+    "compiled_tests": 373,
+    "compiled_assertions": 3757,
+    "failures": 0,
+    "errors": 0,
+    "release_targets": 4,
+    "compiler_warnings": 0,
+    "lint_errors": 0,
+    "lint_warnings": 0,
+    "preexisting_lint_info": 8,
+    "separate_environment_notices": "missing NPM_TOKEN interpolation (3 notices), no credential change",
+    "held_source_test_manifest_hashes": 130,
+    "before_after_equal": true
+  },
+  "portable_jvm": {
+    "exit": 0,
+    "tests": 30,
+    "assertions": 372,
+    "failures": 0,
+    "errors": 0,
+    "suites": [
+      "rheos.backend.domain.event-ledger-test",
+      "rheos.backend.shape.frontmatter-test"
+    ]
+  },
+  "native_readback": {
+    "uuid": "af67891c-fbb4-4f40-a6a2-e9bda75d5068",
+    "status": "review",
+    "points": "3"
+  },
+  "read_only_owning_checker": {
+    "ok": true,
+    "record-count": 89,
+    "errors": [],
+    "path": "docs/agile/.events/ledger.edn"
+  },
+  "receipt_union": {
+    "tier": "observed-command-output-transcription",
+    "prior_owned_head": "922f5dd644d75e39e10c0694d6f5833fc7e835ec",
+    "incoming_head": "f8137e33fedc75ac978df5b0b2b66bc3f8a14498",
+    "prior_owned_receipt_rows": 99,
+    "incoming_receipt_rows": 83,
+    "appended_raw_union_rows": 1,
+    "result_rows": 100,
+    "prior_owned_byte_prefix": true,
+    "incoming_original_whole_prefix": false,
+    "all_incoming_raw_rows_retained": true,
+    "incoming_original_bytes": 214644,
+    "incoming_original_sha256": "bbfd50d1d651cac08cd99e8b0f230aef1de3c33177eb4a583b47625d8bfe54d1",
+    "appended_raw_bytes": 1055,
+    "appended_raw_sha256": "9240fe96f8a02f69e42e1495696b87f797b747121f4ad6effaeb735a820091e9",
+    "note": "Original incoming complete blob retained privately; conflict resolved as exact existing owned99-row bytes plus one1055-byte original incoming row. No EDN rewrite, synthesized row or board/event parser."
+  },
+  "prior_mimo": {
+    "native_review_id": 5497189581,
+    "native_state": "APPROVED",
+    "exact_head": "922f5dd644d75e39e10c0694d6f5833fc7e835ec",
+    "reviewed_base": "8592aa00a39515f9bae2b4e6418ae76b1de3fc5b",
+    "submitted_at": "2026-10-12T23:55:58Z",
+    "files": 33,
+    "diff_chunks": 30,
+    "confirmed_findings": 0,
+    "transferred_approval": false,
+    "hosted_run": 38320987052,
+    "hosted_result": "success"
+  },
+  "artifacts": {
+    "f813-full-incoming-delta.diff": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-full-incoming-delta.diff",
+      "bytes": 32489,
+      "sha256": "a656dfeac2e0c84ec8177dcfac3c4449af78dd4448f76c445f2024f6cad89ede"
+    },
+    "f813-receipt-union-custody.json": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-receipt-union-custody.json",
+      "bytes": 895,
+      "sha256": "f5660a62d89ba0daebead081020d0e542e97be2aaec93c7d5293a8f9f39d1e39"
+    },
+    "f813-incoming-original-receipts.edn": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-incoming-original-receipts.edn",
+      "bytes": 214644,
+      "sha256": "bbfd50d1d651cac08cd99e8b0f230aef1de3c33177eb4a583b47625d8bfe54d1"
+    },
+    "f813-unique-incoming-raw-row.edn": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-unique-incoming-raw-row.edn",
+      "bytes": 1055,
+      "sha256": "9240fe96f8a02f69e42e1495696b87f797b747121f4ad6effaeb735a820091e9"
+    },
+    "f813-integration-held-source-hashes-before.json": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-integration-held-source-hashes-before.json",
+      "bytes": 15027,
+      "sha256": "68945b7c9b2efe5c9a18eb1ab44f560469309b82fb9f0ffbecb041782d917b81"
+    },
+    "f813-integration-held-source-hashes-after.json": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-integration-held-source-hashes-after.json",
+      "bytes": 15027,
+      "sha256": "68945b7c9b2efe5c9a18eb1ab44f560469309b82fb9f0ffbecb041782d917b81"
+    },
+    "f813-integration-native-before.json": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-integration-native-before.json",
+      "bytes": 26080,
+      "sha256": "0aa7979b3a4d6a495a6e67c85982dd9fd45c6c7a866232ba36d47e979c39cd56"
+    },
+    "f813-integration-native-in-progress.json": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-integration-native-in-progress.json",
+      "bytes": 110,
+      "sha256": "25acf7737147b42de016d9385c164720f4e42aacea8d45996dec2a98357ad534"
+    },
+    "f813-integration-native-review-exit.json": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-integration-native-review-exit.json",
+      "bytes": 1020,
+      "sha256": "5647232f2c157f834c5227f685040a5f6fd11fa7f69f6b37b3b0a2b39ef0b76a"
+    },
+    "f813-integration-native-review.stdout.log": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-integration-native-review.stdout.log",
+      "bytes": 7539,
+      "sha256": "b2df9a5830f5e37ed805ab93c7b9d8c2860ebb21918c1e93b16572030f3ed54c"
+    },
+    "f813-integration-native-review.stderr.log": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-integration-native-review.stderr.log",
+      "bytes": 1868,
+      "sha256": "3089f52f96942f99844cbebae1e8cf73640c0f0fa52a32effb05e36a6ba80083"
+    },
+    "f813-integration-native-after.json": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-integration-native-after.json",
+      "bytes": 26080,
+      "sha256": "0f5adbb46aae1155866a991aafedfbfed3a6fa60c14c080ba39e339a1508d4cf"
+    },
+    "f813-integration-jvm.log": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-integration-jvm.log",
+      "bytes": 157,
+      "sha256": "03062be06f8a16c69f75cf996cb826d31e08e8d774017d22882f3f4b408461d8"
+    },
+    "f813-integration-native-comment.json": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-integration-native-comment.json",
+      "bytes": 1710,
+      "sha256": "25ee796b044bf028f69c8f7cd1e333714778a4577b70cf70f5b63245183726c4"
+    },
+    "f813-integration-final-native-ledger-check.json": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/f813-integration-final-native-ledger-check.json",
+      "bytes": 98,
+      "sha256": "7e92a0a5b0a06ac6bdd9b33049f7fc638e1fce94d0cf2500c1731ebf09a70ca0"
+    },
+    "922-all-reviews-completed-native.json": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/922-all-reviews-completed-native.json",
+      "bytes": 49878,
+      "sha256": "357370802ff90c6fb423f161dcae6d0041f3e85ab6f634eba6073ae18fa501b6"
+    },
+    "922-deterministic-artifact-11778249904-native.json": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/922-deterministic-artifact-11778249904-native.json",
+      "bytes": 716,
+      "sha256": "548fa5423e3af48958e7cb765290b0dd269794c68f1b3a5ac6250e22c5ae1659"
+    },
+    "922-deterministic-artifact-11778249904.zip": {
+      "path": "/home/err/.local/share/codex/cephalon-review-artifacts/receipt-river-fixture-20261009/rheos-event-epic-20261011/rheos-event-id-checker-implementation-20261012/922-deterministic-artifact-11778249904.zip",
+      "bytes": 127799,
+      "sha256": "919334090e1a10651b97770e0988c8d67d7bd5271fd26cdde42abd68671d6db3"
+    }
+  },
+  "limits": [
+    "Local integrated source is held before ordinary merge commit; hosted exact-current-source qualification still required.",
+    "Prior922 MiMo approval is actual native historical evidence, not approval of this integrated source/base.",
+    "Duplicate compiler autorun summaries count as one test suite.",
+    "No dependent Muse readiness/adoption or B1/B2/liveB3 proof.",
+    "No runtime/maker/clock/gateway/PM2/cloud/model/credential/paid/heartbeat/social/deployment change; no spore."
+  ]
+}
