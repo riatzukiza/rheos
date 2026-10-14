@@ -7,5 +7,9 @@
         :task (shell "shadow-cljs compile test && node dist/test.cjs")}
   lint {:doc "Lint source with clj-kondo"
         :task (shell "clj-kondo --lint src test")}
+  verify-receipts {:doc "Check the segmented Receipt River ledger against a base (default origin/main)"
+                   :task (apply shell "bb scripts/verify_receipts.clj" *command-line-args*)}
+  test:receipts {:doc "Fixture tests for the receipt ledger check"
+                 :task (shell "bb test/receipts/verify_receipts_test.clj")}
   clean {:doc "Clean build artifacts"
          :task (shell "rm -rf dist dist-dev target")}}}

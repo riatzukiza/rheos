@@ -1,0 +1,42 @@
+name: receipts
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify-receipts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      # turtlequeue/setup-babashka@v1.7.0
+      - uses: turtlequeue/setup-babashka@2d4df498c7a578b4f3e906283f9af913590bdec7
+        with:
+          babashka-version: 1.12.200
+      - name: Receipt check fixtures
+        run: bb test/receipts/verify_receipts_test.clj
+      - name: Verify segmented receipt ledger
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          set -euo pipefail
+          if [ -z "${BASE_SHA:-}" ] || [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            echo "BASE_SHA unavailable; refusing to fall back to HEAD~1" >&2
+            exit 1
+          fi
+          if ! git cat-file -e "${BASE_SHA}^{commit}" 2>/dev/null; then
+            echo "BASE_SHA $BASE_SHA is not reachable in this checkout; fetch it or fail closed" >&2
+            git fetch --no-tags origin "$BASE_SHA" || true
+          fi
+          if ! git cat-file -e "${BASE_SHA}^{commit}" 2>/dev/null; then
+            echo "BASE_SHA $BASE_SHA still unreachable after fetch" >&2
+            exit 1
+          fi
+          bb scripts/verify_receipts.clj --base "$BASE_SHA" --at HEAD --range
