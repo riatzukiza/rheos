@@ -10,9 +10,17 @@
 ;; - the legacy file only loses whole lines (stays an ordered subsequence of
 ;;   the base) and gains no record the base lacked;
 ;; - no record appears twice in the merged head ledger;
+;; - the legacy file stays a regular non-executable file (mode 100644);
 ;; - segment names are real UTC timestamps; segments are non-empty,
-;;   newline-terminated, regular files holding exactly one EDN map;
-;; - every new record has a valid receipt envelope.
+;;   newline-terminated, regular files holding exactly one EDN map (the whole
+;;   file is one form, so pretty-printing across lines is fine);
+;; - every new record has a valid receipt envelope, including a nonblank
+;;   `:repo` and a strict UTC `:ts` (`YYYY-MM-DDTHH:MM:SS[.fraction]Z`).
+;;
+;; `--range` checks every commit in `base..at` against each of its real
+;; parents (merge commits against all parents), then `at` against `base`.
+;; In range mode the supplied base is used as-is, so a force-push is compared
+;; with the pre-push tip; without `--range` the base is the merge-base.
 ;;
 ;; TODO(clio/eta-mu): replace this script with eta-mu's receipt/ledger
 ;; commands built on Clio segment directories (`clio canonicalize-dir`) once
@@ -26,7 +34,7 @@
             [clojure.edn :as edn]
             [clojure.string :as str])
   (:import (java.security MessageDigest)
-           (java.time LocalDateTime)
+           (java.time Instant LocalDateTime)
            (java.time.format DateTimeFormatter ResolverStyle)))
 
 (def legacy-path ".ημ/receipts.edn")
@@ -57,16 +65,28 @@
     (set? value) [:set (vec (sort-by pr-str (map canonical-form value)))]
     (vector? value) [:vector (mapv canonical-form value)]
     (sequential? value) [:list (mapv canonical-form value)]
+    (tagged-literal? value) [:tagged (:tag value) (canonical-form (:form value))]
     :else value))
 
 (defn record-id [record] (sha256 (pr-str (canonical-form record))))
 
 (defn nonblank-string? [value] (and (string? value) (not (str/blank? value))))
 
+(def utc-ts-pattern
+  #"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:[.][0-9]{1,9})?Z")
+
+(defn utc-timestamp?
+  "Strict Receipt River `:ts`: an ISO-8601 UTC instant spelled with `Z`."
+  [value]
+  (and (string? value)
+       (re-matches utc-ts-pattern value)
+       (try (Instant/parse value) true (catch Exception _ false))))
+
 (defn receipt-envelope? [receipt]
   (and (map? receipt)
        (keyword? (:kind receipt))
-       (every? nonblank-string? ((juxt :ts :origin :owner :dod :pi :host) receipt))
+       (utc-timestamp? (:ts receipt))
+       (every? nonblank-string? ((juxt :repo :origin :owner :dod :pi :host) receipt))
        (vector? (:manifest receipt))
        (every? nonblank-string? (:manifest receipt))
        (vector? (:refs receipt))
@@ -109,7 +129,20 @@
   (zero? (:exit (process/shell {:out :string :err :string :continue true}
                                "git" "cat-file" "-e" (str rev ":" path)))))
 
+(defn tree-entry
+  "The `[mode kind]` of `path` at `rev`, or nil when absent."
+  [rev path]
+  (let [out (git-text "ls-tree" "-z" rev "--" path)
+        entry (first (remove str/blank? (str/split out #"\u0000")))]
+    (when entry
+      (let [[_ mode kind] (re-matches #"(?s)([0-7]{6}) ([a-z]+) [0-9a-f]{40,64}\t.+" entry)]
+        [mode kind]))))
+
 (defn read-legacy [rev]
+  (when-let [[mode kind] (tree-entry rev legacy-path)]
+    (when-not (and (= "100644" mode) (= "blob" kind))
+      (fail! (str "The legacy ledger " legacy-path " must stay a non-executable regular file at " rev
+                  " (found " mode " " kind ")"))))
   (let [bytes (if (path-exists? rev legacy-path) (git-bytes "show" (str rev ":" legacy-path)) (byte-array 0))]
     {:segment/path legacy-path :segment/legacy? true :segment/bytes bytes
      :segment/records (read-records (String. ^bytes bytes "UTF-8") legacy-path)}))
@@ -121,10 +154,9 @@
     (when (zero? (alength bytes)) (fail! (str "Receipt segment must not be empty: " path)))
     (when-not (= 10 (aget bytes (dec (alength bytes))))
       (fail! (str "Receipt segment must end with a newline: " path)))
-    (let [records (read-records (String. bytes "UTF-8") path)]
-      (when-not (and (= 1 (count records)) (map? (first records)))
-        (fail! (str "Receipt segment must contain exactly one EDN map: " path)))
-      {:segment/path path :segment/bytes bytes :segment/records records})))
+    ;; The whole file is one EDN form; line-based parsing is legacy-only.
+    {:segment/path path :segment/bytes bytes
+     :segment/records [(read-one-edn-map! (String. bytes "UTF-8") path)]}))
 
 (defn directory-at?
   "True when `path` is a git tree at `rev`. `ls-tree` without `-d` lists children,
@@ -181,24 +213,25 @@
             (= (first wanted) (first available)) (recur (rest wanted) (rest available))
             :else (recur wanted (rest available))))))
 
-(defn verify!
-  "Check that `at` extends `base` as a segmented ledger; return a summary."
-  [base at]
-  (let [{base-dir? :directory? base-segments :segments} (read-ledger base)
+(defn verify-against!
+  "Check that `at` extends every ledger in `bases` (one base, or all parents of
+  a merge commit); return a summary."
+  [bases at]
+  (let [base-ledgers (mapv read-ledger bases)
         {head-dir? :directory? head-segments :segments} (read-ledger at)
-        _ (merged-records base-segments)
+        _ (doseq [{:keys [segments]} base-ledgers] (merged-records segments))
         head-records (merged-records head-segments)
         head-by-path (into {} (map (juxt :segment/path identity)) head-segments)]
-    (when (and base-dir? (not head-dir?))
-      (fail! (str segment-directory " was removed; the segment directory must remain")))
-    (doseq [{:segment/keys [path bytes legacy?]} base-segments :when (not legacy?)]
-      (let [head (get head-by-path path)]
-        (when-not head (fail! (str "Receipt segment was removed: " path)))
-        (when-not (java.util.Arrays/equals ^bytes bytes ^bytes (:segment/bytes head))
-          (fail! (str "Receipt segment was edited: " path)))))
-    (let [base-ids (into #{} (comp (mapcat :segment/records) (map record-id)) base-segments)
+    (doseq [{base-dir? :directory? base-segments :segments} base-ledgers]
+      (when (and base-dir? (not head-dir?))
+        (fail! (str segment-directory " was removed; the segment directory must remain")))
+      (doseq [{:segment/keys [path bytes legacy?]} base-segments :when (not legacy?)]
+        (let [head (get head-by-path path)]
+          (when-not head (fail! (str "Receipt segment was removed: " path)))
+          (when-not (java.util.Arrays/equals ^bytes bytes ^bytes (:segment/bytes head))
+            (fail! (str "Receipt segment was edited: " path))))))
+    (let [base-ids (into #{} (comp (mapcat :segments) (mapcat :segment/records) (map record-id)) base-ledgers)
           head-ids (into #{} (map record-id) head-records)
-          base-legacy (first base-segments)
           head-legacy (first head-segments)
           new-records (remove #(base-ids (record-id %)) head-records)]
       (when-let [missing (seq (remove head-ids base-ids))]
@@ -206,13 +239,19 @@
       (when (seq (remove #(base-ids (record-id %)) (:segment/records head-legacy)))
         (fail! (str "The legacy ledger " legacy-path " is frozen; write new receipts as segments under "
                     segment-directory "/")))
-      (when-not (line-subsequence? (:segment/bytes head-legacy) (:segment/bytes base-legacy))
+      (when-not (some #(line-subsequence? (:segment/bytes head-legacy) (:segment/bytes (first (:segments %))))
+                      base-ledgers)
         (fail! (str "The legacy ledger " legacy-path " may only lose whole lines; it was rewritten or reordered")))
       (when-let [invalid (seq (remove receipt-envelope? new-records))]
         (fail! (str "New receipts have invalid envelopes: " (pr-str (vec invalid)))))
       {:receipts/total (count head-records)
        :receipts/new (count new-records)
        :receipts/segments (dec (count head-segments))})))
+
+(defn verify!
+  "Check that `at` extends `base` as a segmented ledger; return a summary."
+  [base at]
+  (verify-against! [base] at))
 
 (defn parse-args [args]
   (loop [args args opts {:base "origin/main" :at "HEAD" :range? false}]
@@ -230,29 +269,36 @@
           :else (fail! (str "Unknown argument: " (first args))))))
 
 (defn verify-range!
-  "Verify every adjacent commit from `base` (exclusive) to `at` (inclusive) so a
-  segment cannot be added and then edited/deleted within one PR range."
+  "Verify every commit in `base..at` against each of its real parents, so a
+  segment cannot be added then edited/deleted inside the range and sibling
+  history is never compared out of order; then verify `at` against `base`."
   [base at]
-  (let [revs (->> (str/split (git-text "rev-list" "--reverse" (str base ".." at)) #"\n")
+  (let [rows (->> (str/split (git-text "rev-list" "--reverse" "--parents" (str base ".." at)) #"\n")
                   (remove str/blank?)
-                  vec)]
-    (when (empty? revs)
+                  (mapv #(str/split (str/trim %) #" ")))]
+    (when (empty? rows)
       (fail! (str "No commits between " base " and " at)))
-    (reduce (fn [prev rev]
-              (verify! prev rev)
-              rev)
-            base
-            revs)
+    (doseq [[rev & parents] rows :when (seq parents)]
+      (try (verify-against! (vec parents) rev)
+           (catch clojure.lang.ExceptionInfo e
+             (if (:receipts/error (ex-data e))
+               (fail! (str (ex-message e) " (at commit " (subs rev 0 (min 12 (count rev))) ")"))
+               (throw e)))))
     (verify! base at)))  ;; final base→at summary
+
+(defn run
+  "Range mode keeps the supplied base (force-pushes compare with the pre-push
+  tip); otherwise compare with the merge-base so a branch behind main passes."
+  [{:keys [base at range?]}]
+  (if range?
+    (assoc (verify-range! base at) :receipts/base base)
+    (let [base (str/trim (git-text "merge-base" base at))]
+      (assoc (verify! base at) :receipts/base base))))
 
 (defn -main [& args]
   (try
-    (let [{:keys [base at range?]} (parse-args args)
-          base (str/trim (git-text "merge-base" base at))
-          summary (if range?
-                    (verify-range! base at)
-                    (verify! base at))]
-      (prn (assoc summary :receipts/base base :receipts/at at :receipts/range? range?)))
+    (let [{:keys [at range?] :as opts} (parse-args args)]
+      (prn (assoc (run opts) :receipts/at at :receipts/range? range?)))
     (catch clojure.lang.ExceptionInfo e
       (if (:receipts/error (ex-data e))
         (do (binding [*out* *err*] (println "verify-receipts:" (ex-message e)))
