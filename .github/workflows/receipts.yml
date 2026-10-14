@@ -1,0 +1,28 @@
+name: receipts
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify-receipts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: turtlequeue/setup-babashka@v1.7.0
+        with:
+          babashka-version: 1.12.200
+      - name: Receipt check fixtures
+        run: bb test/receipts/verify_receipts_test.clj
+      - name: Verify segmented receipt ledger
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [ -z "$BASE_SHA" ] || ! git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null; then BASE_SHA=HEAD~1; fi
+          bb scripts/verify_receipts.clj --base "$BASE_SHA" --at HEAD
